@@ -1,0 +1,184 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@theme inline {
+  --font-heading: var(--font-sans);
+  --font-sans: var(--font-sans);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  /* ===========================
+     Base
+  =========================== */
+  --background: #F8FAFC;
+  --foreground: #111827;
+
+  --card: #FFFFFF;
+  --card-foreground: #111827;
+
+  --popover: #FFFFFF;
+  --popover-foreground: #111827;
+
+  --border: #E5E7EB;
+  --input: #E5E7EB;
+  --ring: #16A34A;
+
+  --radius: 0.45rem;
+
+  /* ===========================
+     Brand
+  =========================== */
+  --primary: #16A34A;
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #F1F5F9;
+  --secondary-foreground: #111827;
+
+  --muted: #F8FAFC;
+  --muted-foreground: #6B7280;
+
+  --accent: #DCFCE7;
+  --accent-foreground: #166534;
+
+  --destructive: #EF4444;
+
+  /* ===========================
+     Charts
+  =========================== */
+  --chart-1: #16A34A;
+  --chart-2: #2563EB;
+  --chart-3: #F59E0B;
+  --chart-4: #EF4444;
+  --chart-5: #9333EA;
+
+  /* ===========================
+     Sidebar
+  =========================== */
+  --sidebar: #064E3B;
+  --sidebar-foreground: #FFFFFF;
+
+  --sidebar-primary: #04805f;
+  --sidebar-primary-foreground: #FFFFFF;
+
+  --sidebar-accent: #0a6e54;
+  --sidebar-accent-foreground: #FFFFFF;
+
+  --sidebar-border: #065F46;
+  --sidebar-ring: #16A34A;
+
+  /* ===========================
+     Status
+  =========================== */
+  --success: #22C55E;
+  --warning: #F59E0B;
+  --danger: #EF4444;
+  --info: #3B82F6;
+
+  --success-bg: #DCFCE7;
+  --warning-bg: #FEF3C7;
+  --danger-bg: #FEE2E2;
+  --info-bg: #DBEAFE;
+
+  /* ===========================
+     Dashboard Cards
+  =========================== */
+  --donation: #16A34A;
+  --donation-bg: #DCFCE7;
+
+  --expense: #EF4444;
+  --expense-bg: #FEE2E2;
+
+  --balance: #2563EB;
+  --balance-bg: #DBEAFE;
+
+  --family: #9333EA;
+  --family-bg: #F3E8FF;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply font-sans;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #D1D5DB;
+    border-radius: 9999px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: #9CA3AF;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}

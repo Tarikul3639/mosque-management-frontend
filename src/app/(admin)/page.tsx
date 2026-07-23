@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { MosqueLogo } from "@/components/icons/MosqueLogo"
 
 export default function Page() {
   return (
@@ -12,6 +13,9 @@ export default function Page() {
         </div>
         <div className="font-mono text-xs text-muted-foreground">
           (Press <kbd>d</kbd> to toggle dark mode)
+        </div>
+        <div className="mt-auto bg-primary">
+          <MosqueLogo color="#ffffff" />
         </div>
       </div>
     </div>
