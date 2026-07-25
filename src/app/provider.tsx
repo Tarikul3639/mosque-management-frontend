@@ -2,15 +2,20 @@
 
 import type { ReactNode } from "react"
 import { Provider } from "react-redux"
+
 import { store } from "@/store"
-import { TooltipProvider } from "@/components/ui/tooltip"
+
+import { FeatureDialog } from "@/components/common/feature-dialog"
 import { Toaster } from "@/components/ui/sonner"
+import { TooltipProvider } from "@/components/ui/tooltip"
 
 interface ProviderProps {
     children: ReactNode
 }
 
-export default function ProviderWrapper({ children }: ProviderProps) {
+export default function ProviderWrapper({
+    children,
+}: ProviderProps) {
     return (
         <TooltipProvider>
             <Provider store={store}>
@@ -22,7 +27,10 @@ export default function ProviderWrapper({ children }: ProviderProps) {
                         },
                     }}
                 />
+
                 {children}
+
+                <FeatureDialog />
             </Provider>
         </TooltipProvider>
     )

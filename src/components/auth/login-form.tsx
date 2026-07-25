@@ -25,7 +25,13 @@ import {
     type LoginSchema,
 } from "@/schemas/auth/login.schema";
 
+import { useAppDispatch } from "@/store/hooks";
+import { openFeatureDialog } from "@/store/slices/ui.slice";
+
 export default function LoginForm() {
+    // TODO: Implement remember me functionality using cookies or local storage
+    const dispatch = useAppDispatch();
+
     const router = useRouter();
 
     const [rememberMe, setRememberMe] = useState(true);
@@ -168,6 +174,13 @@ export default function LoginForm() {
                     type="button"
                     variant="outline"
                     className="h-10 w-full rounded-sm"
+                    onClick={() => dispatch(
+                        openFeatureDialog({
+                            title: "Google Sign In",
+                            description:
+                                "Google authentication is not available yet. It will be added in a future update.",
+                        }),
+                    )}
                 >
                     <GoogleIcon className="mr-2 h-4 w-4" />
                     Sign in with Google

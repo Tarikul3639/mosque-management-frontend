@@ -22,8 +22,8 @@ export default function ForgotPasswordPage() {
                     {/* Left Side */}
                     <AuthHero
                         image="/images/login-hero.png"
-                        title="Forgot Your Password?"
-                        description="Don't worry! You can easily reset your password and regain access to your account."
+                        title="Reset Your Password"
+                        description="Choose a strong password to keep your account secure. Make sure it is unique and not used elsewhere."
                     >
                         <AuthQuoteCard
                             title="Indeed, Allah loves those who repent."

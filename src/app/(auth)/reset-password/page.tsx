@@ -2,7 +2,7 @@ import { Suspense } from "react"
 import AuthHero from "@/components/auth/auth-hero"
 import AuthQuoteCard from "@/components/auth/auth-quote-card"
 import ResetPasswordForm from "@/components/auth/reset-password-form";
-import Loading from "@/app/loading"
+import Loading from "@/components/common/loading"
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
