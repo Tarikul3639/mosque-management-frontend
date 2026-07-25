@@ -1,2 +1,2 @@
-const proxy = () => { }
+const proxy = () => {}
 export default proxy

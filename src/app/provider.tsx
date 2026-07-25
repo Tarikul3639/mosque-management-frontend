@@ -10,28 +10,26 @@ import { Toaster } from "@/components/ui/sonner"
 import { TooltipProvider } from "@/components/ui/tooltip"
 
 interface ProviderProps {
-    children: ReactNode
+  children: ReactNode
 }
 
-export default function ProviderWrapper({
-    children,
-}: ProviderProps) {
-    return (
-        <TooltipProvider>
-            <Provider store={store}>
-                <Toaster
-                    position="top-center"
-                    toastOptions={{
-                        classNames: {
-                            description: "text-muted-foreground",
-                        },
-                    }}
-                />
+export default function ProviderWrapper({ children }: ProviderProps) {
+  return (
+    <TooltipProvider>
+      <Provider store={store}>
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            classNames: {
+              description: "text-muted-foreground!",
+            },
+          }}
+        />
 
-                {children}
+        {children}
 
-                <FeatureDialog />
-            </Provider>
-        </TooltipProvider>
-    )
+        <FeatureDialog />
+      </Provider>
+    </TooltipProvider>
+  )
 }

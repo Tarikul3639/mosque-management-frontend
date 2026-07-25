@@ -10,7 +10,11 @@ import {
 
 import { cn } from "@/lib/utils"
 import { Button, buttonVariants } from "@/components/ui/button"
-import { ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon } from "lucide-react"
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ChevronDownIcon,
+} from "lucide-react"
 
 function Calendar({
   className,
@@ -110,7 +114,7 @@ function Calendar({
           defaultClassNames.day
         ),
         range_start: cn(
-          "relative isolate z-0 rounded-s-(--cell-radius) bg-muted after:absolute after:inset-y-0 after:end-0 after:w-4 after:bg-muted rounded-sm",
+          "relative isolate z-0 rounded-sm rounded-s-(--cell-radius) bg-muted after:absolute after:inset-y-0 after:end-0 after:w-4 after:bg-muted",
           defaultClassNames.range_start
         ),
         range_middle: cn("rounded-none", defaultClassNames.range_middle),
@@ -147,13 +151,19 @@ function Calendar({
         Chevron: ({ className, orientation, ...props }) => {
           if (orientation === "left") {
             return (
-              <ChevronLeftIcon className={cn("rtl:rotate-180 size-4", className)} {...props} />
+              <ChevronLeftIcon
+                className={cn("size-4 rtl:rotate-180", className)}
+                {...props}
+              />
             )
           }
 
           if (orientation === "right") {
             return (
-              <ChevronRightIcon className={cn("rtl:rotate-180 size-4", className)} {...props} />
+              <ChevronRightIcon
+                className={cn("size-4 rtl:rotate-180", className)}
+                {...props}
+              />
             )
           }
 

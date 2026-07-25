@@ -1,4 +1,4 @@
-type MenuIconProps = React.SVGProps<SVGSVGElement>;
+type MenuIconProps = React.SVGProps<SVGSVGElement>
 
 export const MenuIcon: React.FC<MenuIconProps> = (props) => {
   return (
@@ -16,5 +16,5 @@ export const MenuIcon: React.FC<MenuIconProps> = (props) => {
         strokeLinejoin="round"
       />
     </svg>
-  );
-};
+  )
+}
