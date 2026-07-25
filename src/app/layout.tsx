@@ -1,9 +1,13 @@
-import { Geist, Geist_Mono, Inter } from "next/font/google"
-import { TooltipProvider } from "@/components/ui/tooltip";
-import "./globals.css"
-import { cn } from "@/lib/utils";
+import { Geist_Mono, Inter } from "next/font/google"
+import ProviderWrapper from "./provider"
+import { cn } from "@/lib/utils"
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
+import "./globals.css"
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+})
 
 const fontMono = Geist_Mono({
   subsets: ["latin"],
@@ -19,10 +23,15 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", inter.variable)}
+      className={cn(
+        "antialiased",
+        "font-sans",
+        inter.variable,
+        fontMono.variable
+      )}
     >
       <body>
-        <TooltipProvider>{children}</TooltipProvider>
+        <ProviderWrapper>{children}</ProviderWrapper>
       </body>
     </html>
   )

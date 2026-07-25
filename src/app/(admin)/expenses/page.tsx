@@ -1,5 +1,7 @@
+"use client";
+
 import { Button } from "@/components/ui/button"
-import { MosqueLogo } from "@/components/icons/MosqueLogo"
+import { Logo } from "@/components/icons/Logo"
 
 export default function Page() {
   return (
@@ -15,7 +17,7 @@ export default function Page() {
           (Press <kbd>d</kbd> to toggle dark mode)
         </div>
         <div className="mt-auto bg-primary">
-          <MosqueLogo color="#ffffff" />
+          <Logo color="#ffffff" />
         </div>
       </div>
     </div>

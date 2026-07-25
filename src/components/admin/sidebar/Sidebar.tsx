@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronRight } from "lucide-react";
 
-import { MosqueLogo } from "@/components/icons/MosqueLogo";
+import { Logo } from "@/components/icons/Logo";
 import { navItems } from "./navItems";
 import {
     Avatar,
@@ -84,7 +84,7 @@ export function Sidebar({
                 className="flex h-24 items-center border-b border-sidebar-border px-4"
             >
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-sidebar-primary/50">
-                    <MosqueLogo className="h-full w-full p-1" color="white" />
+                    <Logo className="h-full w-full p-1" color="white" />
                 </div>
 
                 <Collapsible isOpen={isOpen}>

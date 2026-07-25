@@ -29,6 +29,22 @@
 
   --color-destructive: var(--destructive);
 
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-bg: var(--success-bg);
+
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning-bg: var(--warning-bg);
+
+  --color-danger: var(--danger);
+  --color-danger-foreground: var(--danger-foreground);
+  --color-danger-bg: var(--danger-bg);
+
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-info-bg: var(--info-bg);
+
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -61,89 +77,95 @@
   /* ===========================
      Base
   =========================== */
-  --background: #F8FAFC;
+  --background: #f8fafc;
   --foreground: #111827;
 
-  --card: #FFFFFF;
+  --card: #efefef;
   --card-foreground: #111827;
 
-  --popover: #FFFFFF;
+  --popover: #ffffff;
   --popover-foreground: #111827;
 
-  --border: #E5E7EB;
-  --input: #E5E7EB;
-  --ring: #16A34A;
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+  --ring: #16a34a;
 
   --radius: 0.45rem;
 
   /* ===========================
      Brand
   =========================== */
-  --primary: #16A34A;
-  --primary-foreground: #FFFFFF;
+  --primary: #007a55;
+  --primary-foreground: #ffffff;
 
-  --secondary: #F1F5F9;
+  --secondary: #f1f5f9;
   --secondary-foreground: #111827;
 
-  --muted: #F8FAFC;
-  --muted-foreground: #6B7280;
+  --muted: #dde2df;
+  --muted-foreground: #6b7280;
 
-  --accent: #DCFCE7;
+  --accent: #dcfce7;
   --accent-foreground: #166534;
 
-  --destructive: #EF4444;
+  --destructive: #ef4444;
 
   /* ===========================
      Charts
   =========================== */
-  --chart-1: #16A34A;
-  --chart-2: #2563EB;
-  --chart-3: #F59E0B;
-  --chart-4: #EF4444;
-  --chart-5: #9333EA;
+  --chart-1: #16a34a;
+  --chart-2: #2563eb;
+  --chart-3: #f59e0b;
+  --chart-4: #ef4444;
+  --chart-5: #9333ea;
 
   /* ===========================
      Sidebar
   =========================== */
-  --sidebar: #064E3B;
-  --sidebar-foreground: #FFFFFF;
+  --sidebar: #064e3b;
+  --sidebar-foreground: #ffffff;
 
   --sidebar-primary: #04805f;
-  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-primary-foreground: #ffffff;
 
   --sidebar-accent: #0a6e54;
-  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-accent-foreground: #ffffff;
 
-  --sidebar-border: #065F46;
-  --sidebar-ring: #16A34A;
+  --sidebar-border: #065f46;
+  --sidebar-ring: #16a34a;
 
   /* ===========================
      Status
   =========================== */
-  --success: #22C55E;
-  --warning: #F59E0B;
-  --danger: #EF4444;
-  --info: #3B82F6;
+  --success: #22c55e;
+  --success-foreground: #14532d;
+  --success-bg: #dcfce7;
 
-  --success-bg: #DCFCE7;
-  --warning-bg: #FEF3C7;
-  --danger-bg: #FEE2E2;
-  --info-bg: #DBEAFE;
+  --warning: #f59e0b;
+  --warning-foreground: #78350f;
+  --warning-bg: #fef3c7;
+
+  --danger: #ef4444;
+  --danger-foreground: #7f1d1d;
+  --danger-bg: #fee2e2;
+
+  --info: #3b82f6;
+  --info-foreground: #1e3a8a;
+  --info-bg: #dbeafe;
 
   /* ===========================
      Dashboard Cards
   =========================== */
-  --donation: #16A34A;
-  --donation-bg: #DCFCE7;
+  --donation: #16a34a;
+  --donation-bg: #dcfce7;
 
-  --expense: #EF4444;
-  --expense-bg: #FEE2E2;
+  --expense: #ef4444;
+  --expense-bg: #fee2e2;
 
-  --balance: #2563EB;
-  --balance-bg: #DBEAFE;
+  --balance: #2563eb;
+  --balance-bg: #dbeafe;
 
-  --family: #9333EA;
-  --family-bg: #F3E8FF;
+  --family: #9333ea;
+  --family-bg: #f3e8ff;
 }
 
 @layer base {
@@ -170,12 +192,12 @@
   }
 
   *::-webkit-scrollbar-thumb {
-    background: #D1D5DB;
+    background: #d1d5db;
     border-radius: 9999px;
   }
 
   *::-webkit-scrollbar-thumb:hover {
-    background: #9CA3AF;
+    background: #9ca3af;
   }
 
   *::-webkit-scrollbar-track {

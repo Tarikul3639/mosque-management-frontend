@@ -3,7 +3,7 @@ interface MosqueLogoProps {
     color?: string;
 }
 
-export function MosqueLogo({
+export function Logo({
     className,
     color = "#16A34A",
 }: MosqueLogoProps) {

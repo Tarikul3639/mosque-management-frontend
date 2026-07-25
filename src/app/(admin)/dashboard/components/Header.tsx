@@ -1,65 +1,59 @@
 "use client";
 
-import { useState } from "react";
-import { Bell, Calendar, ChevronDown, Download } from "lucide-react";
+import { Bell, Download } from "lucide-react";
+import { DateRange } from "react-day-picker";
+import { DatePickerWithRange } from "@/components/ui/DatePickerWithRange";
 
 interface DashboardHeaderProps {
     userName?: string;
     subtitle?: string;
-    dateRangeLabel?: string;
-    onDateRangeClick?: () => void;
+    dateRange?: DateRange;
+    onDateRangeChange: (value: DateRange | undefined) => void;
     onExportReport?: () => void;
-    onNotificationsClick?: () => void; notificationCount?: number;
+    onNotificationsClick?: () => void;
+    notificationCount?: number;
 }
 
 export function Header({
-    userName = "Tariqul Islam",
+    userName = "Tarikul Islam",
     subtitle = "Here's what's happening in your mosque today.",
-    dateRangeLabel = "May 1, 2024 - May 31, 2024",
-    onDateRangeClick,
+    dateRange,
+    onDateRangeChange,
     onExportReport,
     onNotificationsClick,
     notificationCount = 5,
 }: DashboardHeaderProps) {
-    const [dateOpen, setDateOpen] = useState(false);
-
-    const handleDateClick = () => {
-        setDateOpen((prev) => !prev);
-        onDateRangeClick?.();
-    };
-
     return (
-        <div className="flex w-full flex-wrap items-center justify-between gap-4 px-6 py-5">
-            {/* Left: greeting */}
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between px-2 py-5">
+            {/* Left */}
             <div className="min-w-0">
-                <h1 className="flex items-center gap-2 truncate text-xl font-semibold text-foreground">
-                    Welcome back, {userName}
-                    <span aria-hidden>👋</span>
+                <h1 className="flex flex-wrap items-center gap-2 text-xl font-semibold text-foreground line-clamp-1">
+                    <span className="truncate">Welcome back, {userName} 👋</span>
                 </h1>
-                <p className="truncate text-sm text-muted-foreground">{subtitle}</p>
+
+                <p className="mt-1 text-sm text-muted-foreground line-clamp-1">
+                    {subtitle}
+                </p>
             </div>
 
-            {/* Right: date range + export */}
-            <div className="flex shrink-0 items-center gap-3">
-                <button
-                    type="button"
-                    onClick={handleDateClick}
-                    aria-expanded={dateOpen}
-                    className="flex items-center gap-2 rounded-md border border-border bg-card px-3 py-2 text-sm text-foreground hover:bg-secondary"
-                >
-                    <Calendar className="h-4 w-4 text-muted-foreground" />
-                    <span>{dateRangeLabel}</span>
-                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
-                </button>
+            {/* Right */}
+            <div className="flex flex-wrap items-center justify-start gap-3 lg:justify-end">
+                <DatePickerWithRange
+                    value={dateRange}
+                    onChange={onDateRangeChange}
+                    className="w-70 h-9"
+                    placeholder="Select date range"
+                    numberOfMonths={2}
+                />
 
-                {/* Right: notifications */}
                 <button
                     type="button"
                     onClick={onNotificationsClick}
                     aria-label="Notifications"
-                    className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-border bg-card text-foreground hover:bg-secondary"
+                    className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-border bg-card hover:bg-secondary"
                 >
-                    <Bell className="h-4.5 w-4.5" size={18} />
+                    <Bell size={18} />
+
                     {notificationCount > 0 && (
                         <span className="absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-destructive px-1 text-[11px] font-semibold text-white">
                             {notificationCount > 9 ? "9+" : notificationCount}
@@ -70,7 +64,7 @@ export function Header({
                 <button
                     type="button"
                     onClick={onExportReport}
-                    className="flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:opacity-90"
+                    className="flex h-9 shrink-0 items-center gap-2 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:opacity-90"
                 >
                     <Download className="h-4 w-4" />
                     <span>Export Report</span>
