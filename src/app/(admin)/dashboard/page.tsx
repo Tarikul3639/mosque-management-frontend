@@ -4,7 +4,7 @@ import { useState } from "react"
 import { DateRange } from "react-day-picker"
 
 import Header from "./components/Header"
-import { StatsSection } from "./components/stats/StatsSection"
+import { StatsSection } from "./components/StatsSection"
 import { DonationExpenseChart } from "./components/charts/DonationExpenseChart"
 import { ExpenseCategoryChart } from "./components/charts/expense-category-chart"
 import { FinancialSummaryChart } from "./components/charts/financial-summary-chart"
@@ -55,7 +55,7 @@ export default function DashboardPage() {
     useGetRecentExpensesQuery()
 
   return (
-    <div className="flex flex-col gap-6 px-4">
+    <div className="flex flex-col gap-6 px-4 bg-background">
       <Header
         userName={me?.name ?? ""}
         subtitle="Here's what's happening in your mosque today."

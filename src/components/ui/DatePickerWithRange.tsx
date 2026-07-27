@@ -36,6 +36,7 @@ export function DatePickerWithRange({
         <PopoverTrigger asChild>
           <Button
             variant="outline"
+            size="lg"
             id="date-picker-range"
             className="flex h-full w-full items-center justify-between rounded-md border border-border bg-card px-3 py-2 text-sm text-foreground hover:bg-secondary"
           >

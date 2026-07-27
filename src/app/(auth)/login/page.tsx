@@ -1,8 +1,8 @@
-import LoginForm from "@/components/auth/login-form"
-import AuthHero from "@/components/auth/auth-hero"
-import AuthQuoteCard from "@/components/auth/auth-quote-card"
+import type { Metadata } from "next";
 
-import type { Metadata } from "next"
+import LoginForm from "@/components/auth/login-form";
+import AuthHero from "@/components/auth/auth-hero";
+import AuthQuoteCard from "@/components/auth/auth-quote-card";
 
 export const metadata: Metadata = {
   title: "Sign In",
@@ -12,13 +12,13 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
-}
+};
 
 export default function LoginPage() {
   return (
     <main className="min-h-screen bg-background">
-      <div className="mx-auto flex min-h-screen max-w-7xl items-center justify-center p-6 lg:p-10">
-        <div className="grid w-full overflow-hidden rounded-3xl border bg-background shadow-sm max-lg:max-w-md lg:grid-cols-2">
+      <div className="mx-auto flex min-h-screen max-w-6xl items-center justify-center p-6 lg:p-10">
+        <div className="grid w-full overflow-hidden rounded-3xl border border-border bg-background shadow-lg lg:grid-cols-2">
           {/* Left */}
           <AuthHero
             image="/images/login-hero.png"
@@ -26,10 +26,10 @@ export default function LoginPage() {
               <>
                 Manage Your Mosque
                 <br />
-                Smartly & Efficiently
+                Smartly &amp; Efficiently
               </>
             }
-            description="A complete solution to manage members, donations, expenses, events and more."
+            description="A complete solution to manage members, donations, expenses, events, and more."
           >
             <AuthQuoteCard
               title="And whoever relies upon Allah —"
@@ -45,11 +45,11 @@ export default function LoginPage() {
           </AuthHero>
 
           {/* Right */}
-          <section className="flex w-full items-center justify-center p-8 lg:p-14">
+          <section className="flex items-center justify-center p-8 sm:p-10 lg:p-14">
             <LoginForm />
           </section>
         </div>
       </div>
     </main>
-  )
+  );
 }

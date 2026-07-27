@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Mail } from "lucide-react"
+import * as React from "react";
+import { Mail } from "lucide-react";
 
-import { cn } from "@/lib/utils"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { cn } from "@/lib/utils";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
-import InputError from "./input-error"
+import InputError from "./input-error";
 
 interface EmailInputProps extends React.ComponentProps<"input"> {
-  label?: string
-  error?: string
+  label?: string;
+  error?: string;
 }
 
 export default function EmailInput({
@@ -27,23 +27,28 @@ export default function EmailInput({
 
       <div className="group relative">
         <Mail
-          className={`absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-muted-foreground transition-colors group-has-[input:focus]:text-primary ${error ? "text-destructive!" : ""}`}
+          className={cn(
+            "pointer-events-none absolute top-1/2 left-4 size-4 -translate-y-1/2 text-muted-foreground transition-colors duration-200",
+            "group-has-[input:focus]:text-primary",
+            error && "text-destructive"
+          )}
         />
 
         <Input
           id={id}
           type="email"
+          aria-invalid={!!error}
           className={cn(
             "h-10 pl-12",
-            error && "border-destructive focus-visible:ring-destructive",
+            error &&
+            "border-destructive ring-destructive/20 focus-visible:border-destructive focus-visible:ring-destructive/30",
             className
           )}
-          aria-invalid={!!error}
           {...props}
         />
       </div>
 
       <InputError message={error} />
     </div>
-  )
+  );
 }

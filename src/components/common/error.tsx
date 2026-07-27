@@ -1,50 +1,52 @@
-"use client"
+"use client";
 
-import { useEffect } from "react"
-import { AlertTriangle, RotateCcw } from "lucide-react"
+import { AlertTriangle, RotateCcw } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Logo } from "@/components/icons/Logo"
+import { Button } from "@/components/ui/button";
+import { Logo } from "@/components/icons/Logo";
 
-interface ErrorPageProps {
-  error: Error & { digest?: string }
-  reset: () => void
+interface ErrorComponentProps {
+  error?: string;
+  title?: string;
+  onRetry?: () => void;
 }
 
-export default function Error({ error, reset }: ErrorPageProps) {
-  useEffect(() => {
-    console.error(error)
-  }, [error])
-
+export function ErrorComponent({
+  error = "Something went wrong. Please try again.",
+  title = "Failed to load data",
+  onRetry,
+}: ErrorComponentProps) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-background">
-      <div className="flex max-w-md flex-col items-center space-y-6 px-6 text-center">
-        <div className="relative">
-          <div className="flex h-24 w-24 items-center justify-center rounded-full border border-destructive/20 bg-destructive/5">
+    <div className="flex min-h-[420px] items-center justify-center rounded-lg border bg-card p-8">
+      <div className="flex max-w-md flex-col items-center text-center">
+        <div className="relative mb-6">
+          <div className="flex size-24 items-center justify-center rounded-full border border-destructive/20 bg-destructive/5">
             <Logo className="h-12 w-auto opacity-40" />
           </div>
 
-          <div className="text-destructive-foreground absolute -top-1 -right-1 flex h-8 w-8 items-center justify-center rounded-full bg-destructive shadow">
-            <AlertTriangle className="h-4 w-4" />
+          <div className="absolute -right-1 -top-1 flex size-8 items-center justify-center rounded-full bg-destructive text-destructive-foreground shadow-sm">
+            <AlertTriangle className="size-4" />
           </div>
         </div>
 
-        <div className="space-y-2">
-          <h1 className="text-2xl font-semibold tracking-tight">
-            Something went wrong
-          </h1>
+        <h2 className="text-2xl font-semibold">
+          {title}
+        </h2>
 
-          <p className="text-sm text-muted-foreground">
-            An unexpected error occurred while processing your request. Please
-            try again.
-          </p>
-        </div>
+        <p className="mt-2 text-sm text-muted-foreground">
+          {error}
+        </p>
 
-        <Button onClick={reset}>
-          <RotateCcw className="mr-2 h-4 w-4" />
-          Try Again
-        </Button>
+        {onRetry && (
+          <Button
+            onClick={onRetry}
+            className="mt-6 gap-2"
+          >
+            <RotateCcw className="size-4" />
+            Retry
+          </Button>
+        )}
       </div>
     </div>
-  )
+  );
 }

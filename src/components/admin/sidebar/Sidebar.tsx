@@ -37,9 +37,9 @@ function Collapsible({
         isOpen ? "grid-cols-[1fr] opacity-100" : "grid-cols-[0fr] opacity-0",
       ].join(" ")}
     >
-      {/* shrink wrapper */}
+      {/* Shrink wrapper */}
       <div className="overflow-hidden">
-        {/* padding wrapper */}
+        {/* Padding wrapper */}
         <div className={padding}>{children}</div>
       </div>
     </div>
@@ -65,32 +65,30 @@ export function Sidebar({
     <aside
       className={[
         "flex h-screen flex-col overflow-hidden border-r border-sidebar-border bg-sidebar text-sidebar-foreground",
-        "transition-[width] duration-300 ease-in-out",
+        "transition-[width] duration-300 ease-in-out font-sans",
         isOpen ? "w-64" : "w-0 sm:w-20",
       ].join(" ")}
     >
       {/* ================= Brand ================= */}
-
       <Link
         href="/dashboard"
-        className="flex h-24 items-center border-b border-sidebar-border px-4"
+        className="flex h-20 items-center border-b border-sidebar-border px-4 transition-colors hover:bg-sidebar-accent/50"
       >
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-sidebar-primary/50">
-          <Logo className="h-full w-full p-1" color="white" />
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sidebar-primary text-sidebar-primary-foreground">
+          <Logo className="h-6 w-6" color="currentColor" />
         </div>
 
         <Collapsible isOpen={isOpen}>
-          <h1 className="text-lg font-bold whitespace-nowrap text-white">
+          <h1 className="text-base font-bold tracking-tight text-sidebar-foreground whitespace-nowrap">
             MasjidMS
           </h1>
-          <p className="text-xs whitespace-nowrap text-sidebar-foreground/70">
+          <p className="text-xs text-sidebar-foreground/70 whitespace-nowrap">
             Mosque Management System
           </p>
         </Collapsible>
       </Link>
 
       {/* ================= Navigation ================= */}
-
       <nav className="flex-1 overflow-y-auto px-3 py-3">
         <ul className="space-y-1">
           {navItems.map(({ id, label, icon: Icon }) => {
@@ -105,18 +103,18 @@ export function Sidebar({
                     <Link
                       href={href}
                       className={[
-                        "flex h-11 items-center rounded-lg px-3 transition-colors",
+                        "flex h-10 items-center rounded-lg px-3 transition-colors",
                         isActive
-                          ? "bg-sidebar-primary text-sidebar-primary-foreground"
-                          : "text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+                          ? "bg-primary text-primary-foreground font-medium"
+                          : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                       ].join(" ")}
                     >
-                      <div className="ml-1 flex h-5 w-5 shrink-0 items-center justify-center">
+                      <div className="flex h-5 w-5 shrink-0 items-center justify-center">
                         <Icon className="h-5 w-5" />
                       </div>
 
                       <Collapsible isOpen={isOpen}>
-                        <span className="text-sm font-medium whitespace-nowrap">
+                        <span className="text-sm whitespace-nowrap">
                           {label}
                         </span>
                       </Collapsible>
@@ -135,31 +133,32 @@ export function Sidebar({
         </ul>
       </nav>
 
-      {/* ================= User ================= */}
-
+      {/* ================= User Profile ================= */}
       <div className="border-t border-sidebar-border p-3">
         <Tooltip>
           <TooltipTrigger asChild>
             <Link
               href="/profile"
-              className="flex w-full items-center rounded-lg px-2 py-2 hover:bg-sidebar-accent"
+              className="flex w-full items-center rounded-lg p-2 transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
             >
-              <Avatar className="h-9 w-9 shrink-0">
+              <Avatar className="h-9 w-9 shrink-0 border border-sidebar-border">
                 <AvatarImage src={userAvatarUrl} alt={userName} />
-                <AvatarFallback>{initials}</AvatarFallback>
+                <AvatarFallback className="bg-sidebar-primary/10 text-sidebar-primary text-xs font-semibold">
+                  {initials}
+                </AvatarFallback>
               </Avatar>
 
-              <Collapsible isOpen={isOpen} padding="pl-2">
-                <div className="flex items-center justify-between gap-3">
+              <Collapsible isOpen={isOpen} padding="pl-3">
+                <div className="flex items-center justify-between gap-2">
                   <div className="min-w-0 flex-1 text-left">
-                    <p className="truncate text-sm font-medium text-white">
+                    <p className="truncate text-sm font-medium text-sidebar-foreground leading-tight">
                       {userName}
                     </p>
-                    <p className="truncate text-xs text-emerald-300">
+                    <p className="truncate text-xs text-sidebar-foreground/70">
                       {userRole}
                     </p>
                   </div>
-                  <ChevronRight className="h-4 w-4 shrink-0 text-sidebar-foreground/60" />
+                  <ChevronRight className="h-4 w-4 shrink-0 text-sidebar-foreground/50" />
                 </div>
               </Collapsible>
             </Link>

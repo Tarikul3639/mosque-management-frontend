@@ -1,40 +1,39 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useRouter, useSearchParams } from "next/navigation"
-import { ArrowLeft, Loader2, LockKeyhole, ShieldCheck } from "lucide-react"
-import { toast } from "sonner"
-import { useState } from "react"
+import Link from "next/link";
+import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { ArrowLeft, Loader2, LockKeyhole, ShieldCheck } from "lucide-react";
+import { toast } from "sonner";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
+import PasswordInput from "./password-input";
+import FormError from "./form-error";
 
-import PasswordInput from "./password-input"
-import FormError from "./form-error"
+import { Button } from "@/components/ui/button";
 
-import { Button } from "@/components/ui/button"
-import { useResetPasswordMutation } from "@/store/api/auth.api"
-import { getErrorMessage } from "@/utils/get-error-message"
+import { useResetPasswordMutation } from "@/store/api/auth.api";
+import { getErrorMessage } from "@/utils/get-error-message";
 
 import {
   resetPasswordSchema,
   type ResetPasswordSchema,
-} from "@/schemas/auth/reset-password.schema"
+} from "@/schemas/auth/reset-password.schema";
 
 export default function ResetPasswordForm() {
-  const router = useRouter()
-  const searchParams = useSearchParams()
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
-  const token = searchParams.get("token")
+  const token = searchParams.get("token");
 
-  const [resetPassword, { isLoading }] = useResetPasswordMutation()
+  const [resetPassword, { isLoading }] = useResetPasswordMutation();
 
-  const [formError, setFormError] = useState("")
+  const [formError, setFormError] = useState("");
 
   const {
     register,
     handleSubmit,
-    setError,
     clearErrors,
     formState: { errors },
   } = useForm<ResetPasswordSchema>({
@@ -43,38 +42,41 @@ export default function ResetPasswordForm() {
       password: "",
       confirmPassword: "",
     },
-  })
+  });
 
   const onSubmit = async (data: ResetPasswordSchema) => {
-    setFormError("")
+    setFormError("");
 
     if (!token) {
-      setFormError("Invalid or missing reset token.")
-      return
+      setFormError("Invalid or missing reset token.");
+      return;
     }
 
     try {
       await resetPassword({
         token,
         newPassword: data.password,
-      }).unwrap()
+      }).unwrap();
 
-      toast.success("Password reset successfully!")
+      toast.success("Password reset successfully!", {
+        description: "You can now sign in with your new password.",
+      });
 
-      router.push("/login")
+      router.replace("/login");
     } catch (error) {
-      setFormError(getErrorMessage(error))
+      setFormError(getErrorMessage(error));
     }
-  }
+  };
 
   return (
-    <div className="w-full">
+    <div className="mx-auto w-full">
+      {/* Header */}
       <div className="mb-8">
-        <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
-          <LockKeyhole className="h-7 w-7 text-primary" />
+        <div className="flex size-14 items-center justify-center rounded-xl bg-primary/10">
+          <LockKeyhole className="size-7 text-primary" />
         </div>
 
-        <h1 className="mt-5 text-3xl font-bold tracking-tight">
+        <h1 className="mt-5 text-3xl font-bold tracking-tight text-foreground">
           Reset Password
         </h1>
 
@@ -83,29 +85,35 @@ export default function ResetPasswordForm() {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-6"
+        noValidate
+      >
         <FormError message={formError} />
 
         <PasswordInput
           label="New Password"
-          placeholder="Enter new password"
+          placeholder="Enter your new password"
+          autoComplete="new-password"
           error={errors.password?.message}
           {...register("password", {
             onChange: () => {
-              clearErrors("password")
-              setFormError("")
+              clearErrors("password");
+              setFormError("");
             },
           })}
         />
 
         <PasswordInput
           label="Confirm Password"
-          placeholder="Confirm new password"
+          placeholder="Confirm your new password"
+          autoComplete="new-password"
           error={errors.confirmPassword?.message}
           {...register("confirmPassword", {
             onChange: () => {
-              clearErrors("confirmPassword")
-              setFormError("")
+              clearErrors("confirmPassword");
+              setFormError("");
             },
           })}
         />
@@ -114,28 +122,32 @@ export default function ResetPasswordForm() {
           type="submit"
           size="lg"
           disabled={isLoading}
-          className="h-11 w-full rounded-sm"
+          className="h-11 w-full gap-2"
         >
           {isLoading ? (
             <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Updating...
+              <Loader2 className="size-4 animate-spin" />
+              Updating…
             </>
           ) : (
             "Reset Password"
           )}
         </Button>
 
-        <Button asChild variant="outline" className="h-10 w-full rounded-sm">
+        <Button
+          asChild
+          variant="outline"
+          className="h-10 w-full"
+        >
           <Link href="/login">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Login
+            <ArrowLeft className="mr-2 size-4" />
+            Back to Sign In
           </Link>
         </Button>
 
-        <div className="flex gap-3 rounded-lg border border-primary/15 bg-primary/5 p-4">
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10">
-            <ShieldCheck className="h-4 w-4 text-primary" />
+        <div className="flex gap-3 rounded-xl border border-primary/15 bg-primary/5 p-4">
+          <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
+            <ShieldCheck className="size-4 text-primary" />
           </div>
 
           <p className="text-sm leading-6 text-muted-foreground">
@@ -145,5 +157,5 @@ export default function ResetPasswordForm() {
         </div>
       </form>
     </div>
-  )
+  );
 }

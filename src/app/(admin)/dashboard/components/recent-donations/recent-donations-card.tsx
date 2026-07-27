@@ -1,56 +1,79 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { DonationItem } from "./donation-item"
-import { RecentDonationsLoading } from "./recent-donations-loading"
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+import { Button } from "@/components/ui/button";
+
+import { DonationItem } from "./donation-item";
+import { RecentDonationsLoading } from "./recent-donations-loading";
 
 export interface RecentDonation {
-  id: string
-  donorName: string
-  amount: number
-  receiptNo: string
-  paymentMethod: string
-  donatedAt: string
+  id: string;
+  donorName: string;
+  amount: number;
+  receiptNo: string;
+  paymentMethod: string;
+  donatedAt: string;
 }
 
 interface Props {
-  donations?: RecentDonation[]
-  isLoading?: boolean
+  donations?: RecentDonation[];
+  isLoading?: boolean;
 }
 
-export function RecentDonationsCard({ donations = [], isLoading }: Props) {
+export function RecentDonationsCard({
+  donations = [],
+  isLoading = false,
+}: Props) {
   if (isLoading) {
-    return <RecentDonationsLoading />
+    return <RecentDonationsLoading />;
   }
 
   return (
-    <Card className="max-h-180 rounded-xl">
-      <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle className="text-lg">Recent Donations</CardTitle>
+    <Card className="flex h-full max-h-180 flex-col">
+      <CardHeader>
+        <div className="flex items-center justify-between gap-4">
+          <CardTitle>Recent Donations</CardTitle>
 
-        <Button asChild size="sm" variant="outline">
-          <Link href="/donations">
-            View All
-            <ArrowRight className="ml-1 size-4" />
-          </Link>
-        </Button>
+          <Button
+            asChild
+            variant="link"
+            size="sm"
+          >
+            <Link href="/donations">
+              View All
+              <ArrowRight className="ml-1 size-4" />
+            </Link>
+          </Button>
+        </div>
       </CardHeader>
 
-      <CardContent className="space-y-1 overflow-y-auto">
+      <CardContent className="flex-1 overflow-hidden">
         {donations.length === 0 ? (
-          <div className="flex h-64 items-center justify-center text-sm text-muted-foreground">
-            No recent donations found.
+          <div className="flex h-full min-h-64 items-center justify-center">
+            <p className="text-sm text-muted-foreground">
+              No recent donations found.
+            </p>
           </div>
         ) : (
-          donations.map((donation) => (
-            <DonationItem key={donation.id} donation={donation} />
-          ))
+          <div className="space-y-1 overflow-y-auto">
+            {donations.map((donation) => (
+              <DonationItem
+                key={donation.id}
+                donation={donation}
+              />
+            ))}
+          </div>
         )}
       </CardContent>
     </Card>
-  )
+  );
 }

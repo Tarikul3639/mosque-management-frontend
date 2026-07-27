@@ -1,140 +1,186 @@
-"use client"
+"use client";
 
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
+import Link from "next/link";
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
-} from "@/components/ui/chart"
+} from "@/components/ui/chart";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
-import { Button } from "@/components/ui/button"
-import { MonthlyChartItem } from "@/store/api/dashboard.api"
-import { DonationExpenseChartLoading } from "./donation-expense-chart-loading"
-import { TK } from "@/components/icons/TK"
-import Link from "next/link"
-import { formatDateRange } from "@/utils/date"
+import { Button } from "@/components/ui/button";
+import { TK } from "@/components/icons/TK";
+
+import { MonthlyChartItem } from "@/store/api/dashboard.api";
+import { DonationExpenseChartLoading } from "./donation-expense-chart-loading";
+
+import { formatDateRange } from "@/utils/date";
 
 const chartConfig = {
-  donations: {
+  donation: {
     label: "Donations",
-    color: "var(--donation)",
+    color: "var(--color-chart-1)",
   },
-  expenses: {
+  expense: {
     label: "Expenses",
-    color: "var(--expense)",
+    color: "var(--color-chart-2)",
   },
-  collections: {
+  collection: {
     label: "Collections",
-    color: "var(--balance)",
+    color: "var(--color-chart-3)",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
 interface Props {
-  data: MonthlyChartItem[]
-  isLoading: boolean
-  from?: string
-  to?: string
+  data: MonthlyChartItem[];
+  isLoading: boolean;
+  from?: string;
+  to?: string;
 }
 
-export function DonationExpenseChart({ data, isLoading, from, to }: Props) {
+export function DonationExpenseChart({
+  data,
+  isLoading,
+  from,
+  to,
+}: Props) {
   if (isLoading) {
-    return <DonationExpenseChartLoading />
+    return <DonationExpenseChartLoading />;
   }
+
   return (
-    <Card className="rounded-xl">
-      <CardHeader className="flex flex-row items-start justify-between">
-        <div className="w-full">
-          <div className="flex w-full items-center justify-between gap-2">
-            <div className="flex items-center gap-2">
+    <Card>
+      <CardHeader>
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+          <div>
+            <div className="flex flex-wrap items-center gap-2">
               <CardTitle>Donation vs Expense</CardTitle>
 
               <span className="text-sm text-muted-foreground">
                 ({formatDateRange(from, to)})
               </span>
             </div>
-            <Link href="/report" className="ml-auto">
-              <Button variant="outline" size="sm">
-                View Full Report
-              </Button>
+
+            <div className="mt-3 flex flex-wrap items-center gap-6">
+              <Legend
+                color="var(--color-chart-1)"
+                label="Donations"
+              />
+
+              <Legend
+                color="var(--color-chart-2)"
+                label="Expenses"
+              />
+
+              <Legend
+                color="var(--color-chart-3)"
+                label="Collections"
+              />
+            </div>
+          </div>
+
+          <Button
+            asChild
+            variant="outline"
+            size="sm"
+          >
+            <Link href="/report">
+              View Full Report
             </Link>
-          </div>
-
-          <div className="mt-3 flex w-full items-center justify-center gap-6">
-            <div className="flex items-center gap-2">
-              <span className="h-3.5 w-4 rounded bg-success" />
-
-              <span className="inline-flex items-center gap-1 text-sm text-muted-foreground">
-                <span>Donations</span>
-                <span className="inline-flex items-center">
-                  (<TK className="size-3" />)
-                </span>
-              </span>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <span className="h-3.5 w-3.5 rounded-sm bg-danger" />
-
-              <span className="inline-flex items-center gap-1 text-sm text-muted-foreground">
-                <span>Expenses</span>
-                <span className="inline-flex items-center">
-                  (<TK className="size-3" />)
-                </span>
-              </span>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <span className="h-3.5 w-4 rounded bg-info" />
-
-              <span className="inline-flex items-center gap-1 text-sm text-muted-foreground">
-                <span>Collections</span>
-                <span className="inline-flex items-center">
-                  (<TK className="size-3" />)
-                </span>
-              </span>
-            </div>
-          </div>
+          </Button>
         </div>
       </CardHeader>
 
       <CardContent>
-        <ChartContainer config={chartConfig} className="h-80 w-full">
-          <BarChart accessibilityLayer data={data} barGap={6}>
-            <CartesianGrid vertical={false} strokeDasharray="4 4" />
+        <ChartContainer
+          config={chartConfig}
+          className="h-80 w-full"
+        >
+          <BarChart
+            accessibilityLayer
+            data={data}
+            barGap={6}
+          >
+            <CartesianGrid
+              vertical={false}
+              strokeDasharray="4 4"
+            />
 
-            <XAxis dataKey="month" tickLine={false} axisLine={false} />
+            <XAxis
+              dataKey="month"
+              tickLine={false}
+              axisLine={false}
+              tick={{ fill: "var(--color-muted-foreground)" }}
+            />
 
             <YAxis
               tickLine={false}
               axisLine={false}
+              tick={{ fill: "var(--color-muted-foreground)" }}
               tickFormatter={(value) => `${value / 1000}K`}
             />
 
-            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent />}
+            />
 
             <Bar
               dataKey="donation"
-              fill="var(--color-donations)"
+              fill="var(--color-chart-1)"
               radius={[4, 4, 0, 0]}
             />
 
             <Bar
               dataKey="expense"
-              fill="var(--color-expenses)"
+              fill="var(--color-chart-2)"
               radius={[4, 4, 0, 0]}
             />
 
             <Bar
               dataKey="collection"
-              fill="var(--color-collections)"
+              fill="var(--color-chart-3)"
               radius={[4, 4, 0, 0]}
             />
           </BarChart>
         </ChartContainer>
       </CardContent>
     </Card>
-  )
+  );
+}
+
+interface LegendProps {
+  color: string;
+  label: string;
+}
+
+function Legend({
+  color,
+  label,
+}: LegendProps) {
+  return (
+    <div className="flex items-center gap-2">
+      <span
+        className="size-3 rounded-sm"
+        style={{ backgroundColor: color }}
+      />
+
+      <span className="inline-flex items-center gap-1 text-sm text-muted-foreground">
+        {label}
+
+        <span className="inline-flex items-center">
+          (<TK className="size-3" />)
+        </span>
+      </span>
+    </div>
+  );
 }

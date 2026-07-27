@@ -1,93 +1,115 @@
-"use client"
+"use client";
 
-import { useMemo } from "react"
-import Link from "next/link"
-import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts"
+import { useMemo } from "react";
+import Link from "next/link";
+import {
+  Cell,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+} from "recharts";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { ExpenseCategoryChartLoading } from "./expense-category-chart-loading"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
-import { TK } from "@/components/icons/TK"
-import { formatDateRange } from "@/utils/date"
+import { TK } from "@/components/icons/TK";
+
+import { ExpenseCategoryChartLoading } from "./expense-category-chart-loading";
+
+import { formatDateRange } from "@/utils/date";
 
 export interface ExpenseCategoryItem {
-  category: string
-  amount: number
+  category: string;
+  amount: number;
 }
 
 interface Props {
-  data: ExpenseCategoryItem[]
-  isLoading: boolean
-  from?: string
-  to?: string
+  data: ExpenseCategoryItem[];
+  isLoading: boolean;
+  from?: string;
+  to?: string;
 }
 
 const COLORS = [
-  "#3b82f6",
-  "#22c55e",
-  "#facc15",
-  "#a855f7",
-  "#f97316",
-  "#06b6d4",
-  "#ef4444",
-  "#14b8a6",
-  "#8b5cf6",
-  "#ec4899",
-  "#64748b",
-  "#84cc16",
-  "#f43f5e",
-]
+  "var(--color-chart-1)",
+  "var(--color-chart-2)",
+  "var(--color-chart-3)",
+  "var(--color-chart-4)",
+  "var(--color-chart-5)",
+  "var(--color-primary)",
+  "var(--color-secondary)",
+  "var(--color-accent)",
+  "var(--color-muted-foreground)",
+  "var(--color-sidebar-primary)",
+];
 
 function formatCompactNumber(value: number) {
   return new Intl.NumberFormat("en", {
     notation: "compact",
     maximumFractionDigits: 1,
-  }).format(value)
+  }).format(value);
 }
 
 function formatAmount(value: number) {
   return value.toLocaleString(undefined, {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  })
+  });
 }
 
-export function ExpenseCategoryChart({ data, isLoading, from, to }: Props) {
+export function ExpenseCategoryChart({
+  data,
+  isLoading,
+  from,
+  to,
+}: Props) {
   if (isLoading) {
-    return <ExpenseCategoryChartLoading />
+    return <ExpenseCategoryChartLoading />;
   }
 
-  const totalExpense = useMemo(() => {
-    return data.reduce((sum, item) => sum + item.amount, 0)
-  }, [data])
+  const totalExpense = useMemo(
+    () => data.reduce((sum, item) => sum + item.amount, 0),
+    [data]
+  );
 
-  const chartData = useMemo(() => {
-    return data.map((item, index) => ({
-      ...item,
-      fill: COLORS[index % COLORS.length],
-      percentage: totalExpense === 0 ? 0 : (item.amount / totalExpense) * 100,
-    }))
-  }, [data, totalExpense])
+  const chartData = useMemo(
+    () =>
+      data.map((item, index) => ({
+        ...item,
+        fill: COLORS[index % COLORS.length],
+        percentage:
+          totalExpense === 0
+            ? 0
+            : (item.amount / totalExpense) * 100,
+      })),
+    [data, totalExpense]
+  );
 
   if (!chartData.length) {
     return (
-      <Card className="rounded-xl">
+      <Card>
         <CardHeader>
           <CardTitle>Expense by Category</CardTitle>
         </CardHeader>
 
         <CardContent className="flex h-80 items-center justify-center">
-          <p className="text-muted-foreground">No expense data available.</p>
+          <p className="text-sm text-muted-foreground">
+            No expense data available.
+          </p>
         </CardContent>
       </Card>
-    )
+    );
   }
 
   return (
-    <Card className="rounded-xl">
-      <CardHeader className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-        <div>
+    <Card>
+      <CardHeader>
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex flex-wrap items-center gap-2">
             <CardTitle>Expense by Category</CardTitle>
 
@@ -95,74 +117,87 @@ export function ExpenseCategoryChart({ data, isLoading, from, to }: Props) {
               ({formatDateRange(from, to)})
             </span>
           </div>
-        </div>
 
-        <Link href="/report">
-          <Button variant="outline" size="sm">
-            View Full Report
+          <Button
+            asChild
+            variant="outline"
+            size="sm"
+          >
+            <Link href="/report">
+              View Full Report
+            </Link>
           </Button>
-        </Link>
+        </div>
       </CardHeader>
 
       <CardContent>
-        <div className="grid gap-8 lg:grid-cols-[540px_1fr]">
+        <div className="grid gap-8 lg:grid-cols-[520px_1fr]">
+          {/* Chart */}
           <div className="flex items-center justify-center">
-            <div className="relative h-80 w-[320px] sm:h-85 sm:w-85">
-              <ResponsiveContainer width="100%" height="100%">
+            <div className="relative h-80 w-80">
+              <ResponsiveContainer
+                width="100%"
+                height="100%"
+              >
                 <PieChart>
                   <Pie
                     data={chartData}
                     dataKey="amount"
                     nameKey="category"
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={110}
-                    outerRadius={160}
+                    innerRadius={105}
+                    outerRadius={155}
                     paddingAngle={2}
-                    cornerRadius={2}
-                    isAnimationActive
-                    animationDuration={900}
-                    animationBegin={100}
-                  ></Pie>
+                    cornerRadius={4}
+                    animationDuration={800}
+                  >
+                    {chartData.map((item) => (
+                      <Cell
+                        key={item.category}
+                        fill={item.fill}
+                      />
+                    ))}
+                  </Pie>
                 </PieChart>
               </ResponsiveContainer>
 
-              {/* Center Content */}
               <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                <div className="flex flex-col items-center text-center">
-                  <span className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
+                <div className="text-center">
+                  <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
                     Total
-                  </span>
+                  </p>
 
-                  <div className="mt-2 flex items-center gap-1">
-                    <TK className="size-4 shrink-0 text-foreground" />
+                  <div className="mt-2 flex items-center justify-center gap-1">
+                    <TK className="size-4" />
 
                     <span
-                      className="truncate text-xl leading-none font-bold sm:text-2xl"
+                      className="text-2xl font-bold"
                       title={formatAmount(totalExpense)}
                     >
                       {formatCompactNumber(totalExpense)}
                     </span>
                   </div>
 
-                  <span className="mt-2 text-xs text-muted-foreground">
+                  <p className="mt-2 text-xs text-muted-foreground">
                     {chartData.length} Categories
-                  </span>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
 
+          {/* Legend */}
           <div className="flex flex-col">
             <div className="mb-4 flex items-center justify-between">
-              <h4 className="text-sm font-semibold">Categories</h4>
+              <h4 className="text-sm font-semibold">
+                Categories
+              </h4>
 
               <span className="text-xs text-muted-foreground">
                 {chartData.length} Items
               </span>
             </div>
 
-            <div className="space-y-3 overflow-y-auto pr-2">
+            <div className="max-h-80 space-y-3 overflow-y-auto pr-2">
               {chartData.map((item) => (
                 <div
                   key={item.category}
@@ -176,17 +211,15 @@ export function ExpenseCategoryChart({ data, isLoading, from, to }: Props) {
                       }}
                     />
 
-                    <span className="text-sm font-medium">{item.category}</span>
+                    <span className="text-sm font-medium">
+                      {item.category}
+                    </span>
                   </div>
 
                   <div className="flex items-center gap-4">
                     <span className="inline-flex items-center gap-1 text-sm font-medium">
                       <TK className="size-3" />
-
-                      {item.amount.toLocaleString(undefined, {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                      })}
+                      {formatAmount(item.amount)}
                     </span>
 
                     <span className="w-14 text-right text-sm text-muted-foreground">
@@ -200,5 +233,5 @@ export function ExpenseCategoryChart({ data, isLoading, from, to }: Props) {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

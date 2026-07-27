@@ -1,60 +1,72 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useState } from "react"
+import Link from "next/link";
+import { useState } from "react";
 import {
   ArrowLeft,
   Loader2,
   LockKeyhole,
   Send,
   ShieldCheck,
-} from "lucide-react"
+} from "lucide-react";
+import { toast } from "sonner";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-import { Button } from "@/components/ui/button"
-import EmailInput from "@/components/auth/email-input"
+import { Button } from "@/components/ui/button";
+import EmailInput from "@/components/auth/email-input";
 
-import { toast } from "sonner"
-import { getErrorMessage } from "@/utils/get-error-message"
-import { useForgotPasswordMutation } from "@/store/api/auth.api"
+import FormError from "./form-error";
 
-import FormError from "./form-error"
+import { useForgotPasswordMutation } from "@/store/api/auth.api";
+import { getErrorMessage } from "@/utils/get-error-message";
 
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
 import {
   forgotPasswordSchema,
   type ForgotPasswordSchema,
-} from "@/schemas/auth/forgot-password.schema"
+} from "@/schemas/auth/forgot-password.schema";
 
 export default function ForgotPasswordForm() {
-  const [formError, setFormError] = useState("")
-  const [forgotPassword, { isLoading, isSuccess }] = useForgotPasswordMutation()
+  const [formError, setFormError] = useState("");
+
+  const [forgotPassword, { isLoading, isSuccess }] =
+    useForgotPasswordMutation();
 
   const {
     register,
     handleSubmit,
+    clearErrors,
     formState: { errors },
   } = useForm<ForgotPasswordSchema>({
     resolver: zodResolver(forgotPasswordSchema),
-  })
+    defaultValues: {
+      email: "",
+    },
+  });
 
   async function onSubmit(data: ForgotPasswordSchema) {
-    setFormError("")
+    setFormError("");
+
     try {
-      await forgotPassword(data).unwrap()
-      toast.success("Password reset link sent successfully!")
+      await forgotPassword(data).unwrap();
+
+      toast.success("Password reset link sent successfully!", {
+        description: "Please check your email inbox.",
+      });
     } catch (error) {
-      toast.error(getErrorMessage(error))
-      setFormError(getErrorMessage(error))
+      const message = getErrorMessage(error);
+
+      toast.error(message);
+      setFormError(message);
     }
   }
 
   return (
-    <div className="w-full">
+    <div className="mx-auto w-full">
       {/* Header */}
       <div className="mb-8">
-        <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
-          <LockKeyhole className="h-7 w-7 text-primary" />
+        <div className="flex size-14 items-center justify-center rounded-xl bg-primary/10">
+          <LockKeyhole className="size-7 text-primary" />
         </div>
 
         <h1 className="mt-5 text-3xl font-bold tracking-tight text-foreground">
@@ -62,68 +74,80 @@ export default function ForgotPasswordForm() {
         </h1>
 
         <p className="mt-2 text-sm text-muted-foreground">
-          Enter your registered email address and we'll send you a password
+          Enter your registered email address and we&apos;ll send you a password
           reset link.
         </p>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-6"
+        noValidate
+      >
         <FormError message={formError} />
 
         <EmailInput
           placeholder="admin@example.com"
           autoComplete="email"
-          required
           error={errors.email?.message}
-          {...register("email")}
+          {...register("email", {
+            onChange: () => {
+              clearErrors("email");
+              setFormError("");
+            },
+          })}
         />
 
         <Button
           type="submit"
           size="lg"
-          className="h-11 w-full gap-2 rounded-sm text-sm"
           disabled={isLoading || isSuccess}
+          className="h-11 w-full gap-2"
         >
           {isLoading ? (
             <>
-              <Loader2 className="h-4 w-4 animate-spin" />
-              Sending...
+              <Loader2 className="size-4 animate-spin" />
+              Sending…
             </>
           ) : (
             <>
-              <Send className="h-4 w-4" />
+              <Send className="size-4" />
               Send Reset Link
             </>
           )}
         </Button>
 
         {/* Divider */}
-        <div className="flex items-center gap-3 py-1">
+        <div className="flex items-center gap-4">
           <div className="h-px flex-1 bg-border" />
           <span className="text-sm text-muted-foreground">or</span>
           <div className="h-px flex-1 bg-border" />
         </div>
 
         {/* Back */}
-        <Button asChild variant="outline" className="h-10 w-full rounded-sm">
+        <Button
+          asChild
+          variant="outline"
+          className="h-10 w-full"
+        >
           <Link href="/login">
-            <ArrowLeft className="mr-2 h-4 w-4" />
+            <ArrowLeft className="mr-2 size-4" />
             Back to Sign In
           </Link>
         </Button>
 
         {/* Info */}
-        <div className="flex gap-3 rounded-lg border border-primary/15 bg-primary/5 p-4">
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10">
-            <ShieldCheck className="h-4 w-4 text-primary" />
+        <div className="flex gap-3 rounded-xl border border-primary/15 bg-primary/5 p-4">
+          <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
+            <ShieldCheck className="size-4 text-primary" />
           </div>
 
           <p className="text-sm leading-6 text-muted-foreground">
-            If you don't receive the email within a few minutes, please check
-            your spam folder or try again later.
+            If you don&apos;t receive the email within a few minutes, please
+            check your spam folder or try again later.
           </p>
         </div>
       </form>
     </div>
-  )
+  );
 }
