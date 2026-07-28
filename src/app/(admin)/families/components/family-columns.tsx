@@ -14,14 +14,14 @@ import {
 } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 
-import { DataTableColumnHeader } from "@/components/tables";
+import { DataTableColumnHeader } from "@/components/common/data-table";
 
 import { FamilyRowActions } from "./FamilyRowActions";
 
 import {
   getAvatarColor,
   getAvatarInitials,
-} from "@/utils/avatar";
+} from "@/utils/avatar.utils";
 import { formatDate } from "@/utils/date";
 import { cn } from "@/lib/utils";
 

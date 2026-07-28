@@ -35,13 +35,19 @@ export const baseApi = createApi({
   tagTypes: [
     "User",
     "Dashboard",
+
     "Family",
+    "FamilyFee",
+    "MonthlyCharge",
+
     "Committee",
     "Donation",
     "Expense",
     "Donor",
     "Gallery",
     "Project",
+
+    "Payment",
   ],
   endpoints: () => ({}),
 })

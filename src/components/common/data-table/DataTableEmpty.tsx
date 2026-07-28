@@ -4,9 +4,7 @@ import { TableCell, TableRow } from "@/components/ui/table"
 
 interface DataTableEmptyProps {
   colSpan: number
-
   title?: string
-
   description?: string
 }
 

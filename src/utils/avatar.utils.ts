@@ -88,3 +88,9 @@ export function getAvatarInitials(name: string, maxLength = 2): string {
     .slice(0, maxLength)
     .toUpperCase()
 }
+
+export function getAvatarClass(seed: string): string {
+  const { bg, text } = getAvatarColor(seed);
+
+  return `${bg} ${text} font-semibold select-none`;
+}

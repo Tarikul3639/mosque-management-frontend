@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 
-import { TK } from "@/components/icons/TK";
+import { TK } from "@/components/icons/tk";
 
 import { formatDate } from "@/utils/date";
 import { getExpenseCategoryConfig } from "@/utils/expense-category";

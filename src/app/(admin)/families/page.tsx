@@ -16,7 +16,7 @@ import {
   DataTable,
   DataTablePagination,
   DataTableToolbar,
-} from "@/components/tables"
+} from "@/components/common/data-table"
 
 import { getErrorMessage } from "@/utils/get-error-message"
 import { ErrorComponent } from "@/components/common/error"
@@ -113,7 +113,7 @@ export default function FamiliesPage() {
               columns={familyColumns}
               data={data?.data ?? []}
               rowKey={(row) => row.id}
-              emptyMessage="No families found."
+              emptyTitle="No families found."
               isLoading={isLoading}
               isFetching={isFetching}
             >

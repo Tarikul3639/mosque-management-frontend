@@ -74,8 +74,8 @@ export function Sidebar({
         href="/dashboard"
         className="flex h-20 items-center border-b border-sidebar-border px-4 transition-colors hover:bg-sidebar-accent/50"
       >
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sidebar-primary text-sidebar-primary-foreground">
-          <Logo className="h-6 w-6" color="currentColor" />
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary text-sidebar-primary-foreground">
+          <Logo className="h-7 w-7" color="currentColor" />
         </div>
 
         <Collapsible isOpen={isOpen}>

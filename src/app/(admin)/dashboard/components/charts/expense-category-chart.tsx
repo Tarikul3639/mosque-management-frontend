@@ -17,7 +17,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import { TK } from "@/components/icons/TK";
+import { TK } from "@/components/icons/tk";
 
 import { ExpenseCategoryChartLoading } from "./expense-category-chart-loading";
 

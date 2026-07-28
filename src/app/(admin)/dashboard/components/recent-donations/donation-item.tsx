@@ -2,12 +2,12 @@
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
-import { TK } from "@/components/icons/TK";
+import { TK } from "@/components/icons/tk";
 
 import { cn } from "@/lib/utils";
 
 import { formatDate } from "@/utils/date";
-import { getAvatarColor, getAvatarInitials } from "@/utils/avatar";
+import { getAvatarColor, getAvatarInitials } from "@/utils/avatar.utils";
 
 export interface RecentDonation {
   id: string;

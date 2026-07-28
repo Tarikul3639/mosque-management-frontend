@@ -31,7 +31,8 @@ interface DataTableProps<TData> {
     data: TData[]
     children?: (table: TanStackTable<TData>) => React.ReactNode
     rowKey?: (row: TData) => string
-    emptyMessage?: string
+    emptyTitle?: string
+    emptyDescription?: string
     className?: string
     isLoading?: boolean
     isFetching?: boolean
@@ -42,7 +43,8 @@ export function DataTable<TData>({
     data,
     children,
     rowKey,
-    emptyMessage = "No data found.",
+    emptyTitle = "No data found.",
+    emptyDescription = "There are no records to display.",
     className,
     isLoading = false,
     isFetching = false,
@@ -134,7 +136,8 @@ export function DataTable<TData>({
                             ) : (
                                 <DataTableEmpty
                                     colSpan={table.getVisibleLeafColumns().length}
-                                    title={emptyMessage}
+                                    title={emptyTitle}
+                                    description={emptyDescription}
                                 />
                             )}
                         </TableBody>

@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/card";
 
 import { Button } from "@/components/ui/button";
-import { TK } from "@/components/icons/TK";
+import { TK } from "@/components/icons/tk";
 
 import { MonthlyChartItem } from "@/store/api/dashboard.api";
 import { DonationExpenseChartLoading } from "./donation-expense-chart-loading";

@@ -1,5 +1,6 @@
 import { Plus, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export function FamiliesHeader() {
     return (
@@ -23,9 +24,11 @@ export function FamiliesHeader() {
                     Export
                 </Button>
 
-                <Button size="lg">
-                    <Plus className="h-4 w-4" />
-                    Create Family
+                <Button size="lg" asChild>
+                    <Link href="/families/create">
+                        <Plus className="h-4 w-4" />
+                        Create Family
+                    </Link>
                 </Button>
             </div>
         </div>
