@@ -5,7 +5,7 @@ import { format } from "date-fns";
 import { Badge } from "@/components/ui/badge";
 import { TK } from "@/components/icons/tk";
 
-import type { FamilyFeeHistoryResponse } from "@/store/api/family.api";
+import type { FamilyFeeHistoryResponse } from "@/types/family"
 
 export const familyFeeHistoryColumns: ColumnDef<FamilyFeeHistoryResponse>[] = [
     {

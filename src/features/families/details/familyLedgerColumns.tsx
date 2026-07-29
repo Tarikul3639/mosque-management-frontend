@@ -5,7 +5,7 @@ import { format } from "date-fns";
 
 import { Badge } from "@/components/ui/badge";
 
-import type { FamilyLedgerResponse } from "@/store/api/payment.api";
+import type { FamilyLedgerResponse } from "@/types/payment";
 
 type LedgerItem = FamilyLedgerResponse["ledger"][number];
 

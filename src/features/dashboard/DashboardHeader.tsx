@@ -16,7 +16,7 @@ interface DashboardHeaderProps {
   notificationCount?: number;
 }
 
-export function Header({
+export function DashboardHeader({
   userName = "Tarikul Islam",
   subtitle = "Here's what's happening in your mosque today.",
   dateRange,
@@ -78,5 +78,3 @@ export function Header({
     </div>
   );
 }
-
-export default Header;

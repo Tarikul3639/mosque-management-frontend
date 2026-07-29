@@ -35,10 +35,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import {
-  type Family,
   useActivateFamilyMutation,
   useDeleteFamilyMutation,
 } from "@/store/api/family.api";
+
+import { Family } from "@/types/family";
+
 
 interface FamilyRowActionsProps {
   family: Family;

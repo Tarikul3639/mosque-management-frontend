@@ -13,7 +13,7 @@ import {
     useUpdateFamilyMutation,
 } from "@/store/api/family.api";
 
-import { CloudinaryFolder } from "@/store/api/upload.api";
+import { CloudinaryFolder } from "@/types/upload";
 
 import {
     familySchema,

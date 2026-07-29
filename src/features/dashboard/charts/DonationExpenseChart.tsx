@@ -20,7 +20,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { TK } from "@/components/icons/tk";
 
-import { MonthlyChartItem } from "@/store/api/dashboard.api";
+import { MonthlyChartItem } from "@/types/dashboard";
 import { DonationExpenseChartLoading } from "./donation-expense-chart-loading";
 
 import { formatDateRange } from "@/utils/date";

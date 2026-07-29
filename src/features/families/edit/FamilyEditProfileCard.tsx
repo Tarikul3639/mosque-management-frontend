@@ -4,7 +4,7 @@ import { Camera } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { AvatarUpload } from "@/components/common/avatar-upload/avatar-upload";
-import type { FamilyDetails } from "@/store/api/family.api";
+import type { FamilyDetails } from "@/types/family"
 
 interface FamilyEditProfileCardProps {
     family: FamilyDetails;

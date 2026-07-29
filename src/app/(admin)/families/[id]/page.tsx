@@ -1,6 +1,6 @@
 // page.tsx
 
-import { FamilyDetailsPage } from "./components/FamilyDetailsPage";
+import { FamilyDetailsPage } from "@/features/families/details/FamilyDetailsPage";
 
 interface PageProps {
     params: Promise<{

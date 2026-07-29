@@ -4,28 +4,28 @@ import Link from "next/link"
 import { ArrowLeft, Pencil } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { useRouter } from "next/navigation"
 
-import type { FamilyDetails } from "@/store/api/family.api"
+import type { FamilyDetails } from "@/types/family"
 
 interface FamilyHeaderProps {
     family: FamilyDetails
 }
 
 export function FamilyHeader({ family }: FamilyHeaderProps) {
+    const router = useRouter()
     return (
         <div className="flex flex-col gap-4 border-b border-border/50 pb-5 lg:flex-row lg:items-center sm:justify-between">
             <div className="space-y-2">
                 {/* Back Link Button */}
                 <Button
-                    asChild
+                    onClick={() => router.replace("/families")}
                     variant="ghost"
                     size="sm"
                     className="-ml-2 h-8 gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
                 >
-                    <Link href="/families">
                         <ArrowLeft className="size-3.5" />
                         Back to Families
-                    </Link>
                 </Button>
 
                 {/* Dynamic Title with Family Head Name & Family No. Badge */}

@@ -1,34 +1,34 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { ArrowLeft, PencilLine } from "lucide-react";
+import Link from "next/link"
+import { ArrowLeft, PencilLine } from "lucide-react"
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 
-import type { FamilyDetails } from "@/store/api/family.api";
+import { useRouter } from "next/navigation"
+
+import type { FamilyDetails } from "@/types/family"
 
 interface FamilyEditHeaderProps {
-    family: FamilyDetails;
+    family: FamilyDetails
 }
 
-export function FamilyEditHeader({
-    family,
-}: FamilyEditHeaderProps) {
+export function FamilyEditHeader({ family }: FamilyEditHeaderProps) {
+    const router = useRouter()
+
     return (
         <div className="flex flex-col gap-4 border-b border-border/50 pb-5 lg:flex-row lg:items-center lg:justify-between">
             <div className="space-y-2">
                 {/* Back */}
                 <Button
-                    asChild
+                    onClick={() => router.replace(`/families/${family.id}`)}
                     variant="ghost"
                     size="sm"
                     className="-ml-2 h-8 gap-1.5 text-xs text-muted-foreground hover:text-foreground"
                 >
-                    <Link href={`/families/${family.id}`}>
-                        <ArrowLeft className="size-3.5" />
-                        Back to Details
-                    </Link>
+                    <ArrowLeft className="size-3.5" />
+                    Back to Details
                 </Button>
 
                 {/* Title */}
@@ -61,14 +61,9 @@ export function FamilyEditHeader({
                 </p>
             </div>
 
-            <Button
-                asChild
-                variant="outline"
-            >
-                <Link href={`/families/${family.id}`}>
-                    Cancel
-                </Link>
+            <Button asChild variant="outline">
+                <Link href={`/families/${family.id}`}>Cancel</Link>
             </Button>
         </div>
-    );
+    )
 }

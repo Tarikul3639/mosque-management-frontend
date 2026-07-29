@@ -3,7 +3,7 @@
 import { format } from "date-fns"
 import { CalendarDays, Coins, Hash, MapPin, Phone, User } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import type { FamilyDetails } from "@/store/api/family.api"
+import type { FamilyDetails } from "@/types/family"
 
 interface FamilyOverviewCardProps {
   family: FamilyDetails

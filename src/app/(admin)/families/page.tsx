@@ -21,15 +21,16 @@ import {
 import { getErrorMessage } from "@/utils/get-error-message"
 import { ErrorComponent } from "@/components/common/error"
 
-import { familyColumns } from "./components/family-columns"
-import { FamiliesHeader } from "./components/FamiliesHeader"
-import { FamilyStatsSection } from "./components/FamilyStatsSection"
+import { familyColumns } from "@/features/families/list/family-columns"
+import { FamiliesHeader } from "@/features/families/list/FamiliesHeader"
+import { FamilyStatsSection } from "@/features/families/list/FamilyStatsSection"
 
 import {
-  type Family,
   useGetFamiliesQuery,
   useGetFamilyStatsQuery,
 } from "@/store/api/family.api"
+
+import type { Family } from "@/types/family"
 
 type FamilyStatusFilter = "all" | "active" | "inactive"
 

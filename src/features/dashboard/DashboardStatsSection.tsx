@@ -7,7 +7,7 @@ import {
   Wallet,
 } from "lucide-react";
 
-import type { DashboardOverview } from "@/store/api/dashboard.api";
+import type { DashboardOverview } from "@/types/dashboard";
 
 import { getBalanceStyle } from "@/utils/get-balance-style";
 
@@ -21,7 +21,7 @@ interface StatsSectionProps {
   isLoading?: boolean;
 }
 
-export function StatsSection({
+export function DashboardStatsSection({
   data,
   isLoading = false,
 }: StatsSectionProps) {

@@ -1,13 +1,13 @@
 import { useCallback, useState } from "react"
 
 import {
-    CloudinaryFolder,
     useCreateFileMutation,
     useLazyGetUploadSignatureQuery,
-    type FileResponse,
 } from "@/store/api/upload.api"
 
 import { uploadToCloudinary } from "@/lib/cloudinary/upload"
+
+import type { CloudinaryFolder, FileResponse } from "@/types/upload"
 
 interface UseCloudinaryUploadReturn {
     upload: (file: File, folder: CloudinaryFolder) => Promise<FileResponse>

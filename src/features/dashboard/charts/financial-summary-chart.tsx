@@ -1,6 +1,6 @@
 "use client";
 
-import { FinancialSummary } from "@/store/api/dashboard.api";
+import { FinancialSummary } from "@/types/dashboard";
 
 import {
   Card,

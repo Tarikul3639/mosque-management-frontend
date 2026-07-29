@@ -12,7 +12,7 @@ import {
     StatsCardsSkeletonMap,
 } from "@/components/common/stats-card";
 
-import type { FamilyStats } from "@/store/api/family.api";
+import type { FamilyStats } from "@/types/family"
 
 interface FamilyStatsSectionProps {
     familyStats?: FamilyStats;

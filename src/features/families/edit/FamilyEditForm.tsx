@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input"
 import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 
-import type { FamilyDetails } from "@/store/api/family.api"
+import type { FamilyDetails } from "@/types/family"
 import type { FamilyFormValues } from "@/schemas/family.schema"
 
 import { UseFormReturn } from "react-hook-form"
@@ -49,7 +49,7 @@ export function FamilyEditForm({
                 <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
                     <div className="grid gap-5 md:grid-cols-2">
                         <FormField icon={<Hash className="size-4" />} label="Family Number">
-                            <Input value={family.familyNo} disabled />
+                            <Input {...form.register("familyNo")} />
                         </FormField>
 
                         <FormField icon={<User className="size-4" />} label="Head Name">

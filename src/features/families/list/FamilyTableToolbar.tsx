@@ -13,7 +13,7 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 
-import { FamilyQuery } from "@/store/api/family.api";
+import { FamilyQuery } from "@/types/family"
 
 type FamilyStatusFilter = "all" | "active" | "inactive";
 

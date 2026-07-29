@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import type { UploadSignatureResponse } from "@/store/api/upload.api";
+import type { UploadSignatureResponse } from "@/types/upload";
 
 export interface CloudinaryUploadResponse {
     asset_id: string;

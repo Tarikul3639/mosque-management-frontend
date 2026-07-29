@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 import { useCreateFamilyMutation } from "@/store/api/family.api";
-import { CloudinaryFolder } from "@/store/api/upload.api";
+import { CloudinaryFolder } from "@/types/upload";
 
 import {
     familySchema,

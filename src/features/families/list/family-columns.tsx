@@ -25,7 +25,7 @@ import {
 import { formatDate } from "@/utils/date";
 import { cn } from "@/lib/utils";
 
-import type { Family } from "@/store/api/family.api";
+import type { Family } from "@/types/family"
 
 export const familyColumns: ColumnDef<Family>[] = [
   {
