@@ -62,7 +62,10 @@ export function FamilyEditHeader({ family }: FamilyEditHeaderProps) {
             </div>
 
             <Button asChild variant="outline">
-                <Link href={`/families/${family.id}`}>Cancel</Link>
+                <Link href={`/families/${family.id}`}>
+                    <PencilLine className="mr-2 size-4" />
+                    View Family
+                </Link>
             </Button>
         </div>
     )

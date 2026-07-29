@@ -22,7 +22,7 @@ import {
   getAvatarColor,
   getAvatarInitials,
 } from "@/utils/avatar.utils";
-import { formatDate } from "@/utils/date";
+import { formatDate } from "@/utils/format-date";
 import { cn } from "@/lib/utils";
 
 import type { Family } from "@/types/family"

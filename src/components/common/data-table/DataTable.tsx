@@ -1,6 +1,7 @@
 "use client"
 
-import * as React from "react"
+import { useState } from "react"
+
 import {
     flexRender,
     getCoreRowModel,
@@ -36,6 +37,7 @@ interface DataTableProps<TData> {
     className?: string
     isLoading?: boolean
     isFetching?: boolean
+    initialColumnVisibility?: VisibilityState
 }
 
 export function DataTable<TData>({
@@ -48,10 +50,12 @@ export function DataTable<TData>({
     className,
     isLoading = false,
     isFetching = false,
+    initialColumnVisibility = {},
 }: DataTableProps<TData>) {
-    const [sorting, setSorting] = React.useState<SortingState>([])
-    const [columnVisibility, setColumnVisibility] =
-        React.useState<VisibilityState>({})
+    const [sorting, setSorting] = useState<SortingState>([])
+    const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
+        () => initialColumnVisibility
+    )
 
     const table = useReactTable({
         data,
@@ -92,7 +96,7 @@ export function DataTable<TData>({
                                     {headerGroup.headers.map((header) => (
                                         <TableHead
                                             key={header.id}
-                                            className="h-12 border-b px-5 text-xs font-semibold uppercase tracking-wide text-muted-foreground"
+                                            className="h-12 border-b px-5 text-xs font-semibold tracking-wide text-muted-foreground uppercase"
                                         >
                                             {header.isPlaceholder
                                                 ? null
@@ -123,7 +127,7 @@ export function DataTable<TData>({
                                         {row.getVisibleCells().map((cell) => (
                                             <TableCell
                                                 key={cell.id}
-                                                className="px-5 text-sm py-4 align-middle"
+                                                className="px-5 py-4 align-middle text-sm"
                                             >
                                                 {flexRender(
                                                     cell.column.columnDef.cell,

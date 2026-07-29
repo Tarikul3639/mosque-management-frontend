@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 import { TK } from "@/components/icons/tk";
 
-import { formatDate } from "@/utils/date";
+import { formatDate } from "@/utils/format-date";
 import { getExpenseCategoryConfig } from "@/utils/expense-category";
 
 export interface RecentExpense {

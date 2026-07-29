@@ -6,7 +6,7 @@ import { TK } from "@/components/icons/tk";
 
 import { cn } from "@/lib/utils";
 
-import { formatDate } from "@/utils/date";
+import { formatDate } from "@/utils/format-date";
 import { getAvatarColor, getAvatarInitials } from "@/utils/avatar.utils";
 
 export interface RecentDonation {

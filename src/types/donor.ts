@@ -38,6 +38,7 @@ export interface CreateDonorRequest {
   email?: string
   address?: string
   avatarId?: string
+  isActive: boolean
 }
 
 export interface UpdateDonorRequest {

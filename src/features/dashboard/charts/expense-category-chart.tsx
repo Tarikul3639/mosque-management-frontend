@@ -21,7 +21,7 @@ import { TK } from "@/components/icons/tk";
 
 import { ExpenseCategoryChartLoading } from "./expense-category-chart-loading";
 
-import { formatDateRange } from "@/utils/date";
+import { formatDateRange } from "@/utils/format-date";
 
 export interface ExpenseCategoryItem {
   category: string;

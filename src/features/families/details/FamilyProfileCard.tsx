@@ -9,7 +9,6 @@ import type { FamilyDetails } from "@/types/family"
 
 interface FamilyProfileCardProps {
   family: FamilyDetails;
-
   onAvatarChange?: (file: File) => void;
 }
 

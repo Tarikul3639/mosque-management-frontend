@@ -23,7 +23,7 @@ import { TK } from "@/components/icons/tk";
 import { MonthlyChartItem } from "@/types/dashboard";
 import { DonationExpenseChartLoading } from "./donation-expense-chart-loading";
 
-import { formatDateRange } from "@/utils/date";
+import { formatDateRange } from "@/utils/format-date";
 
 const chartConfig = {
   donation: {

@@ -1,3 +1,4 @@
+export type PaymentMethod = "CASH" | "CARD" | "BANK_TRANSFER" | "MOBILE_PAYMENT" | "CHECK" | "OTHER";
 export interface FamilyLedgerQuery {
     familyId: string
     year?: number
