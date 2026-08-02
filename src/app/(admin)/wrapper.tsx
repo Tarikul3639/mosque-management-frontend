@@ -1,47 +1,88 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { Sidebar } from "@/components/admin/sidebar/Sidebar"
-import { Navbar } from "@/components/admin/navbar/Navbar"
-import { useMeQuery } from "@/store/api/auth.api"
-import { PageLoader } from "@/components/common/page-loader"
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
-export function AdminLayout({ children }: { children: React.ReactNode }) {
-  const router = useRouter()
-  const [isOpen, setIsOpen] = useState(true)
-  const { data: me, isLoading, isError } = useMeQuery()
+import { Sidebar } from "@/components/admin/sidebar/Sidebar";
+import { Navbar } from "@/components/admin/navbar/Navbar";
+import { PageLoader } from "@/components/common/page-loader";
+import { ErrorComponent } from "@/components/common/error";
 
-  const handleSearch = (query: string) => {
-    console.log(query)
-  }
+import { useMeQuery } from "@/store/api/auth.api";
+
+export function AdminLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const router = useRouter();
+
+  const [isOpen, setIsOpen] = useState(true);
+
+  const {
+    data: me,
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = useMeQuery();
+
+  useEffect(() => {
+    if (
+      isError &&
+      "status" in error &&
+      error.status === 401
+    ) {
+      router.replace("/login");
+    }
+  }, [isError, error, router]);
 
   if (isLoading) {
-    return <PageLoader />
+    return <PageLoader />;
   }
 
-  if (isError) {
-    router.replace("/login")
-    return null
+  if (
+    isError &&
+    "status" in error &&
+    error.status !== 401
+  ) {
+    return (
+      <ErrorComponent
+        title="Failed to load user."
+        error="Unable to connect to the server."
+        onRetry={refetch}
+      />
+    );
+  }
+
+  if (!me) {
+    return <PageLoader />;
   }
 
   return (
     <div className="flex h-screen overflow-hidden">
       <Sidebar
         isOpen={isOpen}
-        userName={me?.name ?? ""}
-        userRole={me?.role}
-        userAvatarUrl={me?.avatar || "./images/placeholder.svg"}
+        userName={me.name}
+        userRole={me.role}
+        userAvatarUrl={
+          me.avatar ??
+          "/images/placeholder.svg"
+        }
       />
 
       <div className="flex flex-1 flex-col overflow-hidden">
         <Navbar
-          onSearch={handleSearch}
-          onMenuClick={() => setIsOpen((prev) => !prev)}
+          onSearch={(q) => console.log(q)}
+          onMenuClick={() =>
+            setIsOpen((x) => !x)
+          }
         />
 
-        <main className="flex-1 overflow-y-auto">{children}</main>
+        <main className="flex-1 overflow-y-auto">
+          {children}
+        </main>
       </div>
     </div>
-  )
+  );
 }

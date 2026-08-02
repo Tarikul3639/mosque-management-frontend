@@ -44,7 +44,7 @@ export function DataTableToolbar<TData>({
       </div>
 
       {/* Everything else — second row on mobile, rest of the row on desktop */}
-      <div className="flex flex-1 flex-wrap items-center justify-between gap-3">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         {/* Left: filters + reset */}
         <div className="flex flex-wrap items-center gap-3">
           {filters}
