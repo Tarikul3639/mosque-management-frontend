@@ -1,19 +1,19 @@
-"use client";
+"use client"
 
-import { Bell, Download } from "lucide-react";
-import { DateRange } from "react-day-picker";
+import { Bell, Download } from "lucide-react"
+import { DateRange } from "react-day-picker"
 
-import { Button } from "@/components/ui/button";
-import { DatePickerWithRange } from "@/components/ui/DatePickerWithRange";
+import { Button } from "@/components/ui/button"
+import { DatePickerWithRange } from "@/components/ui/DatePickerWithRange"
 
 interface DashboardHeaderProps {
-  userName?: string;
-  subtitle?: string;
-  dateRange?: DateRange;
-  onDateRangeChange: (value: DateRange | undefined) => void;
-  onExportReport?: () => void;
-  onNotificationsClick?: () => void;
-  notificationCount?: number;
+  userName?: string
+  subtitle?: string
+  dateRange?: DateRange
+  onDateRangeChange: (value: DateRange | undefined) => void
+  onExportReport?: () => void
+  onNotificationsClick?: () => void
+  notificationCount?: number
 }
 
 export function DashboardHeader({
@@ -33,9 +33,7 @@ export function DashboardHeader({
           Welcome back, {userName}
         </h1>
 
-        <p className="mt-1 text-sm text-muted-foreground">
-          {subtitle}
-        </p>
+        <p className="mt-1 text-sm text-muted-foreground">{subtitle}</p>
       </div>
 
       {/* Right */}
@@ -76,5 +74,5 @@ export function DashboardHeader({
         </Button>
       </div>
     </div>
-  );
+  )
 }

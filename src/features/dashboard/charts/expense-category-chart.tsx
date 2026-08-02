@@ -1,38 +1,28 @@
-"use client";
+"use client"
 
-import { useMemo } from "react";
-import Link from "next/link";
-import {
-  Cell,
-  Pie,
-  PieChart,
-  ResponsiveContainer,
-} from "recharts";
+import { useMemo } from "react"
+import Link from "next/link"
+import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts"
 
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-import { TK } from "@/components/icons/tk";
+import { TK } from "@/components/icons/tk"
 
-import { ExpenseCategoryChartLoading } from "./expense-category-chart-loading";
+import { ExpenseCategoryChartLoading } from "./expense-category-chart-loading"
 
-import { formatDateRange } from "@/utils/format-date";
+import { formatDateRange } from "@/utils/format-date"
 
 export interface ExpenseCategoryItem {
-  category: string;
-  amount: number;
+  category: string
+  amount: number
 }
 
 interface Props {
-  data: ExpenseCategoryItem[];
-  isLoading: boolean;
-  from?: string;
-  to?: string;
+  data: ExpenseCategoryItem[]
+  isLoading: boolean
+  from?: string
+  to?: string
 }
 
 const COLORS = [
@@ -46,49 +36,41 @@ const COLORS = [
   "var(--color-accent)",
   "var(--color-muted-foreground)",
   "var(--color-sidebar-primary)",
-];
+]
 
 function formatCompactNumber(value: number) {
   return new Intl.NumberFormat("en", {
     notation: "compact",
     maximumFractionDigits: 1,
-  }).format(value);
+  }).format(value)
 }
 
 function formatAmount(value: number) {
   return value.toLocaleString(undefined, {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  });
+  })
 }
 
-export function ExpenseCategoryChart({
-  data,
-  isLoading,
-  from,
-  to,
-}: Props) {
+export function ExpenseCategoryChart({ data, isLoading, from, to }: Props) {
   if (isLoading) {
-    return <ExpenseCategoryChartLoading />;
+    return <ExpenseCategoryChartLoading />
   }
 
   const totalExpense = useMemo(
     () => data.reduce((sum, item) => sum + item.amount, 0),
     [data]
-  );
+  )
 
   const chartData = useMemo(
     () =>
       data.map((item, index) => ({
         ...item,
         fill: COLORS[index % COLORS.length],
-        percentage:
-          totalExpense === 0
-            ? 0
-            : (item.amount / totalExpense) * 100,
+        percentage: totalExpense === 0 ? 0 : (item.amount / totalExpense) * 100,
       })),
     [data, totalExpense]
-  );
+  )
 
   if (!chartData.length) {
     return (
@@ -103,7 +85,7 @@ export function ExpenseCategoryChart({
           </p>
         </CardContent>
       </Card>
-    );
+    )
   }
 
   return (
@@ -118,14 +100,8 @@ export function ExpenseCategoryChart({
             </span>
           </div>
 
-          <Button
-            asChild
-            variant="outline"
-            size="sm"
-          >
-            <Link href="/report">
-              View Full Report
-            </Link>
+          <Button asChild variant="outline" size="sm">
+            <Link href="/report">View Full Report</Link>
           </Button>
         </div>
       </CardHeader>
@@ -135,10 +111,7 @@ export function ExpenseCategoryChart({
           {/* Chart */}
           <div className="flex items-center justify-center">
             <div className="relative h-80 w-80">
-              <ResponsiveContainer
-                width="100%"
-                height="100%"
-              >
+              <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
                     data={chartData}
@@ -151,10 +124,7 @@ export function ExpenseCategoryChart({
                     animationDuration={800}
                   >
                     {chartData.map((item) => (
-                      <Cell
-                        key={item.category}
-                        fill={item.fill}
-                      />
+                      <Cell key={item.category} fill={item.fill} />
                     ))}
                   </Pie>
                 </PieChart>
@@ -162,7 +132,7 @@ export function ExpenseCategoryChart({
 
               <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
-                  <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                  <p className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
                     Total
                   </p>
 
@@ -188,9 +158,7 @@ export function ExpenseCategoryChart({
           {/* Legend */}
           <div className="flex flex-col">
             <div className="mb-4 flex items-center justify-between">
-              <h4 className="text-sm font-semibold">
-                Categories
-              </h4>
+              <h4 className="text-sm font-semibold">Categories</h4>
 
               <span className="text-xs text-muted-foreground">
                 {chartData.length} Items
@@ -211,9 +179,7 @@ export function ExpenseCategoryChart({
                       }}
                     />
 
-                    <span className="text-sm font-medium">
-                      {item.category}
-                    </span>
+                    <span className="text-sm font-medium">{item.category}</span>
                   </div>
 
                   <div className="flex items-center gap-4">
@@ -233,5 +199,5 @@ export function ExpenseCategoryChart({
         </div>
       </CardContent>
     </Card>
-  );
+  )
 }

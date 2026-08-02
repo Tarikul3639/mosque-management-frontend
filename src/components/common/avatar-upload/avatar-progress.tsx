@@ -1,14 +1,14 @@
 // components/common/avatar-upload/avatar-progress.tsx
 
-"use client";
+"use client"
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
 interface AvatarProgressProps {
-  progress: number;
-  size?: number;
-  strokeWidth?: number;
-  className?: string;
+  progress: number
+  size?: number
+  strokeWidth?: number
+  className?: string
 }
 
 export function AvatarProgress({
@@ -17,12 +17,12 @@ export function AvatarProgress({
   strokeWidth = 4,
   className,
 }: AvatarProgressProps) {
-  const radius = (size - strokeWidth) / 2;
+  const radius = (size - strokeWidth) / 2
 
-  const circumference = 2 * Math.PI * radius;
+  const circumference = 2 * Math.PI * radius
 
   const offset =
-    circumference - (Math.min(Math.max(progress, 0), 100) / 100) * circumference;
+    circumference - (Math.min(Math.max(progress, 0), 100) / 100) * circumference
 
   return (
     <svg
@@ -30,7 +30,7 @@ export function AvatarProgress({
       height={size}
       className={cn(
         "pointer-events-none absolute inset-0 -rotate-90",
-        className,
+        className
       )}
     >
       {/* Background Ring */}
@@ -58,5 +58,5 @@ export function AvatarProgress({
         className="text-primary transition-all duration-300 ease-linear"
       />
     </svg>
-  );
+  )
 }

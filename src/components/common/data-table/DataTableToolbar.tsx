@@ -7,7 +7,7 @@ import { Search, X } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { DataTableViewOptions } from "./DataTableViewOptions"
+import { DataTableColumnVisibility } from "./DataTableColumnVisibility"
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
@@ -64,7 +64,7 @@ export function DataTableToolbar<TData>({
 
         {/* Right: view options + actions */}
         <div className="flex flex-wrap items-center gap-2">
-          <DataTableViewOptions table={table} />
+          <DataTableColumnVisibility table={table} />
           {actions}
         </div>
       </div>

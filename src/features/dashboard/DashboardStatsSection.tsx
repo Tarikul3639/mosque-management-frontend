@@ -1,24 +1,19 @@
-"use client";
+"use client"
 
-import {
-  Landmark,
-  Receipt,
-  Users,
-  Wallet,
-} from "lucide-react";
+import { Landmark, Receipt, Users, Wallet } from "lucide-react"
 
-import type { DashboardOverview } from "@/types/dashboard";
+import type { DashboardOverview } from "@/types/dashboard"
 
-import { getBalanceStyle } from "@/utils/get-balance-style";
+import { getBalanceStyle } from "@/utils/get-balance-style"
 
 import {
   StatsCard,
   StatsCardsSkeletonMap,
-} from "@/components/common/stats-card";
+} from "@/components/common/stats-card"
 
 interface StatsSectionProps {
-  data?: DashboardOverview;
-  isLoading?: boolean;
+  data?: DashboardOverview
+  isLoading?: boolean
 }
 
 export function DashboardStatsSection({
@@ -26,12 +21,10 @@ export function DashboardStatsSection({
   isLoading = false,
 }: StatsSectionProps) {
   if (isLoading) {
-    return <StatsCardsSkeletonMap count={4} />;
+    return <StatsCardsSkeletonMap count={4} />
   }
 
-  const balanceStyle = getBalanceStyle(
-    data?.balance.total ?? 0
-  );
+  const balanceStyle = getBalanceStyle(data?.balance.total ?? 0)
 
   const stats = [
     {
@@ -75,16 +68,13 @@ export function DashboardStatsSection({
       iconBg: "bg-chart-4/15",
       iconColor: "text-chart-4",
     },
-  ];
+  ]
 
   return (
     <section className="grid gap-5 px-2 sm:grid-cols-2 xl:grid-cols-4">
       {stats.map((stat) => (
-        <StatsCard
-          key={stat.title}
-          {...stat}
-        />
+        <StatsCard key={stat.title} {...stat} />
       ))}
     </section>
-  );
+  )
 }

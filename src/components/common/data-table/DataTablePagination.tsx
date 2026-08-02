@@ -19,8 +19,8 @@ interface DataTablePaginationProps {
   pageSize: number
   totalItems: number
   totalPages: number
-  onPageChange: (page: number) => void
-  onPageSizeChange: (pageSize: number) => void
+  onPageChange?: (page: number) => void
+  onPageSizeChange?: (pageSize: number) => void
 }
 
 const PAGE_SIZES = [5, 10, 20, 50, 100]
@@ -73,7 +73,7 @@ export function DataTablePagination({
 
           <Select
             value={String(pageSize)}
-            onValueChange={(value) => onPageSizeChange(Number(value))}
+            onValueChange={(value) => onPageSizeChange?.(Number(value))}
           >
             <SelectTrigger className="h-10 w-24 rounded-lg border-border bg-background shadow-xs transition-colors duration-200 hover:bg-accent hover:text-accent-foreground">
               <SelectValue />
@@ -97,7 +97,7 @@ export function DataTablePagination({
           size="icon"
           className="size-10 rounded-lg transition-colors duration-200"
           disabled={page === 1}
-          onClick={() => onPageChange(page - 1)}
+          onClick={() => onPageChange?.(page - 1)}
         >
           <ChevronLeft className="size-4" />
         </Button>
@@ -122,7 +122,7 @@ export function DataTablePagination({
                 "size-10 rounded-lg transition-all duration-200",
                 item === page && "shadow-sm"
               )}
-              onClick={() => onPageChange(item)}
+              onClick={() => onPageChange?.(item)}
             >
               {item}
             </Button>
@@ -134,7 +134,7 @@ export function DataTablePagination({
           size="icon"
           className="size-10 rounded-lg transition-colors duration-200"
           disabled={page === totalPages || totalPages === 0}
-          onClick={() => onPageChange(page + 1)}
+          onClick={() => onPageChange?.(page + 1)}
         >
           <ChevronRight className="size-4" />
         </Button>

@@ -1,15 +1,15 @@
-"use client";
+"use client"
 
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent } from "@/components/ui/card"
 
-import { AvatarUpload } from "@/components/common/avatar-upload/avatar-upload";
+import { AvatarUpload } from "@/components/common/avatar-upload/avatar-upload"
 
 import type { FamilyDetails } from "@/types/family"
 
 interface FamilyProfileCardProps {
-  family: FamilyDetails;
-  onAvatarChange?: (file: File) => void;
+  family: FamilyDetails
+  onAvatarChange?: (file: File) => void
 }
 
 export function FamilyProfileCard({
@@ -44,5 +44,5 @@ export function FamilyProfileCard({
         </Badge>
       </CardContent>
     </Card>
-  );
+  )
 }

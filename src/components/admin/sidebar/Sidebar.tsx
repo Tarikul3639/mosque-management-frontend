@@ -65,7 +65,7 @@ export function Sidebar({
     <aside
       className={[
         "flex h-screen flex-col overflow-hidden border-r border-sidebar-border bg-sidebar text-sidebar-foreground",
-        "transition-[width] duration-300 ease-in-out font-sans",
+        "font-sans transition-[width] duration-300 ease-in-out",
         isOpen ? "w-64" : "w-0 sm:w-20",
       ].join(" ")}
     >
@@ -79,10 +79,10 @@ export function Sidebar({
         </div>
 
         <Collapsible isOpen={isOpen}>
-          <h1 className="text-base font-bold tracking-tight text-sidebar-foreground whitespace-nowrap">
+          <h1 className="text-base font-bold tracking-tight whitespace-nowrap text-sidebar-foreground">
             MasjidMS
           </h1>
-          <p className="text-xs text-sidebar-foreground/70 whitespace-nowrap">
+          <p className="text-xs whitespace-nowrap text-sidebar-foreground/70">
             Mosque Management System
           </p>
         </Collapsible>
@@ -105,7 +105,7 @@ export function Sidebar({
                       className={[
                         "flex h-10 items-center rounded-lg px-3 transition-colors",
                         isActive
-                          ? "bg-primary text-primary-foreground font-medium"
+                          ? "bg-primary font-medium text-primary-foreground"
                           : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                       ].join(" ")}
                     >
@@ -143,7 +143,7 @@ export function Sidebar({
             >
               <Avatar className="h-9 w-9 shrink-0 border border-sidebar-border">
                 <AvatarImage src={userAvatarUrl} alt={userName} />
-                <AvatarFallback className="bg-sidebar-primary/10 text-sidebar-primary text-xs font-semibold">
+                <AvatarFallback className="bg-sidebar-primary/10 text-xs font-semibold text-sidebar-primary">
                   {initials}
                 </AvatarFallback>
               </Avatar>
@@ -151,7 +151,7 @@ export function Sidebar({
               <Collapsible isOpen={isOpen} padding="pl-3">
                 <div className="flex items-center justify-between gap-2">
                   <div className="min-w-0 flex-1 text-left">
-                    <p className="truncate text-sm font-medium text-sidebar-foreground leading-tight">
+                    <p className="truncate text-sm leading-tight font-medium text-sidebar-foreground">
                       {userName}
                     </p>
                     <p className="truncate text-xs text-sidebar-foreground/70">

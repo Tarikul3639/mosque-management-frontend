@@ -77,7 +77,9 @@ function DetailItem({ icon, label, value, last = false }: DetailItemProps) {
         <span className="text-sm">{label}</span>
       </div>
 
-      <div className="max-w-sm text-right font-medium wrap-break-word">{value}</div>
+      <div className="max-w-sm text-right font-medium wrap-break-word">
+        {value}
+      </div>
     </div>
   )
 }

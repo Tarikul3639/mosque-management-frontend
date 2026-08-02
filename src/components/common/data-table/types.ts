@@ -8,10 +8,10 @@ import type {
   PaginationState,
   RowSelectionState,
   ColumnFiltersState,
-} from "@tanstack/react-table";
+} from "@tanstack/react-table"
 
 export interface DataTableMeta {
-  title?: string;
+  title?: string
 }
 
 declare module "@tanstack/react-table" {
@@ -19,24 +19,24 @@ declare module "@tanstack/react-table" {
 }
 
 export interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+  columns: ColumnDef<TData, TValue>[]
+  data: TData[]
 
-  rowKey?: (row: TData) => string;
+  rowKey?: (row: TData) => string
 
-  emptyMessage?: string;
+  emptyMessage?: string
 
-  className?: string;
+  className?: string
 }
 
 export interface DataTableToolbarProps<TData> {
-  table: Table<TData>;
+  table: Table<TData>
 }
 
 export interface DataTableState {
-  sorting: SortingState;
-  pagination: PaginationState;
-  columnVisibility: VisibilityState;
-  rowSelection: RowSelectionState;
-  columnFilters: ColumnFiltersState;
+  sorting: SortingState
+  pagination: PaginationState
+  columnVisibility: VisibilityState
+  rowSelection: RowSelectionState
+  columnFilters: ColumnFiltersState
 }

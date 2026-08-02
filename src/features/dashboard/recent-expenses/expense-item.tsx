@@ -1,39 +1,37 @@
-"use client";
+"use client"
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
-import { TK } from "@/components/icons/tk";
+import { TK } from "@/components/icons/tk"
 
-import { formatDate } from "@/utils/format-date";
-import { getExpenseCategoryConfig } from "@/utils/expense-category";
+import { formatDate } from "@/utils/format-date"
+import { getExpenseCategoryConfig } from "@/utils/expense-category"
 
 export interface RecentExpense {
-  id: string;
-  title: string;
-  category: string;
-  amount: number;
-  expenseDate: string;
+  id: string
+  title: string
+  category: string
+  amount: number
+  expenseDate: string
 }
 
 interface ExpenseItemProps {
-  expense: RecentExpense;
+  expense: RecentExpense
 }
 
 function formatAmount(amount: number) {
   return amount.toLocaleString("en-US", {
     minimumFractionDigits: 0,
     maximumFractionDigits: 2,
-  });
+  })
 }
 
-export function ExpenseItem({
-  expense,
-}: ExpenseItemProps) {
+export function ExpenseItem({ expense }: ExpenseItemProps) {
   const {
     icon: Icon,
     bgClassName,
     textClassName,
-  } = getExpenseCategoryConfig(expense.category);
+  } = getExpenseCategoryConfig(expense.category)
 
   return (
     <div className="flex items-center justify-between rounded-lg px-2 py-3 transition-colors duration-200 hover:bg-muted/50">
@@ -44,12 +42,7 @@ export function ExpenseItem({
             bgClassName
           )}
         >
-          <Icon
-            className={cn(
-              "size-5 shrink-0",
-              textClassName
-            )}
-          />
+          <Icon className={cn("size-5 shrink-0", textClassName)} />
         </div>
 
         <div className="min-w-0">
@@ -67,7 +60,7 @@ export function ExpenseItem({
       </div>
 
       <div className="shrink-0 text-right">
-        <div className="inline-flex items-center gap-1 font-semibold leading-none text-destructive">
+        <div className="inline-flex items-center gap-1 leading-none font-semibold text-destructive">
           <TK className="size-3 shrink-0" />
 
           <span>{formatAmount(expense.amount)}</span>
@@ -78,5 +71,5 @@ export function ExpenseItem({
         </p>
       </div>
     </div>
-  );
+  )
 }

@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "@/components/ui/skeleton"
 import {
   Table,
   TableBody,
@@ -8,11 +8,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "@/components/ui/table"
 
 interface DataTableSkeletonProps {
-  columns?: number;
-  rows?: number;
+  columns?: number
+  rows?: number
 }
 
 export function DataTableSkeleton({
@@ -26,10 +26,7 @@ export function DataTableSkeleton({
           <TableHeader className="bg-muted/30">
             <TableRow className="hover:bg-transparent">
               {Array.from({ length: columns }).map((_, index) => (
-                <TableHead
-                  key={index}
-                  className="h-12 border-b px-5"
-                >
+                <TableHead key={index} className="h-12 border-b px-5">
                   <Skeleton className="h-4 w-20 rounded-md" />
                 </TableHead>
               ))}
@@ -38,25 +35,17 @@ export function DataTableSkeleton({
 
           <TableBody>
             {Array.from({ length: rows }).map((_, row) => (
-              <TableRow
-                key={row}
-                className="h-16 border-b"
-              >
-                {Array.from({ length: columns }).map(
-                  (_, col) => (
-                    <TableCell
-                      key={col}
-                      className="px-5 py-4"
-                    >
-                      <Skeleton className="h-4 w-full max-w-30" />
-                    </TableCell>
-                  ),
-                )}
+              <TableRow key={row} className="h-16 border-b">
+                {Array.from({ length: columns }).map((_, col) => (
+                  <TableCell key={col} className="px-5 py-4">
+                    <Skeleton className="h-4 w-full max-w-30" />
+                  </TableCell>
+                ))}
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </div>
     </div>
-  );
+  )
 }

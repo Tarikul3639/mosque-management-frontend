@@ -2,7 +2,7 @@ import { Suspense } from "react"
 import AuthHero from "@/components/auth/auth-hero"
 import AuthQuoteCard from "@/components/auth/auth-quote-card"
 import ResetPasswordForm from "@/components/auth/reset-password-form"
-import Loading from "@/components/common/loading"
+import { PageLoader } from "@/components/common/page-loader"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -41,7 +41,7 @@ export default function ForgotPasswordPage() {
 
           {/* Right Side */}
           <section className="flex w-full items-center justify-center p-8 lg:p-14">
-            <Suspense fallback={<Loading />}>
+            <Suspense fallback={<PageLoader />}>
               <ResetPasswordForm />
             </Suspense>
           </section>

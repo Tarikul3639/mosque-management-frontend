@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import { Skeleton } from "@/components/ui/skeleton";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
 
 export function DonorDetailsSkeleton() {
   return (
@@ -47,5 +47,5 @@ export function DonorDetailsSkeleton() {
         </Card>
       </div>
     </div>
-  );
+  )
 }

@@ -1,36 +1,28 @@
-"use client";
+"use client"
 
-import { FinancialSummary } from "@/types/dashboard";
+import { FinancialSummary } from "@/types/dashboard"
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
-import { FinancialSummaryChartLoading } from "./financial-summary-chart-loading";
+import { FinancialSummaryChartLoading } from "./financial-summary-chart-loading"
 
 interface Props {
-  data?: FinancialSummary;
-  isLoading?: boolean;
+  data?: FinancialSummary
+  isLoading?: boolean
 }
 
 function formatAmount(amount: number) {
   return Math.abs(amount).toLocaleString("en-US", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  });
+  })
 }
 
-export function FinancialSummaryChart({
-  data,
-  isLoading = false,
-}: Props) {
+export function FinancialSummaryChart({ data, isLoading = false }: Props) {
   if (isLoading || !data) {
-    return <FinancialSummaryChartLoading />;
+    return <FinancialSummaryChartLoading />
   }
 
   const items = [
@@ -55,29 +47,24 @@ export function FinancialSummaryChart({
       amount: data.balance,
       percent: data.balancePercentage,
       color:
-        data.balance >= 0
-          ? "var(--color-chart-1)"
-          : "var(--color-destructive)",
-      textClass:
-        data.balance >= 0
-          ? "text-chart-1"
-          : "text-destructive",
+        data.balance >= 0 ? "var(--color-chart-1)" : "var(--color-destructive)",
+      textClass: data.balance >= 0 ? "text-chart-1" : "text-destructive",
       isNegative: data.balance < 0,
     },
-  ];
+  ]
 
   const status =
     data.balance >= 0
       ? {
-        title: "Healthy Budget",
-        description: "Collections currently cover expenses.",
-        textClass: "text-chart-1",
-      }
+          title: "Healthy Budget",
+          description: "Collections currently cover expenses.",
+          textClass: "text-chart-1",
+        }
       : {
-        title: "Budget Deficit",
-        description: "Expenses currently exceed collections.",
-        textClass: "text-destructive",
-      };
+          title: "Budget Deficit",
+          description: "Expenses currently exceed collections.",
+          textClass: "text-destructive",
+        }
 
   return (
     <Card className="h-full">
@@ -91,16 +78,9 @@ export function FinancialSummaryChart({
         ))}
 
         <div className="rounded-lg border bg-muted/30 p-4">
-          <p className="text-sm font-medium">
-            Financial Status
-          </p>
+          <p className="text-sm font-medium">Financial Status</p>
 
-          <p
-            className={cn(
-              "mt-2 text-lg font-bold",
-              status.textClass
-            )}
-          >
+          <p className={cn("mt-2 text-lg font-bold", status.textClass)}>
             {status.title}
           </p>
 
@@ -110,16 +90,16 @@ export function FinancialSummaryChart({
         </div>
       </CardContent>
     </Card>
-  );
+  )
 }
 
 interface SummaryItemProps {
-  title: string;
-  amount: number;
-  percent: number;
-  color: string;
-  textClass: string;
-  isNegative: boolean;
+  title: string
+  amount: number
+  percent: number
+  color: string
+  textClass: string
+  isNegative: boolean
 }
 
 function SummaryItem({
@@ -134,9 +114,7 @@ function SummaryItem({
     <div className="space-y-2">
       <div className="flex items-center justify-between">
         <div>
-          <p className="font-medium">
-            {title}
-          </p>
+          <p className="font-medium">{title}</p>
 
           <p className={cn("text-sm font-semibold", textClass)}>
             {isNegative && "-"}৳ {formatAmount(amount)}
@@ -159,5 +137,5 @@ function SummaryItem({
         />
       </div>
     </div>
-  );
+  )
 }

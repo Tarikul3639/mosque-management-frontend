@@ -1,49 +1,43 @@
-"use client";
+"use client"
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 
-import { TK } from "@/components/icons/tk";
+import { TK } from "@/components/icons/tk"
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
-import { formatDate } from "@/utils/format-date";
-import { getAvatarColor, getAvatarInitials } from "@/utils/avatar.utils";
+import { formatDate } from "@/utils/format-date"
+import { getAvatarColor, getAvatarInitials } from "@/utils/avatar.utils"
 
 export interface RecentDonation {
-  id: string;
-  donorName: string;
-  amount: number;
-  receiptNo: string;
-  paymentMethod: string;
-  donatedAt: string;
+  id: string
+  donorName: string
+  amount: number
+  receiptNo: string
+  paymentMethod: string
+  donatedAt: string
 }
 
 interface DonationItemProps {
-  donation: RecentDonation;
+  donation: RecentDonation
 }
 
 function formatAmount(amount: number) {
   return amount.toLocaleString("en-US", {
     minimumFractionDigits: 0,
     maximumFractionDigits: 2,
-  });
+  })
 }
 
-export function DonationItem({
-  donation,
-}: DonationItemProps) {
-  const avatarColor = getAvatarColor(donation.donorName);
+export function DonationItem({ donation }: DonationItemProps) {
+  const avatarColor = getAvatarColor(donation.donorName)
 
   return (
     <div className="flex items-center justify-between rounded-lg px-2 py-3 transition-colors duration-200 hover:bg-muted/50">
       <div className="flex min-w-0 items-center gap-3">
         <Avatar className="size-11">
           <AvatarFallback
-            className={cn(
-              "font-medium",
-              avatarColor.bg,
-              avatarColor.text
-            )}
+            className={cn("font-medium", avatarColor.bg, avatarColor.text)}
           >
             {getAvatarInitials(donation.donorName)}
           </AvatarFallback>
@@ -65,7 +59,7 @@ export function DonationItem({
 
       <div className="shrink-0 text-right">
         <div
-          className="inline-flex items-center gap-1 font-semibold leading-none"
+          className="inline-flex items-center gap-1 leading-none font-semibold"
           style={{
             color: "var(--color-chart-1)",
           }}
@@ -80,5 +74,5 @@ export function DonationItem({
         </p>
       </div>
     </div>
-  );
+  )
 }

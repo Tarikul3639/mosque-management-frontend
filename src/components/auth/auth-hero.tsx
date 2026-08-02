@@ -1,15 +1,15 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import { ReactNode } from "react";
+import Image from "next/image"
+import { ReactNode } from "react"
 
-import { Logo } from "@/components/icons/Logo";
+import { Logo } from "@/components/icons/Logo"
 
 interface AuthHeroProps {
-  image: string;
-  title: ReactNode;
-  description?: ReactNode;
-  children?: ReactNode;
+  image: string
+  title: ReactNode
+  description?: ReactNode
+  children?: ReactNode
 }
 
 export default function AuthHero({
@@ -45,10 +45,7 @@ export default function AuthHero({
           {/* Logo */}
           <div className="flex items-center gap-4">
             <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-sidebar-border bg-sidebar-accent/20 backdrop-blur-sm">
-              <Logo
-                className="p-1.5"
-                color="currentColor"
-              />
+              <Logo className="p-1.5" color="currentColor" />
               <span className="sr-only">Mosque Management System</span>
             </div>
 
@@ -77,5 +74,5 @@ export default function AuthHero({
         {children}
       </div>
     </section>
-  );
+  )
 }

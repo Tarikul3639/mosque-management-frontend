@@ -1,14 +1,9 @@
-"use client";
+"use client"
 
-import { type Column } from "@tanstack/react-table";
-import {
-  ArrowDown,
-  ArrowUp,
-  ArrowUpDown,
-  EyeOff,
-} from "lucide-react";
+import { type Column } from "@tanstack/react-table"
+import { ArrowDown, ArrowUp, ArrowUpDown, EyeOff } from "lucide-react"
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 
 import {
   DropdownMenu,
@@ -16,11 +11,11 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu"
 
 interface DataTableColumnHeaderProps<TData, TValue> {
-  column: Column<TData, TValue>;
-  title: string;
+  column: Column<TData, TValue>
+  title: string
 }
 
 export function DataTableColumnHeader<TData, TValue>({
@@ -32,10 +27,10 @@ export function DataTableColumnHeader<TData, TValue>({
       <div className="flex items-center font-medium text-foreground">
         {title}
       </div>
-    );
+    )
   }
 
-  const sorted = column.getIsSorted();
+  const sorted = column.getIsSorted()
 
   return (
     <DropdownMenu>
@@ -52,34 +47,25 @@ export function DataTableColumnHeader<TData, TValue>({
           ) : sorted === "desc" ? (
             <ArrowDown className="size-4 text-muted-foreground" />
           ) : (
-            <ArrowUpDown className="size-4 text-muted-foreground sm:opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
+            <ArrowUpDown className="size-4 text-muted-foreground transition-opacity duration-200 group-hover:opacity-100 sm:opacity-0" />
           )}
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent
-        align="start"
-        className="w-44"
-      >
-        <DropdownMenuItem
-          onClick={() => column.toggleSorting(false)}
-        >
+      <DropdownMenuContent align="start" className="w-44">
+        <DropdownMenuItem onClick={() => column.toggleSorting(false)}>
           <ArrowUp className="mr-2 size-4" />
           Ascending
         </DropdownMenuItem>
 
-        <DropdownMenuItem
-          onClick={() => column.toggleSorting(true)}
-        >
+        <DropdownMenuItem onClick={() => column.toggleSorting(true)}>
           <ArrowDown className="mr-2 size-4" />
           Descending
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem
-          onClick={() => column.clearSorting()}
-        >
+        <DropdownMenuItem onClick={() => column.clearSorting()}>
           <ArrowUpDown className="mr-2 size-4" />
           Clear Sorting
         </DropdownMenuItem>
@@ -89,9 +75,7 @@ export function DataTableColumnHeader<TData, TValue>({
             <DropdownMenuSeparator />
 
             <DropdownMenuItem
-              onClick={() =>
-                column.toggleVisibility(false)
-              }
+              onClick={() => column.toggleVisibility(false)}
               className="text-destructive focus:bg-destructive/10 focus:text-destructive"
             >
               <EyeOff className="mr-2 size-4" />
@@ -101,5 +85,5 @@ export function DataTableColumnHeader<TData, TValue>({
         )}
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }

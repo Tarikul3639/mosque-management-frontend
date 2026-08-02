@@ -1,17 +1,17 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { Mail } from "lucide-react";
+import * as React from "react"
+import { Mail } from "lucide-react"
 
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 
-import InputError from "./input-error";
+import InputError from "./input-error"
 
 interface EmailInputProps extends React.ComponentProps<"input"> {
-  label?: string;
-  error?: string;
+  label?: string
+  error?: string
 }
 
 export default function EmailInput({
@@ -41,7 +41,7 @@ export default function EmailInput({
           className={cn(
             "h-10 pl-12",
             error &&
-            "border-destructive ring-destructive/20 focus-visible:border-destructive focus-visible:ring-destructive/30",
+              "border-destructive ring-destructive/20 focus-visible:border-destructive focus-visible:ring-destructive/30",
             className
           )}
           {...props}
@@ -50,5 +50,5 @@ export default function EmailInput({
 
       <InputError message={error} />
     </div>
-  );
+  )
 }

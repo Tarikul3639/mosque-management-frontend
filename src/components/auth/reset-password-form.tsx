@@ -1,35 +1,35 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { ArrowLeft, Loader2, LockKeyhole, ShieldCheck } from "lucide-react";
-import { toast } from "sonner";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link"
+import { useState } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
+import { ArrowLeft, Loader2, LockKeyhole, ShieldCheck } from "lucide-react"
+import { toast } from "sonner"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 
-import PasswordInput from "./password-input";
-import FormError from "./form-error";
+import PasswordInput from "./password-input"
+import FormError from "./form-error"
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 
-import { useResetPasswordMutation } from "@/store/api/auth.api";
-import { getErrorMessage } from "@/utils/get-error-message";
+import { useResetPasswordMutation } from "@/store/api/auth.api"
+import { getErrorMessage } from "@/utils/get-error-message"
 
 import {
   resetPasswordSchema,
   type ResetPasswordSchema,
-} from "@/schemas/auth/reset-password.schema";
+} from "@/schemas/auth/reset-password.schema"
 
 export default function ResetPasswordForm() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+  const router = useRouter()
+  const searchParams = useSearchParams()
 
-  const token = searchParams.get("token");
+  const token = searchParams.get("token")
 
-  const [resetPassword, { isLoading }] = useResetPasswordMutation();
+  const [resetPassword, { isLoading }] = useResetPasswordMutation()
 
-  const [formError, setFormError] = useState("");
+  const [formError, setFormError] = useState("")
 
   const {
     register,
@@ -42,31 +42,31 @@ export default function ResetPasswordForm() {
       password: "",
       confirmPassword: "",
     },
-  });
+  })
 
   const onSubmit = async (data: ResetPasswordSchema) => {
-    setFormError("");
+    setFormError("")
 
     if (!token) {
-      setFormError("Invalid or missing reset token.");
-      return;
+      setFormError("Invalid or missing reset token.")
+      return
     }
 
     try {
       await resetPassword({
         token,
         newPassword: data.password,
-      }).unwrap();
+      }).unwrap()
 
       toast.success("Password reset successfully!", {
         description: "You can now sign in with your new password.",
-      });
+      })
 
-      router.replace("/login");
+      router.replace("/login")
     } catch (error) {
-      setFormError(getErrorMessage(error));
+      setFormError(getErrorMessage(error))
     }
-  };
+  }
 
   return (
     <div className="mx-auto w-full">
@@ -85,11 +85,7 @@ export default function ResetPasswordForm() {
         </p>
       </div>
 
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="space-y-6"
-        noValidate
-      >
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
         <FormError message={formError} />
 
         <PasswordInput
@@ -99,8 +95,8 @@ export default function ResetPasswordForm() {
           error={errors.password?.message}
           {...register("password", {
             onChange: () => {
-              clearErrors("password");
-              setFormError("");
+              clearErrors("password")
+              setFormError("")
             },
           })}
         />
@@ -112,8 +108,8 @@ export default function ResetPasswordForm() {
           error={errors.confirmPassword?.message}
           {...register("confirmPassword", {
             onChange: () => {
-              clearErrors("confirmPassword");
-              setFormError("");
+              clearErrors("confirmPassword")
+              setFormError("")
             },
           })}
         />
@@ -134,11 +130,7 @@ export default function ResetPasswordForm() {
           )}
         </Button>
 
-        <Button
-          asChild
-          variant="outline"
-          className="h-10 w-full"
-        >
+        <Button asChild variant="outline" className="h-10 w-full">
           <Link href="/login">
             <ArrowLeft className="mr-2 size-4" />
             Back to Sign In
@@ -157,5 +149,5 @@ export default function ResetPasswordForm() {
         </div>
       </form>
     </div>
-  );
+  )
 }

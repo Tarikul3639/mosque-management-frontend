@@ -90,7 +90,7 @@ export function getAvatarInitials(name: string, maxLength = 2): string {
 }
 
 export function getAvatarClass(seed: string): string {
-  const { bg, text } = getAvatarColor(seed);
+  const { bg, text } = getAvatarColor(seed)
 
-  return `${bg} ${text} font-semibold select-none`;
+  return `${bg} ${text} font-semibold select-none`
 }

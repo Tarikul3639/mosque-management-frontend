@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import { Sidebar } from "@/components/admin/sidebar/Sidebar"
 import { Navbar } from "@/components/admin/navbar/Navbar"
 import { useMeQuery } from "@/store/api/auth.api"
-import Loader from "@/components/common/loading"
+import { PageLoader } from "@/components/common/page-loader"
 
 export function AdminLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter()
@@ -17,7 +17,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
   }
 
   if (isLoading) {
-    return <Loader />
+    return <PageLoader />
   }
 
   if (isError) {

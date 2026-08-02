@@ -1,19 +1,19 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { Eye, EyeOff, Lock } from "lucide-react";
+import * as React from "react"
+import { Eye, EyeOff, Lock } from "lucide-react"
 
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 
-import InputError from "./input-error";
+import InputError from "./input-error"
 
 interface PasswordInputProps extends React.ComponentProps<"input"> {
-  id?: string;
-  label?: string;
-  placeholder?: string;
-  error?: string;
+  id?: string
+  label?: string
+  placeholder?: string
+  error?: string
 }
 
 export default function PasswordInput({
@@ -24,7 +24,7 @@ export default function PasswordInput({
   className,
   ...props
 }: PasswordInputProps) {
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [showPassword, setShowPassword] = React.useState(false)
 
   return (
     <div className="space-y-2">
@@ -45,7 +45,7 @@ export default function PasswordInput({
           placeholder={placeholder}
           aria-invalid={!!error}
           className={cn(
-            "h-10 pl-12 pr-12",
+            "h-10 pr-12 pl-12",
             error &&
               "border-destructive ring-destructive/20 focus-visible:border-destructive focus-visible:ring-destructive/30",
             className
@@ -69,5 +69,5 @@ export default function PasswordInput({
 
       <InputError message={error} />
     </div>
-  );
+  )
 }

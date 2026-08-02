@@ -1,14 +1,14 @@
-import { ReactNode } from "react";
-import { Quote } from "lucide-react";
+import { ReactNode } from "react"
+import { Quote } from "lucide-react"
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
 interface AuthQuoteCardProps {
-  icon?: ReactNode;
-  title: ReactNode;
-  subtitle?: ReactNode;
-  author?: ReactNode;
-  className?: string;
+  icon?: ReactNode
+  title: ReactNode
+  subtitle?: ReactNode
+  author?: ReactNode
+  className?: string
 }
 
 export default function AuthQuoteCard({
@@ -35,9 +35,7 @@ export default function AuthQuoteCard({
         </p>
 
         {subtitle && (
-          <p className="text-sm leading-6 text-muted-foreground">
-            {subtitle}
-          </p>
+          <p className="text-sm leading-6 text-muted-foreground">{subtitle}</p>
         )}
 
         {author && (
@@ -47,5 +45,5 @@ export default function AuthQuoteCard({
         )}
       </blockquote>
     </div>
-  );
+  )
 }

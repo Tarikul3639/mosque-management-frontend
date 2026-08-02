@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import {
   Card,
@@ -6,35 +6,31 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@/components/ui/card"
 
-import { DataTable } from "@/components/common/data-table";
-import { useGetFamilyFeeHistoryQuery } from "@/store/api/family.api";
-import { familyFeeHistoryColumns } from "./family-fee-history-columns";
+import { DataTable } from "@/components/common/data-table"
+import { useGetFamilyFeeHistoryQuery } from "@/store/api/family.api"
+import { familyFeeHistoryColumns } from "./family-fee-history-columns"
 
 interface FamilyFeeHistoryProps {
-  familyId: string;
+  familyId: string
 }
 
-export function FamilyFeeHistory({
-  familyId,
-}: FamilyFeeHistoryProps) {
+export function FamilyFeeHistory({ familyId }: FamilyFeeHistoryProps) {
   const {
     data = [],
     isLoading,
     isFetching,
   } = useGetFamilyFeeHistoryQuery({
     familyId,
-  });
+  })
 
   return (
     <Card>
       <CardHeader>
         <CardTitle>Fee History</CardTitle>
 
-        <CardDescription>
-          Monthly fee changes for this family.
-        </CardDescription>
+        <CardDescription>Monthly fee changes for this family.</CardDescription>
       </CardHeader>
 
       <CardContent>
@@ -48,5 +44,5 @@ export function FamilyFeeHistory({
         />
       </CardContent>
     </Card>
-  );
+  )
 }

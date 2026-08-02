@@ -1,36 +1,35 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { useState } from "react";
+import Link from "next/link"
+import { useState } from "react"
 import {
   ArrowLeft,
   Loader2,
   LockKeyhole,
   Send,
   ShieldCheck,
-} from "lucide-react";
-import { toast } from "sonner";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+} from "lucide-react"
+import { toast } from "sonner"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 
-import { Button } from "@/components/ui/button";
-import EmailInput from "@/components/auth/email-input";
+import { Button } from "@/components/ui/button"
+import EmailInput from "@/components/auth/email-input"
 
-import FormError from "./form-error";
+import FormError from "./form-error"
 
-import { useForgotPasswordMutation } from "@/store/api/auth.api";
-import { getErrorMessage } from "@/utils/get-error-message";
+import { useForgotPasswordMutation } from "@/store/api/auth.api"
+import { getErrorMessage } from "@/utils/get-error-message"
 
 import {
   forgotPasswordSchema,
   type ForgotPasswordSchema,
-} from "@/schemas/auth/forgot-password.schema";
+} from "@/schemas/auth/forgot-password.schema"
 
 export default function ForgotPasswordForm() {
-  const [formError, setFormError] = useState("");
+  const [formError, setFormError] = useState("")
 
-  const [forgotPassword, { isLoading, isSuccess }] =
-    useForgotPasswordMutation();
+  const [forgotPassword, { isLoading, isSuccess }] = useForgotPasswordMutation()
 
   const {
     register,
@@ -42,22 +41,22 @@ export default function ForgotPasswordForm() {
     defaultValues: {
       email: "",
     },
-  });
+  })
 
   async function onSubmit(data: ForgotPasswordSchema) {
-    setFormError("");
+    setFormError("")
 
     try {
-      await forgotPassword(data).unwrap();
+      await forgotPassword(data).unwrap()
 
       toast.success("Password reset link sent successfully!", {
         description: "Please check your email inbox.",
-      });
+      })
     } catch (error) {
-      const message = getErrorMessage(error);
+      const message = getErrorMessage(error)
 
-      toast.error(message);
-      setFormError(message);
+      toast.error(message)
+      setFormError(message)
     }
   }
 
@@ -79,11 +78,7 @@ export default function ForgotPasswordForm() {
         </p>
       </div>
 
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="space-y-6"
-        noValidate
-      >
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
         <FormError message={formError} />
 
         <EmailInput
@@ -92,8 +87,8 @@ export default function ForgotPasswordForm() {
           error={errors.email?.message}
           {...register("email", {
             onChange: () => {
-              clearErrors("email");
-              setFormError("");
+              clearErrors("email")
+              setFormError("")
             },
           })}
         />
@@ -125,11 +120,7 @@ export default function ForgotPasswordForm() {
         </div>
 
         {/* Back */}
-        <Button
-          asChild
-          variant="outline"
-          className="h-10 w-full"
-        >
+        <Button asChild variant="outline" className="h-10 w-full">
           <Link href="/login">
             <ArrowLeft className="mr-2 size-4" />
             Back to Sign In
@@ -149,5 +140,5 @@ export default function ForgotPasswordForm() {
         </div>
       </form>
     </div>
-  );
+  )
 }

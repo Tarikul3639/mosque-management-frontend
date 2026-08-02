@@ -1,4 +1,4 @@
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "@/components/ui/skeleton"
 
 export function FamilyDetailsSkeleton() {
   return (
@@ -44,8 +44,9 @@ export function FamilyDetailsSkeleton() {
               {Array.from({ length: 7 }).map((_, index) => (
                 <div
                   key={index}
-                  className={`flex items-center justify-between py-3 ${index !== 6 ? "border-b" : ""
-                    }`}
+                  className={`flex items-center justify-between py-3 ${
+                    index !== 6 ? "border-b" : ""
+                  }`}
                 >
                   <div className="flex items-center gap-2">
                     <Skeleton className="size-4 rounded-full" />
@@ -66,10 +67,7 @@ export function FamilyDetailsSkeleton() {
 
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {Array.from({ length: 4 }).map((_, index) => (
-            <div
-              key={index}
-              className="rounded-xl border p-5"
-            >
+            <div key={index} className="rounded-xl border p-5">
               <Skeleton className="mb-3 h-4 w-24" />
               <Skeleton className="h-8 w-28" />
             </div>
@@ -111,5 +109,5 @@ export function FamilyDetailsSkeleton() {
         <Skeleton className="h-72 w-full rounded-xl" />
       </div>
     </div>
-  );
+  )
 }

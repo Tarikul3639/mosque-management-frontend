@@ -1,29 +1,24 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import Link from "next/link"
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
 
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
-} from "@/components/ui/chart";
+} from "@/components/ui/chart"
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-import { Button } from "@/components/ui/button";
-import { TK } from "@/components/icons/tk";
+import { Button } from "@/components/ui/button"
+import { TK } from "@/components/icons/tk"
 
-import { MonthlyChartItem } from "@/types/dashboard";
-import { DonationExpenseChartLoading } from "./donation-expense-chart-loading";
+import { MonthlyChartItem } from "@/types/dashboard"
+import { DonationExpenseChartLoading } from "./donation-expense-chart-loading"
 
-import { formatDateRange } from "@/utils/format-date";
+import { formatDateRange } from "@/utils/format-date"
 
 const chartConfig = {
   donation: {
@@ -38,23 +33,18 @@ const chartConfig = {
     label: "Collections",
     color: "var(--color-chart-3)",
   },
-} satisfies ChartConfig;
+} satisfies ChartConfig
 
 interface Props {
-  data: MonthlyChartItem[];
-  isLoading: boolean;
-  from?: string;
-  to?: string;
+  data: MonthlyChartItem[]
+  isLoading: boolean
+  from?: string
+  to?: string
 }
 
-export function DonationExpenseChart({
-  data,
-  isLoading,
-  from,
-  to,
-}: Props) {
+export function DonationExpenseChart({ data, isLoading, from, to }: Props) {
   if (isLoading) {
-    return <DonationExpenseChartLoading />;
+    return <DonationExpenseChartLoading />
   }
 
   return (
@@ -71,49 +61,24 @@ export function DonationExpenseChart({
             </div>
 
             <div className="mt-3 flex flex-wrap items-center gap-6">
-              <Legend
-                color="var(--color-chart-1)"
-                label="Donations"
-              />
+              <Legend color="var(--color-chart-1)" label="Donations" />
 
-              <Legend
-                color="var(--color-chart-2)"
-                label="Expenses"
-              />
+              <Legend color="var(--color-chart-2)" label="Expenses" />
 
-              <Legend
-                color="var(--color-chart-3)"
-                label="Collections"
-              />
+              <Legend color="var(--color-chart-3)" label="Collections" />
             </div>
           </div>
 
-          <Button
-            asChild
-            variant="outline"
-            size="sm"
-          >
-            <Link href="/report">
-              View Full Report
-            </Link>
+          <Button asChild variant="outline" size="sm">
+            <Link href="/report">View Full Report</Link>
           </Button>
         </div>
       </CardHeader>
 
       <CardContent>
-        <ChartContainer
-          config={chartConfig}
-          className="h-80 w-full"
-        >
-          <BarChart
-            accessibilityLayer
-            data={data}
-            barGap={6}
-          >
-            <CartesianGrid
-              vertical={false}
-              strokeDasharray="4 4"
-            />
+        <ChartContainer config={chartConfig} className="h-80 w-full">
+          <BarChart accessibilityLayer data={data} barGap={6}>
+            <CartesianGrid vertical={false} strokeDasharray="4 4" />
 
             <XAxis
               dataKey="month"
@@ -129,10 +94,7 @@ export function DonationExpenseChart({
               tickFormatter={(value) => `${value / 1000}K`}
             />
 
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent />}
-            />
+            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
 
             <Bar
               dataKey="donation"
@@ -155,24 +117,18 @@ export function DonationExpenseChart({
         </ChartContainer>
       </CardContent>
     </Card>
-  );
+  )
 }
 
 interface LegendProps {
-  color: string;
-  label: string;
+  color: string
+  label: string
 }
 
-function Legend({
-  color,
-  label,
-}: LegendProps) {
+function Legend({ color, label }: LegendProps) {
   return (
     <div className="flex items-center gap-2">
-      <span
-        className="size-3 rounded-sm"
-        style={{ backgroundColor: color }}
-      />
+      <span className="size-3 rounded-sm" style={{ backgroundColor: color }} />
 
       <span className="inline-flex items-center gap-1 text-sm text-muted-foreground">
         {label}
@@ -182,5 +138,5 @@ function Legend({
         </span>
       </span>
     </div>
-  );
+  )
 }

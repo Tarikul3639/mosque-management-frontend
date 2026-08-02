@@ -1,30 +1,25 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-import { ExpenseItem } from "./expense-item";
-import { RecentExpensesLoading } from "./recent-expenses-loading";
+import { ExpenseItem } from "./expense-item"
+import { RecentExpensesLoading } from "./recent-expenses-loading"
 
 export interface RecentExpense {
-  id: string;
-  title: string;
-  category: string;
-  amount: number;
-  expenseDate: string;
+  id: string
+  title: string
+  category: string
+  amount: number
+  expenseDate: string
 }
 
 interface Props {
-  expenses?: RecentExpense[];
-  isLoading?: boolean;
+  expenses?: RecentExpense[]
+  isLoading?: boolean
 }
 
 export function RecentExpensesCard({
@@ -32,7 +27,7 @@ export function RecentExpensesCard({
   isLoading = false,
 }: Props) {
   if (isLoading) {
-    return <RecentExpensesLoading />;
+    return <RecentExpensesLoading />
   }
 
   return (
@@ -41,11 +36,7 @@ export function RecentExpensesCard({
         <div className="flex items-center justify-between gap-4">
           <CardTitle>Recent Expenses</CardTitle>
 
-          <Button
-            asChild
-            variant="link"
-            size="sm"
-          >
+          <Button asChild variant="link" size="sm">
             <Link href="/expenses">
               View All
               <ArrowRight className="ml-1 size-4" />
@@ -64,14 +55,11 @@ export function RecentExpensesCard({
         ) : (
           <div className="space-y-1 overflow-y-auto">
             {expenses.map((expense) => (
-              <ExpenseItem
-                key={expense.id}
-                expense={expense}
-              />
+              <ExpenseItem key={expense.id} expense={expense} />
             ))}
           </div>
         )}
       </CardContent>
     </Card>
-  );
+  )
 }

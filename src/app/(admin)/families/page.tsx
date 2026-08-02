@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
-
 import { Card, CardContent } from "@/components/ui/card"
 
 import {
@@ -12,11 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-import {
-  DataTable,
-  DataTablePagination,
-  DataTableToolbar,
-} from "@/components/common/data-table"
+import { DataTable, DataTableToolbar } from "@/components/common/data-table"
 
 import { getErrorMessage } from "@/utils/get-error-message"
 import { ErrorComponent } from "@/components/common/error"
@@ -43,13 +38,9 @@ const EMPTY_STATS = {
 
 export default function FamiliesPage() {
   const [page, setPage] = useState(1)
-
   const [pageSize, setPageSize] = useState(10)
-
   const [searchInput, setSearchInput] = useState("")
-
   const [search, setSearch] = useState("")
-
   const [status, setStatus] = useState<FamilyStatusFilter>("all")
 
   useEffect(() => {
@@ -117,6 +108,16 @@ export default function FamiliesPage() {
               emptyTitle="No families found."
               isLoading={isLoading}
               isFetching={isFetching}
+              // Pagination props
+              currentPage={page}
+              pageSize={pageSize}
+              totalPages={data?.totalPages ?? 1}
+              totalItems={data?.total ?? 0}
+              onPageChange={setPage}
+              onPageSizeChange={(size) => {
+                setPageSize(size)
+                setPage(1)
+              }}
             >
               {(table) => (
                 <DataTableToolbar<Family>
@@ -150,18 +151,6 @@ export default function FamiliesPage() {
                 />
               )}
             </DataTable>
-
-            <DataTablePagination
-              page={page}
-              pageSize={pageSize}
-              totalPages={data?.totalPages ?? 1}
-              totalItems={data?.total ?? 0}
-              onPageChange={setPage}
-              onPageSizeChange={(size) => {
-                setPageSize(size)
-                setPage(1)
-              }}
-            />
           </CardContent>
         </Card>
       </section>

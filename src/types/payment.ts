@@ -1,46 +1,55 @@
-export type PaymentMethod = "CASH" | "CARD" | "BANK_TRANSFER" | "MOBILE_PAYMENT" | "CHECK" | "OTHER";
+export enum PaymentMethod {
+  CASH = "CASH",
+  BKASH = "BKASH",
+  NAGAD = "NAGAD",
+  BANK_TRANSFER = "BANK_TRANSFER",
+  CARD = "CARD",
+  QR = "QR",
+  OTHER = "OTHER",
+}
+
 export interface FamilyLedgerQuery {
-    familyId: string
-    year?: number
-    month?: number
+  familyId: string
+  year?: number
+  month?: number
 }
 
 export interface FamilyLedgerResponse {
-    familyId: string;
-    familyNo: string;
-    headName: string;
-    phone: string;
-    address: string;
+  familyId: string
+  familyNo: string
+  headName: string
+  phone: string
+  address: string
 
-    summary: {
-        totalCharge: number;
-        totalPaid: number;
-        totalDue: number;
-    };
+  summary: {
+    totalCharge: number
+    totalPaid: number
+    totalDue: number
+  }
 
-    ledger: FamilyLedgerItem[];
+  ledger: FamilyLedgerItem[]
 }
 
 export interface FamilyLedgerItem {
-    monthlyChargeId: string;
+  monthlyChargeId: string
 
-    year: number;
-    month: number;
+  year: number
+  month: number
 
-    chargeAmount: number;
-    paidAmount: number;
-    dueAmount: number;
+  chargeAmount: number
+  paidAmount: number
+  dueAmount: number
 
-    status: "PAID" | "PARTIAL" | "DUE";
+  status: "PAID" | "PARTIAL" | "DUE"
 
-    payments: FamilyLedgerPayment[];
+  payments: FamilyLedgerPayment[]
 }
 
 export interface FamilyLedgerPayment {
-    id: string;
-    amount: number;
-    method: string;
-    reference: string | null;
-    note: string | null;
-    paidAt: string;
+  id: string
+  amount: number
+  method: string
+  reference: string | null
+  note: string | null
+  paidAt: string
 }

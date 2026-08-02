@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import { format, parseISO } from "date-fns";
+import { format, parseISO } from "date-fns"
 import {
   AlertCircle,
   CalendarClock,
@@ -8,28 +8,23 @@ import {
   CreditCard,
   TrendingUp,
   Wallet,
-} from "lucide-react";
+} from "lucide-react"
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 
-import { StatsCard } from "@/components/common/stats-card";
+import { StatsCard } from "@/components/common/stats-card"
 
 interface FamilyPaymentSummaryCardProps {
   currentFee: {
-    monthlyFee: number;
-  } | null;
+    monthlyFee: number
+  } | null
 
   summary: {
-    totalPaid: number;
-    totalDue: number;
-    lastPaymentAt: Date | string | null;
-  };
+    totalPaid: number
+    totalDue: number
+    lastPaymentAt: Date | string | null
+  }
 }
 
 export function FamilyPaymentSummaryCard({
@@ -92,9 +87,7 @@ export function FamilyPaymentSummaryCard({
                 ? "Outstanding balance"
                 : "No outstanding balance"
             }
-            valueColor={
-              summary.totalDue > 0 ? "text-destructive" : undefined
-            }
+            valueColor={summary.totalDue > 0 ? "text-destructive" : undefined}
             icon={<CreditCard className="size-5" />}
             iconBg={
               summary.totalDue > 0
@@ -102,9 +95,7 @@ export function FamilyPaymentSummaryCard({
                 : "bg-success/10 border border-success/20"
             }
             iconColor={
-              summary.totalDue > 0
-                ? "text-destructive"
-                : "text-success"
+              summary.totalDue > 0 ? "text-destructive" : "text-success"
             }
           />
 
@@ -113,11 +104,11 @@ export function FamilyPaymentSummaryCard({
             value={
               summary.lastPaymentAt
                 ? format(
-                  typeof summary.lastPaymentAt === "string"
-                    ? parseISO(summary.lastPaymentAt)
-                    : summary.lastPaymentAt,
-                  "dd MMM yyyy",
-                )
+                    typeof summary.lastPaymentAt === "string"
+                      ? parseISO(summary.lastPaymentAt)
+                      : summary.lastPaymentAt,
+                    "dd MMM yyyy"
+                  )
                 : "Never"
             }
             subtitle="Latest payment received"
@@ -128,5 +119,5 @@ export function FamilyPaymentSummaryCard({
         </div>
       </CardContent>
     </Card>
-  );
+  )
 }

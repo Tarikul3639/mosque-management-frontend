@@ -1,39 +1,39 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { Loader2, LogIn } from "lucide-react";
-import { toast } from "sonner";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { Loader2, LogIn } from "lucide-react"
+import { toast } from "sonner"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 
-import { GoogleIcon } from "@/components/icons/GoogleIcon";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
+import { GoogleIcon } from "@/components/icons/GoogleIcon"
+import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Label } from "@/components/ui/label"
 
-import EmailInput from "./email-input";
-import PasswordInput from "./password-input";
-import FormError from "./form-error";
+import EmailInput from "./email-input"
+import PasswordInput from "./password-input"
+import FormError from "./form-error"
 
-import { useLoginMutation } from "@/store/api/auth.api";
-import { useAppDispatch } from "@/store/hooks";
-import { openFeatureDialog } from "@/store/slices/ui.slice";
+import { useLoginMutation } from "@/store/api/auth.api"
+import { useAppDispatch } from "@/store/hooks"
+import { openFeatureDialog } from "@/store/slices/ui.slice"
 
-import { loginSchema, type LoginSchema } from "@/schemas/auth/login.schema";
-import { getErrorMessage } from "@/utils/get-error-message";
+import { loginSchema, type LoginSchema } from "@/schemas/auth/login.schema"
+import { getErrorMessage } from "@/utils/get-error-message"
 
 export default function LoginForm() {
   // TODO: Implement remember me functionality using cookies or local storage
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
 
-  const router = useRouter();
+  const router = useRouter()
 
-  const [rememberMe, setRememberMe] = useState(true);
-  const [formError, setFormError] = useState("");
+  const [rememberMe, setRememberMe] = useState(true)
+  const [formError, setFormError] = useState("")
 
-  const [login, { isLoading }] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation()
 
   const {
     register,
@@ -46,23 +46,23 @@ export default function LoginForm() {
       email: "",
       password: "",
     },
-  });
+  })
 
   const onSubmit = async (data: LoginSchema) => {
-    setFormError("");
+    setFormError("")
 
     try {
-      await login(data).unwrap();
+      await login(data).unwrap()
 
       toast.success("Login successful!", {
         description: "Redirecting to dashboard...",
-      });
+      })
 
-      router.replace("/dashboard");
+      router.replace("/dashboard")
     } catch (error) {
-      setFormError(getErrorMessage(error));
+      setFormError(getErrorMessage(error))
     }
-  };
+  }
 
   return (
     <div className="mx-auto w-full">
@@ -80,11 +80,7 @@ export default function LoginForm() {
         </p>
       </div>
 
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="space-y-6"
-        noValidate
-      >
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
         <FormError message={formError} />
 
         <EmailInput
@@ -93,8 +89,8 @@ export default function LoginForm() {
           error={errors.email?.message}
           {...register("email", {
             onChange: () => {
-              clearErrors("email");
-              setFormError("");
+              clearErrors("email")
+              setFormError("")
             },
           })}
         />
@@ -106,8 +102,8 @@ export default function LoginForm() {
           error={errors.password?.message}
           {...register("password", {
             onChange: () => {
-              clearErrors("password");
-              setFormError("");
+              clearErrors("password")
+              setFormError("")
             },
           })}
         />
@@ -190,5 +186,5 @@ export default function LoginForm() {
         </p>
       </form>
     </div>
-  );
+  )
 }

@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import Link from "next/link";
+import { useState } from "react"
+import Link from "next/link"
 
 import {
   Eye,
@@ -10,8 +10,8 @@ import {
   Pencil,
   RotateCcw,
   Trash2,
-} from "lucide-react";
-import { toast } from "sonner";
+} from "lucide-react"
+import { toast } from "sonner"
 
 import {
   AlertDialog,
@@ -21,9 +21,9 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
+} from "@/components/ui/alert-dialog"
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 
 import {
   DropdownMenu,
@@ -32,68 +32,59 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu"
 
 import {
   useActivateFamilyMutation,
   useDeleteFamilyMutation,
-} from "@/store/api/family.api";
+} from "@/store/api/family.api"
 
-import { Family } from "@/types/family";
-
+import { Family } from "@/types/family"
 
 interface FamilyRowActionsProps {
-  family: Family;
+  family: Family
 }
 
-export function FamilyRowActions({
-  family,
-}: FamilyRowActionsProps) {
-  const [open, setOpen] = useState(false);
+export function FamilyRowActions({ family }: FamilyRowActionsProps) {
+  const [open, setOpen] = useState(false)
 
-  const [
-    deleteFamily,
-    { isLoading: isDeleting },
-  ] = useDeleteFamilyMutation();
+  const [deleteFamily, { isLoading: isDeleting }] = useDeleteFamilyMutation()
 
-  const [
-    activateFamily,
-    { isLoading: isActivating },
-  ] = useActivateFamilyMutation();
-
+  const [activateFamily, { isLoading: isActivating }] =
+    useActivateFamilyMutation()
 
   async function handleDelete() {
     try {
-      const response = await deleteFamily(family.id).unwrap();
-      toast.success(response.message);
+      const response = await deleteFamily(family.id).unwrap()
+      toast.success(response.message)
 
-      setOpen(false);
+      setOpen(false)
     } catch (error: unknown) {
       const message =
         (
           error as {
-            data?: { message?: string };
+            data?: { message?: string }
           }
-        )?.data?.message ?? "Failed to delete family.";
+        )?.data?.message ?? "Failed to delete family."
 
-      toast.error(message);
+      toast.error(message)
     }
   }
 
   async function handleActivate() {
     try {
-      const response = await activateFamily(family.id).unwrap();
+      const response = await activateFamily(family.id).unwrap()
 
-      toast.success(response.message);
+      toast.success(response.message)
     } catch (error: unknown) {
       const message =
         (
           error as {
-            data?: { message?: string };
+            data?: { message?: string }
           }
-        )?.data?.message ?? "Failed to activate family.";
+        )?.data?.message ?? "Failed to activate family."
 
-      toast.error(message);
+      toast.error(message)
     }
   }
 
@@ -101,11 +92,7 @@ export function FamilyRowActions({
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="size-8 rounded-md"
-          >
+          <Button variant="ghost" size="icon" className="size-8 rounded-md">
             <MoreHorizontal className="size-4" />
           </Button>
         </DropdownMenuTrigger>
@@ -121,10 +108,7 @@ export function FamilyRowActions({
           <DropdownMenuSeparator />
 
           <DropdownMenuItem asChild>
-            <Link
-              href={`/families/${family.id}`}
-              className="cursor-pointer"
-            >
+            <Link href={`/families/${family.id}`} className="cursor-pointer">
               <Eye className="mr-2 size-4" />
               View
             </Link>
@@ -161,39 +145,28 @@ export function FamilyRowActions({
               ) : (
                 <RotateCcw className="mr-2 size-4" />
               )}
-
               Activate
             </DropdownMenuItem>
           )}
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <AlertDialog
-        open={open}
-        onOpenChange={setOpen}
-      >
+      <AlertDialog open={open} onOpenChange={setOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>
-              Delete Family
-            </AlertDialogTitle>
+            <AlertDialogTitle>Delete Family</AlertDialogTitle>
 
             <AlertDialogDescription>
-              Are you sure you want to delete{" "}
-              <strong>{family.headName}</strong>?
-
+              Are you sure you want to delete <strong>{family.headName}</strong>
+              ?
               <br />
               <br />
-
-              The family will be marked as inactive and can
-              be restored later.
+              The family will be marked as inactive and can be restored later.
             </AlertDialogDescription>
           </AlertDialogHeader>
 
           <AlertDialogFooter>
-            <AlertDialogCancel disabled={isDeleting}>
-              Cancel
-            </AlertDialogCancel>
+            <AlertDialogCancel disabled={isDeleting}>Cancel</AlertDialogCancel>
 
             <Button
               type="button"
@@ -217,5 +190,5 @@ export function FamilyRowActions({
         </AlertDialogContent>
       </AlertDialog>
     </>
-  );
+  )
 }

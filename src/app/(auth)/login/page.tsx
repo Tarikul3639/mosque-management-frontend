@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata } from "next"
 
-import LoginForm from "@/components/auth/login-form";
-import AuthHero from "@/components/auth/auth-hero";
-import AuthQuoteCard from "@/components/auth/auth-quote-card";
+import LoginForm from "@/components/auth/login-form"
+import AuthHero from "@/components/auth/auth-hero"
+import AuthQuoteCard from "@/components/auth/auth-quote-card"
 
 export const metadata: Metadata = {
   title: "Sign In",
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
-};
+}
 
 export default function LoginPage() {
   return (
@@ -51,5 +51,5 @@ export default function LoginPage() {
         </div>
       </div>
     </main>
-  );
+  )
 }

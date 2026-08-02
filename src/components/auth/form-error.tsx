@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
-import { AlertCircle } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AlertCircle } from "lucide-react"
+import { AnimatePresence, motion } from "framer-motion"
 
 interface FormErrorProps {
-  message?: string;
+  message?: string
 }
 
 export default function FormError({ message }: FormErrorProps) {
@@ -45,5 +45,5 @@ export default function FormError({ message }: FormErrorProps) {
         </motion.div>
       )}
     </AnimatePresence>
-  );
+  )
 }
