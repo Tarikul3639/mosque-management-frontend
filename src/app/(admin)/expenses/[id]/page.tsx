@@ -1,25 +1,22 @@
 // src/app/(admin)/expenses/[id]/page.tsx
 
-import { ExpenseDetailsPage } from "@/features/expenses/details/ExpenseDetailsPage";
+import { ExpenseDetailsPage } from "@/features/expenses/details/ExpenseDetailsPage"
 
-import { Metadata } from "next";
+import { Metadata } from "next"
 
 export const metadata: Metadata = {
-    title: "Expense Details",
-    description:
-        "View detailed information about a specific expense.",
-};
-
-interface PageProps {
-    params: Promise<{
-        id: string;
-    }>;
+  title: "Expense Details",
+  description: "View detailed information about a specific expense.",
 }
 
-export default async function Page({
-    params,
-}: PageProps) {
-    const { id } = await params;
+interface PageProps {
+  params: Promise<{
+    id: string
+  }>
+}
 
-    return <ExpenseDetailsPage id={id} />;
+export default async function Page({ params }: PageProps) {
+  const { id } = await params
+
+  return <ExpenseDetailsPage id={id} />
 }

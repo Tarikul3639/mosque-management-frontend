@@ -1,23 +1,20 @@
-"use client";
+"use client"
 
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
+import { useRouter } from "next/navigation"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { toast } from "sonner"
 
-import {
-  expenseSchema,
-  type ExpenseFormValues,
-} from "@/schemas/expense.schema";
+import { expenseSchema, type ExpenseFormValues } from "@/schemas/expense.schema"
 
-import { getErrorMessage } from "@/utils/get-error-message";
+import { getErrorMessage } from "@/utils/get-error-message"
 
-import { ExpenseCategory } from "@/types/expense";
+import { ExpenseCategory } from "@/types/expense"
 
-import { useCreateExpenseMutation } from "@/store/api/expense.api";
+import { useCreateExpenseMutation } from "@/store/api/expense.api"
 
 export function useExpenseCreate() {
-  const router = useRouter();
+  const router = useRouter()
 
   const form = useForm<ExpenseFormValues>({
     resolver: zodResolver(expenseSchema),
@@ -28,43 +25,29 @@ export function useExpenseCreate() {
       note: "",
       expenseDate: new Date().toISOString(),
     },
-  });
+  })
 
-  const [createExpense, createState] =
-    useCreateExpenseMutation();
+  const [createExpense, createState] = useCreateExpenseMutation()
 
-  const handleSubmit = async (
-    values: ExpenseFormValues,
-  ) => {
+  const handleSubmit = async (values: ExpenseFormValues) => {
     try {
-      const expense = await createExpense(
-        values,
-      ).unwrap();
+      const expense = await createExpense(values).unwrap()
 
-      toast.success(
-        "Expense created successfully.",
-      );
+      toast.success("Expense created successfully.")
 
-      router.push(
-        `/expenses/${expense.id}`,
-      );
+      router.push(`/expenses/${expense.id}`)
     } catch (error) {
-      toast.error(
-        "Failed to create expense.",
-        {
-          description:
-            getErrorMessage(error),
-        },
-      );
+      toast.error("Failed to create expense.", {
+        description: getErrorMessage(error),
+      })
     }
-  };
+  }
 
   return {
     form,
 
     handleSubmit,
 
-    isSubmitting:
-      createState.isLoading,
-  };
+    isSubmitting: createState.isLoading,
+  }
 }

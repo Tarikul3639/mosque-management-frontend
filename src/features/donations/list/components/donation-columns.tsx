@@ -61,7 +61,10 @@ export const donationColumns: ColumnDef<Donation>[] = [
 
       return (
         <div className="space-y-1">
-          <Link href={`/donors/${donor.id}`} className="font-medium hover:underline hover:text-primary">
+          <Link
+            href={`/donors/${donor.id}`}
+            className="font-medium hover:text-primary hover:underline"
+          >
             {donor.name}
           </Link>
           <p className="text-xs text-muted-foreground">{donor.phone}</p>

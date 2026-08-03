@@ -48,3 +48,11 @@ export const MONTHS = [
     label: "December",
   },
 ] as const
+
+export const YEARS = Array.from({ length: 12 }, (_, i) => {
+  const year = new Date().getFullYear() - i
+  return {
+    value: year,
+    label: year.toString(),
+  }
+})

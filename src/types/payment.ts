@@ -8,6 +8,12 @@ export enum PaymentMethod {
   OTHER = "OTHER",
 }
 
+export enum PaymentStatus {
+  DUE = "DUE",
+  PAID = "PAID",
+  PARTIAL = "PARTIAL",
+}
+
 export interface FamilyLedgerQuery {
   familyId: string
   year?: number
@@ -40,7 +46,7 @@ export interface FamilyLedgerItem {
   paidAmount: number
   dueAmount: number
 
-  status: "PAID" | "PARTIAL" | "DUE"
+  status: PaymentStatus
 
   payments: FamilyLedgerPayment[]
 }

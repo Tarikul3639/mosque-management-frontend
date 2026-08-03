@@ -3,15 +3,16 @@
 import { useState, useMemo } from "react"
 
 import { DonorsHeader } from "./components/DonorsHeader"
-import { DonorFilters } from "./components/DonorFilters"
 import { donorColumns } from "./components/donor-columns"
-import { DataTable } from "@/components/common/data-table"
+import { DataTable, DataTableToolbar } from "@/components/common/data-table"
+
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 import { useGetDonorsQuery } from "@/store/api/donor.api"
 
 export function DonorsPage() {
   const [search, setSearch] = useState("")
-  const [status, setStatus] = useState<"all" | "active" | "inactive">("all")
+  const [status, setStatus] = useState<"active" | "inactive">()
   const [pageSize, setPageSize] = useState(10)
   const [page, setPage] = useState(1)
 
@@ -32,7 +33,7 @@ export function DonorsPage() {
       page,
       limit: pageSize,
       search,
-      isActive: status === "all" ? undefined : status === "active",
+      isActive: status ? status === "active" : undefined,
     }),
     [page, pageSize, search, status]
   )
@@ -65,12 +66,31 @@ export function DonorsPage() {
         initialColumnVisibility={initialColumnVisibility}
       >
         {(table) => (
-          <DonorFilters
+          <DataTableToolbar
             table={table}
             search={search}
-            setSearch={setSearch}
-            status={status}
-            setStatus={setStatus}
+            onSearchChange={setSearch}
+            isFiltered={!!search || !!status}
+            placeholder="Search donors..."
+            onReset={() => {
+              setSearch("")
+              setStatus(undefined)
+            }}
+            filters={
+              <Select
+                value={status}
+                onValueChange={(value) => setStatus(value as "active" | "inactive")}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Filter by status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="" disabled>Select Status</SelectItem>
+                  <SelectItem value="active">Active</SelectItem>
+                  <SelectItem value="inactive">Inactive</SelectItem>
+                </SelectContent>
+              </Select>
+            }
           />
         )}
       </DataTable>

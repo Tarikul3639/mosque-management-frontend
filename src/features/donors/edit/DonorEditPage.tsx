@@ -23,8 +23,8 @@ import {
 import { DonorHeader } from "./components/DonorHeader"
 import { DonorAvatarCard } from "./components/DonorAvatarCard"
 import { DonorDangerZone } from "./components/DonorDangerZone"
-import { DonorEditForm } from "./components/DonorEditForm"
 import { DonorEditSkeleton } from "./components/DonorEditSkeleton"
+import { DonorForm } from "../shared/DonorForm"
 
 interface DonorEditPageProps {
   id: string
@@ -140,11 +140,15 @@ export function DonorEditPage({ id }: DonorEditPageProps) {
         </div>
 
         <div className="space-y-6 xl:col-span-8 2xl:col-span-9">
-          <DonorEditForm
-            donor={donor}
+          <DonorForm
+            title="Edit Donor"
+            submitText="Save Changes"
             form={form}
             onSubmit={onSubmit}
             isSubmitting={isSubmitting}
+            showMetadata={true}
+            createdAt={donor.createdAt}
+            updatedAt={donor.updatedAt}
           />
 
           <DonorDangerZone donor={donor} />

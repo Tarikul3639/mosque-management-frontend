@@ -45,8 +45,8 @@ export function DataTableToolbar<TData>({
 
       {/* Everything else — second row on mobile, rest of the row on desktop */}
       <div className="flex flex-wrap items-center justify-between gap-3">
-        {/* Left: filters + reset */}
-        <div className="flex flex-wrap items-center gap-3">
+        {/* Filters and actions */}
+        <div className="flex flex-wrap items-center gap-3 overflow-x-auto">
           {filters}
 
           {isFiltered && onReset && (
@@ -60,10 +60,7 @@ export function DataTableToolbar<TData>({
               Reset
             </Button>
           )}
-        </div>
 
-        {/* Right: view options + actions */}
-        <div className="flex flex-wrap items-center gap-2">
           <DataTableColumnVisibility table={table} />
           {actions}
         </div>

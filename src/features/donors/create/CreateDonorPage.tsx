@@ -17,7 +17,7 @@ import { useCreateDonorMutation } from "@/store/api/donor.api"
 
 import { CreateDonorHeader } from "./components/CreateDonorHeader"
 import { DonorAvatarCard } from "./components/DonorAvatarCard"
-import { DonorCreateForm } from "./components/DonorCreateForm"
+import { DonorForm } from "../shared/DonorForm"
 
 export function CreateDonorPage() {
   const router = useRouter()
@@ -92,8 +92,9 @@ export function CreateDonorPage() {
         </div>
 
         <div className="space-y-6 xl:col-span-8 2xl:col-span-9">
-          <DonorCreateForm
-            title="Create Donor"
+          <DonorForm
+            title="Create New Donor"
+            submitText="Create Donor"
             form={form}
             onSubmit={onSubmit}
             isSubmitting={isSubmitting}

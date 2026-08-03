@@ -1,62 +1,44 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 
-import { Sidebar } from "@/components/admin/sidebar/Sidebar";
-import { Navbar } from "@/components/admin/navbar/Navbar";
-import { PageLoader } from "@/components/common/page-loader";
-import { ErrorComponent } from "@/components/common/error";
+import { Sidebar } from "@/components/admin/sidebar/Sidebar"
+import { Navbar } from "@/components/admin/navbar/Navbar"
+import { PageLoader } from "@/components/common/page-loader"
+import { ErrorComponent } from "@/components/common/error"
 
-import { useMeQuery } from "@/store/api/auth.api";
+import { useMeQuery } from "@/store/api/auth.api"
 
-export function AdminLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const router = useRouter();
+export function AdminLayout({ children }: { children: React.ReactNode }) {
+  const router = useRouter()
 
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(true)
 
-  const {
-    data: me,
-    isLoading,
-    isError,
-    error,
-    refetch,
-  } = useMeQuery();
+  const { data: me, isLoading, isError, error, refetch } = useMeQuery()
 
   useEffect(() => {
-    if (
-      isError &&
-      "status" in error &&
-      error.status === 401
-    ) {
-      router.replace("/login");
+    if (isError && "status" in error && error.status === 401) {
+      router.replace("/login")
     }
-  }, [isError, error, router]);
+  }, [isError, error, router])
 
   if (isLoading) {
-    return <PageLoader />;
+    return <PageLoader />
   }
 
-  if (
-    isError &&
-    "status" in error &&
-    error.status !== 401
-  ) {
+  if (isError && "status" in error && error.status !== 401) {
     return (
       <ErrorComponent
         title="Failed to load user."
         error="Unable to connect to the server."
         onRetry={refetch}
       />
-    );
+    )
   }
 
   if (!me) {
-    return <PageLoader />;
+    return <PageLoader />
   }
 
   return (
@@ -65,24 +47,17 @@ export function AdminLayout({
         isOpen={isOpen}
         userName={me.name}
         userRole={me.role}
-        userAvatarUrl={
-          me.avatar ??
-          "/images/placeholder.svg"
-        }
+        userAvatarUrl={me.avatar ?? "/images/placeholder.svg"}
       />
 
       <div className="flex flex-1 flex-col overflow-hidden">
         <Navbar
           onSearch={(q) => console.log(q)}
-          onMenuClick={() =>
-            setIsOpen((x) => !x)
-          }
+          onMenuClick={() => setIsOpen((x) => !x)}
         />
 
-        <main className="flex-1 overflow-y-auto">
-          {children}
-        </main>
+        <main className="flex-1 overflow-y-auto">{children}</main>
       </div>
     </div>
-  );
+  )
 }

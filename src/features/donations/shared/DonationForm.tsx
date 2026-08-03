@@ -106,7 +106,8 @@ export function DonationForm({
   const picker = useEntityPicker()
 
   const {
-    formState: { isDirty },
+    register,
+    formState: { errors, isDirty },
   } = form
 
   const paymentMethod = useWatch({
@@ -134,6 +135,7 @@ export function DonationForm({
       })),
     [donors]
   )
+
   return (
     <Card>
       <CardHeader>
@@ -144,7 +146,7 @@ export function DonationForm({
         <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
           <div className="grid gap-5 md:grid-cols-2">
             {/* Donor */}
-            <div className="md:col-span-2">
+            <div className="space-y-2 md:col-span-2">
               <EntityPickerTrigger
                 label="Donor"
                 value={currentDonor?.name}
@@ -153,6 +155,11 @@ export function DonationForm({
                 placeholder="Select donor"
                 onClick={picker.openPicker}
               />
+              {errors.donorId && (
+                <p className="text-xs text-destructive">
+                  {errors.donorId.message}
+                </p>
+              )}
             </div>
 
             {/* Amount */}
@@ -166,10 +173,15 @@ export function DonationForm({
                 type="number"
                 min={1}
                 placeholder="Enter donation amount"
-                {...form.register("amount", {
+                {...register("amount", {
                   valueAsNumber: true,
                 })}
               />
+              {errors.amount && (
+                <p className="text-xs text-destructive">
+                  {errors.amount.message}
+                </p>
+              )}
             </div>
 
             {/* Payment Method */}
@@ -182,8 +194,6 @@ export function DonationForm({
               <Select
                 value={paymentMethod}
                 onValueChange={(value) => {
-                  console.log("onValueChange:", JSON.stringify(value))
-
                   if (!value) return
 
                   form.setValue("paymentMethod", value as PaymentMethod, {
@@ -204,6 +214,11 @@ export function DonationForm({
                   ))}
                 </SelectContent>
               </Select>
+              {errors.paymentMethod && (
+                <p className="text-xs text-destructive">
+                  {errors.paymentMethod.message}
+                </p>
+              )}
             </div>
 
             {/* Purpose */}
@@ -216,8 +231,13 @@ export function DonationForm({
               <Textarea
                 rows={3}
                 placeholder="Donation purpose"
-                {...form.register("purpose")}
+                {...register("purpose")}
               />
+              {errors.purpose && (
+                <p className="text-xs text-destructive">
+                  {errors.purpose.message}
+                </p>
+              )}
             </div>
 
             {/* Anonymous */}
@@ -237,6 +257,11 @@ export function DonationForm({
                   }
                 />
               </div>
+              {errors.isAnonymous && (
+                <p className="text-xs text-destructive">
+                  {errors.isAnonymous.message}
+                </p>
+              )}
             </div>
 
             {/* Transaction Reference */}
@@ -248,8 +273,13 @@ export function DonationForm({
 
               <Input
                 placeholder="Transaction reference"
-                {...form.register("transactionReference")}
+                {...register("transactionReference")}
               />
+              {errors.transactionReference && (
+                <p className="text-xs text-destructive">
+                  {errors.transactionReference.message}
+                </p>
+              )}
             </div>
 
             {/* Note */}
@@ -259,8 +289,13 @@ export function DonationForm({
               <Textarea
                 rows={4}
                 placeholder="Write a note..."
-                {...form.register("note")}
+                {...register("note")}
               />
+              {errors.note && (
+                <p className="text-xs text-destructive">
+                  {errors.note.message}
+                </p>
+              )}
             </div>
 
             {/* Donation Date */}
@@ -272,14 +307,20 @@ export function DonationForm({
 
               <Input
                 type="datetime-local"
-                value={format(
-                  new Date(form.watch("donatedAt")),
-                  "yyyy-MM-dd'T'HH:mm"
-                )}
+                value={
+                  form.watch("donatedAt")
+                    ? format(
+                        new Date(form.watch("donatedAt")),
+                        "yyyy-MM-dd'T'HH:mm"
+                      )
+                    : ""
+                }
                 onChange={(e) =>
                   form.setValue(
                     "donatedAt",
-                    new Date(e.target.value).toISOString(),
+                    e.target.value
+                      ? new Date(e.target.value).toISOString()
+                      : "",
                     {
                       shouldDirty: true,
                       shouldValidate: true,
@@ -287,6 +328,11 @@ export function DonationForm({
                   )
                 }
               />
+              {errors.donatedAt && (
+                <p className="text-xs text-destructive">
+                  {errors.donatedAt.message}
+                </p>
+              )}
             </div>
 
             {/* Metadata */}

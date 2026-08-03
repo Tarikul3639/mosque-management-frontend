@@ -15,95 +15,95 @@ import { expenseSchema, type ExpenseFormValues } from "@/schemas/expense.schema"
 import { getErrorMessage } from "@/utils/get-error-message"
 
 import {
-    useDeleteExpenseMutation,
-    useGetExpenseQuery,
-    useUpdateExpenseMutation,
+  useDeleteExpenseMutation,
+  useGetExpenseQuery,
+  useUpdateExpenseMutation,
 } from "@/store/api/expense.api"
 
 interface Props {
-    id: string
+  id: string
 }
 
 export function useExpenseEdit({ id }: Props) {
-    const router = useRouter()
+  const router = useRouter()
 
-    const form = useForm<ExpenseFormValues>({
-        resolver: zodResolver(expenseSchema),
+  const form = useForm<ExpenseFormValues>({
+    resolver: zodResolver(expenseSchema),
 
-        defaultValues: {
-            title: "",
-            amount: 0,
-            category: undefined,
-            note: "",
-            expenseDate: new Date().toISOString(),
-        },
+    defaultValues: {
+      title: "",
+      amount: 0,
+      category: undefined,
+      note: "",
+      expenseDate: new Date().toISOString(),
+    },
+  })
+
+  const expenseQuery = useGetExpenseQuery(id)
+
+  const { data: expense } = expenseQuery
+
+  const [updateExpense, updateState] = useUpdateExpenseMutation()
+
+  const [deleteExpense, deleteState] = useDeleteExpenseMutation()
+
+  useEffect(() => {
+    if (!expense) return
+
+    form.reset({
+      title: expense.title,
+      amount: Number(expense.amount),
+      category: expense.category ?? undefined,
+      note: expense.note ?? "",
+      expenseDate: expense.expenseDate,
     })
+  }, [expense, form])
 
-    const expenseQuery = useGetExpenseQuery(id)
+  const handleSubmit = async (values: ExpenseFormValues) => {
+    if (!expense) return
 
-    const { data: expense } = expenseQuery
+    try {
+      await updateExpense({
+        id: expense.id,
+        data: values,
+      }).unwrap()
 
-    const [updateExpense, updateState] = useUpdateExpenseMutation()
+      toast.success("Expense updated successfully.")
 
-    const [deleteExpense, deleteState] = useDeleteExpenseMutation()
-
-    useEffect(() => {
-        if (!expense) return
-
-        form.reset({
-            title: expense.title,
-            amount: Number(expense.amount),
-            category: expense.category ?? undefined,
-            note: expense.note ?? "",
-            expenseDate: expense.expenseDate,
-        })
-    }, [expense, form])
-
-    const handleSubmit = async (values: ExpenseFormValues) => {
-        if (!expense) return
-
-        try {
-            await updateExpense({
-                id: expense.id,
-                data: values,
-            }).unwrap()
-
-            toast.success("Expense updated successfully.")
-
-            router.push(`/expenses/${expense.id}`)
-        } catch (error) {
-            toast.error("Failed to update expense.", {
-                description: getErrorMessage(error),
-            })
-        }
+      router.push(`/expenses/${expense.id}`)
+    } catch (error) {
+      toast.error("Failed to update expense.", {
+        description: getErrorMessage(error),
+      })
     }
+  }
 
-    const handleDelete = async () => {
-        if (!expense) return
+  const handleDelete = async () => {
+    if (!expense) return
 
-        try {
-            await deleteExpense(expense.id).unwrap()
+    try {
+      await deleteExpense(expense.id).unwrap()
 
-            toast.success("Expense deleted successfully.")
+      toast.success("Expense deleted successfully.")
 
-            router.push("/expenses")
-        } catch {
-            toast.error("Failed to delete expense.")
-        }
+      router.push("/expenses")
+    } catch {
+      toast.error("Failed to delete expense.")
     }
+  }
 
-    return {
-        expense,
+  return {
+    expense,
 
-        expenseQuery,
+    expenseQuery,
 
-        form,
+    form,
 
-        handleSubmit,
-        handleDelete,
+    handleSubmit,
+    handleDelete,
 
-        isSubmitting: updateState.isLoading,
+    isSubmitting: updateState.isLoading,
 
-        isDeleting: deleteState.isLoading,
-    }
+    isDeleting: deleteState.isLoading,
+  }
 }
