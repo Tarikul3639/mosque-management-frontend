@@ -3,12 +3,12 @@
 import { Loader2 } from "lucide-react"
 
 import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
 } from "@/components/ui/dialog"
 
 import { Button } from "@/components/ui/button"
@@ -18,76 +18,76 @@ import type { UseFormReturn } from "react-hook-form"
 import type { FamilyFeeFormValues } from "@/schemas/family-fee.schema"
 
 interface CreateFamilyFeeDialogProps {
-    open: boolean
-    onOpenChange: (open: boolean) => void
+  open: boolean
+  onOpenChange: (open: boolean) => void
 
-    form: UseFormReturn<FamilyFeeFormValues>
+  form: UseFormReturn<FamilyFeeFormValues>
 
-    isSubmitting: boolean
+  isSubmitting: boolean
 
-    onSubmit: (values: FamilyFeeFormValues) => Promise<void>
+  onSubmit: (values: FamilyFeeFormValues) => Promise<void>
 }
 
 export function CreateFamilyFeeDialog({
-    open,
-    onOpenChange,
-    form,
-    isSubmitting,
-    onSubmit,
+  open,
+  onOpenChange,
+  form,
+  isSubmitting,
+  onSubmit,
 }: CreateFamilyFeeDialogProps) {
-    return (
-        <Dialog
-            open={open}
-            onOpenChange={(value) => {
-                if (isSubmitting) return
+  return (
+    <Dialog
+      open={open}
+      onOpenChange={(value) => {
+        if (isSubmitting) return
 
-                onOpenChange(value)
-            }}
-        >
-            <DialogContent
-                className="sm:max-w-lg"
-                onInteractOutside={(e) => {
-                    if (isSubmitting) {
-                        e.preventDefault()
-                    }
-                }}
-                onEscapeKeyDown={(e) => {
-                    if (isSubmitting) {
-                        e.preventDefault()
-                    }
-                }}
-            >
-                <DialogHeader>
-                    <DialogTitle>Add Monthly Fee</DialogTitle>
+        onOpenChange(value)
+      }}
+    >
+      <DialogContent
+        className="sm:max-w-lg"
+        onInteractOutside={(e) => {
+          if (isSubmitting) {
+            e.preventDefault()
+          }
+        }}
+        onEscapeKeyDown={(e) => {
+          if (isSubmitting) {
+            e.preventDefault()
+          }
+        }}
+      >
+        <DialogHeader>
+          <DialogTitle>Add Monthly Fee</DialogTitle>
 
-                    <DialogDescription>
-                        Create a new monthly fee for this family.
-                    </DialogDescription>
-                </DialogHeader>
+          <DialogDescription>
+            Create a new monthly fee for this family.
+          </DialogDescription>
+        </DialogHeader>
 
-                <FamilyFeeForm form={form} />
+        <FamilyFeeForm form={form} />
 
-                <DialogFooter>
-                    <Button
-                        type="button"
-                        variant="outline"
-                        disabled={isSubmitting}
-                        onClick={() => onOpenChange(false)}
-                    >
-                        Cancel
-                    </Button>
+        <DialogFooter>
+          <Button
+            type="button"
+            variant="outline"
+            disabled={isSubmitting}
+            onClick={() => onOpenChange(false)}
+          >
+            Cancel
+          </Button>
 
-                    <Button
-                        type="button"
-                        disabled={isSubmitting}
-                        onClick={form.handleSubmit(onSubmit)}
-                    >
-                        {isSubmitting && <Loader2 className="mr-2 size-4 animate-spin" />}
+          <Button
+            type="button"
+            disabled={isSubmitting}
+            onClick={form.handleSubmit(onSubmit)}
+          >
+            {isSubmitting && <Loader2 className="mr-2 size-4 animate-spin" />}
 
-                        {isSubmitting ? "Saving..." : "Save Fee"}
-                    </Button>
-                </DialogFooter>
-            </DialogContent>
-        </Dialog>
-    )
+            {isSubmitting ? "Saving..." : "Save Fee"}
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  )
 }

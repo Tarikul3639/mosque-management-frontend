@@ -4,7 +4,7 @@ export * from "./types"
 
 export * from "./hooks"
 
-export * from "./EntityPicker";
+export * from "./EntityPicker"
 export * from "./EntityPickerDialog"
 export * from "./EntityPickerTrigger"
 

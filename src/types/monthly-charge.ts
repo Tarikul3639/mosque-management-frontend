@@ -40,18 +40,18 @@ export interface MonthlyChargeListResponse {
 }
 
 export interface MonthlyChargeQuery {
-  page?: number;
-  limit?: number;
-  search?: string;
+  page?: number
+  limit?: number
+  search?: string
 
-  familyId?: string;
+  familyId?: string
 
-  year?: number;
-  month?: number;
+  year?: number
+  month?: number
 
-  status?: PaymentStatus;
-  activeOnly?: boolean;
-  outstandingOnly?: boolean;
+  status?: PaymentStatus
+  activeOnly?: boolean
+  outstandingOnly?: boolean
 }
 
 export interface UpdateMonthlyChargeDto {

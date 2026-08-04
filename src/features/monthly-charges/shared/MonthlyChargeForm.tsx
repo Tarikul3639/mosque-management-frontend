@@ -141,11 +141,7 @@ export function MonthlyChargeForm({
             <div className="space-y-2">
               <Label>Status</Label>
 
-              <Input
-                value={monthlyCharge.status}
-                readOnly
-                disabled
-              />
+              <Input value={monthlyCharge.status} readOnly disabled />
             </div>
 
             {/* Due Date */}
@@ -160,9 +156,9 @@ export function MonthlyChargeForm({
                 value={
                   form.watch("dueDate")
                     ? format(
-                      new Date(form.watch("dueDate")),
-                      "yyyy-MM-dd'T'HH:mm"
-                    )
+                        new Date(form.watch("dueDate")),
+                        "yyyy-MM-dd'T'HH:mm"
+                      )
                     : ""
                 }
                 onChange={(e) =>
@@ -196,9 +192,9 @@ export function MonthlyChargeForm({
                 value={
                   monthlyCharge.paidAt
                     ? format(
-                      new Date(monthlyCharge.paidAt),
-                      "dd MMM yyyy, hh:mm a"
-                    )
+                        new Date(monthlyCharge.paidAt),
+                        "dd MMM yyyy, hh:mm a"
+                      )
                     : "-"
                 }
                 readOnly

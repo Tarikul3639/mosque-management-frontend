@@ -6,38 +6,38 @@ import { PaymentCreateForm } from "./components/PaymentCreateForm"
 import { usePaymentCreate } from "./usePaymentCreate"
 
 export function CreatePaymentPage() {
-    const {
-        form,
+  const {
+    form,
 
-        families,
-        monthlyCharges,
+    families,
+    monthlyCharges,
 
-        loadingFamilies,
-        loadingCharges,
+    loadingFamilies,
+    loadingCharges,
 
-        handleSearchFamily,
-        handleSearchCharge,
+    handleSearchFamily,
+    handleSearchCharge,
 
-        handleSubmit,
+    handleSubmit,
 
-        isSubmitting,
-    } = usePaymentCreate()
+    isSubmitting,
+  } = usePaymentCreate()
 
-    return (
-        <div className="space-y-6 p-6">
-            <PaymentCreateHeader />
-            {/* Create Payment Form */}
-            <PaymentCreateForm
-                form={form}
-                families={families}
-                monthlyCharges={monthlyCharges}
-                loadingFamilies={loadingFamilies}
-                loadingCharges={loadingCharges}
-                isSubmitting={isSubmitting}
-                onSearchFamily={handleSearchFamily}
-                onSearchCharge={handleSearchCharge}
-                onSubmit={handleSubmit}
-            />
-        </div>
-    )
+  return (
+    <div className="space-y-6 p-6">
+      <PaymentCreateHeader />
+      {/* Create Payment Form */}
+      <PaymentCreateForm
+        form={form}
+        families={families}
+        monthlyCharges={monthlyCharges}
+        loadingFamilies={loadingFamilies}
+        loadingCharges={loadingCharges}
+        isSubmitting={isSubmitting}
+        onSearchFamily={handleSearchFamily}
+        onSearchCharge={handleSearchCharge}
+        onSubmit={handleSubmit}
+      />
+    </div>
+  )
 }

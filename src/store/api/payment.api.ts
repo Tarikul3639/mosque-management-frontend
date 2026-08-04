@@ -36,17 +36,16 @@ export const paymentApi = baseApi.injectEndpoints({
     // Summary
     // ===========================
 
-    getPaymentSummary: builder.query<
-      PaymentSummary,
-      PaymentSummaryQueryParams
-    >({
-      query: (params) => ({
-        url: "/payments/summary",
-        params,
-      }),
+    getPaymentSummary: builder.query<PaymentSummary, PaymentSummaryQueryParams>(
+      {
+        query: (params) => ({
+          url: "/payments/summary",
+          params,
+        }),
 
-      providesTags: ["Payment"],
-    }),
+        providesTags: ["Payment"],
+      }
+    ),
 
     // ===========================
     // Details

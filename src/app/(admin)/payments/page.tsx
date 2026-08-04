@@ -1,13 +1,12 @@
-import type { Metadata } from "next";
+import type { Metadata } from "next"
 
-import { PaymentsPage } from "@/features/payments/list/PaymentsPage";
+import { PaymentsPage } from "@/features/payments/list/PaymentsPage"
 
 export const metadata: Metadata = {
   title: "Payments",
-  description:
-    "Manage and track all payment records.",
-};
+  description: "Manage and track all payment records.",
+}
 
 export default function Page() {
-  return <PaymentsPage />;
+  return <PaymentsPage />
 }

@@ -15,103 +15,103 @@ import { useGetMonthlyChargesQuery } from "@/store/api/monthly-charge.api"
 import type { EntityPickerOption } from "@/components/common/entity-picker"
 
 export function usePaymentCreate() {
-    const router = useRouter()
+  const router = useRouter()
 
-    const [familySearch, setFamilySearch] = useState("")
-    const [chargeSearch, setChargeSearch] = useState("")
+  const [familySearch, setFamilySearch] = useState("")
+  const [chargeSearch, setChargeSearch] = useState("")
 
-    const form = useForm<PaymentFormValues>({
-        resolver: zodResolver(paymentSchema),
-        defaultValues: {
-            familyId: "",
-            monthlyChargeId: "",
-            amount: 0,
-            method: undefined,
-            reference: "",
-            note: "",
-            paidAt: new Date().toISOString(),
-        },
+  const form = useForm<PaymentFormValues>({
+    resolver: zodResolver(paymentSchema),
+    defaultValues: {
+      familyId: "",
+      monthlyChargeId: "",
+      amount: 0,
+      method: undefined,
+      reference: "",
+      note: "",
+      paidAt: new Date().toISOString(),
+    },
+  })
+
+  const familyId = form.watch("familyId")
+
+  // ==========================
+  // Families
+  // ==========================
+
+  const { data: familiesData, isFetching: loadingFamilies } =
+    useGetFamiliesQuery({
+      page: 1,
+      limit: 45,
+      search: familySearch,
     })
 
-    const familyId = form.watch("familyId")
+  const families: EntityPickerOption[] = useMemo(
+    () =>
+      (familiesData?.data ?? []).map((family) => ({
+        id: family.id,
+        title: family.familyNo,
+        subtitle: family.headName,
+        description: family.phone,
+        avatar: family.avatar?.url,
+      })),
+    [familiesData]
+  )
 
-    // ==========================
-    // Families
-    // ==========================
+  // ==========================
+  // Monthly Charges
+  // ==========================
 
-    const { data: familiesData, isFetching: loadingFamilies } =
-        useGetFamiliesQuery({
-            page: 1,
-            limit: 45,
-            search: familySearch,
-        })
-
-    const families: EntityPickerOption[] = useMemo(
-        () =>
-            (familiesData?.data ?? []).map((family) => ({
-                id: family.id,
-                title: family.familyNo,
-                subtitle: family.headName,
-                description: family.phone,
-                avatar: family.avatar?.url,
-            })),
-        [familiesData]
+  const { data: monthlyChargesData, isFetching: loadingCharges } =
+    useGetMonthlyChargesQuery(
+      {
+        page: 1,
+        limit: 45,
+        familyId,
+        search: chargeSearch,
+        outstandingOnly: true,
+      },
+      {
+        skip: !familyId,
+      }
     )
 
-    // ==========================
-    // Monthly Charges
-    // ==========================
+  // ==========================
+  // Mutation
+  // ==========================
 
-    const { data: monthlyChargesData, isFetching: loadingCharges } =
-        useGetMonthlyChargesQuery(
-            {
-                page: 1,
-                limit: 45,
-                familyId,
-                search: chargeSearch,
-                outstandingOnly: true,
-            },
-            {
-                skip: !familyId,
-            }
-        )
+  const [createPayment, createState] = useCreatePaymentMutation()
 
-    // ==========================
-    // Mutation
-    // ==========================
+  const handleSubmit = async (values: PaymentFormValues) => {
+    try {
+      const payment = await createPayment({
+        familyId: values.familyId,
+        monthlyChargeId: values.monthlyChargeId,
+        amount: values.amount,
+        method: values.method,
+        reference: values.reference || undefined,
+        note: values.note || undefined,
+        paidAt: values.paidAt,
+      }).unwrap()
 
-    const [createPayment, createState] = useCreatePaymentMutation()
-
-    const handleSubmit = async (values: PaymentFormValues) => {
-        try {
-            const payment = await createPayment({
-                familyId: values.familyId,
-                monthlyChargeId: values.monthlyChargeId,
-                amount: values.amount,
-                method: values.method,
-                reference: values.reference || undefined,
-                note: values.note || undefined,
-                paidAt: values.paidAt,
-            }).unwrap()
-
-            toast.success("Payment created successfully.")
-            router.push(`/payments/${payment.id}`)
-        } catch (error) {
-            toast.error("Failed to create payment.", {
-                description: getErrorMessage(error),
-            })
-        }
+      toast.success("Payment created successfully.")
+      router.push(`/payments/${payment.id}`)
+    } catch (error) {
+      toast.error("Failed to create payment.", {
+        description: getErrorMessage(error),
+      })
     }
+  }
 
-    return {
-        form,
-        families,
-        monthlyCharges: monthlyChargesData?.data ?? [],
-        loadingFamilies,
-        loadingCharges,
-        handleSearchFamily: setFamilySearch,
-        handleSearchCharge: setChargeSearch,
-        handleSubmit,
-        isSubmitting: createState.isLoading,
-    }
+  return {
+    form,
+    families,
+    monthlyCharges: monthlyChargesData?.data ?? [],
+    loadingFamilies,
+    loadingCharges,
+    handleSearchFamily: setFamilySearch,
+    handleSearchCharge: setChargeSearch,
+    handleSubmit,
+    isSubmitting: createState.isLoading,
+  }
 }

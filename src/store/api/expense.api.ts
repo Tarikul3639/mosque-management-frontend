@@ -7,7 +7,7 @@ import type {
   ExpenseSummary,
   ExpenseQuery,
   CreateExpenseDto,
-  UpdateExpenseDto, 
+  UpdateExpenseDto,
 } from "@/types/expense"
 import type { PaginatedResponse } from "@/types/common"
 

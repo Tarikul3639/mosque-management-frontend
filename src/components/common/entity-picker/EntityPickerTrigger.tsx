@@ -28,7 +28,6 @@ export function EntityPickerTrigger({
   placeholder = "Select...",
   onClick,
 }: EntityPickerTriggerProps) {
-  
   return (
     <div className="space-y-2">
       <p className="text-sm font-medium">{label}</p>

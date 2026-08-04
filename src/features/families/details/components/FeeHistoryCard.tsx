@@ -1,8 +1,8 @@
 // src/features/families/details/components/FeeHistoryCard.tsx
 
-"use client";
+"use client"
 
-import { Plus } from "lucide-react";
+import { Plus } from "lucide-react"
 
 import {
   Card,
@@ -10,20 +10,20 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@/components/ui/card"
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 
-import { DataTable } from "@/components/common/data-table";
+import { DataTable } from "@/components/common/data-table"
 
-import { useGetFamilyFeeHistoryQuery } from "@/store/api/monthly-fees.api";
+import { useGetFamilyFeeHistoryQuery } from "@/store/api/monthly-fees.api"
 
-import { familyFeeHistoryColumns } from "./family-fee-history-columns";
+import { familyFeeHistoryColumns } from "./family-fee-history-columns"
 
 interface FeeHistoryCardProps {
-  familyId: string;
-  onCreateFee?: () => void;
-  onEditFee?: (feeId: string) => void;
+  familyId: string
+  onCreateFee?: () => void
+  onEditFee?: (feeId: string) => void
 }
 
 export function FeeHistoryCard({
@@ -37,11 +37,11 @@ export function FeeHistoryCard({
     isFetching,
   } = useGetFamilyFeeHistoryQuery({
     familyId,
-  });
+  })
 
   const columns = familyFeeHistoryColumns({
     onEdit: onEditFee,
-  });
+  })
 
   return (
     <Card>
@@ -71,5 +71,5 @@ export function FeeHistoryCard({
         />
       </CardContent>
     </Card>
-  );
+  )
 }
