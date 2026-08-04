@@ -8,6 +8,7 @@ export interface FamilyDetails {
   familyNo: string
   headName: string
   phone: string | null
+  email: string | null
   address: string | null
   avatar: FileResource | null
   isActive: boolean
@@ -27,6 +28,7 @@ export interface Family {
   id: string
   familyNo: string
   headName: string
+  email: string | null
   phone: string
   address: string
   avatar: FileResource | null
@@ -63,6 +65,7 @@ export interface CreateFamilyPayload {
   familyNo?: string
   headName: string
   phone: string
+  email?: string
   address?: string
   avatarId?: string
   isActive?: boolean

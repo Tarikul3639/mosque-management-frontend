@@ -1,7 +1,7 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { Calendar, MapPin, Phone } from "lucide-react"
+import { Calendar, MapPin, Phone, User } from "lucide-react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
@@ -57,6 +57,25 @@ export const familyColumns: ColumnDef<Family>[] = [
         </div>
       )
     },
+  },
+  {
+    accessorKey: "email",
+
+    meta: {
+      title: "Email",
+    },
+
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Email" />
+    ),
+
+    cell: ({ row }) => (
+      <div className="flex items-center gap-2">
+        <User className="h-4 w-4 text-muted-foreground" />
+
+        <span>{row.original.email ?? "N/A"}</span>
+      </div>
+    ),
   },
 
   {

@@ -60,6 +60,10 @@ export function FamilyEditForm({
               <Input {...form.register("phone")} />
             </FormField>
 
+            <FormField icon={<User className="size-4" />} label="Email">
+              <Input {...form.register("email")} />
+            </FormField>
+
             <FormField icon={<MapPin className="size-4" />} label="Address">
               <Input {...form.register("address")} />
             </FormField>

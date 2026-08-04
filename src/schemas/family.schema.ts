@@ -20,6 +20,14 @@ export const familySchema = z.object({
     .min(1, "Phone number is required.")
     .max(20, "Phone number is too long."),
 
+  email: z
+    .string()
+    .trim()
+    .email("Invalid email address.")
+    .max(100, "Email is too long.")
+    .optional()
+    .or(z.literal("")),
+
   address: z
     .string()
     .trim()

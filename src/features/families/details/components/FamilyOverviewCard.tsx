@@ -36,6 +36,12 @@ export function FamilyOverviewCard({ family }: FamilyOverviewCardProps) {
         />
 
         <DetailItem
+          icon={<User className="size-4" />}
+          label="Email"
+          value={family.email || "Not provided"}
+        />
+
+        <DetailItem
           icon={<MapPin className="size-4" />}
           label="Address"
           value={family.address || "Not provided"}
