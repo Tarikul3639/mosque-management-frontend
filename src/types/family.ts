@@ -1,7 +1,4 @@
-export interface FileResource {
-  id: string
-  url: string
-}
+import { FileResource } from "./common"
 
 export interface FamilyDetails {
   id: string
