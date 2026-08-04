@@ -46,10 +46,10 @@ export const navItems: NavItem[] = [
   { id: "payments", label: "Payments", icon: CreditCard, href: "/payments" },
   { id: "committee", label: "Committee", icon: UsersRound, href: "/committee" },
   {
-    id: "development-projects",
+    id: "projects",
     label: "Development Projects",
     icon: Building2,
-    href: "/development-projects",
+    href: "/projects",
   },
   { id: "galleries", label: "Galleries", icon: Images, href: "/galleries" },
   { id: "reports", label: "Reports", icon: BarChart3, href: "/reports" },

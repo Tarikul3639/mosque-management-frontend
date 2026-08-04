@@ -16,3 +16,10 @@ export interface FileResource {
   id: string
   url: string
 }
+
+export interface UserReference {
+  id: string
+  name: string
+  email?: string
+  avatarUrl?: string
+}
