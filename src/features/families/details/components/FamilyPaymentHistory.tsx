@@ -23,7 +23,7 @@ import {
 import { MONTHS } from "@/constants/date"
 import { DataTable } from "@/components/common/data-table"
 import { familyLedgerColumns } from "./familyLedgerColumns"
-import { useGetFamilyLedgerQuery } from "@/store/api/payment.api"
+import { useGetFamilyPaymentLedgerQuery } from "@/store/api/payment.api"
 
 interface FamilyPaymentHistoryProps {
   familyId: string
@@ -38,7 +38,7 @@ export function FamilyPaymentHistory({ familyId }: FamilyPaymentHistoryProps) {
     month: undefined as number | undefined,
   })
 
-  const { data, isLoading, isFetching } = useGetFamilyLedgerQuery(query)
+  const { data, isLoading, isFetching } = useGetFamilyPaymentLedgerQuery(query)
 
   return (
     <Card>

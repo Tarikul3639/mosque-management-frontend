@@ -1,22 +1,18 @@
-"use client";
+"use client"
 
-import Link from "next/link";
+import Link from "next/link"
 
-import {
-  ArrowLeft,
-  CalendarDays,
-  Pencil,
-} from "lucide-react";
+import { ArrowLeft, CalendarDays, Pencil } from "lucide-react"
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 
-import { formatMonth } from "@/utils/format-month";
+import { formatMonth } from "@/utils/format-month"
 
 interface MonthlyChargeEditHeaderProps {
-  id: string;
-  familyNo: string;
-  month: number;
-  year: number;
+  id: string
+  familyNo: string
+  month: number
+  year: number
 }
 
 export function MonthlyChargeEditHeader({
@@ -46,9 +42,7 @@ export function MonthlyChargeEditHeader({
           </h1>
 
           <div className="mt-2 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
-            <span className="font-medium text-foreground">
-              {familyNo}
-            </span>
+            <span className="font-medium text-foreground">{familyNo}</span>
 
             <span>•</span>
 
@@ -66,5 +60,5 @@ export function MonthlyChargeEditHeader({
         Editing
       </Button>
     </div>
-  );
+  )
 }

@@ -3,7 +3,6 @@
 "use client"
 
 import { Search } from "lucide-react"
-
 import { Input } from "@/components/ui/input"
 
 import {
@@ -14,13 +13,12 @@ import {
 } from "@/components/ui/dialog"
 
 import { EntityPickerList } from "./EntityPickerList"
-
 import type { EntityPickerOption } from "./types"
 
 interface EntityPickerDialogProps {
   open: boolean
   onOpenChange: (open: boolean) => void
-  title: string
+  title?: string
   placeholder?: string
   search: string
   onSearchChange: (value: string) => void
@@ -28,6 +26,8 @@ interface EntityPickerDialogProps {
   loading?: boolean
   selectedId?: string
   onSelect: (item: EntityPickerOption) => void
+  emptyTitle?: string
+  emptyDescription?: string
 }
 
 export function EntityPickerDialog({
@@ -47,6 +47,9 @@ export function EntityPickerDialog({
   selectedId,
 
   onSelect,
+
+  emptyTitle,
+  emptyDescription,
 }: EntityPickerDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -71,6 +74,8 @@ export function EntityPickerDialog({
           items={items}
           loading={loading}
           selectedId={selectedId}
+          emptyTitle={emptyTitle}
+          emptyDescription={emptyDescription}
           onSelect={(item) => {
             onSelect(item)
             onOpenChange(false)

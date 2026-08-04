@@ -14,61 +14,61 @@ import { MonthlyChargeInformationCard } from "../shared/MonthlyChargeInformation
 import { MonthlyChargeTimelineCard } from "./components/MonthlyChargeTimelineCard"
 
 interface MonthlyChargeDetailsPageProps {
-    id: string
+  id: string
 }
 
 export function MonthlyChargeDetailsPage({
-    id,
+  id,
 }: MonthlyChargeDetailsPageProps) {
-    const {
-        data: monthlyCharge,
-        isLoading,
-        isError,
-        error,
-        refetch,
-    } = useGetMonthlyChargeQuery(id)
+  const {
+    data: monthlyCharge,
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = useGetMonthlyChargeQuery(id)
 
-    if (isLoading) {
-        return <MonthlyChargeDetailsSkeleton />
-    }
+  if (isLoading) {
+    return <MonthlyChargeDetailsSkeleton />
+  }
 
-    if (isError) {
-        return (
-            <ErrorComponent
-                title="Failed to load monthly charge."
-                error={getErrorMessage(error)}
-                onRetry={refetch}
-            />
-        )
-    }
-
-    if (!monthlyCharge) {
-        return null
-    }
-
+  if (isError) {
     return (
-        <div className="space-y-6 p-6">
-            <MonthlyChargeDetailsHeader
-                id={monthlyCharge.id}
-                familyNo={monthlyCharge.familyNo}
-                month={monthlyCharge.month}
-                year={monthlyCharge.year}
-            />
-
-            <div className="grid gap-6 xl:grid-cols-12">
-                <div className="xl:col-span-8">
-                    <MonthlyChargeInformationCard monthlyCharge={monthlyCharge} />
-                </div>
-
-                <div className="xl:col-span-4">
-                    <MonthlyChargeTimelineCard
-                        createdAt={monthlyCharge.createdAt}
-                        updatedAt={monthlyCharge.updatedAt}
-                        dueDate={monthlyCharge.dueDate}
-                        paidAt={monthlyCharge.paidAt}
-                    />
-                </div>
-            </div>
-        </div>
+      <ErrorComponent
+        title="Failed to load monthly charge."
+        error={getErrorMessage(error)}
+        onRetry={refetch}
+      />
     )
+  }
+
+  if (!monthlyCharge) {
+    return null
+  }
+
+  return (
+    <div className="space-y-6 p-6">
+      <MonthlyChargeDetailsHeader
+        id={monthlyCharge.id}
+        familyNo={monthlyCharge.familyNo}
+        month={monthlyCharge.month}
+        year={monthlyCharge.year}
+      />
+
+      <div className="grid gap-6 xl:grid-cols-12">
+        <div className="xl:col-span-8">
+          <MonthlyChargeInformationCard monthlyCharge={monthlyCharge} />
+        </div>
+
+        <div className="xl:col-span-4">
+          <MonthlyChargeTimelineCard
+            createdAt={monthlyCharge.createdAt}
+            updatedAt={monthlyCharge.updatedAt}
+            dueDate={monthlyCharge.dueDate}
+            paidAt={monthlyCharge.paidAt}
+          />
+        </div>
+      </div>
+    </div>
+  )
 }

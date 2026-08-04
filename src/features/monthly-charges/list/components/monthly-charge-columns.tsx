@@ -1,21 +1,16 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import Link from "next/link";
+import { useState } from "react"
+import Link from "next/link"
 
-import type { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table"
 
-import {
-  Eye,
-  MoreHorizontal,
-  Pencil,
-  Trash2,
-} from "lucide-react";
+import { Eye, MoreHorizontal, Pencil, Trash2 } from "lucide-react"
 
-import { toast } from "sonner";
+import { toast } from "sonner"
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 
 import {
   AlertDialog,
@@ -25,7 +20,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
+} from "@/components/ui/alert-dialog"
 
 import {
   DropdownMenu,
@@ -34,57 +29,41 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu"
 
-import { DataTableColumnHeader } from "@/components/common/data-table";
+import { DataTableColumnHeader } from "@/components/common/data-table"
 
-import { useDeleteMonthlyChargeMutation } from "@/store/api/monthly-charge.api";
+import { useDeleteMonthlyChargeMutation } from "@/store/api/monthly-charge.api"
 
-import type { MonthlyCharge } from "@/types/monthly-charge";
-import { PaymentStatus } from "@/types/payment";
+import type { MonthlyCharge } from "@/types/monthly-charge"
+import { PaymentStatus } from "@/types/payment"
 
-import { formatCurrency } from "@/utils/format-currency";
-import { formatDate } from "@/utils/format-date";
-import { formatMonth } from "@/utils/format-month";
-import { getErrorMessage } from "@/utils/get-error-message";
+import { formatCurrency } from "@/utils/format-currency"
+import { formatDate } from "@/utils/format-date"
+import { formatMonth } from "@/utils/format-month"
+import { getErrorMessage } from "@/utils/get-error-message"
 
-function StatusBadge({
-  status,
-}: {
-  status: PaymentStatus;
-}) {
+function StatusBadge({ status }: { status: PaymentStatus }) {
   switch (status) {
     case PaymentStatus.PAID:
-      return (
-        <Badge className="bg-green-500 hover:bg-green-500">
-          Paid
-        </Badge>
-      );
+      return <Badge className="bg-green-500 hover:bg-green-500">Paid</Badge>
 
     case PaymentStatus.PARTIAL:
       return (
-        <Badge className="bg-yellow-500 hover:bg-yellow-500">
-          Partial
-        </Badge>
-      );
+        <Badge className="bg-yellow-500 hover:bg-yellow-500">Partial</Badge>
+      )
 
     default:
-      return (
-        <Badge variant="destructive">
-          Due
-        </Badge>
-      );
+      return <Badge variant="destructive">Due</Badge>
   }
 }
 
-export const monthlyChargeColumns: ColumnDef<MonthlyCharge>[] = [  {
+export const monthlyChargeColumns: ColumnDef<MonthlyCharge>[] = [
+  {
     accessorKey: "family",
 
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="Family"
-      />
+      <DataTableColumnHeader column={column} title="Family" />
     ),
 
     cell: ({ row }) => (
@@ -107,17 +86,12 @@ export const monthlyChargeColumns: ColumnDef<MonthlyCharge>[] = [  {
     accessorKey: "period",
 
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="Period"
-      />
+      <DataTableColumnHeader column={column} title="Period" />
     ),
 
     cell: ({ row }) => (
       <div className="flex flex-col">
-        <span className="font-medium">
-          {formatMonth(row.original.month)}
-        </span>
+        <span className="font-medium">{formatMonth(row.original.month)}</span>
 
         <span className="text-xs text-muted-foreground">
           {row.original.year}
@@ -130,16 +104,11 @@ export const monthlyChargeColumns: ColumnDef<MonthlyCharge>[] = [  {
     accessorKey: "amount",
 
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="Amount"
-      />
+      <DataTableColumnHeader column={column} title="Amount" />
     ),
 
     cell: ({ row }) => (
-      <span className="font-medium">
-        {formatCurrency(row.original.amount)}
-      </span>
+      <span className="font-medium">{formatCurrency(row.original.amount)}</span>
     ),
   },
 
@@ -147,21 +116,14 @@ export const monthlyChargeColumns: ColumnDef<MonthlyCharge>[] = [  {
     accessorKey: "payment",
 
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="Payment"
-      />
+      <DataTableColumnHeader column={column} title="Payment" />
     ),
 
     cell: ({ row }) => (
       <div className="space-y-1">
-        <p className="font-medium">
-          {formatCurrency(row.original.paidAmount)}
-        </p>
+        <p className="font-medium">{formatCurrency(row.original.paidAmount)}</p>
 
-        <StatusBadge
-          status={row.original.status}
-        />
+        <StatusBadge status={row.original.status} />
       </div>
     ),
   },
@@ -170,35 +132,21 @@ export const monthlyChargeColumns: ColumnDef<MonthlyCharge>[] = [  {
     accessorKey: "dueDate",
 
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="Due Date"
-      />
+      <DataTableColumnHeader column={column} title="Due Date" />
     ),
 
-    cell: ({ row }) => (
-      <span>
-        {formatDate(row.original.dueDate)}
-      </span>
-    ),
+    cell: ({ row }) => <span>{formatDate(row.original.dueDate)}</span>,
   },
 
   {
     accessorKey: "paidAt",
 
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="Paid At"
-      />
+      <DataTableColumnHeader column={column} title="Paid At" />
     ),
 
     cell: ({ row }) =>
-      row.original.paidAt ? (
-        formatDate(row.original.paidAt)
-      ) : (
-        "—"
-      ),
+      row.original.paidAt ? formatDate(row.original.paidAt) : "—",
   },
 
   {
@@ -207,75 +155,51 @@ export const monthlyChargeColumns: ColumnDef<MonthlyCharge>[] = [  {
     enableHiding: false,
 
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="Actions"
-      />
+      <DataTableColumnHeader column={column} title="Actions" />
     ),
 
     cell: ({ row }) => {
-      const [isOpen, setIsOpen] = useState(false);
+      const [isOpen, setIsOpen] = useState(false)
 
-      const [
-        deleteMonthlyCharge,
-        { isLoading },
-      ] = useDeleteMonthlyChargeMutation();
+      const [deleteMonthlyCharge, { isLoading }] =
+        useDeleteMonthlyChargeMutation()
 
       const onSubmit = async () => {
         try {
-          await deleteMonthlyCharge(
-            row.original.id
-          ).unwrap();
+          await deleteMonthlyCharge(row.original.id).unwrap()
 
-          setIsOpen(false);
+          setIsOpen(false)
 
-          toast.success(
-            "Monthly charge deleted successfully."
-          );
+          toast.success("Monthly charge deleted successfully.")
         } catch (error) {
-          toast.error(
-            "Failed to delete monthly charge.",
-            {
-              description:
-                getErrorMessage(error),
-            }
-          );
+          toast.error("Failed to delete monthly charge.", {
+            description: getErrorMessage(error),
+          })
         }
-      };      return (
+      }
+      return (
         <>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-              >
+              <Button variant="ghost" size="icon">
                 <MoreHorizontal className="size-4" />
               </Button>
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent
-              align="end"
-              className="w-44"
-            >
-              <DropdownMenuLabel>
-                Actions
-              </DropdownMenuLabel>
+            <DropdownMenuContent align="end" className="w-44">
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
 
               <DropdownMenuSeparator />
 
               <DropdownMenuItem asChild>
-                <Link
-                  href={`/monthly-charges/${row.original.id}`}
-                >
+                <Link href={`/monthly-charges/${row.original.id}`}>
                   <Eye className="size-4" />
                   <span>View</span>
                 </Link>
               </DropdownMenuItem>
 
               <DropdownMenuItem asChild>
-                <Link
-                  href={`/monthly-charges/${row.original.id}/edit`}
-                >
+                <Link href={`/monthly-charges/${row.original.id}/edit`}>
                   <Pencil className="size-4" />
                   <span>Edit</span>
                 </Link>
@@ -293,42 +217,32 @@ export const monthlyChargeColumns: ColumnDef<MonthlyCharge>[] = [  {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <AlertDialog
-            open={isOpen}
-            onOpenChange={setIsOpen}
-          >
+          <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle>
-                  Delete Monthly Charge?
-                </AlertDialogTitle>
+                <AlertDialogTitle>Delete Monthly Charge?</AlertDialogTitle>
 
                 <AlertDialogDescription>
-                  This action cannot be undone. This
-                  monthly charge will be permanently
-                  removed.
+                  This action cannot be undone. This monthly charge will be
+                  permanently removed.
                 </AlertDialogDescription>
               </AlertDialogHeader>
 
               <AlertDialogFooter>
-                <AlertDialogCancel>
-                  Cancel
-                </AlertDialogCancel>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
 
                 <Button
                   variant="destructive"
                   disabled={isLoading}
                   onClick={onSubmit}
                 >
-                  {isLoading
-                    ? "Deleting..."
-                    : "Delete"}
+                  {isLoading ? "Deleting..." : "Delete"}
                 </Button>
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>
         </>
-      );
+      )
     },
   },
-];
+]

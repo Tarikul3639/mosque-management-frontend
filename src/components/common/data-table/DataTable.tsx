@@ -64,7 +64,7 @@ export function DataTable<TData>({
   currentPage = 1,
   pageSize = 10,
   totalItems = 0,
-  totalPages = 1,
+  totalPages = 0,
   onPageChange,
   onPageSizeChange,
 }: DataTableProps<TData>) {
@@ -165,7 +165,8 @@ export function DataTable<TData>({
         </div>
       </div>
 
-      {totalPages > 1 && (
+      {/* Pagination */}
+      {totalPages > 0 && (
         <DataTablePagination
           page={currentPage}
           pageSize={pageSize}

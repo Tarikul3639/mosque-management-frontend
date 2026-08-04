@@ -1,26 +1,24 @@
-"use client";
+"use client"
 
-import { ErrorComponent } from "@/components/common/error";
+import { ErrorComponent } from "@/components/common/error"
 
-import { getErrorMessage } from "@/utils/get-error-message";
+import { getErrorMessage } from "@/utils/get-error-message"
 
-import { MonthlyChargeInformationCard } from "../shared/MonthlyChargeInformationCard";
+import { MonthlyChargeInformationCard } from "../shared/MonthlyChargeInformationCard"
 
-import { MonthlyChargeForm } from "../shared/MonthlyChargeForm";
+import { MonthlyChargeForm } from "../shared/MonthlyChargeForm"
 
-import { MonthlyChargeDangerZone } from "./components/MonthlyChargeDangerZone";
-import { MonthlyChargeEditHeader } from "./components/MonthlyChargeEditHeader";
-import { MonthlyChargeEditSkeleton } from "./components/MonthlyChargeEditSkeleton";
+import { MonthlyChargeDangerZone } from "./components/MonthlyChargeDangerZone"
+import { MonthlyChargeEditHeader } from "./components/MonthlyChargeEditHeader"
+import { MonthlyChargeEditSkeleton } from "./components/MonthlyChargeEditSkeleton"
 
-import { useMonthlyChargeEdit } from "./useMonthlyChargeEdit";
+import { useMonthlyChargeEdit } from "./useMonthlyChargeEdit"
 
 interface Props {
-  id: string;
+  id: string
 }
 
-export function MonthlyChargeEditPage({
-  id,
-}: Props) {
+export function MonthlyChargeEditPage({ id }: Props) {
   const {
     monthlyCharge,
     monthlyChargeQuery,
@@ -34,10 +32,10 @@ export function MonthlyChargeEditPage({
     isDeleting,
   } = useMonthlyChargeEdit({
     id,
-  });
+  })
 
   if (monthlyChargeQuery.isLoading) {
-    return <MonthlyChargeEditSkeleton />;
+    return <MonthlyChargeEditSkeleton />
   }
 
   if (monthlyChargeQuery.isError) {
@@ -47,11 +45,11 @@ export function MonthlyChargeEditPage({
         error={getErrorMessage(monthlyChargeQuery.error)}
         onRetry={monthlyChargeQuery.refetch}
       />
-    );
+    )
   }
 
   if (!monthlyCharge) {
-    return null;
+    return null
   }
 
   return (
@@ -94,5 +92,5 @@ export function MonthlyChargeEditPage({
         </div>
       </div>
     </div>
-  );
+  )
 }

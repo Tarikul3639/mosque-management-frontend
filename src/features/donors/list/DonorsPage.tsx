@@ -6,7 +6,13 @@ import { DonorsHeader } from "./components/DonorsHeader"
 import { donorColumns } from "./components/donor-columns"
 import { DataTable, DataTableToolbar } from "@/components/common/data-table"
 
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 import { useGetDonorsQuery } from "@/store/api/donor.api"
 
@@ -79,13 +85,17 @@ export function DonorsPage() {
             filters={
               <Select
                 value={status}
-                onValueChange={(value) => setStatus(value as "active" | "inactive")}
+                onValueChange={(value) =>
+                  setStatus(value as "active" | "inactive")
+                }
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Filter by status" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="" disabled>Select Status</SelectItem>
+                  <SelectItem value="" disabled>
+                    Select Status
+                  </SelectItem>
                   <SelectItem value="active">Active</SelectItem>
                   <SelectItem value="inactive">Inactive</SelectItem>
                 </SelectContent>

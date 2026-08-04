@@ -2,14 +2,10 @@
 
 import { type ColumnDef } from "@tanstack/react-table"
 import { format } from "date-fns"
-
 import { Badge } from "@/components/ui/badge"
+import type { FamilyPaymentLedgerItem } from "@/types/payment"
 
-import type { FamilyLedgerResponse } from "@/types/payment"
-
-type LedgerItem = FamilyLedgerResponse["ledger"][number]
-
-export const familyLedgerColumns: ColumnDef<LedgerItem>[] = [
+export const familyLedgerColumns: ColumnDef<FamilyPaymentLedgerItem>[] = [
   {
     accessorKey: "year",
     header: "Year",

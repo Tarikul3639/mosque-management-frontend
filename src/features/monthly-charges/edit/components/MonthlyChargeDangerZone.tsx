@@ -1,10 +1,6 @@
-"use client";
+"use client"
 
-import {
-  AlertTriangle,
-  Loader2,
-  Trash2,
-} from "lucide-react";
+import { AlertTriangle, Loader2, Trash2 } from "lucide-react"
 
 import {
   Card,
@@ -12,9 +8,9 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-} from "@/components/ui/card";
+} from "@/components/ui/card"
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 
 import {
   AlertDialog,
@@ -26,11 +22,11 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+} from "@/components/ui/alert-dialog"
 
 interface MonthlyChargeDangerZoneProps {
-  isDeleting: boolean;
-  onDelete: () => void | Promise<void>;
+  isDeleting: boolean
+  onDelete: () => void | Promise<void>
 }
 
 export function MonthlyChargeDangerZone({
@@ -46,18 +42,14 @@ export function MonthlyChargeDangerZone({
         </CardTitle>
 
         <CardDescription>
-          Permanently delete this monthly charge. This action cannot be
-          undone.
+          Permanently delete this monthly charge. This action cannot be undone.
         </CardDescription>
       </CardHeader>
 
       <CardContent>
         <AlertDialog>
           <AlertDialogTrigger asChild>
-            <Button
-              variant="destructive"
-              className="w-full"
-            >
+            <Button variant="destructive" className="w-full">
               <Trash2 className="mr-2 size-4" />
               Delete Monthly Charge
             </Button>
@@ -65,20 +57,16 @@ export function MonthlyChargeDangerZone({
 
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>
-                Delete Monthly Charge?
-              </AlertDialogTitle>
+              <AlertDialogTitle>Delete Monthly Charge?</AlertDialogTitle>
 
               <AlertDialogDescription>
-                This action will permanently remove this monthly charge.
-                This cannot be undone.
+                This action will permanently remove this monthly charge. This
+                cannot be undone.
               </AlertDialogDescription>
             </AlertDialogHeader>
 
             <AlertDialogFooter>
-              <AlertDialogCancel>
-                Cancel
-              </AlertDialogCancel>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
 
               <AlertDialogAction
                 onClick={onDelete}
@@ -102,5 +90,5 @@ export function MonthlyChargeDangerZone({
         </AlertDialog>
       </CardContent>
     </Card>
-  );
+  )
 }

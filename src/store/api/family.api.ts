@@ -3,7 +3,6 @@ import { baseApi } from "./base.api"
 import type {
   Family,
   FamilyDetails,
-  FamilyFeeHistoryResponse,
   FamilyListResponse,
   FamilyQuery,
   FamilyStats,
@@ -101,21 +100,6 @@ export const familyApi = baseApi.injectEndpoints({
         { type: "Family", id },
       ],
     }),
-
-    // =========================
-    // Family Fee History
-    // =========================
-    getFamilyFeeHistory: builder.query<
-      FamilyFeeHistoryResponse[],
-      { familyId: string }
-    >({
-      query: ({ familyId }) => ({
-        url: `/families/${familyId}/fee-history`,
-      }),
-      providesTags: (_result, _error, { familyId }) => [
-        { type: "FamilyFee", id: familyId },
-      ],
-    }),
   }),
 })
 
@@ -127,5 +111,4 @@ export const {
   useUpdateFamilyMutation,
   useDeleteFamilyMutation,
   useActivateFamilyMutation,
-  useGetFamilyFeeHistoryQuery,
 } = familyApi

@@ -68,13 +68,4 @@ export interface CreateFamilyPayload {
   isActive?: boolean
 }
 
-export interface FamilyFeeHistoryResponse {
-  id: string
-  familyId: string
-  monthlyFee: number
-  startDate: string
-  endDate: string
-  createdAt: string
-}
-
 export interface UpdateFamilyPayload extends Partial<CreateFamilyPayload> {}

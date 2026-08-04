@@ -10,17 +10,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { getAvatarInitials } from "@/utils/avatar.utils"
 
 interface EntityPickerTriggerProps {
-  label: string
-
+  label?: string
   value?: string
-
   subtitle?: string
-
   avatar?: string | null
-
   placeholder?: string
-
-  onClick: () => void
+  readonly?: boolean
+  onClick?: () => void
 }
 
 export function EntityPickerTrigger({
@@ -28,9 +24,11 @@ export function EntityPickerTrigger({
   value,
   subtitle,
   avatar,
+  readonly = false,
   placeholder = "Select...",
   onClick,
 }: EntityPickerTriggerProps) {
+  
   return (
     <div className="space-y-2">
       <p className="text-sm font-medium">{label}</p>
@@ -39,6 +37,7 @@ export function EntityPickerTrigger({
         type="button"
         variant="outline"
         onClick={onClick}
+        disabled={readonly}
         className="h-auto w-full justify-between p-3"
       >
         {value ? (

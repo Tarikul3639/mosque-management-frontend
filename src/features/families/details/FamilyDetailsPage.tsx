@@ -1,17 +1,27 @@
+// src/features/families/details/FamilyDetailsPage.tsx
+
 "use client"
+
+import { useState } from "react"
 
 import { ErrorComponent } from "@/components/common/error"
 import { getErrorMessage } from "@/utils/get-error-message"
-
 import { useGetFamilyDetailsQuery } from "@/store/api/family.api"
 
-import { FamilyHeader } from "./FamilyHeader"
-import { FamilyProfileCard } from "./FamilyProfileCard"
-import { FamilyOverviewCard } from "./FamilyOverviewCard"
-import { FamilyPaymentSummaryCard } from "./FamilyPaymentSummaryCard"
-import { FamilyPaymentHistory } from "./FamilyPaymentHistory"
-import { FamilyFeeHistory } from "./FamilyFeeHistory"
-import { FamilyDetailsSkeleton } from "./FamilyDetailsSkeleton"
+import { FamilyHeader } from "./components/FamilyHeader"
+import { FamilyProfileCard } from "./components/FamilyProfileCard"
+import { FamilyOverviewCard } from "./components/FamilyOverviewCard"
+import { FamilyPaymentSummaryCard } from "./components/FamilyPaymentSummaryCard"
+import { FamilyPaymentHistory } from "./components/FamilyPaymentHistory"
+import { CurrentFeeCard } from "./components/CurrentFeeCard"
+import { FeeHistoryCard } from "./components/FeeHistoryCard"
+import { FamilyDetailsSkeleton } from "./components/FamilyDetailsSkeleton"
+
+import { CreateFamilyFeeDialog } from "@/features/family-fees/create/CreateFamilyFeeDialog"
+import { EditFamilyFeeDialog } from "@/features/family-fees/edit/EditFamilyFeeDialog"
+
+import { useCreateFamilyFee } from "@/features/family-fees/create/useCreateFamilyFee"
+import { useEditFamilyFee } from "@/features/family-fees/edit/useEditFamilyFee"
 
 interface FamilyDetailsPageProps {
   id: string
@@ -25,6 +35,27 @@ export function FamilyDetailsPage({ id }: FamilyDetailsPageProps) {
     error,
     refetch,
   } = useGetFamilyDetailsQuery(id)
+
+  const [createOpen, setCreateOpen] = useState(false)
+
+  const [editOpen, setEditOpen] = useState(false)
+
+  const [selectedFeeId, setSelectedFeeId] = useState<string>("")
+
+  const createFee = useCreateFamilyFee({
+    familyId: id,
+    onSuccess: () => {
+      setCreateOpen(false)
+    },
+  })
+
+  const editFee = useEditFamilyFee({
+    familyId: id,
+    feeId: selectedFeeId,
+    onSuccess: () => {
+      setEditOpen(false)
+    },
+  })
 
   if (isLoading) {
     return <FamilyDetailsSkeleton />
@@ -45,32 +76,62 @@ export function FamilyDetailsPage({ id }: FamilyDetailsPageProps) {
   }
 
   return (
-    <div className="space-y-6 p-6">
-      <FamilyHeader family={family} />
+    <>
+      <div className="space-y-6 p-6">
+        <FamilyHeader family={family} />
 
-      <div className="grid gap-6 xl:grid-cols-12">
-        {/* Profile */}
-        <div className="xl:col-span-4 2xl:col-span-3">
-          <FamilyProfileCard family={family} />
+        <div className="grid gap-6 xl:grid-cols-12">
+          <div className="xl:col-span-4 2xl:col-span-3">
+            <FamilyProfileCard family={family} />
+          </div>
+
+          <div className="space-y-6 xl:col-span-8 2xl:col-span-9">
+            <FamilyOverviewCard family={family} />
+          </div>
         </div>
 
-        {/* Information */}
-        <div className="space-y-6 xl:col-span-8 2xl:col-span-9">
-          <FamilyOverviewCard family={family} />
-        </div>
+        <FamilyPaymentSummaryCard
+          summary={family.paymentSummary}
+          currentFee={family.currentFee}
+        />
+
+        <CurrentFeeCard
+          familyId={family.id}
+          onChangeFee={(feeId) => () => {
+            setSelectedFeeId(feeId ?? "")
+            setEditOpen(true)
+          }}
+        />
+
+        <FamilyPaymentHistory familyId={family.id} />
+
+        <FeeHistoryCard
+          familyId={family.id}
+          onCreateFee={() => setCreateOpen(true)}
+          onEditFee={(feeId) => {
+            setSelectedFeeId(feeId ?? "")
+            setEditOpen(true)
+          }}
+        />
       </div>
 
-      {/* Payment Summary */}
-      <FamilyPaymentSummaryCard
-        summary={family.paymentSummary}
-        currentFee={family.currentFee}
+      {/* Create Fee */}
+      <CreateFamilyFeeDialog
+        open={createOpen}
+        onOpenChange={setCreateOpen}
+        form={createFee.form}
+        isSubmitting={createFee.isSubmitting}
+        onSubmit={createFee.handleSubmit}
       />
 
-      {/* Payment History */}
-      <FamilyPaymentHistory familyId={family.id} />
-
-      {/* Fee History */}
-      <FamilyFeeHistory familyId={family.id} />
-    </div>
+      {/* Edit Fee */}
+      <EditFamilyFeeDialog
+        open={editOpen}
+        onOpenChange={setEditOpen}
+        form={editFee.form}
+        isSubmitting={editFee.isSubmitting}
+        onSubmit={editFee.handleSubmit}
+      />
+    </>
   )
 }

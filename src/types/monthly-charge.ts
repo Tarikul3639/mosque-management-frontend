@@ -1,76 +1,79 @@
 import { PaymentStatus } from "@/types/payment"
 
 export interface MonthlyCharge {
-    id: string
+  id: string
 
-    familyId: string
-    familyNo: string
-    headName: string
+  familyId: string
+  familyNo: string
+  headName: string
 
-    year: number
-    month: number
+  year: number
+  month: number
 
-    amount: number
-    paidAmount: number
+  amount: number
+  paidAmount: number
 
-    status: PaymentStatus
+  status: PaymentStatus
 
-    dueDate: string
-    paidAt: string | null
+  dueDate: string
+  paidAt: string | null
 
-    createdAt: string
-    updatedAt: string
+  createdAt: string
+  updatedAt: string
+}
+
+// Metadata
+export interface MonthlyChargeListMetadata {
+  total: number
+  page: number
+  limit: number
+
+  totalPages: number
+
+  hasNextPage: boolean
+  hasPreviousPage: boolean
 }
 
 export interface MonthlyChargeListResponse {
-    data: MonthlyCharge[]
-
-    total: number
-    page: number
-    limit: number
-
-    totalPages: number
-
-    hasNextPage: boolean
-    hasPreviousPage: boolean
+  data: MonthlyCharge[]
+  metadata: MonthlyChargeListMetadata
 }
 
 export interface MonthlyChargeQuery {
-    page?: number
-    limit?: number
+  page?: number;
+  limit?: number;
+  search?: string;
 
-    search?: string
+  familyId?: string;
 
-    year?: number
-    month?: number
+  year?: number;
+  month?: number;
 
-    status?: PaymentStatus
-
-    activeOnly?: boolean
+  status?: PaymentStatus;
+  activeOnly?: boolean;
+  outstandingOnly?: boolean;
 }
 
 export interface UpdateMonthlyChargeDto {
-    amount?: number
-    paidAmount?: number
-    paymentId?: string
-    dueDate?: string
-    paidAt?: string | null
+  amount?: number
+  paymentId?: string
+  dueDate?: string
 }
 
 export interface GenerateMonthlyChargeDto {
-    year: number
-    month: number
+  year: number
+  month: number
 }
 
 export interface GenerateMonthlyChargeResponse {
-    message: string
+  message: string
 
-    totalFamilies: number
+  totalFamilies: number
 
-    generatedCharges: number
+  generatedCharges: number
 
-    skippedCharges: number
+  skippedCharges: number
 
-    year: number
-    month: number
+  year: number
+  month: number
 }

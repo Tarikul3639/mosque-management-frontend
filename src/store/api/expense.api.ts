@@ -7,9 +7,9 @@ import type {
   ExpenseSummary,
   ExpenseQuery,
   CreateExpenseDto,
-  UpdateExpenseDto,
-  PaginatedResponse,
+  UpdateExpenseDto, 
 } from "@/types/expense"
+import type { PaginatedResponse } from "@/types/common"
 
 export const expenseApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({

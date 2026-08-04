@@ -16,7 +16,7 @@ import {
 import { cn } from "@/lib/utils"
 
 interface DatePickerWithRangeProps {
-  value?: DateRange
+  value?: DateRange // format: { from: Date; to: Date }
   onChange: (value: DateRange | undefined) => void
   className?: string
   placeholder?: string

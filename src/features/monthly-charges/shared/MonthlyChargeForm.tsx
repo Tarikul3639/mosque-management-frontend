@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label"
 import type { MonthlyCharge } from "@/types/monthly-charge"
 import type { MonthlyChargeFormValues } from "@/schemas/monthly-charge.schema"
 import { formatMonth } from "@/utils/format-month"
+import { formatCurrency } from "@/utils/format-currency"
 
 interface MonthlyChargeFormProps {
   title: string
@@ -130,17 +131,21 @@ export function MonthlyChargeForm({
               </Label>
 
               <Input
-                type="number"
-                min={0}
-                {...register("paidAmount", {
-                  valueAsNumber: true,
-                })}
+                value={formatCurrency(monthlyCharge.paidAmount)}
+                readOnly
+                disabled
               />
-              {errors.paidAmount && (
-                <p className="text-xs text-destructive">
-                  {errors.paidAmount.message}
-                </p>
-              )}
+            </div>
+
+            {/* Status */}
+            <div className="space-y-2">
+              <Label>Status</Label>
+
+              <Input
+                value={monthlyCharge.status}
+                readOnly
+                disabled
+              />
             </div>
 
             {/* Due Date */}
@@ -188,33 +193,17 @@ export function MonthlyChargeForm({
               </Label>
 
               <Input
-                type="datetime-local"
                 value={
-                  form.watch("paidAt")
+                  monthlyCharge.paidAt
                     ? format(
-                      new Date(form.watch("paidAt")!),
-                      "yyyy-MM-dd'T'HH:mm"
+                      new Date(monthlyCharge.paidAt),
+                      "dd MMM yyyy, hh:mm a"
                     )
-                    : ""
+                    : "-"
                 }
-                onChange={(e) =>
-                  form.setValue(
-                    "paidAt",
-                    e.target.value
-                      ? new Date(e.target.value).toISOString()
-                      : null,
-                    {
-                      shouldDirty: true,
-                      shouldValidate: true,
-                    }
-                  )
-                }
+                readOnly
+                disabled
               />
-              {errors.paidAt && (
-                <p className="text-xs text-destructive">
-                  {errors.paidAt.message}
-                </p>
-              )}
             </div>
 
             {showMetadata && (

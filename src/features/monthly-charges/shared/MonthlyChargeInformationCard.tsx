@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import Link from "next/link";
+import Link from "next/link"
 
 import {
   CalendarDays,
@@ -10,34 +10,28 @@ import {
   Home,
   User,
   Wallet,
-} from "lucide-react";
+} from "lucide-react"
 
-import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
 
-import { formatCurrency } from "@/utils/format-currency";
-import { formatDate } from "@/utils/format-date";
-import { formatMonth } from "@/utils/format-month";
+import { formatCurrency } from "@/utils/format-currency"
+import { formatDate } from "@/utils/format-date"
+import { formatMonth } from "@/utils/format-month"
 
-import type { MonthlyCharge } from "@/types/monthly-charge";
-import { PaymentStatus } from "@/types/payment";
+import type { MonthlyCharge } from "@/types/monthly-charge"
+import { PaymentStatus } from "@/types/payment"
 
 interface MonthlyChargeInformationCardProps {
-  monthlyCharge: MonthlyCharge;
+  monthlyCharge: MonthlyCharge
 }
 
 export function MonthlyChargeInformationCard({
   monthlyCharge,
 }: MonthlyChargeInformationCardProps) {
   const dueAmount =
-    Number(monthlyCharge.amount) -
-    Number(monthlyCharge.paidAmount);
+    Number(monthlyCharge.amount) - Number(monthlyCharge.paidAmount)
 
   return (
     <Card>
@@ -48,9 +42,7 @@ export function MonthlyChargeInformationCard({
               {getStatusLabel(monthlyCharge.status)}
             </Badge>
 
-            <CardTitle className="text-2xl">
-              {monthlyCharge.familyNo}
-            </CardTitle>
+            <CardTitle className="text-2xl">{monthlyCharge.familyNo}</CardTitle>
 
             <p className="text-sm text-muted-foreground">
               {monthlyCharge.headName}
@@ -58,7 +50,7 @@ export function MonthlyChargeInformationCard({
           </div>
 
           <div className="text-right">
-            <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            <p className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
               Total Charge
             </p>
 
@@ -94,25 +86,19 @@ export function MonthlyChargeInformationCard({
         <InfoRow
           icon={<CalendarDays className="size-4" />}
           label="Billing Period"
-          value={`${formatMonth(
-            monthlyCharge.month
-          )} ${monthlyCharge.year}`}
+          value={`${formatMonth(monthlyCharge.month)} ${monthlyCharge.year}`}
         />
 
         <InfoRow
           icon={<Wallet className="size-4" />}
           label="Total Amount"
-          value={formatCurrency(
-            monthlyCharge.amount
-          )}
+          value={formatCurrency(monthlyCharge.amount)}
         />
 
         <InfoRow
           icon={<CreditCard className="size-4" />}
           label="Paid Amount"
-          value={formatCurrency(
-            monthlyCharge.paidAmount
-          )}
+          value={formatCurrency(monthlyCharge.paidAmount)}
         />
 
         <InfoRow
@@ -134,28 +120,20 @@ export function MonthlyChargeInformationCard({
         <InfoRow
           icon={<CheckCircle2 className="size-4" />}
           label="Status"
-          value={
-            <StatusBadge
-              status={monthlyCharge.status}
-            />
-          }
+          value={<StatusBadge status={monthlyCharge.status} />}
         />
 
         <InfoRow
           icon={<Clock3 className="size-4" />}
           label="Due Date"
-          value={formatDate(
-            monthlyCharge.dueDate
-          )}
+          value={formatDate(monthlyCharge.dueDate)}
         />
 
         {monthlyCharge.paidAt && (
           <InfoRow
             icon={<CalendarDays className="size-4" />}
             label="Paid At"
-            value={formatDate(
-              monthlyCharge.paidAt
-            )}
+            value={formatDate(monthlyCharge.paidAt)}
           />
         )}
 
@@ -164,34 +142,26 @@ export function MonthlyChargeInformationCard({
         <InfoRow
           icon={<CalendarDays className="size-4" />}
           label="Created At"
-          value={formatDate(
-            monthlyCharge.createdAt
-          )}
+          value={formatDate(monthlyCharge.createdAt)}
         />
 
         <InfoRow
           icon={<CalendarDays className="size-4" />}
           label="Updated At"
-          value={formatDate(
-            monthlyCharge.updatedAt
-          )}
+          value={formatDate(monthlyCharge.updatedAt)}
         />
       </CardContent>
     </Card>
-  );
+  )
 }
 
 interface InfoRowProps {
-  icon: React.ReactNode;
-  label: string;
-  value: React.ReactNode;
+  icon: React.ReactNode
+  label: string
+  value: React.ReactNode
 }
 
-function InfoRow({
-  icon,
-  label,
-  value,
-}: InfoRowProps) {
+function InfoRow({ icon, label, value }: InfoRowProps) {
   return (
     <div className="flex items-center justify-between gap-6">
       <div className="flex items-center gap-3 text-muted-foreground">
@@ -199,58 +169,38 @@ function InfoRow({
           {icon}
         </div>
 
-        <span className="text-sm">
-          {label}
-        </span>
+        <span className="text-sm">{label}</span>
       </div>
 
-      <div className="text-right text-sm font-medium">
-        {value}
-      </div>
+      <div className="text-right text-sm font-medium">{value}</div>
     </div>
-  );
+  )
 }
 
-function StatusBadge({
-  status,
-}: {
-  status: PaymentStatus;
-}) {
+function StatusBadge({ status }: { status: PaymentStatus }) {
   switch (status) {
     case PaymentStatus.PAID:
-      return (
-        <Badge className="bg-green-500 hover:bg-green-500">
-          Paid
-        </Badge>
-      );
+      return <Badge className="bg-green-500 hover:bg-green-500">Paid</Badge>
 
     case PaymentStatus.PARTIAL:
       return (
-        <Badge className="bg-yellow-500 hover:bg-yellow-500">
-          Partial
-        </Badge>
-      );
+        <Badge className="bg-yellow-500 hover:bg-yellow-500">Partial</Badge>
+      )
 
     default:
-      return (
-        <Badge variant="destructive">
-          Due
-        </Badge>
-      );
+      return <Badge variant="destructive">Due</Badge>
   }
 }
 
-function getStatusLabel(
-  status: PaymentStatus
-) {
+function getStatusLabel(status: PaymentStatus) {
   switch (status) {
     case PaymentStatus.PAID:
-      return "Paid";
+      return "Paid"
 
     case PaymentStatus.PARTIAL:
-      return "Partial";
+      return "Partial"
 
     default:
-      return "Due";
+      return "Due"
   }
 }

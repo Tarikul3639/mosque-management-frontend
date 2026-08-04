@@ -94,7 +94,9 @@ export function ExpenseForm({
 
               <Input placeholder="Expense title" {...register("title")} />
               {errors.title && (
-                <p className="text-xs text-destructive">{errors.title.message}</p>
+                <p className="text-xs text-destructive">
+                  {errors.title.message}
+                </p>
               )}
             </div>
 
@@ -113,7 +115,9 @@ export function ExpenseForm({
                 })}
               />
               {errors.amount && (
-                <p className="text-xs text-destructive">{errors.amount.message}</p>
+                <p className="text-xs text-destructive">
+                  {errors.amount.message}
+                </p>
               )}
             </div>
 
@@ -146,7 +150,9 @@ export function ExpenseForm({
                 </SelectContent>
               </Select>
               {errors.category && (
-                <p className="text-xs text-destructive">{errors.category.message}</p>
+                <p className="text-xs text-destructive">
+                  {errors.category.message}
+                </p>
               )}
             </div>
 
@@ -162,9 +168,9 @@ export function ExpenseForm({
                 value={
                   form.watch("expenseDate")
                     ? format(
-                      new Date(form.watch("expenseDate")),
-                      "yyyy-MM-dd'T'HH:mm"
-                    )
+                        new Date(form.watch("expenseDate")),
+                        "yyyy-MM-dd'T'HH:mm"
+                      )
                     : ""
                 }
                 onChange={(e) =>
@@ -181,7 +187,9 @@ export function ExpenseForm({
                 }
               />
               {errors.expenseDate && (
-                <p className="text-xs text-destructive">{errors.expenseDate.message}</p>
+                <p className="text-xs text-destructive">
+                  {errors.expenseDate.message}
+                </p>
               )}
             </div>
 
@@ -195,7 +203,9 @@ export function ExpenseForm({
                 {...register("note")}
               />
               {errors.note && (
-                <p className="text-xs text-destructive">{errors.note.message}</p>
+                <p className="text-xs text-destructive">
+                  {errors.note.message}
+                </p>
               )}
             </div>
 

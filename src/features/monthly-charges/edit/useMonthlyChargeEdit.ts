@@ -10,109 +10,103 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from "sonner"
 
 import {
-    monthlyChargeSchema,
-    type MonthlyChargeFormValues,
+  monthlyChargeSchema,
+  type MonthlyChargeFormValues,
 } from "@/schemas/monthly-charge.schema"
 
 import { getErrorMessage } from "@/utils/get-error-message"
 
 import {
-    useDeleteMonthlyChargeMutation,
-    useGetMonthlyChargeQuery,
-    useUpdateMonthlyChargeMutation,
+  useDeleteMonthlyChargeMutation,
+  useGetMonthlyChargeQuery,
+  useUpdateMonthlyChargeMutation,
 } from "@/store/api/monthly-charge.api"
 
 interface Props {
-    id: string
+  id: string
 }
 
 export function useMonthlyChargeEdit({ id }: Props) {
-    const router = useRouter()
+  const router = useRouter()
 
-    const form = useForm<MonthlyChargeFormValues>({
-        resolver: zodResolver(monthlyChargeSchema),
+  const form = useForm<MonthlyChargeFormValues>({
+    resolver: zodResolver(monthlyChargeSchema),
 
-        defaultValues: {
-            amount: 0,
-            paidAmount: 0,
-            dueDate: new Date().toISOString(),
-            paidAt: null,
-        },
+    defaultValues: {
+      amount: 0,
+      dueDate: new Date().toISOString(),
+    },
+  })
+
+  const monthlyChargeQuery = useGetMonthlyChargeQuery(id)
+
+  const { data: monthlyCharge } = monthlyChargeQuery
+
+  const [updateMonthlyCharge, updateState] = useUpdateMonthlyChargeMutation()
+
+  const [deleteMonthlyCharge, deleteState] = useDeleteMonthlyChargeMutation()
+
+  useEffect(() => {
+    if (!monthlyCharge) return
+
+    form.reset({
+      amount: Number(monthlyCharge.amount),
+      dueDate: monthlyCharge.dueDate,
     })
+  }, [monthlyCharge, form])
 
-    const monthlyChargeQuery = useGetMonthlyChargeQuery(id)
+  const handleSubmit = async (values: MonthlyChargeFormValues) => {
+    console.log("submit")
+    if (!monthlyCharge) return
 
-    const { data: monthlyCharge } = monthlyChargeQuery
+    try {
+      await updateMonthlyCharge({
+        id: monthlyCharge.id,
 
-    const [updateMonthlyCharge, updateState] = useUpdateMonthlyChargeMutation()
+        data: {
+          amount: values.amount,
+          dueDate: values.dueDate,
+        },
+      }).unwrap()
 
-    const [deleteMonthlyCharge, deleteState] = useDeleteMonthlyChargeMutation()
+      toast.success("Monthly charge updated successfully.")
 
-    useEffect(() => {
-        if (!monthlyCharge) return
-
-        form.reset({
-            amount: Number(monthlyCharge.amount),
-            paidAmount: Number(monthlyCharge.paidAmount),
-            dueDate: monthlyCharge.dueDate,
-            paidAt: monthlyCharge.paidAt ?? null,
-        })
-    }, [monthlyCharge, form])
-
-    const handleSubmit = async (values: MonthlyChargeFormValues) => {
-        console.log("submit");
-        if (!monthlyCharge) return
-
-        try {
-            await updateMonthlyCharge({
-                id: monthlyCharge.id,
-
-                data: {
-                    amount: values.amount,
-                    paidAmount: values.paidAmount,
-                    dueDate: values.dueDate,
-                    paidAt: values.paidAt,
-                },
-            }).unwrap()
-
-            toast.success("Monthly charge updated successfully.")
-
-            router.push(`/monthly-charges/${monthlyCharge.id}`)
-        } catch (error) {
-            toast.error("Failed to update monthly charge.", {
-                description: getErrorMessage(error),
-            })
-        }
+      router.push(`/monthly-charges/${monthlyCharge.id}`)
+    } catch (error) {
+      toast.error("Failed to update monthly charge.", {
+        description: getErrorMessage(error),
+      })
     }
+  }
 
-    const handleDelete = async () => {
-        if (!monthlyCharge) return
+  const handleDelete = async () => {
+    if (!monthlyCharge) return
 
-        try {
-            await deleteMonthlyCharge(monthlyCharge.id).unwrap()
+    try {
+      await deleteMonthlyCharge(monthlyCharge.id).unwrap()
 
-            toast.success("Monthly charge deleted successfully.")
+      toast.success("Monthly charge deleted successfully.")
 
-            router.push("/monthly-charges")
-        } catch (error) {
-            toast.error("Failed to delete monthly charge.", {
-                description: getErrorMessage(error),
-            })
-        }
+      router.push("/monthly-charges")
+    } catch (error) {
+      toast.error("Failed to delete monthly charge.", {
+        description: getErrorMessage(error),
+      })
     }
+  }
 
-    return {
-        monthlyCharge,
+  return {
+    monthlyCharge,
 
-        monthlyChargeQuery,
+    monthlyChargeQuery,
 
-        form,
+    form,
 
-        handleSubmit,
-        handleDelete,
+    handleSubmit,
+    handleDelete,
 
-        isSubmitting: updateState.isLoading,
+    isSubmitting: updateState.isLoading,
 
-        isDeleting: deleteState.isLoading,
-    }
+    isDeleting: deleteState.isLoading,
+  }
 }
