@@ -16,7 +16,7 @@ import { CommitteeTableActions } from "./CommitteeTableActions"
 import type { CommitteeMember } from "@/types/committee"
 
 export const committeeColumns: ColumnDef<CommitteeMember>[] = [
-  // 1. Member Info (Name, Avatar & Phone) - Most Important
+  // 1. Member Info (Name, Avatar, Phone & Status merged)
   {
     accessorKey: "name",
     header: ({ column }) => (
@@ -32,13 +32,24 @@ export const committeeColumns: ColumnDef<CommitteeMember>[] = [
             <AvatarFallback>{getAvatarInitials(member.name)}</AvatarFallback>
           </Avatar>
 
-          <div>
-            <Link
-              href={`/committee/${member.id}`}
-              className="font-medium hover:text-primary hover:underline"
-            >
-              {member.name}
-            </Link>
+          <div className="space-y-0.5">
+            <div className="flex items-center gap-2">
+              <Link
+                href={`/committee/${member.id}`}
+                className="font-medium hover:text-primary hover:underline"
+              >
+                {member.name}
+              </Link>
+              {member.isActive ? (
+                <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] font-medium bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400">
+                  Active
+                </span>
+              ) : (
+                <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] font-medium bg-destructive/10 text-destructive">
+                  Inactive
+                </span>
+              )}
+            </div>
             <p className="text-xs text-muted-foreground">{member.phone}</p>
           </div>
         </div>
@@ -59,21 +70,7 @@ export const committeeColumns: ColumnDef<CommitteeMember>[] = [
     ),
   },
 
-  // 3. Status
-  {
-    accessorKey: "isActive",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Status" />
-    ),
-    cell: ({ row }) =>
-      row.original.isActive ? (
-        <Badge>Active</Badge>
-      ) : (
-        <Badge variant="destructive">Inactive</Badge>
-      ),
-  },
-
-  // 4. Contact Info (Merged Email & Phone reference)
+  // 3. Contact Info (Email & Phone reference)
   {
     accessorKey: "email",
     header: ({ column }) => (
@@ -89,7 +86,7 @@ export const committeeColumns: ColumnDef<CommitteeMember>[] = [
     ),
   },
 
-  // 5. Timeline (Merged Joining & End Date)
+  // 4. Timeline (Joining & End Date)
   {
     accessorKey: "joiningDate",
     header: ({ column }) => (
@@ -110,7 +107,7 @@ export const committeeColumns: ColumnDef<CommitteeMember>[] = [
     },
   },
 
-  // 6. Address
+  // 5. Address
   {
     accessorKey: "address",
     header: ({ column }) => (
@@ -119,7 +116,7 @@ export const committeeColumns: ColumnDef<CommitteeMember>[] = [
     cell: ({ row }) => <p className="text-sm">{row.original.address}</p>,
   },
 
-  // 7. End Date (Individual fallback if needed)
+  // 6. End Date (Individual fallback if needed)
   {
     accessorKey: "endDate",
     header: ({ column }) => (
@@ -131,7 +128,7 @@ export const committeeColumns: ColumnDef<CommitteeMember>[] = [
         : "Current Member",
   },
 
-  // 8. Created At
+  // 7. Created At
   {
     accessorKey: "createdAt",
     header: ({ column }) => (
@@ -141,7 +138,7 @@ export const committeeColumns: ColumnDef<CommitteeMember>[] = [
       format(new Date(row.original.createdAt), "dd MMM yyyy, hh:mm a"),
   },
 
-  // 9. Updated At
+  // 8. Updated At
   {
     accessorKey: "updatedAt",
     header: ({ column }) => (
@@ -151,7 +148,7 @@ export const committeeColumns: ColumnDef<CommitteeMember>[] = [
       format(new Date(row.original.updatedAt), "dd MMM yyyy, hh:mm a"),
   },
 
-  // 10. Actions
+  // 9. Actions
   {
     id: "actions",
     enableSorting: false,

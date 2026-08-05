@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 type BarPosition = "top" | "bottom"
 
 interface UnsavedChangesBarProps {
-    show: boolean
+    isDirty: boolean
     isSubmitting?: boolean
     message?: string
     submitText?: string
@@ -33,7 +33,7 @@ const positionStyles: Record<
 }
 
 export function UnsavedChangesBar({
-    show,
+    isDirty,
     isSubmitting = false,
     message = "You have unsaved changes",
     submitText = "Save changes",
@@ -50,7 +50,7 @@ export function UnsavedChangesBar({
             className={cn(
                 "fixed left-1/2 z-100 -translate-x-1/2 transition-all duration-300 ease-out",
                 styles.wrapper,
-                show
+                isDirty
                     ? "translate-y-0 opacity-100"
                     : cn("pointer-events-none opacity-0", styles.hiddenTranslate),
                 className

@@ -58,7 +58,7 @@ export function ProjectForm({
     return (
         <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
             <UnsavedChangesBar
-                show={showActionBar}
+                isDirty={showActionBar}
                 isSubmitting={isSubmitting}
                 submitText={submitText}
                 position="bottom"

@@ -1,5 +1,9 @@
 "use client"
 
+/*
+ NOTE: This component call from other component.
+ */
+
 import { useRef } from "react"
 import { ImagePlus } from "lucide-react"
 import { toast } from "sonner"

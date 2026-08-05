@@ -1,7 +1,8 @@
 "use client"
 
-import { useState } from "react"
 import { UploadCloud } from "lucide-react"
+import { useDropzone } from "react-dropzone"
+
 import { cn } from "@/lib/utils"
 
 interface ImageDropzoneProps {
@@ -15,53 +16,62 @@ export function ImageDropzone({
     children,
     onFiles,
 }: ImageDropzoneProps) {
-    const [dragging, setDragging] = useState(false)
+    const { getRootProps, getInputProps, isDragActive, isDragReject } =
+        useDropzone({
+            disabled,
+            noClick: true,
+            multiple: true,
 
-    function handleDragOver(e: React.DragEvent) {
-        e.preventDefault()
-        if (disabled) return
-        setDragging(true)
-    }
+            accept: {
+                "image/jpeg": [],
+                "image/png": [],
+                "image/webp": [],
+            },
 
-    function handleDragLeave(e: React.DragEvent) {
-        e.preventDefault()
-        setDragging(false)
-    }
+            onDrop: async (acceptedFiles) => {
+                if (!acceptedFiles.length) return
 
-    async function handleDrop(e: React.DragEvent) {
-        e.preventDefault()
-        setDragging(false)
-
-        if (disabled) return
-
-        const files = Array.from(e.dataTransfer.files).filter((file) =>
-            file.type.startsWith("image/")
-        )
-
-        if (!files.length) return
-
-        await onFiles(files)
-    }
+                await onFiles(acceptedFiles)
+            },
+        })
 
     return (
         <div
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
+            {...getRootProps()}
             className={cn(
                 "relative rounded-xl transition-all",
-                dragging &&
+                isDragActive &&
                 "ring-2 ring-primary ring-offset-2 ring-offset-background"
             )}
         >
+            <input {...getInputProps()} />
+
             {children}
 
-            {dragging && (
-                <div className="absolute inset-0 z-50 flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-primary bg-background/90 backdrop-blur-sm">
-                    <UploadCloud className="mb-3 size-12 text-primary" />
-                    <p className="font-medium">Drop images here</p>
+            {isDragActive && (
+                <div
+                    className={cn(
+                        "absolute inset-0 z-50 flex flex-col items-center justify-center rounded-xl border-2 border-dashed backdrop-blur-sm transition-all",
+                        isDragReject
+                            ? "border-destructive bg-destructive/10"
+                            : "border-primary bg-background/90"
+                    )}
+                >
+                    <UploadCloud
+                        className={cn(
+                            "mb-3 size-12",
+                            isDragReject ? "text-destructive" : "text-primary"
+                        )}
+                    />
+
+                    <p className="font-medium">
+                        {isDragReject ? "Unsupported file" : "Drop images here"}
+                    </p>
+
                     <p className="text-sm text-muted-foreground">
-                        Release to upload
+                        {isDragReject
+                            ? "Only JPG, PNG and WebP are allowed."
+                            : "Release to upload"}
                     </p>
                 </div>
             )}

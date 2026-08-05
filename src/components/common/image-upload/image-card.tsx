@@ -81,7 +81,7 @@ export function ImageCard({
 
             {/* Bottom Action Bar (Appears on Hover) */}
             {removable && !uploading && (
-                <div className="absolute inset-x-3 bottom-3 flex items-center justify-between rounded-xl bg-background/80 p-2 opacity-0 shadow-lg backdrop-blur-md transition-all duration-300 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0">
+                <div className="absolute inset-x-3 bottom-3 flex items-center justify-between rounded-xl bg-background/80 p-2 sm:opacity-0 shadow-lg backdrop-blur-md transition-all duration-300 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0">
                     <span className="text-[11px] font-medium text-muted-foreground truncate px-1">
                         Image
                     </span>
@@ -90,7 +90,7 @@ export function ImageCard({
                         size="icon"
                         type="button"
                         variant="ghost"
-                        className="size-7 rounded-lg text-destructive hover:bg-destructive hover:text-destructive-foreground transition-colors"
+                        className="size-7 rounded-lg text-destructive max-sm:bg-destructive max-sm:text-destructive-foreground hover:bg-destructive hover:text-destructive-foreground transition-colors"
                         onClick={() => onRemove?.(id)}
                     >
                         <Trash2 className="size-3.5" />
