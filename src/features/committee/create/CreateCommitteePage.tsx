@@ -15,8 +15,6 @@ export function CreateCommitteePage() {
     handleAvatarChange,
 
     isSubmitting,
-    isUploading,
-    uploadProgress,
   } = useCommitteeCreate()
 
   return (
@@ -30,9 +28,7 @@ export function CreateCommitteePage() {
             submitText="Create Committee Member"
             form={form}
             avatar={avatar}
-            isSubmitting={isSubmitting || isUploading}
-            isUploading={isUploading}
-            uploadProgress={uploadProgress}
+            isSubmitting={isSubmitting}
             onAvatarChange={handleAvatarChange}
             onSubmit={handleSubmit}
             onClear={() => form.reset()}

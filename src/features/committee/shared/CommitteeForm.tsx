@@ -21,19 +21,16 @@ import {
 } from "@/components/ui/select"
 
 import { AvatarUpload } from "@/components/common/avatar-upload/avatar-upload"
-
 import { DESIGNATION_OPTIONS } from "@/constants/designation"
-
 import type { CommitteeFormValues } from "@/schemas/committee.schema"
+import { UploadFile } from "@/types/common"
 
 interface CommitteeFormProps {
   title: string
   submitText: string
   form: UseFormReturn<CommitteeFormValues>
   isSubmitting: boolean
-  isUploading: boolean
-  uploadProgress?: number
-  avatar?: string | null
+  avatar?: UploadFile | null
   onAvatarChange?: (file: File) => void
   onSubmit: (values: CommitteeFormValues) => Promise<void>
   onClear?: () => void
@@ -44,8 +41,6 @@ export function CommitteeForm({
   submitText,
   form,
   isSubmitting,
-  isUploading,
-  uploadProgress,
   avatar,
   onAvatarChange,
   onSubmit,
@@ -70,11 +65,11 @@ export function CommitteeForm({
           <div className="flex justify-center">
             <AvatarUpload
               name={watch("name") || "Committee Member"}
-              image={avatar}
+              image={avatar?.url}
               isEditable
               onChange={onAvatarChange}
-              uploading={isUploading}
-              progress={uploadProgress}
+              uploading={avatar?.status === "uploading"}
+              progress={avatar?.progress}
             />
           </div>
 

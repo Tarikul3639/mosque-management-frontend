@@ -53,7 +53,7 @@ export function PageHeader({
                 </div>
               )}
               <div className="flex flex-wrap items-center gap-3">
-                <h1 className="bg-linear-to-r from-foreground via-foreground/90 to-muted-foreground bg-clip-text text-2xl font-bold tracking-tight text-transparent sm:text-3xl">
+                <h1 className="bg-linear-to-r from-foreground via-foreground/90 to-muted-foreground bg-clip-text text-2xl font-bold tracking-tight text-transparent sm:text-3xl line-clamp-1">
                   {title}
                 </h1>
 
@@ -69,7 +69,7 @@ export function PageHeader({
             </div>
 
             {description && (
-              <p className="text-xs text-muted-foreground/80 sm:text-sm">
+              <p className="text-xs text-muted-foreground/80 sm:text-sm line-clamp-2  ">
                 {description}
               </p>
             )}

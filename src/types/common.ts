@@ -12,7 +12,7 @@ export interface PaginatedResponse<T> {
   meta: PaginationMeta
 }
 
-export interface FileResource {
+export interface FileReference {
   id: string
   url: string
 }
@@ -22,4 +22,13 @@ export interface UserReference {
   name: string
   email?: string
   avatarUrl?: string
+}
+
+// Upload File
+export type UploadStatus = "idle" | "uploading" | "completed" | "error"
+
+export interface UploadFile extends FileReference {
+  status: UploadStatus
+  progress?: number
+  errorMessage?: string
 }

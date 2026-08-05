@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react"
+import { useCallback } from "react"
 
 import {
   useCreateFileMutation,
@@ -9,13 +9,20 @@ import { uploadToCloudinary } from "@/lib/cloudinary/upload"
 
 import type { CloudinaryFolder, FileResponse } from "@/types/upload"
 
-interface UseCloudinaryUploadReturn {
-  upload: (file: File, folder: CloudinaryFolder) => Promise<FileResponse>
+interface UploadOptions {
+  onStart?: () => void
+  onProgress?: (progress: number) => void
+  onSuccess?: (file: FileResponse) => void
+  onError?: (error: Error) => void
+  onComplete?: () => void
+}
 
-  uploading: boolean
-  progress: number
-  error: Error | null
-  reset: () => void
+interface UseCloudinaryUploadReturn {
+  upload: (
+    file: File,
+    folder: CloudinaryFolder,
+    options?: UploadOptions
+  ) => Promise<FileResponse>
 }
 
 export function useCloudinaryUpload(): UseCloudinaryUploadReturn {
@@ -23,28 +30,24 @@ export function useCloudinaryUpload(): UseCloudinaryUploadReturn {
 
   const [createFile] = useCreateFileMutation()
 
-  const [uploading, setUploading] = useState(false)
-
-  const [progress, setProgress] = useState(0)
-
-  const [error, setError] = useState<Error | null>(null)
-
-  const reset = useCallback(() => {
-    setUploading(false)
-    setProgress(0)
-    setError(null)
-  }, [])
-
   const upload = useCallback(
-    async (file: File, folder: CloudinaryFolder): Promise<FileResponse> => {
+    async (
+      file: File,
+      folder: CloudinaryFolder,
+      options?: UploadOptions
+    ): Promise<FileResponse> => {
       try {
-        setUploading(true)
-        setProgress(0)
-        setError(null)
+        options?.onStart?.()
 
         const signature = await getSignature(folder).unwrap()
 
-        const uploaded = await uploadToCloudinary(file, signature, setProgress)
+        const uploaded = await uploadToCloudinary(
+          file,
+          signature,
+          (progress) => {
+            options?.onProgress?.(progress)
+          }
+        )
 
         const dbFile = await createFile({
           publicId: uploaded.public_id,
@@ -57,21 +60,18 @@ export function useCloudinaryUpload(): UseCloudinaryUploadReturn {
           height: uploaded.height,
         }).unwrap()
 
-        setProgress(100)
+        options?.onProgress?.(100)
+        options?.onSuccess?.(dbFile)
 
         return dbFile
       } catch (err) {
-        console.error(err)
+        const error = err instanceof Error ? err : new Error("Upload failed.")
 
-        if (err instanceof Error) {
-          setError(err)
-          throw err
-        }
+        options?.onError?.(error)
 
-        setError(new Error("Upload failed."))
-        throw new Error("Upload failed.")
+        throw error
       } finally {
-        setUploading(false)
+        options?.onComplete?.()
       }
     },
     [getSignature, createFile]
@@ -79,9 +79,5 @@ export function useCloudinaryUpload(): UseCloudinaryUploadReturn {
 
   return {
     upload,
-    uploading,
-    progress,
-    error,
-    reset,
   }
 }

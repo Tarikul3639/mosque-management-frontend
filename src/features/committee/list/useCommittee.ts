@@ -24,19 +24,7 @@ export function useCommittee() {
 
   return {
     members: data?.data ?? [],
-    summary: data?.summary ?? {
-      totalMembers: 0,
-      activeMembers: 0,
-      inactiveMembers: 0,
-      presidents: 0,
-      vicePresidents: 0,
-      secretaries: 0,
-      assistantSecretaries: 0,
-      treasurers: 0,
-      imams: 0,
-      muazzins: 0,
-      members: 0,
-    },
+    summary: data?.summary ?? null,
     meta: data?.meta ?? {
       total: 0,
       totalPages: 1,

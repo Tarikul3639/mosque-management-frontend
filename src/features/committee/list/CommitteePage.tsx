@@ -52,7 +52,7 @@ export function CommitteePage() {
     <div className="space-y-6 p-6">
       <CommitteeHeader total={meta.total} />
 
-      <CommitteeSummaryCards summary={summary} />
+      <CommitteeSummaryCards summary={summary} isLoading={isLoading} />
 
       <DataTable
         columns={committeeColumns}

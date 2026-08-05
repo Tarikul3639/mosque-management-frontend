@@ -69,7 +69,7 @@ export const projectApi = baseApi.injectEndpoints({
             }
         >({
             query: ({ id, body }) => ({
-                url: `/-projects/${id}`,
+                url: `/projects/${id}`,
                 method: "PATCH",
                 body,
             }),

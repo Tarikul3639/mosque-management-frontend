@@ -49,23 +49,23 @@ export function FamilyEditForm({
         <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
           <div className="grid gap-5 md:grid-cols-2">
             <FormField icon={<Hash className="size-4" />} label="Family Number">
-              <Input {...form.register("familyNo")} />
+              <Input placeholder="Family Number" {...form.register("familyNo")} />
             </FormField>
 
             <FormField icon={<User className="size-4" />} label="Head Name">
-              <Input {...form.register("headName")} />
+              <Input placeholder="Head Name" {...form.register("headName")} />
             </FormField>
 
             <FormField icon={<Phone className="size-4" />} label="Phone Number">
-              <Input {...form.register("phone")} />
+              <Input placeholder="Phone Number" {...form.register("phone")} />
             </FormField>
 
             <FormField icon={<User className="size-4" />} label="Email">
-              <Input {...form.register("email")} />
+              <Input placeholder="Email" {...form.register("email")} />
             </FormField>
 
             <FormField icon={<MapPin className="size-4" />} label="Address">
-              <Input {...form.register("address")} />
+              <Input placeholder="Address" {...form.register("address")} />
             </FormField>
 
             <FormField icon={<Coins className="size-4" />} label="Monthly Fee">

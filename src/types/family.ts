@@ -1,4 +1,4 @@
-import { FileResource } from "./common"
+import { FileReference } from "./common"
 
 export interface FamilyDetails {
   id: string
@@ -7,7 +7,7 @@ export interface FamilyDetails {
   phone: string | null
   email: string | null
   address: string | null
-  avatar: FileResource | null
+  avatar: FileReference | null
   isActive: boolean
   currentFee: {
     monthlyFee: number
@@ -28,7 +28,7 @@ export interface Family {
   email: string | null
   phone: string
   address: string
-  avatar: FileResource | null
+  avatar: FileReference | null
   isActive: boolean
   createdAt: string
   updatedAt: string

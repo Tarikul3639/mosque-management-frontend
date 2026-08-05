@@ -1,5 +1,5 @@
 import type { Designation } from "@/constants/designation"
-import type { FileResource, PaginationMeta } from "./common"
+import type { FileReference, PaginationMeta } from "./common"
 
 export interface CommitteeMember {
   id: string
@@ -10,7 +10,7 @@ export interface CommitteeMember {
   phone: string | null
   email: string | null
 
-  avatar: FileResource | null
+  avatar: FileReference | null
   address: string | null
 
   joiningDate: string

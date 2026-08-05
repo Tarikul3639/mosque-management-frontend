@@ -20,11 +20,13 @@ import { useCreateCommitteeMemberMutation } from "@/store/api/committee.api"
 import { Designation } from "@/constants/designation"
 import { useCloudinaryUpload } from "@/hooks/use-cloudinary-upload"
 import { CloudinaryFolder } from "@/types/upload"
+import type { UploadFile } from "@/types/common"
 
 export function useCommitteeCreate() {
   const router = useRouter()
 
-  const [avatar, setAvatar] = useState<string>()
+  // ekta e single state - avatar er status, progress, url sob ekhane
+  const [avatar, setAvatar] = useState<UploadFile | null>(null)
 
   const form = useForm<CommitteeFormValues>({
     resolver: zodResolver(committeeSchema),
@@ -43,7 +45,7 @@ export function useCommitteeCreate() {
   })
 
   const [createCommittee, createState] = useCreateCommitteeMemberMutation()
-  const { upload, uploading, progress } = useCloudinaryUpload()
+  const { upload } = useCloudinaryUpload()
 
   async function handleSubmit(values: CommitteeFormValues) {
     try {
@@ -67,21 +69,66 @@ export function useCommitteeCreate() {
   }
 
   const handleAvatarChange = async (file: File) => {
+    const preview = URL.createObjectURL(file)
+
+    setAvatar({
+      id: "",
+      url: preview,
+      status: "uploading",
+      progress: 0,
+    })
+
     try {
-      const uploaded = await upload(file, CloudinaryFolder.COMMITTEE)
+      const uploaded = await upload(file, CloudinaryFolder.COMMITTEE, {
+        onProgress: (progress) => {
+          setAvatar((prev) => (prev ? { ...prev, progress } : prev))
+        },
+      })
+
+      URL.revokeObjectURL(preview)
 
       form.setValue("avatarId", uploaded.id, {
         shouldDirty: true,
         shouldValidate: true,
       })
 
-      setAvatar(uploaded.url)
+      setAvatar({
+        id: uploaded.id,
+        url: uploaded.url,
+        status: "completed",
+        progress: 100,
+      })
     } catch (error) {
+      URL.revokeObjectURL(preview)
+
       console.error(error)
       toast.error("Failed to upload avatar.", {
         description: getErrorMessage(error),
       })
+
+      setAvatar((prev) =>
+        prev
+          ? {
+            ...prev,
+            status: "error",
+            errorMessage: getErrorMessage(error),
+          }
+          : prev
+      )
     }
+  }
+
+  const handleRemoveAvatar = () => {
+    if (avatar?.url.startsWith("blob:")) {
+      URL.revokeObjectURL(avatar.url)
+    }
+
+    setAvatar(null)
+
+    form.setValue("avatarId", "", {
+      shouldDirty: true,
+      shouldValidate: true,
+    })
   }
 
   return {
@@ -91,9 +138,8 @@ export function useCommitteeCreate() {
 
     handleSubmit,
     handleAvatarChange,
+    handleRemoveAvatar,
 
     isSubmitting: createState.isLoading,
-    isUploading: uploading,
-    uploadProgress: progress,
   }
 }

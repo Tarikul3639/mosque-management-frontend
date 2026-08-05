@@ -1,5 +1,7 @@
 "use client"
 
+import { useState } from "react"
+
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -8,6 +10,7 @@ import { toast } from "sonner"
 
 import { getErrorMessage } from "@/utils/get-error-message"
 import { CloudinaryFolder } from "@/types/upload"
+import type { UploadFile } from "@/types/common"
 
 import { donorSchema, type DonorFormValues } from "@/schemas/donor.schema"
 
@@ -22,6 +25,8 @@ import { DonorForm } from "../shared/DonorForm"
 export function CreateDonorPage() {
   const router = useRouter()
 
+  const [avatar, setAvatar] = useState<UploadFile | null>(null)
+
   const form = useForm<DonorFormValues>({
     resolver: zodResolver(donorSchema),
     defaultValues: {
@@ -34,7 +39,7 @@ export function CreateDonorPage() {
     },
   })
 
-  const { upload, uploading, progress } = useCloudinaryUpload()
+  const { upload } = useCloudinaryUpload()
 
   const [createDonor, { isLoading: isSubmitting }] = useCreateDonorMutation()
 
@@ -55,19 +60,53 @@ export function CreateDonorPage() {
   }
 
   const handleAvatarChange = async (file: File) => {
+    const preview = URL.createObjectURL(file)
+
+    setAvatar({
+      id: "",
+      url: preview,
+      status: "uploading",
+      progress: 0,
+    })
+
     try {
-      const uploaded = await upload(file, CloudinaryFolder.DONORS)
+      const uploaded = await upload(file, CloudinaryFolder.DONORS, {
+        onProgress: (progress) => {
+          setAvatar((prev) => (prev ? { ...prev, progress } : prev))
+        },
+      })
+
+      URL.revokeObjectURL(preview)
 
       form.setValue("avatarId", uploaded.id, {
         shouldDirty: true,
         shouldValidate: true,
       })
+
+      setAvatar({
+        id: uploaded.id,
+        url: uploaded.url,
+        status: "completed",
+        progress: 100,
+      })
     } catch (error) {
+      URL.revokeObjectURL(preview)
+
       console.error(error)
 
       toast.error("Failed to upload avatar.", {
         description: getErrorMessage(error),
       })
+
+      setAvatar((prev) =>
+        prev
+          ? {
+            ...prev,
+            status: "error",
+            errorMessage: getErrorMessage(error),
+          }
+          : prev
+      )
     }
   }
 
@@ -83,10 +122,10 @@ export function CreateDonorPage() {
         <div className="space-y-6 xl:col-span-4 2xl:col-span-3">
           <DonorAvatarCard
             name={form.watch("name")}
-            avatarUrl={undefined}
-            uploading={uploading}
-            progress={progress}
-            completed={!uploading && progress === 100}
+            avatarUrl={avatar?.url}
+            uploading={avatar?.status === "uploading"}
+            progress={avatar?.progress ?? 0}
+            completed={avatar?.status === "completed"}
             onAvatarChange={handleAvatarChange}
           />
         </div>

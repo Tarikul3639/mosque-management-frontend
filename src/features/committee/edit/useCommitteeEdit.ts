@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -20,6 +20,7 @@ import {
   useUpdateCommitteeMemberMutation,
 } from "@/store/api/committee.api"
 import { useCloudinaryUpload } from "@/hooks/use-cloudinary-upload"
+import type { UploadFile } from "@/types/common"
 
 interface UseCommitteeEditProps {
   id: string
@@ -29,7 +30,8 @@ export function useCommitteeEdit({ id }: UseCommitteeEditProps) {
   const router = useRouter()
   const memberQuery = useGetCommitteeMemberQuery(id)
   const member = memberQuery.data
-  const [avatar, setAvatar] = useState<string>()
+
+  const [avatar, setAvatar] = useState<UploadFile | null>(null)
 
   const form = useForm<CommitteeFormValues>({
     resolver: zodResolver(committeeSchema),
@@ -46,6 +48,18 @@ export function useCommitteeEdit({ id }: UseCommitteeEditProps) {
     },
   })
 
+  // member theke original avatar banano - reset + initial load duitate use hobe
+  const getOriginalAvatar = useCallback((): UploadFile | null => {
+    if (!member?.avatar) return null
+
+    return {
+      id: member.avatar.id,
+      url: member.avatar.url,
+      status: "completed",
+      progress: 100,
+    }
+  }, [member])
+
   useEffect(() => {
     if (!member) return
 
@@ -61,12 +75,12 @@ export function useCommitteeEdit({ id }: UseCommitteeEditProps) {
       isActive: member.isActive,
     })
 
-    setAvatar(member.avatar?.url)
-  }, [member, form])
+    setAvatar(getOriginalAvatar())
+  }, [member, form, getOriginalAvatar])
 
   const [updateCommittee, updateState] = useUpdateCommitteeMemberMutation()
   const [deleteCommittee, deleteState] = useDeleteCommitteeMemberMutation()
-  const { upload, uploading, progress } = useCloudinaryUpload()
+  const { upload } = useCloudinaryUpload()
 
   async function handleSubmit(values: CommitteeFormValues) {
     try {
@@ -100,23 +114,90 @@ export function useCommitteeEdit({ id }: UseCommitteeEditProps) {
     }
   }
 
-  async function handleAvatarChange(_file: File) {
+  async function handleAvatarChange(file: File) {
+    const preview = URL.createObjectURL(file)
+
+    setAvatar({
+      id: "",
+      url: preview,
+      status: "uploading",
+      progress: 0,
+    })
+
     try {
-      const uploaded = await upload(_file, CloudinaryFolder.COMMITTEE)
+      const uploaded = await upload(file, CloudinaryFolder.COMMITTEE, {
+        onProgress: (progress) => {
+          setAvatar((prev) => (prev ? { ...prev, progress } : prev))
+        },
+      })
+
+      URL.revokeObjectURL(preview)
 
       form.setValue("avatarId", uploaded.id, {
         shouldDirty: true,
         shouldValidate: true,
       })
 
-      setAvatar(uploaded.url)
+      setAvatar({
+        id: uploaded.id,
+        url: uploaded.url,
+        status: "completed",
+        progress: 100,
+      })
     } catch (error) {
-      console.error(error)
+      URL.revokeObjectURL(preview)
 
+      console.error(error)
       toast.error("Failed to upload avatar.", {
         description: getErrorMessage(error),
       })
+
+      setAvatar((prev) =>
+        prev
+          ? {
+            ...prev,
+            status: "error",
+            errorMessage: getErrorMessage(error),
+          }
+          : prev
+      )
     }
+  }
+
+  function handleRemoveAvatar() {
+    if (avatar?.url.startsWith("blob:")) {
+      URL.revokeObjectURL(avatar.url)
+    }
+
+    setAvatar(null)
+
+    form.setValue("avatarId", "", {
+      shouldDirty: true,
+      shouldValidate: true,
+    })
+  }
+
+  // reset: form + avatar duitai original state e ferot
+  function handleReset() {
+    if (avatar?.url.startsWith("blob:")) {
+      URL.revokeObjectURL(avatar.url)
+    }
+
+    if (!member) return
+
+    form.reset({
+      name: member.name,
+      designation: member.designation,
+      phone: member.phone ?? "",
+      email: member.email ?? "",
+      avatarId: member.avatar?.id ?? "",
+      address: member.address ?? "",
+      joiningDate: member.joiningDate.split("T")[0],
+      endDate: member.endDate?.split("T")[0] ?? "",
+      isActive: member.isActive,
+    })
+
+    setAvatar(getOriginalAvatar())
   }
 
   return {
@@ -127,9 +208,9 @@ export function useCommitteeEdit({ id }: UseCommitteeEditProps) {
     handleSubmit,
     handleDelete,
     handleAvatarChange,
+    handleRemoveAvatar,
+    handleReset,
     isSubmitting: updateState.isLoading,
     isDeleting: deleteState.isLoading,
-    isUploading: uploading,
-    uploadProgress: progress,
   }
 }

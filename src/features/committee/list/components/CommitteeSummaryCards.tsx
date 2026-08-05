@@ -2,34 +2,56 @@
 
 import { Crown, ShieldCheck, UserCheck, Users } from "lucide-react"
 
-import { StatsCard } from "@/components/common/stats-card"
+import {
+  StatsCard,
+  StatsCardsSkeletonMap,
+} from "@/components/common/stats-card"
 
 import type { CommitteeSummary } from "@/types/committee"
 
 interface CommitteeSummaryCardsProps {
-  summary: CommitteeSummary
+  summary?: CommitteeSummary | null
+  isLoading?: boolean
 }
 
-export function CommitteeSummaryCards({ summary }: CommitteeSummaryCardsProps) {
+export function CommitteeSummaryCards({
+  summary,
+  isLoading,
+}: CommitteeSummaryCardsProps) {
+  if (isLoading) {
+    return <StatsCardsSkeletonMap count={4} />
+  }
+
+  const {
+    totalMembers = 0,
+    activeMembers = 0,
+    inactiveMembers = 0,
+    presidents = 0,
+    vicePresidents = 0,
+    secretaries = 0,
+    assistantSecretaries = 0,
+    treasurers = 0,
+  } = summary ?? {}
+
   const executives =
-    summary.presidents +
-    summary.vicePresidents +
-    summary.secretaries +
-    summary.assistantSecretaries +
-    summary.treasurers
+    presidents +
+    vicePresidents +
+    secretaries +
+    assistantSecretaries +
+    treasurers
 
   return (
     <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
       <StatsCard
         title="Total Members"
-        value={summary.totalMembers}
+        value={totalMembers}
         subtitle="All committee members"
         icon={<Users className="size-5" />}
       />
 
       <StatsCard
         title="Active Members"
-        value={summary.activeMembers}
+        value={activeMembers}
         subtitle="Currently active members"
         icon={<UserCheck className="size-5" />}
         iconBg="bg-green-500/10"
@@ -47,7 +69,7 @@ export function CommitteeSummaryCards({ summary }: CommitteeSummaryCardsProps) {
 
       <StatsCard
         title="Inactive Members"
-        value={summary.inactiveMembers}
+        value={inactiveMembers}
         subtitle="Currently inactive members"
         icon={<ShieldCheck className="size-5" />}
         iconBg="bg-red-500/10"

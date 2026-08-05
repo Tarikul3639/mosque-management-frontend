@@ -31,8 +31,6 @@ export function CommitteeEditPage({ id }: CommitteeEditPageProps) {
 
     isSubmitting,
     isDeleting,
-    isUploading,
-    uploadProgress,
   } = useCommitteeEdit({
     id,
   })
@@ -71,8 +69,6 @@ export function CommitteeEditPage({ id }: CommitteeEditPageProps) {
             form={form}
             avatar={avatar}
             isSubmitting={isSubmitting}
-            isUploading={isUploading}
-            uploadProgress={uploadProgress}
             onAvatarChange={handleAvatarChange}
             onSubmit={handleSubmit}
             onClear={() => form.reset()}

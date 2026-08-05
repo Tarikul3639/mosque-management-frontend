@@ -1,12 +1,14 @@
 export function formatCurrency(
-  amount: number,
-  locale = "en-BD",
-  currency = "BDT"
+  amount: number | null | undefined,
+  showFraction = true,
+  locale = "en-BD"
 ): string {
+  if (amount == null) {
+    return showFraction ? "0.00" : "0"
+  }
+
   return new Intl.NumberFormat(locale, {
-    style: "currency",
-    currency,
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
+    minimumFractionDigits: showFraction ? 2 : 0,
+    maximumFractionDigits: showFraction ? 2 : 0,
   }).format(amount)
 }

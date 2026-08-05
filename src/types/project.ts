@@ -1,5 +1,5 @@
 import type {
-  FileResource,
+  FileReference,
   PaginationMeta,
   UserReference,
 } from "./common"
@@ -14,7 +14,7 @@ export interface Project {
   spent: number
   progress: number
   status: ProjectStatus
-  images: FileResource[]
+  images: FileReference[]
   startDate: string | null
   endDate: string | null
   createdBy: UserReference | null

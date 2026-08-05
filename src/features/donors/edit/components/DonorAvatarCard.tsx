@@ -33,6 +33,7 @@ export function DonorAvatarCard({
           uploading={uploading}
           progress={progress}
           completed={completed}
+          isEditable={true}
         />
 
         <h2 className="mt-4 line-clamp-1 text-center text-2xl font-bold tracking-tight">

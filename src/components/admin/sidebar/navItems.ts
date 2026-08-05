@@ -47,7 +47,7 @@ export const navItems: NavItem[] = [
   { id: "committee", label: "Committee", icon: UsersRound, href: "/committee" },
   {
     id: "projects",
-    label: "Development Projects",
+    label: "Projects",
     icon: Building2,
     href: "/projects",
   },

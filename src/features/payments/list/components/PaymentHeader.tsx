@@ -59,7 +59,7 @@ export function PaymentHeader({
       title="Payments"
       description="Manage, track and monitor all family payments."
       icon={<CreditCard className="size-6" />}
-      action={
+      actions={
         <>
           {/* Month Filter */}
           <Select

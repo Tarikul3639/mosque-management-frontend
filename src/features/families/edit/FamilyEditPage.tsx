@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -14,6 +14,7 @@ import {
 } from "@/store/api/family.api"
 
 import { CloudinaryFolder } from "@/types/upload"
+import type { UploadFile } from "@/types/common"
 
 import { familySchema, type FamilyFormValues } from "@/schemas/family.schema"
 
@@ -33,6 +34,8 @@ interface FamilyEditPageProps {
 export function FamilyEditPage({ id }: FamilyEditPageProps) {
   const router = useRouter()
 
+  const [avatar, setAvatar] = useState<UploadFile | null>(null)
+
   const form = useForm<FamilyFormValues>({
     resolver: zodResolver(familySchema),
     defaultValues: {
@@ -44,7 +47,7 @@ export function FamilyEditPage({ id }: FamilyEditPageProps) {
     },
   })
 
-  const { upload, uploading, progress } = useCloudinaryUpload()
+  const { upload } = useCloudinaryUpload()
 
   const {
     data: family,
@@ -56,17 +59,33 @@ export function FamilyEditPage({ id }: FamilyEditPageProps) {
 
   const [updateFamily, { isLoading: isSubmitting }] = useUpdateFamilyMutation()
 
+  // family theke original avatar banano - reset + initial load duitate use hobe
+  const getOriginalAvatar = useCallback((): UploadFile | null => {
+    if (!family?.avatar) return null
+
+    return {
+      id: family.avatar.id,
+      url: family.avatar.url,
+      status: "completed",
+      progress: 100,
+    }
+  }, [family])
+
   useEffect(() => {
     if (!family) return
 
     form.reset({
+      familyNo: family.familyNo,
       headName: family.headName,
       phone: family.phone ?? "",
+      email: family.email ?? "",
       address: family.address ?? "",
       avatarId: family.avatar?.id ?? "",
       isActive: family.isActive,
     })
-  }, [family, form])
+
+    setAvatar(getOriginalAvatar())
+  }, [family, form, getOriginalAvatar])
 
   const onSubmit = async (values: FamilyFormValues) => {
     try {
@@ -74,6 +93,8 @@ export function FamilyEditPage({ id }: FamilyEditPageProps) {
         id: family!.id,
         body: values,
       }).unwrap()
+
+      toast.success("Family updated successfully.")
 
       router.push(`/families/${family!.id}`)
     } catch (err) {
@@ -85,20 +106,73 @@ export function FamilyEditPage({ id }: FamilyEditPageProps) {
   }
 
   const handleAvatarChange = async (file: File) => {
+    const preview = URL.createObjectURL(file)
+
+    setAvatar({
+      id: "",
+      url: preview,
+      status: "uploading",
+      progress: 0,
+    })
+
     try {
-      const uploaded = await upload(file, CloudinaryFolder.FAMILIES)
+      const uploaded = await upload(file, CloudinaryFolder.FAMILIES, {
+        onProgress: (progress) => {
+          setAvatar((prev) => (prev ? { ...prev, progress } : prev))
+        },
+      })
+
+      URL.revokeObjectURL(preview)
 
       form.setValue("avatarId", uploaded.id, {
         shouldDirty: true,
         shouldValidate: true,
       })
+
+      setAvatar({
+        id: uploaded.id,
+        url: uploaded.url,
+        status: "completed",
+        progress: 100,
+      })
     } catch (error) {
+      URL.revokeObjectURL(preview)
+
       console.error(error)
       toast.error("Failed to upload avatar.", {
         description: getErrorMessage(error),
       })
+
+      setAvatar((prev) =>
+        prev
+          ? {
+            ...prev,
+            status: "error",
+            errorMessage: getErrorMessage(error),
+          }
+          : prev
+      )
     }
   }
+
+  // Reset form and avatar to original values
+  // function handleReset() {
+  //   if (avatar?.url.startsWith("blob:")) {
+  //     URL.revokeObjectURL(avatar.url)
+  //   }
+
+  //   if (!family) return
+
+  //   form.reset({
+  //     headName: family.headName,
+  //     phone: family.phone ?? "",
+  //     address: family.address ?? "",
+  //     avatarId: family.avatar?.id ?? "",
+  //     isActive: family.isActive,
+  //   })
+
+  //   setAvatar(getOriginalAvatar())
+  // }
 
   if (isLoading) {
     return <FamilyEditSkeleton />
@@ -127,9 +201,9 @@ export function FamilyEditPage({ id }: FamilyEditPageProps) {
           <FamilyEditProfileCard
             family={family}
             isEditable
-            uploading={uploading}
-            progress={progress}
-            completed={!uploading && progress === 100}
+            uploading={avatar?.status === "uploading"}
+            progress={avatar?.progress ?? 0}
+            completed={avatar?.status === "completed"}
             onAvatarChange={handleAvatarChange}
           />
         </div>
