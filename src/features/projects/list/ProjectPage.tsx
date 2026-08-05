@@ -12,78 +12,78 @@ import { useProject } from "./useProject"
 import { ErrorComponent } from "@/components/common/error"
 
 export function ProjectPage() {
-    const {
-        projects,
-        summary,
-        meta,
+  const {
+    projects,
+    summary,
+    meta,
 
-        isLoading,
-        isSummaryLoading,
+    isLoading,
+    isSummaryLoading,
 
-        page,
-        setPage,
+    page,
+    setPage,
 
-        status,
-        setStatus,
+    status,
+    setStatus,
 
-        limit,
-        setLimit,
+    limit,
+    setLimit,
 
-        isError,
-        refetch,
+    isError,
+    refetch,
 
-        search,
-        setSearch,
-    } = useProject()
+    search,
+    setSearch,
+  } = useProject()
 
-    if (isError) {
-        return (
-            <ErrorComponent
-                onRetry={refetch}
-                title="Error"
-                error="An error occurred while fetching project data."
-            />
-        )
-    }
-
+  if (isError) {
     return (
-        <div className="space-y-6 p-6">
-            <ProjectHeader />
-
-            <ProjectSummaryCards isLoading={isSummaryLoading} summary={summary} />
-
-            <DataTable
-                columns={projectColumns}
-                initialColumnVisibility={{
-                    timeline: false
-                }}
-                data={projects}
-                isLoading={isLoading}
-                isFetching={isLoading}
-                currentPage={page}
-                totalPages={meta?.totalPages ?? 0}
-                pageSize={limit}
-                totalItems={meta?.total ?? 0}
-                onPageChange={setPage}
-                onPageSizeChange={setLimit}
-            >
-                {(table) => (
-                    <DataTableToolbar
-                        table={table}
-                        search={search}
-                        onSearchChange={setSearch}
-                        isFiltered={!!status || !!search}
-                        onReset={() => {
-                            setSearch("")
-                            setStatus(undefined)
-                        }}
-                        placeholder="Search by project name, description, or location"
-                        filters={
-                            <ProjectFilters status={status} onStatusChange={setStatus} />
-                        }
-                    />
-                )}
-            </DataTable>
-        </div>
+      <ErrorComponent
+        onRetry={refetch}
+        title="Error"
+        error="An error occurred while fetching project data."
+      />
     )
+  }
+
+  return (
+    <div className="space-y-6 p-6">
+      <ProjectHeader />
+
+      <ProjectSummaryCards isLoading={isSummaryLoading} summary={summary} />
+
+      <DataTable
+        columns={projectColumns}
+        initialColumnVisibility={{
+          timeline: false,
+        }}
+        data={projects}
+        isLoading={isLoading}
+        isFetching={isLoading}
+        currentPage={page}
+        totalPages={meta?.totalPages ?? 0}
+        pageSize={limit}
+        totalItems={meta?.total ?? 0}
+        onPageChange={setPage}
+        onPageSizeChange={setLimit}
+      >
+        {(table) => (
+          <DataTableToolbar
+            table={table}
+            search={search}
+            onSearchChange={setSearch}
+            isFiltered={!!status || !!search}
+            onReset={() => {
+              setSearch("")
+              setStatus(undefined)
+            }}
+            placeholder="Search by project name, description, or location"
+            filters={
+              <ProjectFilters status={status} onStatusChange={setStatus} />
+            }
+          />
+        )}
+      </DataTable>
+    </div>
+  )
 }

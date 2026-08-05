@@ -31,22 +31,12 @@ export function ProjectProgressInput({
             max={100}
             value={value}
             onChange={(e) =>
-              onChange(
-                Math.min(
-                  100,
-                  Math.max(
-                    0,
-                    Number(e.target.value) || 0,
-                  ),
-                ),
-              )
+              onChange(Math.min(100, Math.max(0, Number(e.target.value) || 0)))
             }
             className="w-28"
           />
 
-          <span className="text-sm font-medium">
-            %
-          </span>
+          <span className="text-sm font-medium">%</span>
         </div>
 
         <Progress value={value} className="h-2.5" />

@@ -14,167 +14,167 @@ import { useCreateProjectMutation } from "@/store/api/project.api"
 import { useCloudinaryUpload } from "@/hooks/use-cloudinary-upload"
 
 export function useProjectCreate() {
-    const router = useRouter()
+  const router = useRouter()
 
-    const [images, setImages] = useState<UploadImage[]>([])
+  const [images, setImages] = useState<UploadImage[]>([])
 
-    const form = useForm<ProjectFormValues>({
-        resolver: zodResolver(projectSchema),
-        defaultValues: {
-            title: "",
-            description: "",
-            budget: 0,
-            spent: 0,
-            progress: 0,
-            status: "PLANNING",
-            imageIds: [],
-            startDate: "",
-            endDate: "",
+  const form = useForm<ProjectFormValues>({
+    resolver: zodResolver(projectSchema),
+    defaultValues: {
+      title: "",
+      description: "",
+      budget: 0,
+      spent: 0,
+      progress: 0,
+      status: "PLANNING",
+      imageIds: [],
+      startDate: "",
+      endDate: "",
+    },
+  })
+
+  const [createProject, createState] = useCreateProjectMutation()
+
+  const { upload } = useCloudinaryUpload()
+
+  async function handleSubmit(values: ProjectFormValues) {
+    try {
+      const project = await createProject({
+        ...values,
+        imageIds: images
+          .filter((image) => image.completed)
+          .map((image) => image.id),
+        description: values.description || undefined,
+        startDate: values.startDate || undefined,
+        endDate: values.endDate || undefined,
+      }).unwrap()
+
+      toast.success("Project created successfully.")
+      router.push(`/projects/${project.id}`)
+    } catch (error) {
+      toast.error(getErrorMessage(error))
+    }
+  }
+
+  async function handleImagesChange(files: File[]) {
+    for (const file of files) {
+      const tempId = crypto.randomUUID()
+      const preview = URL.createObjectURL(file)
+
+      setImages((prev) => [
+        ...prev,
+        {
+          id: tempId,
+          url: preview,
+          progress: 0,
+          uploading: true,
+          completed: false,
+          error: false,
         },
+      ])
+
+      try {
+        const uploaded = await upload(file, CloudinaryFolder.PROJECTS, {
+          onProgress: (progress) => {
+            setImages((prev) =>
+              prev.map((image) =>
+                image.id === tempId
+                  ? {
+                      ...image,
+                      progress,
+                    }
+                  : image
+              )
+            )
+          },
+        })
+
+        setImages((prev) => {
+          const updated = prev.map((image) =>
+            image.id === tempId
+              ? {
+                  ...image,
+                  id: uploaded.id,
+                  url: uploaded.url,
+                  progress: 100,
+                  uploading: false,
+                  completed: true,
+                  error: false,
+                }
+              : image
+          )
+
+          form.setValue(
+            "imageIds",
+            updated.filter((image) => image.completed).map((image) => image.id),
+            {
+              shouldDirty: true,
+              shouldValidate: true,
+            }
+          )
+
+          return updated
+        })
+      } catch (error) {
+        setImages((prev) =>
+          prev.map((image) =>
+            image.id === tempId
+              ? {
+                  ...image,
+                  uploading: false,
+                  completed: false,
+                  error: true,
+                }
+              : image
+          )
+        )
+
+        toast.error(getErrorMessage(error))
+      }
+    }
+  }
+
+  function handleRemoveImage(id: string) {
+    setImages((prev) => {
+      const image = prev.find((item) => item.id === id)
+
+      if (image?.url.startsWith("blob:")) {
+        URL.revokeObjectURL(image.url)
+      }
+
+      const updated = prev.filter((item) => item.id !== id)
+
+      form.setValue(
+        "imageIds",
+        updated.filter((image) => image.completed).map((image) => image.id),
+        {
+          shouldDirty: true,
+          shouldValidate: true,
+        }
+      )
+
+      return updated
+    })
+  }
+
+  function handleReset() {
+    images.forEach((image) => {
+      if (image.url.startsWith("blob:")) {
+        URL.revokeObjectURL(image.url)
+      }
     })
 
-    const [createProject, createState] = useCreateProjectMutation()
+    setImages([])
+    form.reset()
+  }
 
-    const { upload } = useCloudinaryUpload()
-
-    async function handleSubmit(values: ProjectFormValues) {
-        try {
-            const project = await createProject({
-                ...values,
-                imageIds: images
-                    .filter((image) => image.completed)
-                    .map((image) => image.id),
-                description: values.description || undefined,
-                startDate: values.startDate || undefined,
-                endDate: values.endDate || undefined,
-            }).unwrap()
-
-            toast.success("Project created successfully.")
-            router.push(`/projects/${project.id}`)
-        } catch (error) {
-            toast.error(getErrorMessage(error))
-        }
-    }
-
-    async function handleImagesChange(files: File[]) {
-        for (const file of files) {
-            const tempId = crypto.randomUUID()
-            const preview = URL.createObjectURL(file)
-
-            setImages((prev) => [
-                ...prev,
-                {
-                    id: tempId,
-                    url: preview,
-                    progress: 0,
-                    uploading: true,
-                    completed: false,
-                    error: false,
-                },
-            ])
-
-            try {
-                const uploaded = await upload(file, CloudinaryFolder.PROJECTS, {
-                    onProgress: (progress) => {
-                        setImages((prev) =>
-                            prev.map((image) =>
-                                image.id === tempId
-                                    ? {
-                                        ...image,
-                                        progress,
-                                    }
-                                    : image
-                            )
-                        )
-                    },
-                })
-
-                setImages((prev) => {
-                    const updated = prev.map((image) =>
-                        image.id === tempId
-                            ? {
-                                ...image,
-                                id: uploaded.id,
-                                url: uploaded.url,
-                                progress: 100,
-                                uploading: false,
-                                completed: true,
-                                error: false,
-                            }
-                            : image
-                    )
-
-                    form.setValue(
-                        "imageIds",
-                        updated.filter((image) => image.completed).map((image) => image.id),
-                        {
-                            shouldDirty: true,
-                            shouldValidate: true,
-                        }
-                    )
-
-                    return updated
-                })
-            } catch (error) {
-                setImages((prev) =>
-                    prev.map((image) =>
-                        image.id === tempId
-                            ? {
-                                ...image,
-                                uploading: false,
-                                completed: false,
-                                error: true,
-                            }
-                            : image
-                    )
-                )
-
-                toast.error(getErrorMessage(error))
-            }
-        }
-    }
-
-    function handleRemoveImage(id: string) {
-        setImages((prev) => {
-            const image = prev.find((item) => item.id === id)
-
-            if (image?.url.startsWith("blob:")) {
-                URL.revokeObjectURL(image.url)
-            }
-
-            const updated = prev.filter((item) => item.id !== id)
-
-            form.setValue(
-                "imageIds",
-                updated.filter((image) => image.completed).map((image) => image.id),
-                {
-                    shouldDirty: true,
-                    shouldValidate: true,
-                }
-            )
-
-            return updated
-        })
-    }
-
-    function handleReset() {
-        images.forEach((image) => {
-            if (image.url.startsWith("blob:")) {
-                URL.revokeObjectURL(image.url)
-            }
-        })
-
-        setImages([])
-        form.reset()
-    }
-
-    return {
-        form,
-        images,
-        handleSubmit,
-        handleImagesChange,
-        handleRemoveImage,
-        handleReset,
-        isSubmitting: createState.isLoading,
-    }
+  return {
+    form,
+    images,
+    handleSubmit,
+    handleImagesChange,
+    handleRemoveImage,
+    handleReset,
+    isSubmitting: createState.isLoading,
+  }
 }

@@ -10,29 +10,25 @@ import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
 
 interface ProjectEditHeaderProps {
-    project: Project
+  project: Project
 }
 
-export function ProjectEditHeader({
-    project,
-}: ProjectEditHeaderProps) {
-    const router = useRouter()
+export function ProjectEditHeader({ project }: ProjectEditHeaderProps) {
+  const router = useRouter()
 
-    return (
-        <PageHeader
-            title={`Edit ${project.title}`}
-            description="Update project information, financial details, timeline, and gallery."
-            icon={
-                <FolderPen className="size-6 text-primary" />
-            }
-            backLinkHref={`/project/${project.id}`}
-            backLinkTitle="Back to Project"
-            actions={
-                <Button onClick={() => router.replace(`/projects/${project.id}`)}>
-                    <Eye className="mr-2 size-4" />
-                    View Project
-                </Button>
-            }
-        />
-    )
+  return (
+    <PageHeader
+      title={`Edit ${project.title}`}
+      description="Update project information, financial details, timeline, and gallery."
+      icon={<FolderPen className="size-6 text-primary" />}
+      backLinkHref={`/project/${project.id}`}
+      backLinkTitle="Back to Project"
+      actions={
+        <Button onClick={() => router.replace(`/projects/${project.id}`)}>
+          <Eye className="mr-2 size-4" />
+          View Project
+        </Button>
+      }
+    />
+  )
 }

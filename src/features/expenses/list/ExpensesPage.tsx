@@ -47,12 +47,13 @@ export function ExpensesPage() {
 
   // Memoize the query object to avoid unnecessary re-renders
   const query = useMemo(
-    () => ({
-      page,
-      limit,
-      search: search.trim() || undefined,
-      category: category === "ALL" ? undefined : category,
-    }) satisfies ExpenseQuery,
+    () =>
+      ({
+        page,
+        limit,
+        search: search.trim() || undefined,
+        category: category === "ALL" ? undefined : category,
+      }) satisfies ExpenseQuery,
     [page, limit, search, category]
   )
 

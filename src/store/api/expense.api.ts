@@ -29,21 +29,21 @@ export const expenseApi = baseApi.injectEndpoints({
       providesTags: (result) =>
         result
           ? [
-            ...result.data.map(({ id }) => ({
-              type: "Expense" as const,
-              id,
-            })),
-            {
-              type: "Expense",
-              id: "LIST",
-            },
-          ]
+              ...result.data.map(({ id }) => ({
+                type: "Expense" as const,
+                id,
+              })),
+              {
+                type: "Expense",
+                id: "LIST",
+              },
+            ]
           : [
-            {
-              type: "Expense",
-              id: "LIST",
-            },
-          ],
+              {
+                type: "Expense",
+                id: "LIST",
+              },
+            ],
     }),
 
     // ==================================================

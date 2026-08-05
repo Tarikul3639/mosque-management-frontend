@@ -155,10 +155,10 @@ export function useCommitteeEdit({ id }: UseCommitteeEditProps) {
       setAvatar((prev) =>
         prev
           ? {
-            ...prev,
-            status: "error",
-            errorMessage: getErrorMessage(error),
-          }
+              ...prev,
+              status: "error",
+              errorMessage: getErrorMessage(error),
+            }
           : prev
       )
     }

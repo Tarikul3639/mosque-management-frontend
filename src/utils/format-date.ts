@@ -9,7 +9,7 @@ export function formatDate(date: Date | string | null): string {
 export function formatDateRange(
   from?: Date | string | null,
   to?: Date | string | null
- ): string {
+): string {
   if (!from || !to) {
     return "All Time"
   }

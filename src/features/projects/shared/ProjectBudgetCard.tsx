@@ -4,12 +4,7 @@ import type { UseFormReturn } from "react-hook-form"
 
 import { Wallet, TrendingUp, BarChart3 } from "lucide-react"
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -20,9 +15,7 @@ interface ProjectBudgetCardProps {
   form: UseFormReturn<ProjectFormValues>
 }
 
-export function ProjectBudgetCard({
-  form,
-}: ProjectBudgetCardProps) {
+export function ProjectBudgetCard({ form }: ProjectBudgetCardProps) {
   const {
     register,
     formState: { errors },
@@ -31,9 +24,7 @@ export function ProjectBudgetCard({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>
-          Budget Information
-        </CardTitle>
+        <CardTitle>Budget Information</CardTitle>
       </CardHeader>
 
       <CardContent className="grid gap-5 md:grid-cols-3">
@@ -52,9 +43,7 @@ export function ProjectBudgetCard({
           />
 
           {errors.budget && (
-            <p className="text-xs text-destructive">
-              {errors.budget.message}
-            </p>
+            <p className="text-xs text-destructive">{errors.budget.message}</p>
           )}
         </div>
 
@@ -73,9 +62,7 @@ export function ProjectBudgetCard({
           />
 
           {errors.spent && (
-            <p className="text-xs text-destructive">
-              {errors.spent.message}
-            </p>
+            <p className="text-xs text-destructive">{errors.spent.message}</p>
           )}
         </div>
 

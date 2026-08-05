@@ -10,12 +10,7 @@ import {
   UserCircle2,
 } from "lucide-react"
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 import { Separator } from "@/components/ui/separator"
 
@@ -31,9 +26,7 @@ export function ProjectInformationCard({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>
-          Project Information
-        </CardTitle>
+        <CardTitle>Project Information</CardTitle>
       </CardHeader>
 
       <CardContent className="space-y-5">
@@ -49,10 +42,7 @@ export function ProjectInformationCard({
           <InfoItem
             icon={<FileText className="size-4" />}
             label="Description"
-            value={
-              project.description ??
-              "No description available."
-            }
+            value={project.description ?? "No description available."}
           />
 
           <Separator />
@@ -60,10 +50,7 @@ export function ProjectInformationCard({
           <InfoItem
             icon={<CalendarDays className="size-4" />}
             label="Created"
-            value={format(
-              new Date(project.createdAt),
-              "dd MMM yyyy, hh:mm a",
-            )}
+            value={format(new Date(project.createdAt), "dd MMM yyyy, hh:mm a")}
           />
 
           <Separator />
@@ -71,10 +58,7 @@ export function ProjectInformationCard({
           <InfoItem
             icon={<Clock3 className="size-4" />}
             label="Last Updated"
-            value={format(
-              new Date(project.updatedAt),
-              "dd MMM yyyy, hh:mm a",
-            )}
+            value={format(new Date(project.updatedAt), "dd MMM yyyy, hh:mm a")}
           />
 
           <Separator />
@@ -82,10 +66,7 @@ export function ProjectInformationCard({
           <InfoItem
             icon={<UserCircle2 className="size-4" />}
             label="Created By"
-            value={
-              project.createdBy?.name ??
-              "System"
-            }
+            value={project.createdBy?.name ?? "System"}
           />
 
           <Separator />
@@ -93,10 +74,7 @@ export function ProjectInformationCard({
           <InfoItem
             icon={<UserCircle2 className="size-4" />}
             label="Updated By"
-            value={
-              project.updatedBy?.name ??
-              "System"
-            }
+            value={project.updatedBy?.name ?? "System"}
           />
         </div>
       </CardContent>
@@ -110,11 +88,7 @@ interface InfoItemProps {
   value: React.ReactNode
 }
 
-function InfoItem({
-  icon,
-  label,
-  value,
-}: InfoItemProps) {
+function InfoItem({ icon, label, value }: InfoItemProps) {
   return (
     <div className="flex items-start gap-3">
       <div className="mt-0.5 rounded-md bg-primary/10 p-2 text-primary">
@@ -122,13 +96,9 @@ function InfoItem({
       </div>
 
       <div className="min-w-0 flex-1">
-        <p className="text-xs text-muted-foreground">
-          {label}
-        </p>
+        <p className="text-xs text-muted-foreground">{label}</p>
 
-        <p className="mt-1 wrap-break-word text-sm font-medium">
-          {value}
-        </p>
+        <p className="mt-1 text-sm font-medium wrap-break-word">{value}</p>
       </div>
     </div>
   )

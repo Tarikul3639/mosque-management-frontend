@@ -1,8 +1,4 @@
-import type {
-  FileReference,
-  PaginationMeta,
-  UserReference,
-} from "./common"
+import type { FileReference, PaginationMeta, UserReference } from "./common"
 
 import type { ProjectStatus } from "@/constants/project-status"
 
@@ -57,5 +53,4 @@ export interface CreateProjectDto {
   endDate?: string
 }
 
-export interface UpdateProjectDto
-  extends Partial<CreateProjectDto> {}
+export interface UpdateProjectDto extends Partial<CreateProjectDto> {}

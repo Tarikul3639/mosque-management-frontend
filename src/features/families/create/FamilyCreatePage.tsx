@@ -84,10 +84,10 @@ export function FamilyCreatePage() {
       setAvatar((prev) =>
         prev
           ? {
-            ...prev,
-            status: "error",
-            errorMessage: getErrorMessage(error),
-          }
+              ...prev,
+              status: "error",
+              errorMessage: getErrorMessage(error),
+            }
           : prev
       )
     }

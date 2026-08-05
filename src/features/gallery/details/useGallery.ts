@@ -3,25 +3,23 @@
 import { useGetGalleryQuery } from "@/store/api/gallery.api"
 
 interface UseGalleryProps {
-    id: string
+  id: string
 }
 
-export function useGallery({
-    id,
-}: UseGalleryProps) {
-    const {
-        data: gallery,
-        isLoading,
-        isFetching,
-        refetch,
-    } = useGetGalleryQuery(id)
+export function useGallery({ id }: UseGalleryProps) {
+  const {
+    data: gallery,
+    isLoading,
+    isFetching,
+    refetch,
+  } = useGetGalleryQuery(id)
 
-    return {
-        gallery,
+  return {
+    gallery,
 
-        isLoading,
-        isFetching,
+    isLoading,
+    isFetching,
 
-        refetch,
-    }
+    refetch,
+  }
 }

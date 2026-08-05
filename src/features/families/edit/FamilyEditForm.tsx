@@ -49,7 +49,10 @@ export function FamilyEditForm({
         <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
           <div className="grid gap-5 md:grid-cols-2">
             <FormField icon={<Hash className="size-4" />} label="Family Number">
-              <Input placeholder="Family Number" {...form.register("familyNo")} />
+              <Input
+                placeholder="Family Number"
+                {...form.register("familyNo")}
+              />
             </FormField>
 
             <FormField icon={<User className="size-4" />} label="Head Name">
