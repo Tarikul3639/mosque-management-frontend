@@ -48,6 +48,7 @@ export const baseApi = createApi({
     "Project",
 
     "Payment",
+    "PrayerTime",
   ],
   endpoints: () => ({}),
 })

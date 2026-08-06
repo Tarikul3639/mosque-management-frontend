@@ -52,6 +52,12 @@ export const navItems: NavItem[] = [
     href: "/projects",
   },
   { id: "galleries", label: "Galleries", icon: Images, href: "/galleries" },
+  {
+    id: "prayer-times",
+    label: "Prayer Times",
+    icon: CalendarClock,
+    href: "/prayer-times",
+  },
   { id: "reports", label: "Reports", icon: BarChart3, href: "/reports" },
   { id: "settings", label: "Settings", icon: Settings, href: "/settings" },
 ]
