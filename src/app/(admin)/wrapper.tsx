@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { useRouter } from "next/navigation"
 
 import { Sidebar } from "@/components/layouts/admin/sidebar/Sidebar"
@@ -9,11 +9,17 @@ import { PageLoader } from "@/components/common/page-loader"
 import { ErrorComponent } from "@/components/common/error"
 
 import { useMeQuery } from "@/store/api/auth.api"
+import { useOnClickOutside } from "@/hooks/useOnClickOutside"
 
 export function AdminLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter()
+  const sidebarRef = useRef<HTMLDivElement>(null)
 
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
+
+  useOnClickOutside(sidebarRef, () => {
+    if (isOpen) setIsOpen(false)
+  })
 
   const { data: me, isLoading, isError, error, refetch } = useMeQuery()
 
@@ -45,13 +51,15 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex h-screen overflow-hidden">
-      <Sidebar
-        isOpen={isOpen}
-        userId={me.id}
-        userName={me.name}
-        userRole={me.role}
-        userAvatarUrl={me.avatar ?? "/images/placeholder.svg"}
-      />
+      <div ref={sidebarRef}>
+        <Sidebar
+          isOpen={isOpen}
+          userId={me.id}
+          userName={me.name}
+          userRole={me.role}
+          userAvatarUrl={me.avatar ?? "/images/placeholder.svg"}
+        />
+      </div>
 
       <div className="flex flex-1 flex-col overflow-hidden">
         <Navbar onMenuClick={() => setIsOpen((x) => !x)} />

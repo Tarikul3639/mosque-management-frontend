@@ -48,7 +48,7 @@ function Collapsible({
 }
 
 export function Sidebar({
-  isOpen = true,
+  isOpen = false,
   userId,
   userName = "Unknown User",
   userRole = "Super Admin",
