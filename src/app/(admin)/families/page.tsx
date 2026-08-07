@@ -130,6 +130,7 @@ export default function FamiliesPage() {
                   filters={
                     <Select
                       value={status}
+                      key={status}
                       onValueChange={(value) => {
                         setStatus(value as FamilyStatusFilter)
                         setPage(1)

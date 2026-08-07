@@ -157,6 +157,7 @@ export function PaymentsPage() {
               <>
                 {/* Status Filter */}
                 <Select
+                  key={status ?? "ALL"}
                   value={status ?? "ALL"}
                   onValueChange={(value) =>
                     setStatus(
@@ -181,6 +182,7 @@ export function PaymentsPage() {
 
                 {/* Payment Method Filter */}
                 <Select
+                  key={method ?? "ALL"}
                   value={method ?? "ALL"}
                   onValueChange={(value) =>
                     setMethod(

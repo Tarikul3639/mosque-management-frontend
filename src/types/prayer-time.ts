@@ -1,19 +1,19 @@
 export interface PrayerTime {
-    id: string
+  id: string
 
-    fajr: string
-    sunrise: string | null
+  fajr: string
+  sunrise: string | null
 
-    dhuhr: string
-    asr: string
+  dhuhr: string
+  asr: string
 
-    maghrib: string
-    isha: string
+  maghrib: string
+  isha: string
 
-    jummah: string | null
+  jummah: string | null
 
-    createdAt: string
-    updatedAt: string
+  createdAt: string
+  updatedAt: string
 }
 
 export type UpdatePrayerTimeDto = Omit<PrayerTime, "createdAt" | "updatedAt">

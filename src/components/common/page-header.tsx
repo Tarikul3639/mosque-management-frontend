@@ -1,75 +1,109 @@
-// src/components/common/page-header.tsx
-
 "use client"
 
 import { ArrowLeft } from "lucide-react"
 import type { ReactNode } from "react"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+
 import { useRouter } from "next/navigation"
+
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 
 interface PageHeaderProps {
   title: string
   description?: string
+
   icon?: ReactNode
   actions?: ReactNode
-  isActive?: boolean
+
+  status?: string
+
   backLinkHref?: string
   backLinkTitle?: string
+}
+
+function formatStatusLabel(status: string) {
+  return status
+    .replace(/_/g, " ")
+    .toLowerCase()
+    .replace(/\b\w/g, (char) => char.toUpperCase())
+}
+
+function getBadgeVariant(status: string) {
+  switch (status.toUpperCase()) {
+    case "ACTIVE":
+      return "default"
+
+    case "INACTIVE":
+    case "SUSPENDED":
+      return "destructive"
+
+    case "PENDING":
+      return "secondary"
+
+    case "ADMIN":
+    case "SUPER_ADMIN":
+      return "outline"
+
+    default:
+      return "outline"
+  }
 }
 
 export function PageHeader({
   title,
   description,
-  isActive,
+
   icon,
   actions,
-  backLinkTitle = "Back To Home",
+
+  status,
+
   backLinkHref,
+  backLinkTitle = "Back",
 }: PageHeaderProps) {
   const router = useRouter()
+
   return (
-    <div className="flex flex-col flex-wrap items-start justify-between gap-4 sm:flex-row sm:items-center">
-      <div className="flex flex-col gap-2">
-        {/* Back Link */}
-        <div className="space-y-2">
-          {backLinkHref && (
-            <Button
-              onClick={() => router.replace(backLinkHref)}
-              variant="ghost"
-              size="sm"
-              className="-ml-2 h-8 gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
-            >
-              <ArrowLeft className="size-3.5" />
-              {backLinkTitle}
-            </Button>
+    <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-center">
+      <div className="min-w-0 space-y-3">
+        {backLinkHref && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => router.push(backLinkHref)}
+            className="-ml-2 h-8 gap-1.5 px-2 text-xs text-muted-foreground hover:text-foreground"
+          >
+            <ArrowLeft className="size-3.5" />
+
+            {backLinkTitle}
+          </Button>
+        )}
+
+        <div className="flex items-start gap-4">
+          {icon && (
+            <div className="flex size-11 shrink-0 items-center justify-center rounded-xl border bg-primary/5 shadow-xs">
+              {icon}
+            </div>
           )}
 
-          <div className="flex flex-col gap-1">
-            <div className="flex items-center gap-3">
-              {icon && (
-                <div className="flex size-11 items-center justify-center rounded-lg border bg-primary/5">
-                  {icon}
-                </div>
-              )}
-              <div className="flex flex-wrap items-center gap-3">
-                <h1 className="line-clamp-1 bg-linear-to-r from-foreground via-foreground/90 to-muted-foreground bg-clip-text text-2xl font-bold tracking-tight text-transparent sm:text-3xl">
-                  {title}
-                </h1>
+          <div className="min-w-0 space-y-1.5">
+            <div className="flex flex-wrap items-center gap-3">
+              <h1 className="truncate bg-linear-to-r from-foreground via-foreground/90 to-muted-foreground bg-clip-text text-3xl font-bold tracking-tight text-transparent">
+                {title}
+              </h1>
 
-                {isActive !== undefined && (
-                  <Badge
-                    variant={isActive ? "default" : "destructive"}
-                    className="rounded-full px-2.5 py-0.5 text-xs"
-                  >
-                    {isActive ? "Active" : "Inactive"}
-                  </Badge>
-                )}
-              </div>
+              {status && (
+                <Badge
+                  variant={getBadgeVariant(status)}
+                  className="rounded-full px-3 py-1 text-xs font-medium"
+                >
+                  {formatStatusLabel(status)}
+                </Badge>
+              )}
             </div>
 
             {description && (
-              <p className="line-clamp-2 text-xs text-muted-foreground/80 sm:text-sm">
+              <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
                 {description}
               </p>
             )}
@@ -78,7 +112,9 @@ export function PageHeader({
       </div>
 
       {actions && (
-        <div className="flex flex-wrap items-center gap-2">{actions}</div>
+        <div className="flex w-full flex-wrap items-center justify-start gap-2 lg:w-auto lg:justify-end">
+          {actions}
+        </div>
       )}
     </div>
   )

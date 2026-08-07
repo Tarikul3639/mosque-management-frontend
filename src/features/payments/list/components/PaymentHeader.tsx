@@ -63,6 +63,7 @@ export function PaymentHeader({
         <>
           {/* Month Filter */}
           <Select
+            key={month}
             value={month?.toString() ?? ""}
             onValueChange={(value) =>
               setMonth(value ? parseInt(value) : undefined)
@@ -87,6 +88,7 @@ export function PaymentHeader({
 
           {/* Year Filter */}
           <Select
+            key={year}
             value={year?.toString() ?? ""}
             onValueChange={(value) =>
               setYear(value ? parseInt(value) : undefined)

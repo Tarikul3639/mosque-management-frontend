@@ -8,6 +8,7 @@ type BarPosition = "top" | "bottom"
 
 interface UnsavedChangesBarProps {
   isDirty: boolean
+  isValid?: boolean
   isSubmitting?: boolean
   message?: string
   submitText?: string
@@ -23,7 +24,7 @@ const positionStyles: Record<
   { wrapper: string; hiddenTranslate: string }
 > = {
   top: {
-    wrapper: "top-4",
+    wrapper: "top-20",
     hiddenTranslate: "-translate-y-6",
   },
   bottom: {
@@ -34,13 +35,14 @@ const positionStyles: Record<
 
 export function UnsavedChangesBar({
   isDirty,
+  isValid = true,
   isSubmitting = false,
   message = "You have unsaved changes",
   submitText = "Save changes",
   resetText = "Reset",
   onSubmit,
   onReset,
-  position = "top",
+  position = "bottom",
   className,
 }: UnsavedChangesBarProps) {
   const styles = positionStyles[position]
@@ -56,8 +58,10 @@ export function UnsavedChangesBar({
         className
       )}
     >
-      <div className="flex items-center gap-3 rounded-full border bg-background/95 px-4 py-2 shadow-lg backdrop-blur supports-backdrop-filter:bg-background/80">
-        <span className="pl-1 text-sm text-muted-foreground">{message}</span>
+      <div className="flex max-w-[92vw] items-center gap-3 rounded-full border bg-background/95 px-4 py-2 shadow-lg backdrop-blur supports-backdrop-filter:bg-background/80">
+        <span className="min-w-0 truncate pl-1 text-sm text-muted-foreground">
+          {message}
+        </span>
 
         <div className="flex items-center gap-2">
           {onReset && (
@@ -79,7 +83,7 @@ export function UnsavedChangesBar({
             size="sm"
             className="h-8 rounded-full px-4"
             onClick={onSubmit}
-            disabled={isSubmitting}
+            disabled={isSubmitting || !isValid}
           >
             {isSubmitting && (
               <Loader2 className="mr-1.5 size-3.5 animate-spin" />

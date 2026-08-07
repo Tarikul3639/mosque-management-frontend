@@ -25,7 +25,7 @@ export function CommitteeDetailsHeader({
       description="Committee member details and information."
       backLinkHref="/committee"
       backLinkTitle="Back to Committee"
-      isActive={isActive}
+      status={isActive ? "Active" : "Inactive"}
       actions={
         <Button asChild>
           <Link href={`/committee/${id}/edit`}>

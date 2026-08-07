@@ -29,11 +29,13 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
 
   if (isError && "status" in error && error.status !== 401) {
     return (
-      <ErrorComponent
-        title="Failed to load user."
-        error="Unable to connect to the server."
-        onRetry={refetch}
-      />
+      <div className="flex h-screen items-center justify-center">
+        <ErrorComponent
+          title="Failed to load user."
+          error="Unable to connect to the server."
+          onRetry={refetch}
+        />
+      </div>
     )
   }
 
@@ -45,6 +47,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
     <div className="flex h-screen overflow-hidden">
       <Sidebar
         isOpen={isOpen}
+        userId={me.id}
         userName={me.name}
         userRole={me.role}
         userAvatarUrl={me.avatar ?? "/images/placeholder.svg"}

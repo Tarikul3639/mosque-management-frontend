@@ -28,6 +28,7 @@ export function CommitteeFilters({
   return (
     <>
       <Select
+        key={designation}
         value={designation}
         onValueChange={(value) =>
           onDesignationChange(value ? (value as Designation) : undefined)

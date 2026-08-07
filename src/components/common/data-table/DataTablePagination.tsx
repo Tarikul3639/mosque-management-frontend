@@ -10,6 +10,7 @@ import {
   Select,
   SelectContent,
   SelectItem,
+  SelectSeparator,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
@@ -72,6 +73,7 @@ export function DataTablePagination({
           </span>
 
           <Select
+            key={pageSize}
             value={String(pageSize)}
             onValueChange={(value) => onPageSizeChange?.(Number(value))}
           >
@@ -79,7 +81,12 @@ export function DataTablePagination({
               <SelectValue />
             </SelectTrigger>
 
-            <SelectContent className="rounded-lg">
+            <SelectContent className="rounded-lg p-1">
+              <SelectItem value="" disabled>
+                Page Size
+              </SelectItem>
+
+              <SelectSeparator />
               {PAGE_SIZES.map((size) => (
                 <SelectItem key={size} value={String(size)}>
                   {size}

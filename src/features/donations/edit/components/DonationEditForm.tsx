@@ -148,6 +148,7 @@ export function DonationEditForm({
                 </Label>
 
                 <Select
+                  key={form.watch("paymentMethod")}
                   value={form.watch("paymentMethod")}
                   onValueChange={(value) =>
                     form.setValue("paymentMethod", value as any, {

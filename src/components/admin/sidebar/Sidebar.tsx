@@ -16,6 +16,7 @@ import {
 
 interface SidebarProps {
   isOpen?: boolean
+  userId?: string
   userName?: string
   userRole?: string
   userAvatarUrl?: string
@@ -48,11 +49,14 @@ function Collapsible({
 
 export function Sidebar({
   isOpen = true,
+  userId,
   userName = "Unknown User",
   userRole = "Super Admin",
   userAvatarUrl,
 }: SidebarProps) {
   const pathname = usePathname()
+
+  const isYourProfilePage = pathname === `/users/${userId}`
 
   const initials = userName
     .split(" ")
@@ -138,8 +142,12 @@ export function Sidebar({
         <Tooltip>
           <TooltipTrigger asChild>
             <Link
-              href="/profile"
-              className="flex w-full items-center rounded-lg p-2 transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+              href={`${"/users/"}${userId}`}
+              className={`flex w-full items-center rounded-lg p-2 transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground ${
+                isYourProfilePage
+                  ? "bg-primary font-medium text-primary-foreground"
+                  : "text-sidebar-foreground"
+              }`}
             >
               <Avatar className="h-9 w-9 shrink-0 border border-sidebar-border">
                 <AvatarImage src={userAvatarUrl} alt={userName} />

@@ -115,6 +115,7 @@ export function ExpensesPage() {
               <div className="flex flex-wrap items-center gap-2">
                 {/* Category Filter */}
                 <Select
+                  key={category}
                   value={category}
                   onValueChange={(value) =>
                     setCategory(value as ExpenseCategory | "ALL")

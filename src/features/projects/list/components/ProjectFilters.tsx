@@ -27,6 +27,7 @@ export function ProjectFilters({
 }: ProjectFiltersProps) {
   return (
     <Select
+      key={status ?? "all"}
       value={status ?? "all"}
       onValueChange={(value) =>
         onStatusChange(value === "all" ? undefined : (value as ProjectStatus))

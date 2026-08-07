@@ -59,7 +59,7 @@ export function FamilyEditPage({ id }: FamilyEditPageProps) {
 
   const [updateFamily, { isLoading: isSubmitting }] = useUpdateFamilyMutation()
 
-  // family theke original avatar banano - reset + initial load duitate use hobe
+  // function to get the original avatar from the family data
   const getOriginalAvatar = useCallback((): UploadFile | null => {
     if (!family?.avatar) return null
 

@@ -54,7 +54,11 @@ export function DonationFilters<TData>({
         />
       </div>
 
-      <Select value={paymentMethod} onValueChange={onPaymentMethodChange}>
+      <Select
+        value={paymentMethod}
+        key={paymentMethod}
+        onValueChange={onPaymentMethodChange}
+      >
         <SelectTrigger className="w-full lg:w-52">
           <SelectValue placeholder="Payment Method" />
         </SelectTrigger>

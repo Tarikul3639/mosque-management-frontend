@@ -165,7 +165,11 @@ export function PaymentEditForm({
                 control={form.control}
                 name="method"
                 render={({ field }) => (
-                  <Select value={field.value} onValueChange={field.onChange}>
+                  <Select
+                    value={field.value}
+                    key={field.value}
+                    onValueChange={field.onChange}
+                  >
                     <SelectTrigger>
                       <SelectValue placeholder="Select payment method" />
                     </SelectTrigger>

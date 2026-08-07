@@ -74,6 +74,7 @@ export function FamilyPaymentHistory({ familyId }: FamilyPaymentHistoryProps) {
 
         <div className="flex flex-wrap items-center justify-end gap-2">
           <Select
+            key={query.year}
             value={query.year.toString()}
             onValueChange={(value) =>
               setQuery((prev) => ({
@@ -98,6 +99,7 @@ export function FamilyPaymentHistory({ familyId }: FamilyPaymentHistoryProps) {
           </Select>
 
           <Select
+            key={query.month}
             value={query.month?.toString() ?? "all"}
             onValueChange={(value) =>
               setQuery((prev) => ({

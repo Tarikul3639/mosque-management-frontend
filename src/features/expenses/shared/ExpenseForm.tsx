@@ -129,6 +129,7 @@ export function ExpenseForm({
               </Label>
 
               <Select
+                key={category}
                 value={category}
                 onValueChange={(value) =>
                   form.setValue("category", value as ExpenseCategory, {

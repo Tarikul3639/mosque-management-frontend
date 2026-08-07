@@ -121,6 +121,7 @@ export function MonthlyChargesPage() {
               <>
                 {/* Status Filter */}
                 <Select
+                  key={status}
                   value={status}
                   onValueChange={(value) =>
                     setStatus(value as PaymentStatus | undefined)
@@ -145,6 +146,7 @@ export function MonthlyChargesPage() {
 
                 {/* Month Filter */}
                 <Select
+                  key={month}
                   value={month?.toString() ?? ""}
                   onValueChange={(value) =>
                     setMonth(value ? parseInt(value) : undefined)
@@ -172,6 +174,7 @@ export function MonthlyChargesPage() {
 
                 {/* Year Filter */}
                 <Select
+                  key={year}
                   value={year?.toString() ?? ""}
                   onValueChange={(value) =>
                     setYear(value ? parseInt(value) : undefined)

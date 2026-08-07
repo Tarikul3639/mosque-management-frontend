@@ -105,6 +105,7 @@ export function ProjectForm({
             <Label>Status</Label>
 
             <Select
+              key={status ?? "all"}
               value={status}
               onValueChange={(value) =>
                 form.setValue("status", value as ProjectStatus, {

@@ -42,12 +42,12 @@ export function AvatarUpload({
   onChange,
 }: AvatarUploadProps) {
   const inputRef = useRef<HTMLInputElement>(null)
-  const [preview, setPreview] = useState(image ?? "")
+  const [preview, setPreview] = useState(image ?? undefined)
   const [cropOpen, setCropOpen] = useState(false)
   const [selectedImage, setSelectedImage] = useState("")
 
   useEffect(() => {
-    setPreview(image ?? "")
+    setPreview(image ?? undefined)
   }, [image])
 
   useEffect(() => {

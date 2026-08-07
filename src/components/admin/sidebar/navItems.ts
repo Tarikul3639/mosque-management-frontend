@@ -58,6 +58,12 @@ export const navItems: NavItem[] = [
     icon: CalendarClock,
     href: "/prayer-times",
   },
-  { id: "reports", label: "Reports", icon: BarChart3, href: "/reports" },
-  { id: "settings", label: "Settings", icon: Settings, href: "/settings" },
+  {
+    id: "users",
+    label: "Admin Users",
+    icon: UsersRound,
+    href: "/users",
+  },
+  // { id: "reports", label: "Reports", icon: BarChart3, href: "/reports" },
+  // { id: "settings", label: "Settings", icon: Settings, href: "/settings" },
 ]

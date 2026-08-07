@@ -66,6 +66,7 @@ export function FamilyTableToolbar({
 
         <div className="flex flex-col gap-3 sm:flex-row">
           <Select
+            key={status}
             value={status}
             onValueChange={(value) =>
               onStatusChange(value as FamilyStatusFilter)
@@ -85,6 +86,7 @@ export function FamilyTableToolbar({
           </Select>
 
           <Select
+            key={sortBy}
             value={sortBy}
             onValueChange={(value) =>
               onSortByChange(value as NonNullable<FamilyQuery["sortBy"]>)

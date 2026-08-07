@@ -211,6 +211,7 @@ export function PaymentCreateForm({
                 name="method"
                 render={({ field }) => (
                   <Select
+                    key={field.value}
                     value={field.value ?? ""}
                     onValueChange={(value) =>
                       field.onChange(value as PaymentMethod)

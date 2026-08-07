@@ -84,6 +84,7 @@ export function DonorsPage() {
             }}
             filters={
               <Select
+                key={status}
                 value={status}
                 onValueChange={(value) =>
                   setStatus(value as "active" | "inactive")

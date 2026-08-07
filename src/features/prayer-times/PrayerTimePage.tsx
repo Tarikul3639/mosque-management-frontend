@@ -10,38 +10,38 @@ import { PrayerTimeInformationCard } from "./components/PrayerTimeInformationCar
 import { usePrayerTime } from "./usePrayerTime"
 
 export function PrayerTimePage() {
-    const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false)
 
-    const {
-        prayerTime,
+  const {
+    prayerTime,
 
-        form,
-        handleSubmit,
+    form,
+    handleSubmit,
 
-        isLoading,
-        isSubmitting,
-    } = usePrayerTime()
+    isLoading,
+    isSubmitting,
+  } = usePrayerTime()
 
-    if (isLoading || !prayerTime) {
-        return <PrayerTimeSkeleton />
-    }
+  if (isLoading || !prayerTime) {
+    return <PrayerTimeSkeleton />
+  }
 
-    return (
-        <>
-            <div className="space-y-6 p-6">
-                <PrayerTimeHeader onEdit={() => setOpen(true)} />
+  return (
+    <>
+      <div className="space-y-6 p-6">
+        <PrayerTimeHeader onEdit={() => setOpen(true)} />
 
-                <PrayerTimeInformationCard prayerTime={prayerTime} />
-            </div>
+        <PrayerTimeInformationCard prayerTime={prayerTime} />
+      </div>
 
-            <PrayerTimeEditDialog
-                open={open}
-                onOpenChange={setOpen}
-                form={form}
-                isSubmitting={isSubmitting}
-                onSubmit={handleSubmit}
-                onReset={() => form.reset()}
-            />
-        </>
-    )
+      <PrayerTimeEditDialog
+        open={open}
+        onOpenChange={setOpen}
+        form={form}
+        isSubmitting={isSubmitting}
+        onSubmit={handleSubmit}
+        onReset={() => form.reset()}
+      />
+    </>
+  )
 }

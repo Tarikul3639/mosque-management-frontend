@@ -97,6 +97,7 @@ export function CommitteeForm({
               <Label>Designation</Label>
 
               <Select
+                key={watch("designation")}
                 value={watch("designation")}
                 onValueChange={(value) => {
                   setValue("designation", value as never, {

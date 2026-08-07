@@ -17,7 +17,7 @@ export function ErrorComponent({
   onRetry,
 }: ErrorComponentProps) {
   return (
-    <div className="flex min-h-[420px] items-center justify-center rounded-lg border bg-card p-8">
+    <div className="flex h-full min-h-105 w-full items-center justify-center rounded-lg border bg-card p-8">
       <div className="flex max-w-md flex-col items-center text-center">
         <div className="relative mb-6">
           <div className="flex size-24 items-center justify-center rounded-full border border-destructive/20 bg-destructive/5">
