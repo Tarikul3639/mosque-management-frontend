@@ -1,5 +1,24 @@
-import type { NextConfig } from "next"
+import type { NextConfig } from 'next';
 
-const nextConfig: NextConfig = {}
+/**
+ * CRITICAL: If you remove this rewrite, all API requests will go directly to the backend.
+ * The browser will treat it as cross-site and block it — cookies won't be set, and authentication will not work.
+ */
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
-export default nextConfig
+const nextConfig: NextConfig = {
+  async rewrites() {
+    return {
+      beforeFiles: [
+        {
+          source: '/api/v1/:path*',
+          destination: `${BACKEND_URL}/api/v1/:path*`,
+        },
+      ],
+      afterFiles: [],
+      fallback: [],
+    };
+  },
+};
+
+export default nextConfig;

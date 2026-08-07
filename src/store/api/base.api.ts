@@ -6,7 +6,8 @@ import {
 import type { FetchArgs, FetchBaseQueryError } from "@reduxjs/toolkit/query"
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: process.env.NEXT_PUBLIC_API_URL,
+  // baseUrl: process.env.NEXT_PUBLIC_API_URL,
+  baseUrl: "/api/v1",
   credentials: "include",
   prepareHeaders: (headers) => {
     headers.set("Content-Type", "application/json")
