@@ -79,7 +79,7 @@ export function ExpensesPage() {
   }
 
   return (
-    <div className="space-y-6 p-6">
+    <div className="space-y-6 px-2 py-4 sm:p-6">
       <ExpenseHeader />
 
       <ExpenseSummaryCards summary={summary} isLoading={isSummaryLoading} />

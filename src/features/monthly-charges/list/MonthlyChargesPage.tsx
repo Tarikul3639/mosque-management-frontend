@@ -78,7 +78,7 @@ export function MonthlyChargesPage() {
   }
 
   return (
-    <div className="space-y-6 p-6">
+    <div className="space-y-6 px-2 py-4 sm:p-6">
       <MonthlyChargesHeader
         generating={isGenerating}
         onGenerate={handleGenerate}

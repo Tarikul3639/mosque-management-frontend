@@ -103,7 +103,7 @@ export function PageHeader({
             </div>
 
             {description && (
-              <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
+              <p className="line-clamp-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
                 {description}
               </p>
             )}

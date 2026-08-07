@@ -56,7 +56,7 @@ export function DashboardPage() {
     useGetRecentExpensesQuery()
 
   return (
-    <div className="flex flex-col gap-6 bg-background px-4">
+    <div className="flex flex-col gap-6 bg-background px-2 py-2 sm:px-4">
       <DashboardHeader
         userName={me?.name ?? ""}
         subtitle="Here's what's happening in your mosque today."

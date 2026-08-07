@@ -77,7 +77,7 @@ export function FamilyDetailsPage({ id }: FamilyDetailsPageProps) {
 
   return (
     <>
-      <div className="space-y-6 p-6">
+      <div className="space-y-6 px-2 py-4 sm:p-6">
         <FamilyHeader family={family} />
 
         <div className="grid gap-6 xl:grid-cols-12">

@@ -111,7 +111,7 @@ export function CreateDonorPage() {
   }
 
   return (
-    <div className="space-y-6 p-6">
+    <div className="space-y-6 px-2 py-4 sm:p-6">
       <CreateDonorHeader
         title="Create Donor"
         description="Add a new donor to the mosque management system."

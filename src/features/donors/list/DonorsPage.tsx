@@ -47,7 +47,7 @@ export function DonorsPage() {
   const { data: donors, isLoading, isFetching } = useGetDonorsQuery(query)
 
   return (
-    <div className="space-y-6 p-6">
+    <div className="space-y-6 px-2 py-4 sm:p-6">
       {/* Header */}
       <DonorsHeader totalDonors={donors?.total || 0} />
 

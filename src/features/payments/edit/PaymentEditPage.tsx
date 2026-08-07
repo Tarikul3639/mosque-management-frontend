@@ -52,7 +52,7 @@ export function PaymentEditPage({ id }: PaymentEditPageProps) {
   }
 
   return (
-    <div className="space-y-6 p-6">
+    <div className="space-y-6 px-2 py-4 sm:p-6">
       <PaymentEditHeader
         paymentId={payment.id}
         familyNo={payment.familyNo}
