@@ -20,10 +20,10 @@ import { familySchema, type FamilyFormValues } from "@/schemas/family.schema"
 
 import { useCloudinaryUpload } from "@/hooks/use-cloudinary-upload"
 
-import { FamilyEditHeader } from "./FamilyEditHeader"
-import { FamilyEditProfileCard } from "./FamilyEditProfileCard"
-import { FamilyEditForm } from "./FamilyEditForm"
-import { FamilyEditSkeleton } from "./FamilyEditSkeleton"
+import { FamilyEditHeader } from "./components/FamilyEditHeader"
+import { FamilyEditProfileCard } from "./components/FamilyEditProfileCard"
+import { FamilyEditForm } from "./components/FamilyEditForm"
+import { FamilyEditSkeleton } from "./components/FamilyEditSkeleton"
 
 import { toast } from "sonner"
 

@@ -1,6 +1,6 @@
-import AuthHero from "@/components/auth/auth-hero"
-import AuthQuoteCard from "@/components/auth/auth-quote-card"
-import ForgotPasswordForm from "@/components/auth/forgot-password-form"
+import AuthHero from "@/features/auth/auth-hero"
+import AuthQuoteCard from "@/features/auth/auth-quote-card"
+import ForgotPasswordForm from "@/features/auth/forgot-password-form"
 
 import type { Metadata } from "next"
 

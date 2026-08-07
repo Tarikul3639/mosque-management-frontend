@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 
-import { Sidebar } from "@/components/admin/sidebar/Sidebar"
-import { Navbar } from "@/components/admin/navbar/Navbar"
+import { Sidebar } from "@/components/layouts/admin/sidebar/Sidebar"
+import { Navbar } from "@/components/layouts/admin/navbar/Navbar"
 import { PageLoader } from "@/components/common/page-loader"
 import { ErrorComponent } from "@/components/common/error"
 

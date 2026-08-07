@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
-import { Sidebar } from "@/components/admin/sidebar/Sidebar"
+import { Sidebar } from "@/components/layouts/admin/sidebar/Sidebar"
 
 export const metadata: Metadata = {
   title: "Masjid Management System",

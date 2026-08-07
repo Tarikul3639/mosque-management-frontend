@@ -1,7 +1,7 @@
 import { Suspense } from "react"
-import AuthHero from "@/components/auth/auth-hero"
-import AuthQuoteCard from "@/components/auth/auth-quote-card"
-import ResetPasswordForm from "@/components/auth/reset-password-form"
+import AuthHero from "@/features/auth/auth-hero"
+import AuthQuoteCard from "@/features/auth/auth-quote-card"
+import ResetPasswordForm from "@/features/auth/reset-password-form"
 import { PageLoader } from "@/components/common/page-loader"
 import type { Metadata } from "next"
 

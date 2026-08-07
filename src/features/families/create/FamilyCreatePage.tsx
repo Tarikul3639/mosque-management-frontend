@@ -16,9 +16,9 @@ import { familySchema, type FamilyFormValues } from "@/schemas/family.schema"
 import { useCloudinaryUpload } from "@/hooks/use-cloudinary-upload"
 import { getErrorMessage } from "@/utils/get-error-message"
 
-import { FamilyCreateHeader } from "./FamilyCreateHeader"
-import { FamilyCreateProfileCard } from "./FamilyCreateProfileCard"
-import { FamilyCreateForm } from "./FamilyCreateForm"
+import { FamilyCreateHeader } from "./components/FamilyCreateHeader"
+import { FamilyCreateProfileCard } from "./components/FamilyCreateProfileCard"
+import { FamilyCreateForm } from "./components/FamilyCreateForm"
 
 export function FamilyCreatePage() {
   const router = useRouter()
