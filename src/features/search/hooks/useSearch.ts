@@ -19,10 +19,7 @@ export function useSearch() {
 
   const debouncedQuery = useDebouncedSearch(query, 300)
 
-  const [
-    search,
-    { data = [], isLoading, isFetching, isError, refetch, reset },
-  ] = useLazyGlobalSearchQuery()
+  const [search, { data = [], isLoading, isFetching, isError, reset }] = useLazyGlobalSearchQuery()
 
   useCommandShortcut({
     onOpen: () => setOpen(true),
@@ -57,7 +54,7 @@ export function useSearch() {
     isFetching,
     isError,
 
-    refetch,
+    refetch: () => search(debouncedQuery),
 
     handleSelect,
   }
