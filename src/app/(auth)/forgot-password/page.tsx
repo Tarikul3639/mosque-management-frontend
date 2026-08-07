@@ -17,8 +17,8 @@ export const metadata: Metadata = {
 export default function ForgotPasswordPage() {
   return (
     <main className="min-h-screen bg-background">
-      <div className="mx-auto flex min-h-screen max-w-7xl items-center justify-center p-6 lg:p-10">
-        <div className="grid w-full overflow-hidden rounded-3xl border bg-background shadow-sm max-lg:max-w-md lg:grid-cols-2">
+      <div className="mx-auto flex min-h-screen max-w-6xl items-center justify-center px-2 sm:p-6 lg:p-10">
+        <div className="grid w-full overflow-hidden rounded-xl sm:rounded-3xl border border-border bg-background shadow sm:shadow-lg lg:grid-cols-2">
           {/* Left Side */}
           <AuthHero
             image="/images/login-hero.png"
@@ -33,7 +33,7 @@ export default function ForgotPasswordPage() {
           </AuthHero>
 
           {/* Right Side */}
-          <section className="flex w-full items-center justify-center p-8 lg:p-14">
+          <section className="flex w-full items-center justify-center p-5 sm:p-8 lg:p-14">
             <ForgotPasswordForm />
           </section>
         </div>

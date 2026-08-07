@@ -17,8 +17,8 @@ export const metadata: Metadata = {
 export default function LoginPage() {
   return (
     <main className="min-h-screen bg-background">
-      <div className="mx-auto flex min-h-screen max-w-6xl items-center justify-center p-6 lg:p-10">
-        <div className="grid w-full overflow-hidden rounded-3xl border border-border bg-background shadow-lg lg:grid-cols-2">
+      <div className="mx-auto flex min-h-screen max-w-6xl items-center justify-center px-2 sm:p-6 lg:p-10">
+        <div className="grid w-full overflow-hidden rounded-xl sm:rounded-3xl border border-border bg-background shadow sm:shadow-lg lg:grid-cols-2">
           {/* Left */}
           <AuthHero
             image="/images/login-hero.png"
@@ -45,7 +45,7 @@ export default function LoginPage() {
           </AuthHero>
 
           {/* Right */}
-          <section className="flex items-center justify-center p-8 sm:p-10 lg:p-14">
+          <section className="flex items-center justify-center p-5 sm:p-10 lg:p-14">
             <LoginForm />
           </section>
         </div>
