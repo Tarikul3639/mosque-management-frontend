@@ -55,7 +55,6 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
 
       <div className="flex flex-1 flex-col overflow-hidden">
         <Navbar
-          onSearch={(q) => console.log(q)}
           onMenuClick={() => setIsOpen((x) => !x)}
         />
 
