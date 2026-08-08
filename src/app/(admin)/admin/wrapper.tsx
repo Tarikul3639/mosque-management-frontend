@@ -3,10 +3,11 @@
 import { useEffect, useState, useRef } from "react"
 import { useRouter } from "next/navigation"
 
-import { Sidebar } from "@/components/layouts/admin/sidebar/Sidebar"
-import { Navbar } from "@/components/layouts/admin/navbar/Navbar"
+import { Sidebar } from "@/components/layouts/admin/Sidebar"
+import { Navbar } from "@/components/layouts/admin/Navbar"
 import { PageLoader } from "@/components/common/page-loader"
 import { ErrorComponent } from "@/components/common/error"
+import { ROUTES } from "@/config/routes"
 
 import { useMeQuery } from "@/store/api/auth.api"
 import { useOnClickOutside } from "@/hooks/useOnClickOutside"
@@ -25,7 +26,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (isError && "status" in error && error.status === 401) {
-      router.replace("/login")
+      router.replace(ROUTES.AUTH.LOGIN)
     }
   }, [isError, error, router])
 

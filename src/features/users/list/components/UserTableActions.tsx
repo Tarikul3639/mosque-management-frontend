@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { useState } from "react"
 import Link from "next/link"
 import { Eye, Pencil, Trash2, MoreHorizontal, Loader2 } from "lucide-react"
@@ -62,14 +63,14 @@ export function UserTableActions({ id }: UserTableActionsProps) {
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
-            <Link href={`/users/${id}`}>
+            <Link href={ROUTES.ADMIN.USERS.DETAIL(id)}>
               <Eye className="mr-2 size-4" />
               View
             </Link>
           </DropdownMenuItem>
 
           <DropdownMenuItem asChild>
-            <Link href={`/users/${id}/edit`}>
+            <Link href={ROUTES.ADMIN.USERS.EDIT(id)}>
               <Pencil className="mr-2 size-4" />
               Edit
             </Link>

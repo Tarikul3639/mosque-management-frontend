@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { useMemo, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
@@ -95,7 +96,7 @@ export function usePaymentCreate() {
       }).unwrap()
 
       toast.success("Payment created successfully.")
-      router.push(`/payments/${payment.id}`)
+      router.push(ROUTES.ADMIN.PAYMENTS.DETAIL(payment.id))
     } catch (error) {
       toast.error("Failed to create payment.", {
         description: getErrorMessage(error),

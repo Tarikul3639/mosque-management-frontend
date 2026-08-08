@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { useMemo } from "react"
 import Link from "next/link"
 import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts"
@@ -101,7 +102,7 @@ export function ExpenseCategoryChart({ data, isLoading, from, to }: Props) {
           </div>
 
           <Button asChild variant="outline" size="sm">
-            <Link href="/report">View Full Report</Link>
+            <Link href={ROUTES.ADMIN.DASHBOARD}>View Full Report</Link>
           </Button>
         </div>
       </CardHeader>

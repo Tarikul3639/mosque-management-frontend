@@ -1,7 +1,7 @@
-// src/features/expenses/create/components/ExpenseCreateHeader.tsx
-
 "use client"
 
+import { ROUTES } from "@/config/routes"
+// src/features/expenses/create/components/ExpenseCreateHeader.tsx
 import Link from "next/link"
 import { ArrowLeft, Plus } from "lucide-react"
 
@@ -12,7 +12,7 @@ export function ExpenseCreateHeader() {
     <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
       <div className="flex items-start gap-4">
         <Button asChild variant="outline" size="icon">
-          <Link href="/expenses">
+          <Link href={ROUTES.ADMIN.EXPENSES.INDEX}>
             <ArrowLeft className="size-4" />
           </Link>
         </Button>

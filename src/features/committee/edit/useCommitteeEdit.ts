@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { useCallback, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
@@ -48,7 +49,7 @@ export function useCommitteeEdit({ id }: UseCommitteeEditProps) {
     },
   })
 
-  // member theke original avatar banano - reset + initial load duitate use hobe
+  // get the original avatar from the member data, if it exists
   const getOriginalAvatar = useCallback((): UploadFile | null => {
     if (!member?.avatar) return null
 
@@ -97,7 +98,7 @@ export function useCommitteeEdit({ id }: UseCommitteeEditProps) {
       }).unwrap()
 
       toast.success("Committee member updated successfully.")
-      router.push(`/committee/${id}`)
+      router.push(ROUTES.ADMIN.COMMITTEE.DETAIL(id))
     } catch (error) {
       toast.error(getErrorMessage(error))
     }
@@ -108,7 +109,7 @@ export function useCommitteeEdit({ id }: UseCommitteeEditProps) {
       await deleteCommittee(id).unwrap()
 
       toast.success("Committee member deleted.")
-      router.push("/committee")
+      router.push(ROUTES.ADMIN.COMMITTEE.INDEX)
     } catch (error) {
       toast.error(getErrorMessage(error))
     }
@@ -177,7 +178,7 @@ export function useCommitteeEdit({ id }: UseCommitteeEditProps) {
     })
   }
 
-  // reset: form + avatar duitai original state e ferot
+  // reset: form + avatar 
   function handleReset() {
     if (avatar?.url.startsWith("blob:")) {
       URL.revokeObjectURL(avatar.url)

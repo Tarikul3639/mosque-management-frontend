@@ -1,3 +1,4 @@
+import { ROUTES } from "@/config/routes"
 import { Plus, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -21,7 +22,7 @@ export function FamiliesHeader() {
         </Button>
 
         <Button size="lg" asChild>
-          <Link href="/families/create">
+          <Link href={ROUTES.ADMIN.FAMILIES.CREATE}>
             <Plus className="h-4 w-4" />
             Create Family
           </Link>

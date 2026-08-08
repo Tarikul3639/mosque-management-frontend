@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import Link from "next/link"
 import { Receipt, Wallet } from "lucide-react"
 
@@ -123,7 +124,7 @@ export function DonorDonationHistoryCard({
                 </div>
 
                 <Button asChild size="sm" variant="outline">
-                  <Link href={`/donations/${donation.id}`}>
+                  <Link href={ROUTES.ADMIN.DONATIONS.DETAIL(donation.id)}>
                     <Receipt className="mr-2 h-4 w-4" />
                     View
                   </Link>

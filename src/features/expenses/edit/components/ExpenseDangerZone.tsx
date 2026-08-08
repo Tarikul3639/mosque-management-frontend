@@ -1,7 +1,6 @@
-// src/features/expenses/edit/components/ExpenseDangerZone.tsx
-
 "use client"
 
+// src/features/expenses/edit/components/ExpenseDangerZone.tsx
 import { Trash2 } from "lucide-react"
 
 import {

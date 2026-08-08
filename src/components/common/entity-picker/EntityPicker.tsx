@@ -1,7 +1,6 @@
-// src/components/common/entity-picker/EntityPicker.tsx
-
 "use client"
 
+// src/components/common/entity-picker/EntityPicker.tsx
 import { useEffect, useMemo } from "react"
 
 import { useEntityPicker } from "./hooks"

@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { ShieldPlus } from "lucide-react"
 
 import { PageHeader } from "@/components/common/page-header"
@@ -10,7 +11,7 @@ export function UserCreateHeader() {
       title="Create User"
       description="Create a new administrator or user account for the mosque management system."
       icon={<ShieldPlus className="size-5 text-primary" />}
-      backLinkHref="/users"
+      backLinkHref={ROUTES.ADMIN.USERS.INDEX}
       backLinkTitle="Back to Users"
     />
   )

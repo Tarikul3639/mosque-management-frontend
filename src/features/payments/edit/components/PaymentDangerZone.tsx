@@ -1,7 +1,6 @@
-// src/features/payments/edit/components/PaymentDangerZone.tsx
-
 "use client"
 
+// src/features/payments/edit/components/PaymentDangerZone.tsx
 import { useState } from "react"
 import { AlertTriangle, Loader2, Trash2 } from "lucide-react"
 

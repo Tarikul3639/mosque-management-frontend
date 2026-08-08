@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { useState } from "react"
 
 import { useRouter } from "next/navigation"
@@ -99,7 +100,7 @@ export function FamilyCreatePage() {
 
       toast.success("Family created successfully.")
 
-      router.push(`/families/${family.id}`)
+      router.push(ROUTES.ADMIN.FAMILIES.DETAIL(family.id))
     } catch (err) {
       console.error(err)
 

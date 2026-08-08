@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { useState } from "react"
 import type { ColumnDef } from "@tanstack/react-table"
 
@@ -74,7 +75,7 @@ export const donorColumns: ColumnDef<Donor>[] = [
 
       return (
         <Link
-          href={`/donors/${donor.id}`}
+          href={ROUTES.ADMIN.DONORS.DETAIL(donor.id)}
           className="font-medium hover:text-primary hover:underline"
         >
           {donor.name}
@@ -179,14 +180,14 @@ export const donorColumns: ColumnDef<Donor>[] = [
 
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              <Link href={`/donors/${row.original.id}`}>
+              <Link href={ROUTES.ADMIN.DONORS.DETAIL(row.original.id)}>
                 <Eye className="size-4" />
                 <span>View</span>
               </Link>
             </DropdownMenuItem>
 
             <DropdownMenuItem asChild>
-              <Link href={`/donors/${row.original.id}/edit`}>
+              <Link href={ROUTES.ADMIN.DONORS.EDIT(row.original.id)}>
                 <Pencil className="size-4" />
                 <span>Edit</span>
               </Link>

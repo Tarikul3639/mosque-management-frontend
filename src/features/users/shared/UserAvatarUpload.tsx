@@ -1,7 +1,6 @@
-// src/features/user/shared/UserAvatarUpload.tsx
-
 "use client"
 
+// src/features/user/shared/UserAvatarUpload.tsx
 import { AvatarUpload } from "@/components/common/avatar-upload/avatar-upload"
 import { Card } from "@/components/ui/card"
 

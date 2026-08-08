@@ -1,7 +1,6 @@
-// src/components/common/entity-picker/EntityPickerDialog.tsx
-
 "use client"
 
+// src/components/common/entity-picker/EntityPickerDialog.tsx
 import { Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
 

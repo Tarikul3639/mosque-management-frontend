@@ -1,7 +1,6 @@
-// src/features/gallery/shared/GalleryForm.tsx
-
 "use client"
 
+// src/features/gallery/shared/GalleryForm.tsx
 import { format } from "date-fns"
 import { FileText, Hash, ImageIcon } from "lucide-react"
 import { type UseFormReturn } from "react-hook-form"

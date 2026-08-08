@@ -1,7 +1,6 @@
-// src/components/common/entity-picker/hooks.ts
-
 "use client"
 
+// src/components/common/entity-picker/hooks.ts
 import { useCallback, useMemo, useState } from "react"
 
 export function useEntityPicker() {

@@ -1,7 +1,7 @@
-// src/features/expenses/details/components/ExpenseDetailsHeader.tsx
-
 "use client"
 
+import { ROUTES } from "@/config/routes"
+// src/features/expenses/details/components/ExpenseDetailsHeader.tsx
 import Link from "next/link"
 import { ArrowLeft, Pencil, Wallet } from "lucide-react"
 
@@ -26,7 +26,7 @@ export function ExpenseDetailsHeader({
             variant="ghost"
             className="w-fit px-0 hover:bg-transparent"
           >
-            <Link href={`/expenses`}>
+            <Link href={ROUTES.ADMIN.EXPENSES.INDEX}>
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Expense
             </Link>
@@ -49,7 +49,7 @@ export function ExpenseDetailsHeader({
       </div>
 
       <Button asChild>
-        <Link href={`/expenses/${expenseId}/edit`}>
+        <Link href={ROUTES.ADMIN.EXPENSES.EDIT(expenseId)}>
           <Pencil className="mr-2 size-4" />
           Edit Expense
         </Link>

@@ -7,6 +7,7 @@ import {
     Building2,
     ClipboardList,
     HandCoins,
+    HeartHandshake,
     Home,
     Image,
     Receipt,
@@ -16,15 +17,13 @@ import {
     Wallet,
 } from "lucide-react"
 
-import { ROUTES } from "./routes"
+import { ROUTES } from "@/config/routes"
 
 export interface NavigationItem {
     title: string
     href: string
     icon?: LucideIcon
-
     badge?: string
-
     children?: NavigationItem[]
 }
 
@@ -64,6 +63,12 @@ export const ADMIN_NAVIGATION: NavigationItem[] = [
     },
 
     {
+        title: "Donations",
+        href: ROUTES.ADMIN.DONATIONS.INDEX,
+        icon: HeartHandshake,
+    },
+
+    {
         title: "Payments",
         href: ROUTES.ADMIN.PAYMENTS.INDEX,
         icon: Wallet,
@@ -87,17 +92,17 @@ export const ADMIN_NAVIGATION: NavigationItem[] = [
         icon: Image,
     },
 
-    {
-        title: "Notices",
-        href: ROUTES.ADMIN.NOTICES.INDEX,
-        icon: Bell,
-    },
+    // {
+    //     title: "Notices",
+    //     href: ROUTES.ADMIN.NOTICES.INDEX,
+    //     icon: Bell,
+    // },
 
-    {
-        title: "Settings",
-        href: ROUTES.ADMIN.SETTINGS,
-        icon: Settings,
-    },
+    // {
+    //     title: "Settings",
+    //     href: ROUTES.ADMIN.SETTINGS,
+    //     icon: Settings,
+    // },
 ]
 
 // ======================================================

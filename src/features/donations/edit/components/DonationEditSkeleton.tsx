@@ -1,7 +1,6 @@
-// src/features/donations/edit/components/DonationEditSkeleton.tsx
-
 "use client"
 
+// src/features/donations/edit/components/DonationEditSkeleton.tsx
 import { Skeleton } from "@/components/ui/skeleton"
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card"

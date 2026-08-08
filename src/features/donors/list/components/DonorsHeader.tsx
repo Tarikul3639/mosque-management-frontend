@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import Link from "next/link"
 import { Plus, Users } from "lucide-react"
 
@@ -30,7 +31,7 @@ export function DonorsHeader({ totalDonors = 0 }: DonorsHeaderProps) {
       </div>
 
       <Button asChild>
-        <Link href="/donors/create">
+        <Link href={ROUTES.ADMIN.DONORS.CREATE}>
           <Plus className="size-4" />
           Add Donor
         </Link>

@@ -1,7 +1,6 @@
-// src/features/donations/edit/components/ReceiptPreviewCard.tsx
-
 "use client"
 
+// src/features/donations/edit/components/ReceiptPreviewCard.tsx
 import { format } from "date-fns"
 import { CalendarDays, CreditCard, Receipt, User } from "lucide-react"
 

@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { format } from "date-fns"
 import Link from "next/link"
 
@@ -36,7 +37,7 @@ export const userColumns: ColumnDef<User>[] = [
 
           <div className="max-w-60">
             <Link
-              href={`/users/${user.id}`}
+              href={ROUTES.ADMIN.USERS.DETAIL(user.id)}
               className="line-clamp-1 font-semibold hover:text-primary hover:underline"
             >
               {user.name}

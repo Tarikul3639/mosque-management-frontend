@@ -1,7 +1,7 @@
-// src/features/users/create/useUserCreate.ts
-
 "use client"
 
+import { ROUTES } from "@/config/routes"
+// src/features/users/create/useUserCreate.ts
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
@@ -111,7 +111,7 @@ export function useUserCreate() {
 
       toast.success("User created successfully.")
 
-      router.push("/users")
+      router.push(ROUTES.ADMIN.USERS.INDEX)
     } catch (error) {
       toast.error(getErrorMessage(error))
     }

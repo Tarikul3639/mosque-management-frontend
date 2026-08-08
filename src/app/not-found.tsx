@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Home, Compass, BookOpen, ArrowRight } from "lucide-react"
+import { ROUTES } from "@/config/routes"
 
 export default function NotFound() {
   return (
@@ -41,7 +42,7 @@ export default function NotFound() {
           </p>
 
           <Link
-            href="/"
+            href={ROUTES.PUBLIC.HOME}
             className="group mt-8 inline-flex items-center gap-2 rounded-sm bg-[#1F4D3A] px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#173B2C] sm:text-base"
           >
             <Home className="h-4 w-4" strokeWidth={2.25} />
@@ -65,7 +66,7 @@ export default function NotFound() {
         {/* Right: Badge */}
         <div className="absolute right-8 bottom-10 z-20">
           <Link
-            href="/"
+            href={ROUTES.PUBLIC.HOME}
             className="group inline-flex items-center gap-3 rounded-xl bg-[#1F4D3A] px-5 py-4 text-white shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
           >
             <BookOpen className="h-5 w-5 shrink-0" strokeWidth={2} />

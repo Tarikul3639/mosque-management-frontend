@@ -1,7 +1,6 @@
-// src/components/common/entity-picker/EntityPickerEmpty.tsx
-
 "use client"
 
+// src/components/common/entity-picker/EntityPickerEmpty.tsx
 import { SearchX } from "lucide-react"
 
 interface EntityPickerEmptyProps {

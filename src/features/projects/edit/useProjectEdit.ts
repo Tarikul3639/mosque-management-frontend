@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { useCallback, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
@@ -93,7 +94,7 @@ export function useProjectEdit({ id }: UseProjectEditProps) {
       }).unwrap()
 
       toast.success("Project updated successfully.")
-      router.push(`/projects/${id}`)
+      router.push(ROUTES.ADMIN.PROJECTS.DETAIL(id))
     } catch (error) {
       toast.error(getErrorMessage(error))
     }
@@ -103,7 +104,7 @@ export function useProjectEdit({ id }: UseProjectEditProps) {
     try {
       await deleteProject(id).unwrap()
       toast.success("Project deleted.")
-      router.push("/projects")
+      router.push(ROUTES.ADMIN.PROJECTS.INDEX)
     } catch (error) {
       toast.error(getErrorMessage(error))
     }

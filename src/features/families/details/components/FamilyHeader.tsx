@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import Link from "next/link"
 import { ArrowLeft, Pencil } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -19,7 +20,7 @@ export function FamilyHeader({ family }: FamilyHeaderProps) {
       <div className="space-y-2">
         {/* Back Link Button */}
         <Button
-          onClick={() => router.replace("/families")}
+          onClick={() => router.replace(ROUTES.ADMIN.FAMILIES.INDEX)}
           variant="ghost"
           size="sm"
           className="-ml-2 h-8 gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
@@ -57,7 +58,7 @@ export function FamilyHeader({ family }: FamilyHeaderProps) {
 
       <div className="flex flex-wrap items-center gap-3">
         <Button asChild>
-          <Link href={`/families/${family.id}/edit`}>
+          <Link href={ROUTES.ADMIN.FAMILIES.EDIT(family.id)}>
             <Pencil className="mr-2 size-4" />
             Edit Family
           </Link>

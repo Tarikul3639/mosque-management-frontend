@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { Pencil } from "lucide-react"
 
 import Link from "next/link"
@@ -23,12 +24,12 @@ export function CommitteeDetailsHeader({
     <PageHeader
       title={name}
       description="Committee member details and information."
-      backLinkHref="/committee"
+      backLinkHref={ROUTES.ADMIN.COMMITTEE.INDEX}
       backLinkTitle="Back to Committee"
       status={isActive ? "Active" : "Inactive"}
       actions={
         <Button asChild>
-          <Link href={`/committee/${id}/edit`}>
+          <Link href={ROUTES.ADMIN.COMMITTEE.EDIT(id)}>
             <Pencil className="mr-2 size-4" />
             Edit Member
           </Link>

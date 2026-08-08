@@ -1,7 +1,6 @@
-// src/features/user/details/components/UserDetailsSkeleton.tsx
-
 "use client"
 
+// src/features/user/details/components/UserDetailsSkeleton.tsx
 import { Skeleton } from "@/components/ui/skeleton"
 import { Card, CardContent } from "@/components/ui/card"
 

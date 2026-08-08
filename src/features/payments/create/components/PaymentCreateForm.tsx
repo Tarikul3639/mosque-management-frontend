@@ -1,7 +1,6 @@
-// src/features/payments/create/components/PaymentCreateForm.tsx
-
 "use client"
 
+// src/features/payments/create/components/PaymentCreateForm.tsx
 import { format } from "date-fns"
 import {
   CalendarDays,

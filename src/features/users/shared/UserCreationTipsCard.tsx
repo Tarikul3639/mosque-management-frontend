@@ -1,7 +1,6 @@
-// src/features/user/shared/UserCreationTipsCard.tsx
-
 "use client"
 
+// src/features/user/shared/UserCreationTipsCard.tsx
 import {
   Info,
   KeyRound,

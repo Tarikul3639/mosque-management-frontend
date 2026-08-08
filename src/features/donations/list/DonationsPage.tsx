@@ -1,7 +1,6 @@
-// src/features/donations/list/DonationsPage.tsx
-
 "use client"
 
+// src/features/donations/list/DonationsPage.tsx
 import { useMemo, useState } from "react"
 import { DateRange } from "react-day-picker"
 

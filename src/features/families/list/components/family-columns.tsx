@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { ColumnDef } from "@tanstack/react-table"
 import { Calendar, MapPin, Phone, User } from "lucide-react"
 
@@ -46,7 +47,7 @@ export const familyColumns: ColumnDef<Family>[] = [
 
           <div className="min-w-0">
             <Link
-              href={`/families/${row.original.id}`}
+              href={ROUTES.ADMIN.FAMILIES.DETAIL(row.original.id)}
               className="truncate font-medium hover:text-primary hover:underline"
             >
               {headName}

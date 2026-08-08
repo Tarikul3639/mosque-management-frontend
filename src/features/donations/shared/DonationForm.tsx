@@ -1,7 +1,6 @@
-// src/features/donations/shared/DonationForm.tsx
-
 "use client"
 
+// src/features/donations/shared/DonationForm.tsx
 import { useEffect, useMemo } from "react"
 import { format } from "date-fns"
 import {

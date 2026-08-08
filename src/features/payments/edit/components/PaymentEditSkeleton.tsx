@@ -1,7 +1,6 @@
-// src/features/payments/edit/components/PaymentEditSkeleton.tsx
-
 "use client"
 
+// src/features/payments/edit/components/PaymentEditSkeleton.tsx
 import { Skeleton } from "@/components/ui/skeleton"
 
 export function PaymentEditSkeleton() {

@@ -1,7 +1,6 @@
-// src/modules/families/components/FamilyToolbar.tsx
-
 "use client"
 
+// src/modules/families/components/FamilyToolbar.tsx
 import { Search, X } from "lucide-react"
 
 import { Button } from "@/components/ui/button"

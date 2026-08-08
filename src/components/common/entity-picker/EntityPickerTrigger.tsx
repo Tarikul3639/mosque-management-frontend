@@ -1,7 +1,6 @@
-// src/components/common/entity-picker/EntityPickerTrigger.tsx
-
 "use client"
 
+// src/components/common/entity-picker/EntityPickerTrigger.tsx
 import { ChevronsUpDown, Search } from "lucide-react"
 
 import { Button } from "@/components/ui/button"

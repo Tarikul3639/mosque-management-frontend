@@ -12,6 +12,7 @@ import PasswordInput from "./password-input"
 import FormError from "./form-error"
 
 import { Button } from "@/components/ui/button"
+import { ROUTES } from "@/config/routes"
 
 import { useResetPasswordMutation } from "@/store/api/auth.api"
 import { getErrorMessage } from "@/utils/get-error-message"
@@ -62,7 +63,7 @@ export default function ResetPasswordForm() {
         description: "You can now sign in with your new password.",
       })
 
-      router.replace("/login")
+      router.replace(ROUTES.AUTH.LOGIN)
     } catch (error) {
       setFormError(getErrorMessage(error))
     }
@@ -131,7 +132,7 @@ export default function ResetPasswordForm() {
         </Button>
 
         <Button asChild variant="outline" className="h-10 w-full">
-          <Link href="/login">
+          <Link href={ROUTES.AUTH.LOGIN}>
             <ArrowLeft className="mr-2 size-4" />
             Back to Sign In
           </Link>

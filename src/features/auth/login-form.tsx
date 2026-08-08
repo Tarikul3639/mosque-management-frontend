@@ -12,6 +12,7 @@ import { GoogleIcon } from "@/components/icons/GoogleIcon"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
+import { ROUTES } from "@/config/routes"
 
 import EmailInput from "./email-input"
 import PasswordInput from "./password-input"
@@ -58,7 +59,7 @@ export default function LoginForm() {
         description: "Redirecting to dashboard...",
       })
 
-      router.replace("/dashboard")
+      router.replace(ROUTES.ADMIN.DASHBOARD)
     } catch (error) {
       setFormError(getErrorMessage(error))
     }
@@ -125,7 +126,7 @@ export default function LoginForm() {
           </div>
 
           <Link
-            href="/forgot-password"
+            href={ROUTES.AUTH.FORGOT_PASSWORD}
             className="text-sm font-medium text-primary transition-opacity hover:opacity-80"
           >
             Forgot password?
@@ -178,7 +179,7 @@ export default function LoginForm() {
         <p className="pt-2 text-center text-sm text-muted-foreground">
           Don&apos;t have an account?{" "}
           <Link
-            href="/contact"
+            href={ROUTES.PUBLIC.CONTACT}
             className="font-medium text-primary transition-opacity hover:opacity-80"
           >
             Contact your administrator

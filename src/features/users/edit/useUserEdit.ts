@@ -1,7 +1,7 @@
-// src/features/user/edit/useUserEdit.ts
-
 "use client"
 
+import { ROUTES } from "@/config/routes"
+// src/features/user/edit/useUserEdit.ts
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
@@ -156,7 +156,7 @@ export function useUserEdit({ id }: { id: string }) {
     try {
       await deleteUser(id).unwrap()
       toast.success("User deleted successfully.")
-      router.push("/users")
+      router.push(ROUTES.ADMIN.USERS.INDEX)
     } catch (error) {
       toast.error(getErrorMessage(error))
     }

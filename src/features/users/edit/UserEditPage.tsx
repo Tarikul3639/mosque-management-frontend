@@ -1,7 +1,6 @@
-// src/features/user/edit/UserEditPage.tsx
-
 "use client"
 
+// src/features/user/edit/UserEditPage.tsx
 import { ErrorComponent } from "@/components/common/error"
 
 import { UserForm } from "../shared/UserForm"

@@ -1,7 +1,6 @@
-// src/features/donations/details/components/DonationTimelineCard.tsx
-
 "use client"
 
+// src/features/donations/details/components/DonationTimelineCard.tsx
 import { CalendarClock, Clock3, History } from "lucide-react"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"

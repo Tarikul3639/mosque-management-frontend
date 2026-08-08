@@ -1,7 +1,6 @@
-// src/features/donations/details/components/DonationInformationCard.tsx
-
 "use client"
 
+// src/features/donations/details/components/DonationInformationCard.tsx
 import { CreditCard, FileText, Hash, UserCog } from "lucide-react"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"

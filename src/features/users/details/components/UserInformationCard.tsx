@@ -1,7 +1,6 @@
-// src/features/user/details/components/UserInformationCard.tsx
-
 "use client"
 
+// src/features/user/details/components/UserInformationCard.tsx
 import { Fingerprint, Mail, Phone, ShieldCheck, User2 } from "lucide-react"
 
 import {

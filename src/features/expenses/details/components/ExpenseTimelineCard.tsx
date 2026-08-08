@@ -1,7 +1,6 @@
-// src/features/expenses/details/components/ExpenseTimelineCard.tsx
-
 "use client"
 
+// src/features/expenses/details/components/ExpenseTimelineCard.tsx
 import { CalendarClock, Clock3, History } from "lucide-react"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"

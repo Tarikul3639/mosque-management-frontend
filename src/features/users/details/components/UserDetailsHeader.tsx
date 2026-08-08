@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { UsersRound, Pencil } from "lucide-react"
 import { PageHeader } from "@/components/common/page-header"
 import type { User } from "@/types/user"
@@ -17,7 +18,7 @@ export function UserDetailsHeader({ user }: UserDetailsHeaderProps) {
       title={user.name}
       description="View complete user profile and account information."
       icon={<UsersRound className="size-6 text-primary" />}
-      backLinkHref="/users"
+      backLinkHref={ROUTES.ADMIN.USERS.INDEX}
       backLinkTitle="Back To Users"
       status={user.status}
       actions={
@@ -25,7 +26,7 @@ export function UserDetailsHeader({ user }: UserDetailsHeaderProps) {
           variant="default"
           size="sm"
           className="flex items-center gap-2 py-4"
-          onClick={() => router.push(`/users/${user.id}/edit`)}
+          onClick={() => router.push(ROUTES.ADMIN.USERS.EDIT(user.id))}
         >
           <Pencil className="size-4" />
           Edit User

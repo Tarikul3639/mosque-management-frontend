@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
@@ -50,7 +51,7 @@ export function useProjectCreate() {
       }).unwrap()
 
       toast.success("Project created successfully.")
-      router.push(`/projects/${project.id}`)
+      router.push(ROUTES.ADMIN.PROJECTS.DETAIL(project.id))
     } catch (error) {
       toast.error(getErrorMessage(error))
     }

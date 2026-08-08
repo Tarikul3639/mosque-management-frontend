@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { useCallback, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -96,7 +97,7 @@ export function FamilyEditPage({ id }: FamilyEditPageProps) {
 
       toast.success("Family updated successfully.")
 
-      router.push(`/families/${family!.id}`)
+      router.push(ROUTES.ADMIN.FAMILIES.DETAIL(family!.id))
     } catch (err) {
       console.error(err)
       toast.error("Failed to update family.", {

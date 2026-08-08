@@ -1,7 +1,6 @@
-// src/components/common/entity-picker/EntityPickerItem.tsx
-
 "use client"
 
+// src/components/common/entity-picker/EntityPickerItem.tsx
 import { Check } from "lucide-react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"

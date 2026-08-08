@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { Plus, Users } from "lucide-react"
 import Link from "next/link"
 
@@ -23,7 +24,7 @@ export function CommitteeHeader({ total }: { total: number }) {
       }
       actions={
         <Button asChild>
-          <Link href="/committee/create">
+          <Link href={ROUTES.ADMIN.COMMITTEE.CREATE}>
             <Plus className="mr-2 size-4" />
             Add Member
           </Link>

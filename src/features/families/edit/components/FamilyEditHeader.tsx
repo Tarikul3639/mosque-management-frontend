@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import Link from "next/link"
 import { ArrowLeft, PencilLine } from "lucide-react"
 
@@ -22,7 +23,7 @@ export function FamilyEditHeader({ family }: FamilyEditHeaderProps) {
       <div className="space-y-2">
         {/* Back */}
         <Button
-          onClick={() => router.replace(`/families/${family.id}`)}
+          onClick={() => router.replace(ROUTES.ADMIN.FAMILIES.DETAIL(family.id))}
           variant="ghost"
           size="sm"
           className="-ml-2 h-8 gap-1.5 text-xs text-muted-foreground hover:text-foreground"
@@ -62,7 +63,7 @@ export function FamilyEditHeader({ family }: FamilyEditHeaderProps) {
       </div>
 
       <Button asChild variant="outline">
-        <Link href={`/families/${family.id}`}>
+        <Link href={ROUTES.ADMIN.FAMILIES.DETAIL(family.id)}>
           <PencilLine className="mr-2 size-4" />
           View Family
         </Link>

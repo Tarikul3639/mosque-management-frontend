@@ -1,7 +1,7 @@
-// src/features/gallery/edit/useGalleryEdit.ts
-
 "use client"
 
+import { ROUTES } from "@/config/routes"
+// src/features/gallery/edit/useGalleryEdit.ts
 import { useCallback, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
@@ -89,7 +89,7 @@ export function useGalleryEdit({ id }: UseGalleryEditProps) {
       }).unwrap()
 
       toast.success("Gallery updated successfully.")
-      router.push(`/galleries/${id}`)
+      router.push(ROUTES.ADMIN.GALLERY.DETAIL(id))
     } catch (error) {
       toast.error(getErrorMessage(error))
     }
@@ -99,7 +99,7 @@ export function useGalleryEdit({ id }: UseGalleryEditProps) {
     try {
       await deleteGallery(id).unwrap()
       toast.success("Gallery deleted.")
-      router.push("/galleries")
+      router.push(ROUTES.ADMIN.GALLERY.INDEX)
     } catch (error) {
       toast.error(getErrorMessage(error))
     }

@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { useState } from "react"
 
 import { useRouter } from "next/navigation"
@@ -49,7 +50,7 @@ export function CreateDonorPage() {
 
       toast.success("Donor created successfully.")
 
-      router.push(`/donors/${donor.id}`)
+      router.push(ROUTES.ADMIN.DONORS.DETAIL(donor.id))
     } catch (error) {
       console.error(error)
 
@@ -115,7 +116,7 @@ export function CreateDonorPage() {
       <CreateDonorHeader
         title="Create Donor"
         description="Add a new donor to the mosque management system."
-        backHref="/donors"
+        backHref={ROUTES.ADMIN.DONORS.INDEX}
       />
 
       <div className="grid gap-6 xl:grid-cols-12">

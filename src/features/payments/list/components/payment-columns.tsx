@@ -1,11 +1,9 @@
-// src/features/payments/list/components/payment-columns.tsx
-
 "use client"
 
+import { ROUTES } from "@/config/routes"
+// src/features/payments/list/components/payment-columns.tsx
 import Link from "next/link"
-
 import type { ColumnDef } from "@tanstack/react-table"
-
 import { Eye, MoreHorizontal, Pencil, Receipt, Trash2 } from "lucide-react"
 
 import {
@@ -78,7 +76,7 @@ export const paymentColumns: ColumnDef<Payment>[] = [
     cell: ({ row }) => (
       <div className="flex flex-col">
         <Link
-          href={`/families/${row.original.familyId}`}
+          href={ROUTES.ADMIN.FAMILIES.DETAIL(row.original.familyId)}
           className="font-medium"
         >
           {row.original.familyNo}
@@ -254,14 +252,14 @@ export const paymentColumns: ColumnDef<Payment>[] = [
               <DropdownMenuSeparator />
 
               <DropdownMenuItem asChild>
-                <Link href={`/payments/${row.original.id}`}>
+                <Link href={ROUTES.ADMIN.PAYMENTS.DETAIL(row.original.id)}>
                   <Eye className="size-4" />
                   View
                 </Link>
               </DropdownMenuItem>
 
               <DropdownMenuItem asChild>
-                <Link href={`/payments/${row.original.id}/edit`}>
+                <Link href={ROUTES.ADMIN.PAYMENTS.EDIT(row.original.id)}>
                   <Pencil className="size-4" />
                   Edit
                 </Link>

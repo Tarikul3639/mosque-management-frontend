@@ -1,7 +1,6 @@
-// src/features/user/details/UserDetailsPage.tsx
-
 "use client"
 
+// src/features/user/details/UserDetailsPage.tsx
 import { ErrorComponent } from "@/components/common/error"
 
 import { UserDetailsHeader } from "./components/UserDetailsHeader"

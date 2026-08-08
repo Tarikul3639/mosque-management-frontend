@@ -1,7 +1,6 @@
-// src/features/expenses/details/ExpenseDetailsPage.tsx
-
 "use client"
 
+// src/features/expenses/details/ExpenseDetailsPage.tsx
 import { ErrorComponent } from "@/components/common/error"
 import { NotFound } from "@/components/common/not-found"
 

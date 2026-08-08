@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import Link from "next/link"
 import { useState } from "react"
 import {
@@ -94,14 +95,14 @@ export function CommitteeTableActions({ member }: CommitteeTableActionsProps) {
           <DropdownMenuSeparator />
 
           <DropdownMenuItem asChild>
-            <Link href={`/committee/${member.id}`}>
+            <Link href={ROUTES.ADMIN.COMMITTEE.DETAIL(member.id)}>
               <Eye className="mr-2 size-4" />
               View
             </Link>
           </DropdownMenuItem>
 
           <DropdownMenuItem asChild>
-            <Link href={`/committee/${member.id}/edit`}>
+            <Link href={ROUTES.ADMIN.COMMITTEE.EDIT(member.id)}>
               <Pencil className="mr-2 size-4" />
               Edit
             </Link>

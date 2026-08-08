@@ -1,7 +1,6 @@
-// src/features/donations/list/components/DonationSummaryCards.tsx
-
 "use client"
 
+// src/features/donations/list/components/DonationSummaryCards.tsx
 import { Calendar, HandCoins, Receipt, Wallet } from "lucide-react"
 
 import { StatsCard, StatsCardSkeleton } from "@/components/common/stats-card"

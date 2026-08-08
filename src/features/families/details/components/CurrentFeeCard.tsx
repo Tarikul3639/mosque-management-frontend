@@ -1,7 +1,6 @@
-// src/features/families/details/components/CurrentFeeCard.tsx
-
 "use client"
 
+// src/features/families/details/components/CurrentFeeCard.tsx
 import { CalendarDays, Pencil, Wallet } from "lucide-react"
 import { format } from "date-fns"
 

@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { useState } from "react"
 
 import { useRouter } from "next/navigation"
@@ -60,7 +61,7 @@ export function useCommitteeCreate() {
 
       toast.success("Committee member created successfully.")
 
-      router.push(`/committee/${member.id}`)
+      router.push(ROUTES.ADMIN.COMMITTEE.DETAIL(member.id))
     } catch (error) {
       toast.error("Failed to create committee member.", {
         description: getErrorMessage(error),

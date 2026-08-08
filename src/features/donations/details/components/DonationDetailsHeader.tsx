@@ -1,7 +1,7 @@
-// src/features/donations/details/components/DonationDetailsHeader.tsx
-
 "use client"
 
+import { ROUTES } from "@/config/routes"
+// src/features/donations/details/components/DonationDetailsHeader.tsx
 import Link from "next/link"
 import { ArrowLeft, Pencil } from "lucide-react"
 
@@ -24,7 +24,7 @@ export function DonationDetailsHeader({
           variant="ghost"
           className="mb-2 w-fit px-0 hover:bg-transparent"
         >
-          <Link href="/donations">
+          <Link href={ROUTES.ADMIN.DONATIONS.INDEX}>
             <ArrowLeft className="mr-2 size-4" />
             Back to Donations
           </Link>
@@ -39,7 +39,7 @@ export function DonationDetailsHeader({
       </div>
 
       <Button asChild>
-        <Link href={`/donations/${donationId}/edit`}>
+        <Link href={ROUTES.ADMIN.DONATIONS.EDIT(donationId)}>
           <Pencil className="mr-2 size-4" />
           Edit Donation
         </Link>

@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { useState } from "react"
 import Link from "next/link"
 
@@ -67,14 +68,14 @@ export function GalleryTableActions({ gallery }: GalleryTableActionsProps) {
           <DropdownMenuLabel className="text-sm">Actions</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
-            <Link href={`/galleries/${gallery.id}`}>
+            <Link href={ROUTES.ADMIN.GALLERY.DETAIL(gallery.id)}>
               <Eye className="mr-2 size-4" />
               View
             </Link>
           </DropdownMenuItem>
 
           <DropdownMenuItem asChild>
-            <Link href={`/galleries/${gallery.id}/edit`}>
+            <Link href={ROUTES.ADMIN.GALLERY.EDIT(gallery.id)}>
               <Pencil className="mr-2 size-4" />
               Edit
             </Link>

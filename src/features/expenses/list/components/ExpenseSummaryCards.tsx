@@ -1,7 +1,6 @@
-// src/features/expenses/list/components/ExpenseSummaryCards.tsx
-
 "use client"
 
+// src/features/expenses/list/components/ExpenseSummaryCards.tsx
 import { ReceiptText, Wallet, CalendarDays, TrendingDown } from "lucide-react"
 
 import {

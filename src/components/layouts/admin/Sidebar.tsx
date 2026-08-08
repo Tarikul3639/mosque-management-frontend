@@ -1,11 +1,12 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
+import { ADMIN_NAVIGATION } from "@/config/navigation"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { ChevronRight } from "lucide-react"
 
 import { Logo } from "@/components/icons/Logo"
-import { navItems } from "./navItems"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 import {
@@ -39,9 +40,9 @@ function Collapsible({
       ].join(" ")}
     >
       {/* Shrink wrapper */}
-      <div className="overflow-hidden">
+      <div className={`overflow-hidden ${padding}`}>
         {/* Padding wrapper */}
-        <div className={padding}>{children}</div>
+        {children}
       </div>
     </div>
   )
@@ -56,7 +57,8 @@ export function Sidebar({
 }: SidebarProps) {
   const pathname = usePathname()
 
-  const isYourProfilePage = pathname === `/users/${userId}`
+  const profileRoute = ROUTES.ADMIN.USERS.DETAIL(userId ?? "")
+  const isYourProfilePage = pathname === profileRoute
 
   const initials = userName
     .split(" ")
@@ -70,16 +72,16 @@ export function Sidebar({
       className={[
         "flex h-screen flex-col overflow-hidden border-r border-sidebar-border bg-sidebar text-sidebar-foreground",
         "font-sans transition-[width] duration-300 ease-in-out",
-        isOpen ? "w-64" : "w-0 sm:w-20",
+        isOpen ? "w-64" : "w-0 sm:w-18",
       ].join(" ")}
     >
       {/* ================= Brand ================= */}
       <Link
-        href="/dashboard"
-        className="flex h-20 items-center border-b border-sidebar-border px-4 transition-colors hover:bg-sidebar-accent/50"
+        href={ROUTES.ADMIN.DASHBOARD}
+        className="flex h-20 items-center border-b border-sidebar-border px-2.5 transition-colors hover:bg-sidebar-accent/50"
       >
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary text-sidebar-primary-foreground">
-          <Logo className="h-7 w-7" color="currentColor" />
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary text-sidebar-primary-foreground">
+          <Logo className="h-8 w-8" color="currentColor" />
         </div>
 
         <Collapsible isOpen={isOpen}>
@@ -95,31 +97,30 @@ export function Sidebar({
       {/* ================= Navigation ================= */}
       <nav className="flex-1 overflow-y-auto px-3 py-3">
         <ul className="space-y-1">
-          {navItems.map(({ id, label, icon: Icon }) => {
-            const href = `/${id}`
+          {ADMIN_NAVIGATION.map(({ title, icon: Icon, href }) => {
             const isActive =
               pathname === href || pathname.startsWith(`${href}/`)
 
             return (
-              <li key={id}>
+              <li key={href}>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Link
                       href={href}
                       className={[
-                        "flex h-10 items-center rounded-lg px-3 transition-colors",
+                        "flex h-10 items-center rounded-md px-3 transition-colors",
                         isActive
                           ? "bg-primary font-medium text-primary-foreground"
                           : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                       ].join(" ")}
                     >
                       <div className="flex h-5 w-5 shrink-0 items-center justify-center">
-                        <Icon className="h-5 w-5" />
+                        {Icon && <Icon className="h-5 w-5" />}
                       </div>
 
                       <Collapsible isOpen={isOpen}>
-                        <span className="text-sm whitespace-nowrap">
-                          {label}
+                        <span className="text-base whitespace-nowrap">
+                          {title}
                         </span>
                       </Collapsible>
                     </Link>
@@ -127,7 +128,7 @@ export function Sidebar({
 
                   {!isOpen && (
                     <TooltipContent side="right" sideOffset={10}>
-                      {label}
+                      {title}
                     </TooltipContent>
                   )}
                 </Tooltip>
@@ -142,12 +143,11 @@ export function Sidebar({
         <Tooltip>
           <TooltipTrigger asChild>
             <Link
-              href={`${"/users/"}${userId}`}
-              className={`flex w-full items-center rounded-lg p-2 transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground ${
-                isYourProfilePage
+              href={profileRoute}
+              className={`flex w-full items-center rounded-lg p-2 transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground ${isYourProfilePage
                   ? "bg-primary font-medium text-primary-foreground"
                   : "text-sidebar-foreground"
-              }`}
+                }`}
             >
               <Avatar className="h-9 w-9 shrink-0 border border-sidebar-border">
                 <AvatarImage src={userAvatarUrl} alt={userName} />

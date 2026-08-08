@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import Link from "next/link"
 
 import { ArrowLeft, Pencil, FolderKanban } from "lucide-react"
@@ -23,14 +24,14 @@ interface ProjectDetailsHeaderProps {
 export function ProjectDetailsHeader({ project }: ProjectDetailsHeaderProps) {
   return (
     <PageHeader
-      backLinkHref="/projects"
+      backLinkHref={ROUTES.ADMIN.PROJECTS.INDEX}
       backLinkTitle="Back to Projects"
       title={project.title}
       description={project.description ?? "No description available."}
       icon={<FolderKanban className="size-5 text-primary" />}
       actions={
         <Button asChild>
-          <Link href={`/projects/${project.id}/edit`}>
+          <Link href={ROUTES.ADMIN.PROJECTS.EDIT(project.id)}>
             <Pencil className="size-4" />
             Edit Project
           </Link>

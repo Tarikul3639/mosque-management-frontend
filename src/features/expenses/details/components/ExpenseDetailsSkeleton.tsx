@@ -1,7 +1,6 @@
-// src/features/expenses/details/components/ExpenseDetailsSkeleton.tsx
-
 "use client"
 
+// src/features/expenses/details/components/ExpenseDetailsSkeleton.tsx
 import { Skeleton } from "@/components/ui/skeleton"
 
 export function ExpenseDetailsSkeleton() {

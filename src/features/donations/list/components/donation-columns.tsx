@@ -1,13 +1,13 @@
-// src/features/donations/list/components/donation-columns.tsx
-
 "use client"
 
+// src/features/donations/list/components/donation-columns.tsx
 import Link from "next/link"
 import { Eye, MoreHorizontal, Pencil, Trash2 } from "lucide-react"
 import { type ColumnDef } from "@tanstack/react-table"
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { ROUTES } from "@/config/routes"
 
 import { DataTableColumnHeader } from "@/components/common/data-table"
 
@@ -62,7 +62,7 @@ export const donationColumns: ColumnDef<Donation>[] = [
       return (
         <div className="space-y-1">
           <Link
-            href={`/donors/${donor.id}`}
+            href={ROUTES.ADMIN.DONORS.DETAIL(donor.id)}
             className="font-medium hover:text-primary hover:underline"
           >
             {donor.name}
@@ -165,14 +165,14 @@ export const donationColumns: ColumnDef<Donation>[] = [
 
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              <Link href={`/donations/${row.original.id}`}>
+              <Link href={ROUTES.ADMIN.DONATIONS.DETAIL(row.original.id)}>
                 <Eye className="size-4" />
                 <span>View</span>
               </Link>
             </DropdownMenuItem>
 
             <DropdownMenuItem asChild>
-              <Link href={`/donations/${row.original.id}/edit`}>
+              <Link href={ROUTES.ADMIN.DONATIONS.EDIT(row.original.id)}>
                 <Pencil className="size-4" />
                 <span>Edit</span>
               </Link>

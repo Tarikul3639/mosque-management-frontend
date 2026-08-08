@@ -1,7 +1,6 @@
-// src/features/expenses/details/components/ExpenseInformationCard.tsx
-
 "use client"
 
+// src/features/expenses/details/components/ExpenseInformationCard.tsx
 import { AlignLeft, CalendarDays, Tag, User, Wallet } from "lucide-react"
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card"

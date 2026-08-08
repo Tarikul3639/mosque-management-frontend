@@ -1,7 +1,6 @@
-// src/app/.../CommitteeDetailsPage.tsx
-
 "use client"
 
+// src/app/.../CommitteeDetailsPage.tsx
 import { ErrorComponent } from "@/components/common/error"
 import { getErrorMessage } from "@/utils/get-error-message"
 

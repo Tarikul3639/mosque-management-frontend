@@ -1,7 +1,6 @@
-// src/components/common/entity-picker/EntityPickerList.tsx
-
 "use client"
 
+// src/components/common/entity-picker/EntityPickerList.tsx
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 import { EntityPickerEmpty } from "./EntityPickerEmpty"

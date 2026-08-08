@@ -1,7 +1,6 @@
-// src/features/donations/details/DonationDetailsPage.tsx
-
 "use client"
 
+// src/features/donations/details/DonationDetailsPage.tsx
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"

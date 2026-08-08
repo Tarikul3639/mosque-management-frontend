@@ -1,7 +1,6 @@
-// src/features/payments/receipt/components/PaymentReceiptActions.tsx
-
 "use client"
 
+// src/features/payments/receipt/components/PaymentReceiptActions.tsx
 import { Download, Loader2, Printer } from "lucide-react"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"

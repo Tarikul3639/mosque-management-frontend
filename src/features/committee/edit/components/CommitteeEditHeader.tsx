@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import Link from "next/link"
 
 import { ArrowLeft, Eye } from "lucide-react"
@@ -25,11 +26,11 @@ export function CommitteeEditHeader({
     <PageHeader
       title="Edit Committee Member"
       description={`${name} • ${getDesignationLabel(designation as never)}`}
-      backLinkHref={`/committee`}
+      backLinkHref={ROUTES.ADMIN.COMMITTEE.INDEX}
       backLinkTitle="Back to Committee"
       actions={
         <Button variant="outline" asChild>
-          <Link href={`/committee/${id}`}>
+          <Link href={ROUTES.ADMIN.COMMITTEE.DETAIL(id)}>
             <Eye className="mr-2 size-4" />
             View Member
           </Link>

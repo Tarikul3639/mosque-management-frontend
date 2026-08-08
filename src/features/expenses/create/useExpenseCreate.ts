@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -35,7 +36,7 @@ export function useExpenseCreate() {
 
       toast.success("Expense created successfully.")
 
-      router.push(`/expenses/${expense.id}`)
+      router.push(ROUTES.ADMIN.EXPENSES.DETAIL(expense.id))
     } catch (error) {
       toast.error("Failed to create expense.", {
         description: getErrorMessage(error),

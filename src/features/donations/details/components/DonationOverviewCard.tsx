@@ -1,7 +1,6 @@
-// src/features/donations/details/components/DonationOverviewCard.tsx
-
 "use client"
 
+// src/features/donations/details/components/DonationOverviewCard.tsx
 import {
   BadgeDollarSign,
   Calendar,

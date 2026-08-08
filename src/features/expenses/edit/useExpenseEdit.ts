@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { useEffect } from "react"
 
 import { useRouter } from "next/navigation"
@@ -70,7 +71,7 @@ export function useExpenseEdit({ id }: Props) {
 
       toast.success("Expense updated successfully.")
 
-      router.push(`/expenses/${expense.id}`)
+      router.push(ROUTES.ADMIN.EXPENSES.DETAIL(expense.id))
     } catch (error) {
       toast.error("Failed to update expense.", {
         description: getErrorMessage(error),
@@ -86,7 +87,7 @@ export function useExpenseEdit({ id }: Props) {
 
       toast.success("Expense deleted successfully.")
 
-      router.push("/expenses")
+      router.push(ROUTES.ADMIN.EXPENSES.INDEX)
     } catch {
       toast.error("Failed to delete expense.")
     }

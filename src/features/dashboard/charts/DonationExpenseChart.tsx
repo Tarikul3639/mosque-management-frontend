@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import Link from "next/link"
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
 
@@ -70,7 +71,7 @@ export function DonationExpenseChart({ data, isLoading, from, to }: Props) {
           </div>
 
           <Button asChild variant="outline" size="sm">
-            <Link href="/report">View Full Report</Link>
+            <Link href={ROUTES.ADMIN.DASHBOARD}>View Full Report</Link>
           </Button>
         </div>
       </CardHeader>

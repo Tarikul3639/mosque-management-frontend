@@ -1,7 +1,6 @@
-// src/features/donations/details/components/DonationDangerZone.tsx
-
 "use client"
 
+// src/features/donations/details/components/DonationDangerZone.tsx
 import { Loader2, Trash2 } from "lucide-react"
 
 import {

@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { Images, Plus } from "lucide-react"
 
 import { PageHeader } from "@/components/common/page-header"
@@ -15,7 +16,7 @@ export function GalleryHeader() {
       icon={<Images className="size-6 text-primary" />}
       actions={
         <Button asChild>
-          <Link href="/galleries/create">
+          <Link href={ROUTES.ADMIN.GALLERY.CREATE}>
             <Plus className="size-4.5" />
             Create Gallery
           </Link>

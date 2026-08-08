@@ -1,7 +1,7 @@
-// src/features/donations/edit/components/DonationEditHeader.tsx
-
 "use client"
 
+import { ROUTES } from "@/config/routes"
+// src/features/donations/edit/components/DonationEditHeader.tsx
 import Link from "next/link"
 import { ArrowLeft, Receipt } from "lucide-react"
 
@@ -24,7 +24,7 @@ export function DonationEditHeader({
           variant="ghost"
           className="w-fit px-0 hover:bg-transparent"
         >
-          <Link href={`/donations/${donationId}`}>
+          <Link href={ROUTES.ADMIN.DONATIONS.DETAIL(donationId)}>
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Donation
           </Link>

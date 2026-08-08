@@ -1,11 +1,9 @@
-// src/features/payments/create/components/PaymentCreateHeader.tsx
-
 "use client"
 
+import { ROUTES } from "@/config/routes"
+// src/features/payments/create/components/PaymentCreateHeader.tsx
 import Link from "next/link"
-
 import { ArrowLeft, Plus } from "lucide-react"
-
 import { Button } from "@/components/ui/button"
 
 export function PaymentCreateHeader() {
@@ -13,7 +11,7 @@ export function PaymentCreateHeader() {
     <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
       <div className="space-y-2">
         <Button variant="ghost" size="sm" asChild className="w-fit">
-          <Link href="/payments">
+          <Link href={ROUTES.ADMIN.PAYMENTS.INDEX}>
             <ArrowLeft className="mr-2 size-4" />
             Back to Payments
           </Link>

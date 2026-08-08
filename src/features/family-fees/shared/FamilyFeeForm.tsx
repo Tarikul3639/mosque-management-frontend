@@ -1,7 +1,6 @@
-// src/features/families/details/components/FamilyFeeForm.tsx
-
 "use client"
 
+// src/features/families/details/components/FamilyFeeForm.tsx
 import { format } from "date-fns"
 import { CalendarDays, Wallet } from "lucide-react"
 

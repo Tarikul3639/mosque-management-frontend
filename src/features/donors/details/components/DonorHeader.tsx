@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { ArrowLeft, Pencil } from "lucide-react"
@@ -20,7 +21,7 @@ export function DonorHeader({ donor }: DonorHeaderProps) {
     <div className="flex flex-col gap-4 border-b border-border/50 pb-5 sm:justify-between lg:flex-row lg:items-center">
       <div className="space-y-2">
         <Button
-          onClick={() => router.replace("/donors")}
+          onClick={() => router.replace(ROUTES.ADMIN.DONORS.INDEX)}
           variant="ghost"
           size="sm"
           className="-ml-2 h-8 gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
@@ -49,7 +50,7 @@ export function DonorHeader({ donor }: DonorHeaderProps) {
 
       <div className="flex flex-wrap items-center gap-3">
         <Button asChild>
-          <Link href={`/donors/${donor.id}/edit`}>
+          <Link href={ROUTES.ADMIN.DONORS.EDIT(donor.id)}>
             <Pencil className="mr-2 size-4" />
             Edit Donor
           </Link>

@@ -1,7 +1,7 @@
-// src/features/expenses/list/components/expense-columns.tsx
-
 "use client"
 
+import { ROUTES } from "@/config/routes"
+// src/features/expenses/list/components/expense-columns.tsx
 import Link from "next/link"
 import { Eye, MoreHorizontal, Pencil, Trash2 } from "lucide-react"
 import { type ColumnDef } from "@tanstack/react-table"
@@ -135,14 +135,14 @@ export const expenseColumns: ColumnDef<Expense>[] = [
 
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              <Link href={`/expenses/${row.original.id}`}>
+              <Link href={ROUTES.ADMIN.EXPENSES.DETAIL(row.original.id)}>
                 <Eye className="size-4" />
                 <span>View</span>
               </Link>
             </DropdownMenuItem>
 
             <DropdownMenuItem asChild>
-              <Link href={`/expenses/${row.original.id}/edit`}>
+              <Link href={ROUTES.ADMIN.EXPENSES.EDIT(row.original.id)}>
                 <Pencil className="size-4" />
                 <span>Edit</span>
               </Link>

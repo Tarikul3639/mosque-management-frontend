@@ -1,7 +1,6 @@
-// src/features/projects/create/components/ProjectCreationTipsCard.tsx
-
 "use client"
 
+// src/features/projects/create/components/ProjectCreationTipsCard.tsx
 import {
   CircleDollarSign,
   FileImage,

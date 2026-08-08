@@ -1,7 +1,6 @@
-// src/features/donations/edit/DonationEditPage.tsx
-
 "use client"
 
+// src/features/donations/edit/DonationEditPage.tsx
 import { ErrorComponent } from "@/components/common/error"
 
 import { getErrorMessage } from "@/utils/get-error-message"

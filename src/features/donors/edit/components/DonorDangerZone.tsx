@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { useState } from "react"
 import { Trash2 } from "lucide-react"
 
@@ -41,7 +42,7 @@ export function DonorDangerZone({ donor }: DonorDangerZoneProps) {
     try {
       const response = await deleteDonor(donor.id).unwrap()
       toast.success(response.message || "Donor deleted successfully")
-      router.push("/donors")
+      router.push(ROUTES.ADMIN.DONORS.INDEX)
     } catch (error) {
       toast.error(getErrorMessage(error) || "Failed to delete donor")
     }

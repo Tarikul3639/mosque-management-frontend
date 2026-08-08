@@ -1,7 +1,6 @@
-// src/features/users/create/CreateUserPage.tsx
-
 "use client"
 
+// src/features/users/create/CreateUserPage.tsx
 import { ErrorComponent } from "@/components/common/error"
 
 import { UserCreateHeader } from "./components/UserCreateHeader"

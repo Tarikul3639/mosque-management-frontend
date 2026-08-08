@@ -1,7 +1,6 @@
-// src/features/user/edit/components/UserEditSkeleton.tsx
-
 "use client"
 
+// src/features/user/edit/components/UserEditSkeleton.tsx
 import { Skeleton } from "@/components/ui/skeleton"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 

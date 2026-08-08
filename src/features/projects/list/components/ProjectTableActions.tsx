@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { useState } from "react"
 import Link from "next/link"
 
@@ -63,14 +64,14 @@ export function ProjectTableActions({ project }: ProjectTableActionsProps) {
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
-            <Link href={`/projects/${project.id}`}>
+            <Link href={ROUTES.ADMIN.PROJECTS.DETAIL(project.id)}>
               <Eye className="mr-2 size-4" />
               View
             </Link>
           </DropdownMenuItem>
 
           <DropdownMenuItem asChild>
-            <Link href={`/projects/${project.id}/edit`}>
+            <Link href={ROUTES.ADMIN.PROJECTS.EDIT(project.id)}>
               <Pencil className="mr-2 size-4" />
               Edit
             </Link>

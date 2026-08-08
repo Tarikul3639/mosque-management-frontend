@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import Link from "next/link"
 
 import { ArrowLeft, Pencil } from "lucide-react"
@@ -18,7 +19,7 @@ export function DonorHeader({ donor }: DonorHeaderProps) {
     <div className="flex flex-col gap-4 border-b pb-6 lg:flex-row lg:items-center lg:justify-between">
       <div className="space-y-3">
         <Button asChild variant="ghost" size="sm" className="w-fit">
-          <Link href={`/donors/${donor.id}`}>
+          <Link href={ROUTES.ADMIN.DONORS.DETAIL(donor.id)}>
             <ArrowLeft className="size-4" />
             Back to Details
           </Link>
@@ -41,7 +42,7 @@ export function DonorHeader({ donor }: DonorHeaderProps) {
       </div>
 
       <Button asChild variant="outline">
-        <Link href={`/donors/${donor.id}`}>
+        <Link href={ROUTES.ADMIN.DONORS.DETAIL(donor.id)}>
           <Pencil className="size-4" />
           View Details
         </Link>

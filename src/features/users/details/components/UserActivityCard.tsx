@@ -1,7 +1,6 @@
-// src/features/user/details/components/UserActivityCard.tsx
-
 "use client"
 
+// src/features/user/details/components/UserActivityCard.tsx
 import { format } from "date-fns"
 
 import { CalendarPlus2, History, LogIn } from "lucide-react"

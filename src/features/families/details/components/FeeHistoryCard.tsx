@@ -1,7 +1,6 @@
-// src/features/families/details/components/FeeHistoryCard.tsx
-
 "use client"
 
+// src/features/families/details/components/FeeHistoryCard.tsx
 import { Plus } from "lucide-react"
 
 import {

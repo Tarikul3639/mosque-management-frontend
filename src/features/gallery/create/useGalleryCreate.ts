@@ -1,7 +1,7 @@
-// src/features/gallery/create/useGalleryCreate.ts
-
 "use client"
 
+import { ROUTES } from "@/config/routes"
+// src/features/gallery/create/useGalleryCreate.ts
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
@@ -45,7 +45,7 @@ export function useGalleryCreate() {
       }).unwrap()
 
       toast.success("Gallery created successfully.")
-      router.push(`/galleries/${gallery.id}`)
+      router.push(ROUTES.ADMIN.GALLERY.DETAIL(gallery.id))
     } catch (error) {
       toast.error(getErrorMessage(error))
     }

@@ -1,7 +1,6 @@
-// src/features/expenses/shared/ExpenseForm.tsx
-
 "use client"
 
+// src/features/expenses/shared/ExpenseForm.tsx
 import { format } from "date-fns"
 import { CalendarDays, Loader2, ReceiptText, Tag, Wallet } from "lucide-react"
 

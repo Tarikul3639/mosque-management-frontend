@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { useCallback, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -96,7 +97,7 @@ export function DonorEditPage({ id }: DonorEditPageProps) {
 
       toast.success("Donor updated successfully.")
 
-      router.push(`/donors/${donor!.id}`)
+      router.push(ROUTES.ADMIN.DONORS.DETAIL(donor!.id))
     } catch (error) {
       console.error(error)
 

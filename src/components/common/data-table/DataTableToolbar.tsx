@@ -1,6 +1,6 @@
-// src/components/common/data-table/DataTableToolbar.tsx
 "use client"
 
+// src/components/common/data-table/DataTableToolbar.tsx
 import { type ReactNode } from "react"
 import { type Table } from "@tanstack/react-table"
 import { Search, X } from "lucide-react"

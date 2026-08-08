@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import {
   Command,
   CommandDialog,
@@ -24,42 +25,42 @@ const QUICK_ACCESS_ITEMS = [
     type: "PROJECT" as const,
     title: "Dashboard",
     subtitle: "Overview and reports",
-    url: "/dashboard",
+    url: ROUTES.ADMIN.DASHBOARD,
   },
   {
     id: "families",
     type: "FAMILY" as const,
     title: "Families",
     subtitle: "Manage family records",
-    url: "/families",
+    url: ROUTES.ADMIN.FAMILIES.INDEX,
   },
   {
     id: "payments",
     type: "PAYMENT" as const,
     title: "Payments",
     subtitle: "View and record payments",
-    url: "/payments",
+    url: ROUTES.ADMIN.PAYMENTS.INDEX,
   },
   {
     id: "donations",
     type: "DONATION" as const,
     title: "Donations",
     subtitle: "Track donation records",
-    url: "/donations",
+    url: ROUTES.ADMIN.DONATIONS.INDEX,
   },
   {
     id: "users",
     type: "USER" as const,
     title: "Users",
     subtitle: "Manage user accounts",
-    url: "/users",
+    url: ROUTES.ADMIN.USERS.INDEX,
   },
   {
     id: "prayer-times",
     type: "PRAYER_TIME" as const,
     title: "Prayer Times",
     subtitle: "View and manage prayer times",
-    url: "/prayer-times",
+    url: ROUTES.PUBLIC.PRAYER_TIMES,
   },
 ]
 

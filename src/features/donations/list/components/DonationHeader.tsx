@@ -1,10 +1,10 @@
-// src/features/donations/list/components/DonationHeader.tsx
-
 "use client"
 
+// src/features/donations/list/components/DonationHeader.tsx
 import Link from "next/link"
 import { Plus } from "lucide-react"
 import { DateRange } from "react-day-picker"
+import { ROUTES } from "@/config/routes"
 
 import { Button } from "@/components/ui/button"
 import { DatePickerWithRange } from "@/components/ui/DatePickerWithRange"
@@ -38,7 +38,7 @@ export function DonationHeader({
         />
 
         <Button asChild>
-          <Link href="/donations/create" className="py-4.5">
+          <Link href={ROUTES.ADMIN.DONATIONS.CREATE} className="py-4.5">
             <Plus className="h-4 w-4" />
             Add Donation
           </Link>

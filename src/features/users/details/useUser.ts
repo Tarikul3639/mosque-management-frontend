@@ -1,6 +1,6 @@
-// src/features/user/details/useUser.ts
-
 "use client"
+
+// src/features/user/details/useUser.ts
 import { useGetUserQuery } from "@/store/api/user.api"
 
 export function useUser({ id }: { id: string }) {

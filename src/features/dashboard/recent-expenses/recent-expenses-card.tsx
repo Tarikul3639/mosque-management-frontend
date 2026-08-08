@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
@@ -37,7 +38,7 @@ export function RecentExpensesCard({
           <CardTitle>Recent Expenses</CardTitle>
 
           <Button asChild variant="link" size="sm">
-            <Link href="/expenses">
+            <Link href={ROUTES.ADMIN.EXPENSES.INDEX}>
               View All
               <ArrowRight className="ml-1 size-4" />
             </Link>

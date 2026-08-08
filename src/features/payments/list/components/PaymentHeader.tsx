@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import Link from "next/link"
 import { CreditCard } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -63,7 +64,7 @@ export function PaymentHeader({
         <>
           {/* Month Filter */}
           <Select
-            key={month}
+            key={`month-${month}-${year}`} // Prefixed to avoid key collision with Year select
             value={month?.toString() ?? ""}
             onValueChange={(value) =>
               setMonth(value ? parseInt(value) : undefined)
@@ -88,7 +89,7 @@ export function PaymentHeader({
 
           {/* Year Filter */}
           <Select
-            key={year}
+            key={`year-${year}-${month}`} // Prefixed to avoid key collision with Month select
             value={year?.toString() ?? ""}
             onValueChange={(value) =>
               setYear(value ? parseInt(value) : undefined)
@@ -135,7 +136,7 @@ export function PaymentHeader({
 
           {/* Create Payment Button */}
           <Button asChild>
-            <Link href="/payments/create">Create Payment</Link>
+            <Link href={ROUTES.ADMIN.PAYMENTS.CREATE}>Create Payment</Link>
           </Button>
         </>
       }

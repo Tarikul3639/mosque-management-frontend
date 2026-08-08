@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import type { ColumnDef } from "@tanstack/react-table"
 import Link from "next/link"
 import { formatDate } from "@/utils/format-date"
@@ -38,7 +39,7 @@ export const galleryColumns: ColumnDef<Gallery>[] = [
 
           <div className="space-y-1">
             <Link
-              href={`/galleries/${gallery.id}`}
+              href={ROUTES.ADMIN.GALLERY.DETAIL(gallery.id)}
               className="font-medium hover:underline"
             >
               {gallery.title}

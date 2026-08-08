@@ -1,7 +1,7 @@
-// src/features/expenses/list/components/ExpenseHeader.tsx
-
 "use client"
 
+import { ROUTES } from "@/config/routes"
+// src/features/expenses/list/components/ExpenseHeader.tsx
 import Link from "next/link"
 import { Plus, Wallet } from "lucide-react"
 
@@ -27,7 +27,7 @@ export function ExpenseHeader() {
       </div>
 
       <Button asChild>
-        <Link href="/expenses/create" className="gap-2">
+        <Link href={ROUTES.ADMIN.EXPENSES.CREATE} className="gap-2">
           <Plus className="size-4" />
           Add Expense
         </Link>

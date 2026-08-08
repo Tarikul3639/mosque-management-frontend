@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
@@ -78,7 +79,7 @@ export function usePaymentEdit({ id }: Props) {
       }).unwrap()
 
       toast.success("Payment updated successfully.")
-      router.push(`/payments/${payment.id}`)
+      router.push(ROUTES.ADMIN.PAYMENTS.DETAIL(payment.id))
     } catch (error) {
       toast.error("Failed to update payment.", {
         description: getErrorMessage(error),
@@ -93,7 +94,7 @@ export function usePaymentEdit({ id }: Props) {
       await deletePayment(payment.id).unwrap()
 
       toast.success("Payment deleted successfully.")
-      router.push("/payments")
+      router.push(ROUTES.ADMIN.PAYMENTS.INDEX)
     } catch (error) {
       toast.error("Failed to delete payment.", {
         description: getErrorMessage(error),

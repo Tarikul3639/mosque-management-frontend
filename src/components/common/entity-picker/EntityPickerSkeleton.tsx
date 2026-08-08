@@ -1,7 +1,6 @@
-// src/components/common/entity-picker/EntityPickerSkeleton.tsx
-
 "use client"
 
+// src/components/common/entity-picker/EntityPickerSkeleton.tsx
 import { Skeleton } from "@/components/ui/skeleton"
 
 interface EntityPickerSkeletonProps {

@@ -1,7 +1,6 @@
-// src/features/prayer-time/components/PrayerTimeForm.tsx
-
 "use client"
 
+// src/features/prayer-time/components/PrayerTimeForm.tsx
 import { Sunrise, Sun, Sunset, CalendarDays } from "lucide-react"
 import { Controller, type UseFormReturn } from "react-hook-form"
 

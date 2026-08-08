@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { Images, Eye } from "lucide-react"
 
 import Link from "next/link"
@@ -18,11 +19,11 @@ export function GalleryEditHeader({ gallery }: GalleryEditHeaderProps) {
       title={`Edit ${gallery.title}`}
       description="Update gallery information, images, and display order."
       icon={<Images className="size-6 text-primary" />}
-      backLinkHref={`/galleries/${gallery.id}`}
+      backLinkHref={ROUTES.ADMIN.GALLERY.DETAIL(gallery.id)}
       backLinkTitle="Back to Gallery"
       actions={
         <Button asChild>
-          <Link href={`/galleries/${gallery.id}`}>
+          <Link href={ROUTES.ADMIN.GALLERY.DETAIL(gallery.id)}>
             <Eye className="mr-2 size-4" />
             View Gallery
           </Link>

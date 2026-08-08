@@ -1,7 +1,6 @@
-// src/components/layout/Navbar.tsx
-
 "use client"
 
+// src/components/layout/Navbar.tsx
 import { MenuIcon } from "@/components/icons/MenuIcon"
 import { SearchDialog } from "@/features/search/SearchDialog"
 

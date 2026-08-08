@@ -1,7 +1,6 @@
-// src/features/payments/edit/components/PaymentEditForm.tsx
-
 "use client"
 
+// src/features/payments/edit/components/PaymentEditForm.tsx
 import { format } from "date-fns"
 
 import {

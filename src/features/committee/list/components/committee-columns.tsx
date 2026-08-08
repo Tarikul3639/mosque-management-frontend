@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { type ColumnDef } from "@tanstack/react-table"
 import { format } from "date-fns"
 import Link from "next/link"
@@ -35,7 +36,7 @@ export const committeeColumns: ColumnDef<CommitteeMember>[] = [
           <div className="space-y-0.5">
             <div className="flex items-center gap-2">
               <Link
-                href={`/committee/${member.id}`}
+                href={ROUTES.ADMIN.COMMITTEE.DETAIL(member.id)}
                 className="font-medium hover:text-primary hover:underline"
               >
                 {member.name}

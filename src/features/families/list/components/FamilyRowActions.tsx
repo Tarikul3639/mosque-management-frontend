@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { useState } from "react"
 import Link from "next/link"
 
@@ -108,7 +109,7 @@ export function FamilyRowActions({ family }: FamilyRowActionsProps) {
           <DropdownMenuSeparator />
 
           <DropdownMenuItem asChild>
-            <Link href={`/families/${family.id}`} className="cursor-pointer">
+            <Link href={ROUTES.ADMIN.FAMILIES.DETAIL(family.id)} className="cursor-pointer">
               <Eye className="mr-2 size-4" />
               View
             </Link>
@@ -116,7 +117,7 @@ export function FamilyRowActions({ family }: FamilyRowActionsProps) {
 
           <DropdownMenuItem asChild>
             <Link
-              href={`/families/${family.id}/edit`}
+              href={ROUTES.ADMIN.FAMILIES.EDIT(family.id)}
               className="cursor-pointer"
             >
               <Pencil className="mr-2 size-4" />

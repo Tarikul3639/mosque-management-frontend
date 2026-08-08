@@ -1,7 +1,7 @@
-// src/features/donations/create/components/DonationCreateHeader.tsx
-
 "use client"
 
+import { ROUTES } from "@/config/routes"
+// src/features/donations/create/components/DonationCreateHeader.tsx
 import Link from "next/link"
 import { ArrowLeft, Plus } from "lucide-react"
 
@@ -18,7 +18,7 @@ export function DonationCreateHeader() {
             size="icon"
             className="size-9 rounded-full"
           >
-            <Link href="/donations">
+            <Link href={ROUTES.ADMIN.DONATIONS.INDEX}>
               <ArrowLeft className="size-4" />
             </Link>
           </Button>

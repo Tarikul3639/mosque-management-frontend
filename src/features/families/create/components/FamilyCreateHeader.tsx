@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import Link from "next/link"
 import { ArrowLeft, Plus } from "lucide-react"
 
@@ -15,7 +16,7 @@ export function FamilyCreateHeader() {
           size="sm"
           className="-ml-2 h-8 gap-1.5 text-xs text-muted-foreground hover:text-foreground"
         >
-          <Link href="/families">
+          <Link href={ROUTES.ADMIN.FAMILIES.INDEX}>
             <ArrowLeft className="size-3.5" />
             Back to Families
           </Link>

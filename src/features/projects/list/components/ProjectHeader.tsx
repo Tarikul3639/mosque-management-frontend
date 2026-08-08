@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import Link from "next/link"
 
 import { FolderKanban, Plus } from "lucide-react"
@@ -16,7 +17,7 @@ export function ProjectHeader() {
       icon={<FolderKanban className="size-5 text-primary" />}
       actions={
         <Button asChild>
-          <Link href="/projects/create">
+          <Link href={ROUTES.ADMIN.PROJECTS.CREATE}>
             <Plus className="size-4" />
             Create Project
           </Link>

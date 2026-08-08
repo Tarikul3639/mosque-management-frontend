@@ -1,7 +1,6 @@
-// src/features/donations/shared/DonationReceiptActions.tsx
-
 "use client"
 
+// src/features/donations/shared/DonationReceiptActions.tsx
 import { Download, Loader2, Printer } from "lucide-react"
 
 import { Button } from "@/components/ui/button"

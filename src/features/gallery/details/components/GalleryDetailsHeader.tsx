@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { Images, Pencil } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -18,11 +19,11 @@ export function GalleryDetailsHeader({ gallery }: GalleryDetailsHeaderProps) {
         gallery.description ?? "Gallery details and uploaded images."
       }
       icon={<Images className="size-6 text-primary" />}
-      backLinkHref="/galleries"
+      backLinkHref={ROUTES.ADMIN.GALLERY.INDEX}
       backLinkTitle="Back to Galleries"
       actions={
         <Button asChild>
-          <Link href={`/galleries/${gallery.id}/edit`}>
+          <Link href={ROUTES.ADMIN.GALLERY.EDIT(gallery.id)}>
             <Pencil className="mr-2 size-4" />
             Edit Gallery
           </Link>

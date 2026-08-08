@@ -1,7 +1,7 @@
-// src/features/donations/create/CreateDonationPage.tsx
-
 "use client"
 
+import { ROUTES } from "@/config/routes"
+// src/features/donations/create/CreateDonationPage.tsx
 import { useRouter } from "next/navigation"
 import { useMemo, useState } from "react"
 import { useForm } from "react-hook-form"
@@ -66,7 +66,7 @@ export function CreateDonationPage() {
 
       toast.success("Donation created successfully.")
 
-      router.push(`/donations/${donation.id}`)
+      router.push(ROUTES.ADMIN.DONATIONS.DETAIL(donation.id))
     } catch (error) {
       toast.error("Failed to create donation.", {
         description: getErrorMessage(error),

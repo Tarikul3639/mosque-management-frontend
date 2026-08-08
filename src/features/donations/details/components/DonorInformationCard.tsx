@@ -1,7 +1,7 @@
-// src/features/donations/details/components/DonorInformationCard.tsx
-
 "use client"
 
+import { ROUTES } from "@/config/routes"
+// src/features/donations/details/components/DonorInformationCard.tsx
 import Link from "next/link"
 import { ArrowRight, Mail, MapPin, Phone, User } from "lucide-react"
 
@@ -45,7 +45,7 @@ export function DonorInformationCard({ donation }: DonorInformationCardProps) {
           </div>
 
           <Button asChild variant="outline" size="sm">
-            <Link href={`/donors/${donor.id}`}>
+            <Link href={ROUTES.ADMIN.DONORS.DETAIL(donor.id)}>
               View
               <ArrowRight className="ml-2 size-4" />
             </Link>

@@ -1,5 +1,6 @@
 "use client"
 
+import { ROUTES } from "@/config/routes"
 import { useEffect, useMemo, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
@@ -96,7 +97,7 @@ export function useDonationEdit({ id }: Props) {
 
       toast.success("Donation updated successfully.")
 
-      router.push(`/donations/${donation.id}`)
+      router.push(ROUTES.ADMIN.DONATIONS.DETAIL(donation.id))
     } catch (error) {
       toast.error("Failed to update donation.", {
         description: getErrorMessage(error),
@@ -112,7 +113,7 @@ export function useDonationEdit({ id }: Props) {
 
       toast.success("Donation deleted successfully.")
 
-      router.push("/donations")
+      router.push(ROUTES.ADMIN.DONATIONS.INDEX)
     } catch {
       toast.error("Failed to delete donation.")
     }

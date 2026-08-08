@@ -1,7 +1,6 @@
-// components/common/avatar-upload/avatar-progress.tsx
-
 "use client"
 
+// components/common/avatar-upload/avatar-progress.tsx
 import { cn } from "@/lib/utils"
 
 interface AvatarProgressProps {

@@ -1,7 +1,6 @@
-// src/features/families/details/FamilyDetailsPage.tsx
-
 "use client"
 
+// src/features/families/details/FamilyDetailsPage.tsx
 import { useState } from "react"
 
 import { ErrorComponent } from "@/components/common/error"

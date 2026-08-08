@@ -1,7 +1,6 @@
-// src/features/payments/details/components/PaymentInformationCard.tsx
-
 "use client"
 
+// src/features/payments/details/components/PaymentInformationCard.tsx
 import {
   CalendarDays,
   CreditCard,

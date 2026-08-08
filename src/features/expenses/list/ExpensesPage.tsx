@@ -1,7 +1,6 @@
-// src/features/expenses/list/ExpensesPage.tsx
-
 "use client"
 
+// src/features/expenses/list/ExpensesPage.tsx
 import { useMemo, useState } from "react"
 
 import { ErrorComponent } from "@/components/common/error"
