@@ -22,7 +22,7 @@
   --destructive: oklch(0.6 0.15 25);
   --destructive-foreground: oklch(0.98 0.01 25);
   --border: oklch(0.94 0.003 160);
- --input: oklch(0.9400 0.0100 160);
+  --input: oklch(0.94 0.01 160);
   --ring: oklch(0.58 0.14 160);
   --chart-1: oklch(0.45 0.1 160);
   --chart-2: oklch(0.6 0.14 235);
@@ -37,9 +37,9 @@
   --sidebar-accent-foreground: oklch(0.98 0.01 160);
   --sidebar-border: oklch(0.4 0.05 160);
   --sidebar-ring: oklch(0.6 0.12 160);
-  --font-sans: "Inter", "Noto Sans Arabic", sans-serif;
-  --font-serif: "PT Serif", serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: var(--font-bangla), var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-serif: serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   --radius: 0.5rem;
   --shadow-x: 0px;
   --shadow-y: 4px;
@@ -49,11 +49,16 @@
   --shadow-color: oklch(20% 0.02 160);
   --shadow-2xs: 0px 1px 2px hsl(220 15% 15% / 0.02);
   --shadow-xs: 0px 1px 3px hsl(220 15% 15% / 0.03);
-  --shadow-sm: 0px 2px 4px hsl(220 15% 15% / 0.03), 0px 1px 2px hsl(220 15% 15% / 0.02);
-  --shadow: 0px 4px 8px hsl(220 15% 15% / 0.04), 0px 1px 2px hsl(220 15% 15% / 0.02);
-  --shadow-md: 0px 8px 16px hsl(220 15% 15% / 0.05), 0px 2px 4px hsl(220 15% 15% / 0.03);
-  --shadow-lg: 0px 12px 24px hsl(220 15% 15% / 0.06), 0px 4px 8px hsl(220 15% 15% / 0.04);
-  --shadow-xl: 0px 20px 40px hsl(220 15% 15% / 0.08), 0px 8px 16px hsl(220 15% 15% / 0.05);
+  --shadow-sm:
+    0px 2px 4px hsl(220 15% 15% / 0.03), 0px 1px 2px hsl(220 15% 15% / 0.02);
+  --shadow:
+    0px 4px 8px hsl(220 15% 15% / 0.04), 0px 1px 2px hsl(220 15% 15% / 0.02);
+  --shadow-md:
+    0px 8px 16px hsl(220 15% 15% / 0.05), 0px 2px 4px hsl(220 15% 15% / 0.03);
+  --shadow-lg:
+    0px 12px 24px hsl(220 15% 15% / 0.06), 0px 4px 8px hsl(220 15% 15% / 0.04);
+  --shadow-xl:
+    0px 20px 40px hsl(220 15% 15% / 0.08), 0px 8px 16px hsl(220 15% 15% / 0.05);
   --shadow-2xl: 0px 32px 64px hsl(220 15% 15% / 0.12);
   --tracking-normal: -0.025em;
   --spacing: 0.25rem;
@@ -96,7 +101,7 @@
   --sidebar-accent-foreground: oklch(0.95 0.05 160);
   --sidebar-border: oklch(0.32 0.03 160);
   --sidebar-ring: oklch(0.6 0.1 160);
-  --font-sans: "Inter", "Noto Sans Arabic", sans-serif;
+  --font-sans: "Inter", "Noto Sans Bengali", "Noto Sans Arabic", sans-serif;
   --font-serif: "PT Serif", serif;
   --font-mono: "JetBrains Mono", monospace;
   --radius: 0.5rem;

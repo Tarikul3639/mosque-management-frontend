@@ -15,6 +15,7 @@ import {
     UserCog,
     Users,
     Wallet,
+    Phone
 } from "lucide-react"
 
 import { ROUTES } from "@/config/routes"
@@ -111,42 +112,44 @@ export const ADMIN_NAVIGATION: NavigationItem[] = [
 
 export const PUBLIC_NAVIGATION: NavigationItem[] = [
     {
-        title: "Home",
+        title: "হোম",
         href: ROUTES.PUBLIC.HOME,
+        icon: Home,
     },
 
     {
-        title: "Committee",
+        title: "কমিটি",
         href: ROUTES.PUBLIC.COMMITTEE.INDEX,
+        icon: UserCog,
     },
 
     {
-        title: "Families",
+        title: "পরিবারসমূহ",
         href: ROUTES.PUBLIC.FAMILIES.INDEX,
+        icon: Building2,
     },
 
     {
-        title: "Projects",
+        title: "প্রকল্পসমূহ",
         href: ROUTES.PUBLIC.PROJECTS.INDEX,
+        icon: ClipboardList,
     },
 
     {
-        title: "Gallery",
-        href: ROUTES.PUBLIC.GALLERY.INDEX,
-    },
-
-    {
-        title: "Donations",
+        title: "দানসমূহ",
         href: ROUTES.PUBLIC.DONATIONS.INDEX,
+        icon: HandCoins,
     },
 
     {
-        title: "Prayer Times",
-        href: ROUTES.PUBLIC.PRAYER_TIMES,
+        title: "গ্যালারি",
+        href: ROUTES.PUBLIC.GALLERY.INDEX,
+        icon: Image,
     },
 
     {
-        title: "Contact",
+        title: "যোগাযোগ",
         href: ROUTES.PUBLIC.CONTACT,
+        icon: Phone,
     },
 ]

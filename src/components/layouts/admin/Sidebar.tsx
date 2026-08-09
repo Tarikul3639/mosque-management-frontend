@@ -77,7 +77,7 @@ export function Sidebar({
     >
       {/* ================= Brand ================= */}
       <Link
-        href={ROUTES.ADMIN.DASHBOARD}
+        href={ROUTES.PUBLIC.HOME}
         className="flex h-20 items-center border-b border-sidebar-border px-2.5 transition-colors hover:bg-sidebar-accent/50"
       >
         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary text-sidebar-primary-foreground">

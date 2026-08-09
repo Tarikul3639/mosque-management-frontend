@@ -1,10 +1,11 @@
-import { Geist_Mono, Inter } from "next/font/google"
+import { Geist_Mono } from "next/font/google"
+
 import ProviderWrapper from "./provider"
+import { geist, bangla } from "./fonts"
+
 import { cn } from "@/lib/utils"
 
 import "./globals.css"
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
 
 const fontMono = Geist_Mono({
   subsets: ["latin"],
@@ -18,16 +19,16 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="bn"
       suppressHydrationWarning
       className={cn(
         "antialiased",
-        "font-sans",
-        inter.variable,
+        geist.variable,
+        bangla.variable,
         fontMono.variable
       )}
     >
-      <body>
+      <body className={cn("font-sans", bangla.className)}>
         <ProviderWrapper>{children}</ProviderWrapper>
       </body>
     </html>
