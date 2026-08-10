@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { ProjectDetailsPage } from "@/features/projects/details/ProjectDetailsPage"
+import { ProjectDetailsPage } from "@/features/admin/projects/details/ProjectDetailsPage"
 
 interface ProjectPageProps {
   params: Promise<{

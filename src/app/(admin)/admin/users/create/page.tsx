@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import { UserCreatePage } from "@/features/users/create/CreateUserPage"
+import { UserCreatePage } from "@/features/admin/users/create/CreateUserPage"
 
 export const metadata: Metadata = {
   title: "Create User",

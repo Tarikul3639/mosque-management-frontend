@@ -1,4 +1,4 @@
-import { CreateExpensePage } from "@/features/expenses/create/CreateExpensePage"
+import { CreateExpensePage } from "@/features/admin/expenses/create/CreateExpensePage"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {

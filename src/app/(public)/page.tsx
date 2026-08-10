@@ -1,25 +1,68 @@
-"use client"
+import type { Metadata } from "next"
 
-import { Button } from "@/components/ui/button"
-import { Logo } from "@/components/icons/Logo"
+import {
+  Hero,
+  // MosqueStats,
+  // FinanceProgress,
+  // CommitteePreview,
+  // ProjectsPreview,
+  // GalleryPreview,
+  MosqueActivities,
+  DonationCTA,
+  ContactCTA,
+  HadithBanner,
+  PrayerTimes,
+  SurahFatihaSection,
+} from "@/features/public/home"
 
-export default function Page() {
+import { getPrayerTimes } from "@/services/api/prayer-time.service"
+import { PrayerTimesSkeleton } from "@/features/public/home/components/PrayerTimesSkeleton"
+import { Suspense } from "react"
+
+export const metadata: Metadata = {
+  title: "হোম",
+  description:
+    "নামা রাথুরা বাইতুল আমান জামে মসজিদের অফিসিয়াল ওয়েবসাইট। নামাজের সময়সূচী, আর্থিক তথ্য, কমিটি, প্রকল্প, গ্যালারি ও অনুদানের তথ্য দেখুন।",
+}
+
+export default async function HomePage() {
+  const prayerTimes = await getPrayerTimes()
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
-        <div className="mt-auto bg-primary">
-          <Logo color="#ffffff" />
-        </div>
-      </div>
-    </div>
+    <>
+      {/* Hero */}
+      <Hero />
+      {/* Hadith Banner */}
+      <HadithBanner />
+      {/* Prayer Times */}
+      <Suspense fallback={<PrayerTimesSkeleton />}>
+        <PrayerTimes prayerTimes={prayerTimes} />
+      </Suspense>
+      {/* Surah Fatiha Section */}
+      <SurahFatihaSection />
+
+      {/* Mosque Activities */}
+      <MosqueActivities />
+
+      {/* Mosque Statistics */}
+      {/* <MosqueStats /> */}
+
+      {/* Finance Progress */}
+      {/* <FinanceProgress /> */}
+
+      {/* Committee */}
+      {/* <CommitteePreview /> */}
+
+      {/* Projects */}
+      {/* <ProjectsPreview /> */}
+
+      {/* Gallery */}
+      {/* <GalleryPreview /> */}
+
+      {/* Donation CTA */}
+      <DonationCTA />
+
+      {/* Contact CTA */}
+      <ContactCTA />
+    </>
   )
 }

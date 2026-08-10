@@ -77,6 +77,7 @@ export function Sidebar({
     >
       {/* ================= Brand ================= */}
       <Link
+        key="brand"
         href={ROUTES.PUBLIC.HOME}
         className="flex h-20 items-center border-b border-sidebar-border px-2.5 transition-colors hover:bg-sidebar-accent/50"
       >
@@ -102,7 +103,7 @@ export function Sidebar({
               pathname === href || pathname.startsWith(`${href}/`)
 
             return (
-              <li key={href}>
+              <li key={`admin-${href}`}>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Link
@@ -145,8 +146,8 @@ export function Sidebar({
             <Link
               href={profileRoute}
               className={`flex w-full items-center rounded-lg p-2 transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground ${isYourProfilePage
-                  ? "bg-primary font-medium text-primary-foreground"
-                  : "text-sidebar-foreground"
+                ? "bg-primary font-medium text-primary-foreground"
+                : "text-sidebar-foreground"
                 }`}
             >
               <Avatar className="h-9 w-9 shrink-0 border border-sidebar-border">

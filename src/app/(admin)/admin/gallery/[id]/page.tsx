@@ -2,7 +2,7 @@
 
 import type { Metadata } from "next"
 
-import { GalleryDetailsPage } from "@/features/gallery/details/GalleryDetailsPage"
+import { GalleryDetailsPage } from "@/features/admin/gallery/details/GalleryDetailsPage"
 
 interface PageProps {
   params: Promise<{

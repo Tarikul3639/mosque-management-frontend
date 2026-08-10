@@ -1,6 +1,6 @@
 // src/app/(admin)/donations/[id]/edit/page.tsx
 
-import { DonationEditPage } from "@/features/donations/edit/DonationEditPage"
+import { DonationEditPage } from "@/features/admin/donations/edit/DonationEditPage"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {

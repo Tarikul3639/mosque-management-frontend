@@ -1,6 +1,6 @@
 // src/app/(admin)/users/[id]/page.tsx
 
-import { UserDetailsPage } from "@/features/users/details/UserDetailsPage"
+import { UserDetailsPage } from "@/features/admin/users/details/UserDetailsPage"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {

@@ -21,7 +21,7 @@ export function NavbarDesktop() {
               : pathname === item.href || pathname.startsWith(`${item.href}/`)
 
           return (
-            <li key={item.href}>
+            <li key={`public-${item.href}`}>
               <Link
                 href={item.href}
                 className={cn(

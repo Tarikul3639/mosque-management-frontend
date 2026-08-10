@@ -2,7 +2,7 @@
 
 import { Metadata } from "next"
 
-import { DonationsPage } from "@/features/donations/list/DonationsPage"
+import { DonationsPage } from "@/features/admin/donations/list/DonationsPage"
 
 export const metadata: Metadata = {
   title: "Donations",

@@ -1,6 +1,6 @@
 // src/app/(admin)/galleries/create/page.tsx
 
-import { CreateGalleryPage } from "@/features/gallery/create/CreateGalleryPage"
+import { CreateGalleryPage } from "@/features/admin/gallery/create/CreateGalleryPage"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {

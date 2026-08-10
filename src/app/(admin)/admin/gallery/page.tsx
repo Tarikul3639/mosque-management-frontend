@@ -2,7 +2,7 @@
 
 import type { Metadata } from "next"
 
-import { GalleryPage } from "@/features/gallery/list/GalleryPage"
+import { GalleryPage } from "@/features/admin/gallery/list/GalleryPage"
 
 export const metadata: Metadata = {
   title: "Gallery",

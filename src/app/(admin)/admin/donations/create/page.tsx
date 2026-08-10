@@ -1,6 +1,6 @@
 // src/app/(dashboard)/donations/create/page.tsx
 
-import { CreateDonationPage } from "@/features/donations/create/CreateDonationPage"
+import { CreateDonationPage } from "@/features/admin/donations/create/CreateDonationPage"
 
 import { Metadata } from "next"
 

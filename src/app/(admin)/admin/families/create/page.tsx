@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { FamilyCreatePage } from "@/features/families/create/FamilyCreatePage"
+import { FamilyCreatePage } from "@/features/admin/families/create/FamilyCreatePage"
 
 export const metadata: Metadata = {
   title: "Create Family",

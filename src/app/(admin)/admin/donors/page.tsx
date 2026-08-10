@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import { DonorsPage } from "@/features/donors/list/DonorsPage"
+import { DonorsPage } from "@/features/admin/donors/list/DonorsPage"
 
 export const metadata: Metadata = {
   title: "Donors",

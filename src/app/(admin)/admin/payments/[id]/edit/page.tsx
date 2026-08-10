@@ -2,7 +2,7 @@
 
 import type { Metadata } from "next"
 
-import { PaymentEditPage } from "@/features/payments/edit/PaymentEditPage"
+import { PaymentEditPage } from "@/features/admin/payments/edit/PaymentEditPage"
 
 interface PageProps {
   params: Promise<{

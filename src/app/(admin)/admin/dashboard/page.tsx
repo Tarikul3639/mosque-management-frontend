@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import { DashboardPage } from "@/features/dashboard/DashboardPage"
+import { DashboardPage } from "@/features/admin/dashboard/DashboardPage"
 
 export const metadata: Metadata = {
   title: "Dashboard",

@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import { ProjectEditPage } from "@/features/projects/edit/ProjectEditPage"
+import { ProjectEditPage } from "@/features/admin/projects/edit/ProjectEditPage"
 
 interface PageProps {
   params: Promise<{

@@ -1,6 +1,6 @@
 // page.tsx
 
-import { FamilyEditPage } from "@/features/families/edit/FamilyEditPage"
+import { FamilyEditPage } from "@/features/admin/families/edit/FamilyEditPage"
 
 interface PageProps {
   params: Promise<{

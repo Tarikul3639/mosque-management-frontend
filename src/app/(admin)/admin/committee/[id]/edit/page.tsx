@@ -1,4 +1,4 @@
-import { CommitteeEditPage } from "@/features/committee/edit/CommitteeEditPage"
+import { CommitteeEditPage } from "@/features/admin/committee/edit/CommitteeEditPage"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {

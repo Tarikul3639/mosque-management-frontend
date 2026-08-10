@@ -2,7 +2,7 @@
 
 import type { Metadata } from "next"
 
-import { DonationDetailsPage } from "@/features/donations/details/DonationDetailsPage"
+import { DonationDetailsPage } from "@/features/admin/donations/details/DonationDetailsPage"
 
 interface PageProps {
   params: Promise<{

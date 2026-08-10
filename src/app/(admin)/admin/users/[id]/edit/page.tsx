@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import { UserEditPage } from "@/features/users/edit/UserEditPage"
+import { UserEditPage } from "@/features/admin/users/edit/UserEditPage"
 
 export const metadata: Metadata = {
   title: "Edit User",

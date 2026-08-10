@@ -1,6 +1,6 @@
 // src/app/(dashboard)/donors/create/page.tsx
 
-import { CreateDonorPage } from "@/features/donors/create/CreateDonorPage"
+import { CreateDonorPage } from "@/features/admin/donors/create/CreateDonorPage"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {

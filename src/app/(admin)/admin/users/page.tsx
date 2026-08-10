@@ -1,4 +1,4 @@
-import { UserPage } from "@/features/users/list/UserPage"
+import { UserPage } from "@/features/admin/users/list/UserPage"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {

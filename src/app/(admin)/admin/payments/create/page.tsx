@@ -2,7 +2,7 @@
 
 import type { Metadata } from "next"
 
-import { CreatePaymentPage } from "@/features/payments/create/CreatePaymentPage"
+import { CreatePaymentPage } from "@/features/admin/payments/create/CreatePaymentPage"
 
 export const metadata: Metadata = {
   title: "Create Payment",

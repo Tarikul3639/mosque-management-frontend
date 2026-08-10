@@ -2,7 +2,7 @@
 
 import type { Metadata } from "next"
 
-import { CreateProjectPage } from "@/features/projects/create/CreateProjectPage"
+import { CreateProjectPage } from "@/features/admin/projects/create/CreateProjectPage"
 
 export const metadata: Metadata = {
   title: "Create Project",

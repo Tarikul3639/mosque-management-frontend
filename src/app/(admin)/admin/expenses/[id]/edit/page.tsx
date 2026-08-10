@@ -1,6 +1,6 @@
 // src/app/(admin)/expenses/[id]/edit/page.tsx
 
-import { ExpenseEditPage } from "@/features/expenses/edit/ExpenseEditPage"
+import { ExpenseEditPage } from "@/features/admin/expenses/edit/ExpenseEditPage"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {

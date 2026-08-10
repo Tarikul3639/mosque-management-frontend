@@ -2,7 +2,7 @@
 
 // src/components/layout/Navbar.tsx
 import { MenuIcon } from "@/components/icons/MenuIcon"
-import { SearchDialog } from "@/features/search/SearchDialog"
+import { SearchDialog } from "@/features/admin/search/SearchDialog"
 
 interface NavbarProps {
   onMenuClick?: () => void

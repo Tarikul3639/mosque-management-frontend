@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import { CreateCommitteePage } from "@/features/committee/create/CreateCommitteePage"
+import { CreateCommitteePage } from "@/features/admin/committee/create/CreateCommitteePage"
 
 export const metadata: Metadata = {
   title: "Create Committee Member",

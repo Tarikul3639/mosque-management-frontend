@@ -1,6 +1,6 @@
 // src/app/(admin)/expenses/[id]/page.tsx
 
-import { ExpenseDetailsPage } from "@/features/expenses/details/ExpenseDetailsPage"
+import { ExpenseDetailsPage } from "@/features/admin/expenses/details/ExpenseDetailsPage"
 
 import { Metadata } from "next"
 

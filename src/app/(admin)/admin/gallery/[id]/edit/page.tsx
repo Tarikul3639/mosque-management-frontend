@@ -1,6 +1,6 @@
 // src/app/(admin)/galleries/[id]/edit/page.tsx
 
-import { GalleryEditPage } from "@/features/gallery/edit/GalleryEditPage"
+import { GalleryEditPage } from "@/features/admin/gallery/edit/GalleryEditPage"
 
 interface PageProps {
   params: Promise<{
