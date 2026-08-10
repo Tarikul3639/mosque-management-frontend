@@ -8,6 +8,7 @@ import { ChevronRight } from "lucide-react"
 
 import { Logo } from "@/components/icons/Logo"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { LogoutButton } from "@/features/auth/logout-button"
 
 import {
   Tooltip,
@@ -179,6 +180,9 @@ export function Sidebar({
             </TooltipContent>
           )}
         </Tooltip>
+
+        {/* Logout Button */}
+        <LogoutButton isOpen={isOpen} />
       </div>
     </aside>
   )

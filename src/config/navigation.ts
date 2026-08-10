@@ -14,6 +14,7 @@ import {
     Settings,
     UserCog,
     Users,
+    ShieldUser,
     Wallet,
     Phone
 } from "lucide-react"
@@ -152,4 +153,10 @@ export const PUBLIC_NAVIGATION: NavigationItem[] = [
         href: ROUTES.PUBLIC.CONTACT,
         icon: Phone,
     },
+    {
+        title: "অ্যাডমিন",
+        href: ROUTES.ADMIN.DASHBOARD,
+        icon: ShieldUser,
+    }
+
 ]
