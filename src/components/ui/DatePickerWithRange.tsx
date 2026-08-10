@@ -18,6 +18,7 @@ import { cn } from "@/lib/utils"
 interface DatePickerWithRangeProps {
   value?: DateRange // format: { from: Date; to: Date }
   onChange: (value: DateRange | undefined) => void
+  disabled?: boolean
   className?: string
   placeholder?: string
   numberOfMonths?: number
@@ -26,6 +27,7 @@ interface DatePickerWithRangeProps {
 export function DatePickerWithRange({
   value,
   onChange,
+  disabled,
   className,
   placeholder = "Pick a date",
   numberOfMonths = 2,
@@ -37,6 +39,7 @@ export function DatePickerWithRange({
           <Button
             variant="outline"
             size="lg"
+            disabled={disabled}
             id="date-picker-range"
             className="flex h-full w-full items-center justify-between rounded-md border border-border bg-card px-3 py-2 text-sm text-foreground hover:bg-secondary"
           >
@@ -68,6 +71,7 @@ export function DatePickerWithRange({
             selected={value}
             onSelect={onChange}
             numberOfMonths={numberOfMonths}
+            disabled={disabled}
           />
         </PopoverContent>
       </Popover>

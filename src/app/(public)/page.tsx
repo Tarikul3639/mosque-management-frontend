@@ -1,23 +1,21 @@
 import type { Metadata } from "next"
+import { Suspense } from "react"
 
 import {
   Hero,
-  // MosqueStats,
-  // FinanceProgress,
-  // CommitteePreview,
-  // ProjectsPreview,
-  // GalleryPreview,
+  MosqueStats,
+  FinancialSummaryContainer,
   MosqueActivities,
   DonationCTA,
   ContactCTA,
   HadithBanner,
   PrayerTimes,
   SurahFatihaSection,
+  MainFeatures,
 } from "@/features/public/home"
 
 import { getPrayerTimes } from "@/services/api/prayer-time.service"
 import { PrayerTimesSkeleton } from "@/features/public/home/components/PrayerTimesSkeleton"
-import { Suspense } from "react"
 
 export const metadata: Metadata = {
   title: "হোম",
@@ -27,39 +25,38 @@ export const metadata: Metadata = {
 
 export default async function HomePage() {
   const prayerTimes = await getPrayerTimes()
+
   return (
     <>
       {/* Hero */}
       <Hero />
+
       {/* Hadith Banner */}
       <HadithBanner />
+
+      {/* Main Features */}
+      <MainFeatures />
+
       {/* Prayer Times */}
       <Suspense fallback={<PrayerTimesSkeleton />}>
         <PrayerTimes prayerTimes={prayerTimes} />
       </Suspense>
+
+      {/* Mosque Statistics */}
+      <MosqueStats />
+
       {/* Surah Fatiha Section */}
       <SurahFatihaSection />
 
-      {/* Mosque Activities */}
-      <MosqueActivities />
+      {/* Financial Summary — Suspense + Skeleton */}
+      <FinancialSummaryContainer/>
 
-      {/* Mosque Statistics */}
-      {/* <MosqueStats /> */}
-
-      {/* Finance Progress */}
-      {/* <FinanceProgress /> */}
-
-      {/* Committee */}
-      {/* <CommitteePreview /> */}
-
-      {/* Projects */}
-      {/* <ProjectsPreview /> */}
-
-      {/* Gallery */}
-      {/* <GalleryPreview /> */}
 
       {/* Donation CTA */}
       <DonationCTA />
+
+      {/* Mosque Activities */}
+      <MosqueActivities />
 
       {/* Contact CTA */}
       <ContactCTA />

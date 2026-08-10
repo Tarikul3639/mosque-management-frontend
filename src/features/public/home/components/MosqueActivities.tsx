@@ -46,7 +46,7 @@ export function MosqueActivities() {
                         </div>
 
                         {/* 2nd image — slight offset for editorial look */}
-                        <div className="relative h-64 overflow-hidden rounded-lg shadow-lg sm:h-80 md:mt-10 md:h-104">
+                        <div className="relative h-64 overflow-hidden rounded-lg shadow-lg sm:h-80 mt-10 md:h-104">
                             <Image
                                 src="/images/mosque-prayer-2.jpg"
                                 alt="কুরআন তিলাওয়াতরত মুসল্লি"

@@ -5,7 +5,7 @@ import type { PrayerTimesResponse } from "@/features/public/home/types"
 
 export async function getPrayerTimes() {
     try {
-        const { data } = await api.get<PrayerTimesResponse>("/api/v1/prayer-times", {
+        const { data } = await api.get<PrayerTimesResponse>("/prayer-times", {
             timeout: 10000,
         })
 
