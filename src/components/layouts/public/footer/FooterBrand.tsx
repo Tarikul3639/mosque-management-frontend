@@ -33,9 +33,9 @@ export function FooterBrand() {
 
       <div className="flex gap-3">
 
-        {SOCIAL_LINKS.map(({ icon: Icon, href }) => (
+        {SOCIAL_LINKS.map(({ icon: Icon, href }, index) => (
           <Link
-            key={href}
+            key={`footer-social-link-${href}-${index}`}
             href={href}
             className="flex size-10 items-center justify-center rounded-full border transition hover:bg-primary hover:text-white"
           >

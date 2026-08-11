@@ -3,10 +3,13 @@
 import { AlertCircle, RefreshCw } from "lucide-react"
 
 interface FinancialSummaryErrorProps {
+  title?: string
   message?: string
+  buttonText?: string
+  onRetry?: () => void
 }
 
-export function FinancialSummaryError({ message }: FinancialSummaryErrorProps) {
+export function Error2({ message, title, buttonText, onRetry }: FinancialSummaryErrorProps) {
   return (
     <section className="bg-background px-4 py-10 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
@@ -18,7 +21,7 @@ export function FinancialSummaryError({ message }: FinancialSummaryErrorProps) {
 
             <div>
               <p className="text-base font-semibold text-foreground">
-                আর্থিক তথ্য লোড করা যায়নি
+                {title ?? "আর্থিক তথ্য লোড করা যায়নি"}
               </p>
               <p className="mt-1 text-sm text-muted-foreground">
                 {message ??
@@ -28,11 +31,11 @@ export function FinancialSummaryError({ message }: FinancialSummaryErrorProps) {
 
             <button
               type="button"
-              onClick={() => window.location.reload()}
+              onClick={onRetry ?? (() => window.location.reload())}
               className="mt-2 inline-flex items-center gap-1.5 rounded-lg border border-border bg-muted px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-muted/80"
             >
               <RefreshCw className="size-3.5" />
-              আবার চেষ্টা করুন
+              {buttonText ?? "আবার চেষ্টা করুন"}
             </button>
           </div>
         </div>
