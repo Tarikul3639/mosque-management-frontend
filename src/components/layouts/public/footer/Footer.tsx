@@ -8,7 +8,7 @@ export function Footer() {
   return (
     <footer className="bg-muted/20">
       {/* Image */}
-      <div className="flex justify-center container mx-auto pt-10 px-3 sm:px-6 lg:px-8 lg:pt-16">
+      <div className="flex justify-center container mx-auto pt-10 px-3 sm:px-6 lg:px-8 lg:pt-12">
         <Image
           src="/images/footer-makeup.webp"
           alt="Footer Makeup"
@@ -19,7 +19,7 @@ export function Footer() {
       </div>
 
       {/* Content */}
-      <div className="container border-t mx-auto px-4 pt-10 pb-6 sm:px-6 lg:px-8 lg:pt-16">
+      <div className="container border-t mx-auto px-4 pt-10 pb-6 sm:px-6 lg:px-8 lg:pt-12">
         <div className="grid grid-cols-2 gap-10 pb-6 lg:grid-cols-4">
           <FooterBrand />
           <FooterLinks />
