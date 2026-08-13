@@ -7,6 +7,19 @@ import type { NextConfig } from "next"
 const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL!
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
+      {
+        protocol: "https",
+        hostname: "picsum.photos",
+      },
+    ],
+  },
+
   async rewrites() {
     return {
       beforeFiles: [

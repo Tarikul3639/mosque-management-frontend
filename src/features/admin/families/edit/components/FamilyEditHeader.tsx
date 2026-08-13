@@ -23,7 +23,9 @@ export function FamilyEditHeader({ family }: FamilyEditHeaderProps) {
       <div className="space-y-2">
         {/* Back */}
         <Button
-          onClick={() => router.replace(ROUTES.ADMIN.FAMILIES.DETAIL(family.id))}
+          onClick={() =>
+            router.replace(ROUTES.ADMIN.FAMILIES.DETAIL(family.id))
+          }
           variant="ghost"
           size="sm"
           className="-ml-2 h-8 gap-1.5 text-xs text-muted-foreground hover:text-foreground"

@@ -25,7 +25,11 @@ export function ProjectEditHeader({ project }: ProjectEditHeaderProps) {
       backLinkHref={ROUTES.ADMIN.PROJECTS.DETAIL(project.id)}
       backLinkTitle="Back to Project"
       actions={
-        <Button onClick={() => router.replace(ROUTES.ADMIN.PROJECTS.DETAIL(project.id))}>
+        <Button
+          onClick={() =>
+            router.replace(ROUTES.ADMIN.PROJECTS.DETAIL(project.id))
+          }
+        >
           <Eye className="mr-2 size-4" />
           View Project
         </Button>

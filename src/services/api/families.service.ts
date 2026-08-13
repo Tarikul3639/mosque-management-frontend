@@ -5,14 +5,14 @@ import { api } from "@/lib/axios"
 /* -------------------------------------------------------------------------- */
 
 export interface FamiliesQueryParams {
-    page?: number
-    limit?: number
-    search?: string
+  page?: number
+  limit?: number
+  search?: string
 }
 
 export interface FamilyLedgerQueryParams {
-    year?: number
-    month?: number
+  year?: number
+  month?: number
 }
 
 /* -------------------------------------------------------------------------- */
@@ -20,27 +20,27 @@ export interface FamilyLedgerQueryParams {
 /* -------------------------------------------------------------------------- */
 
 export interface FamilyAvatar {
-    id: string
-    url: string
+  id: string
+  url: string
 }
 
 export interface Family {
-    id: string
-    familyNo: string
-    headName: string
-    phone: string | null
-    email: string | null
-    address: string
-    avatar: FamilyAvatar | null
-    isActive: boolean
+  id: string
+  familyNo: string
+  headName: string
+  phone: string | null
+  email: string | null
+  address: string
+  avatar: FamilyAvatar | null
+  isActive: boolean
 }
 
 export interface GetFamiliesResponse {
-    data: Family[]
-    total: number
-    page: number
-    limit: number
-    totalPages: number
+  data: Family[]
+  total: number
+  page: number
+  limit: number
+  totalPages: number
 }
 
 /* -------------------------------------------------------------------------- */
@@ -48,24 +48,24 @@ export interface GetFamiliesResponse {
 /* -------------------------------------------------------------------------- */
 
 export interface CurrentFee {
-    id: string
-    monthlyFee: number
-    startDate: string
-    endDate: string | null
+  id: string
+  monthlyFee: number
+  startDate: string
+  endDate: string | null
 }
 
 export interface PaymentSummary {
-    totalCharge: number
-    totalPaid: number
-    totalDue: number
-    lastPaymentAt: string | null
+  totalCharge: number
+  totalPaid: number
+  totalDue: number
+  lastPaymentAt: string | null
 }
 
 export interface FamilyDetails extends Family {
-    createdAt: string
-    updatedAt: string
-    currentFee: CurrentFee | null
-    paymentSummary: PaymentSummary
+  createdAt: string
+  updatedAt: string
+  currentFee: CurrentFee | null
+  paymentSummary: PaymentSummary
 }
 
 /* -------------------------------------------------------------------------- */
@@ -73,39 +73,39 @@ export interface FamilyDetails extends Family {
 /* -------------------------------------------------------------------------- */
 
 export interface LedgerPayment {
-    id: string
-    amount: number
-    method: string
-    reference: string | null
-    note: string | null
-    paidAt: string
+  id: string
+  amount: number
+  method: string
+  reference: string | null
+  note: string | null
+  paidAt: string
 }
 
 export interface LedgerItem {
-    monthlyChargeId: string
-    year: number
-    month: number
-    chargeAmount: number
-    paidAmount: number
-    dueAmount: number
-    status: string
-    payments: LedgerPayment[]
+  monthlyChargeId: string
+  year: number
+  month: number
+  chargeAmount: number
+  paidAmount: number
+  dueAmount: number
+  status: string
+  payments: LedgerPayment[]
 }
 
 export interface FamilyLedger {
-    familyId: string
-    familyNo: string
-    headName: string
-    phone: string | null
-    address: string
+  familyId: string
+  familyNo: string
+  headName: string
+  phone: string | null
+  address: string
 
-    summary: {
-        totalCharge: number
-        totalPaid: number
-        totalDue: number
-    }
+  summary: {
+    totalCharge: number
+    totalPaid: number
+    totalDue: number
+  }
 
-    ledger: LedgerItem[]
+  ledger: LedgerItem[]
 }
 
 /* -------------------------------------------------------------------------- */
@@ -113,35 +113,33 @@ export interface FamilyLedger {
 /* -------------------------------------------------------------------------- */
 
 export async function getFamilies(
-    params: FamiliesQueryParams = {},
+  params: FamiliesQueryParams = {}
 ): Promise<GetFamiliesResponse> {
-    const { data } = await api.get<GetFamiliesResponse>("/families", {
-        params,
-    })
+  const { data } = await api.get<GetFamiliesResponse>("/families", {
+    params,
+  })
 
-    return data
+  return data
 }
 
 export async function getFamilyDetails(
-    familyId: string,
+  familyId: string
 ): Promise<FamilyDetails> {
-    const { data } = await api.get<FamilyDetails>(
-        `/families/${familyId}`,
-    )
+  const { data } = await api.get<FamilyDetails>(`/families/${familyId}`)
 
-    return data
+  return data
 }
 
 export async function getFamilyLedger(
-    familyId: string,
-    params: FamilyLedgerQueryParams = {},
+  familyId: string,
+  params: FamilyLedgerQueryParams = {}
 ): Promise<FamilyLedger> {
-    const { data } = await api.get<FamilyLedger>(
-        `/payments/family/${familyId}/ledger`,
-        {
-            params,
-        },
-    )
+  const { data } = await api.get<FamilyLedger>(
+    `/payments/family/${familyId}/ledger`,
+    {
+      params,
+    }
+  )
 
-    return data
+  return data
 }

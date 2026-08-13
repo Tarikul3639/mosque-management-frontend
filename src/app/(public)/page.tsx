@@ -49,8 +49,7 @@ export default async function HomePage() {
       <SurahFatihaSection />
 
       {/* Financial Summary — Suspense + Skeleton */}
-      <FinancialSummaryContainer/>
-
+      <FinancialSummaryContainer />
 
       {/* Donation CTA */}
       <DonationCTA />

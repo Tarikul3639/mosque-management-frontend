@@ -5,27 +5,23 @@ import { FamilyDetailsHeader } from "./components/FamilyDetailsHeader"
 import { FamilyDetailsSkeleton } from "./components/FamilyDetailsSkeleton"
 
 interface FamilyDetailsPageProps {
-    familyId: string
-    year?: number
-    month?: number
+  familyId: string
+  year?: number
+  month?: number
 }
 
 export function FamilyDetailsPage({
-    familyId,
-    year,
-    month,
+  familyId,
+  year,
+  month,
 }: FamilyDetailsPageProps) {
-    return (
-        <main>
-            <FamilyDetailsHeader />
+  return (
+    <main>
+      <FamilyDetailsHeader />
 
-            <Suspense fallback={<FamilyDetailsSkeleton />}>
-                <FamilyContent
-                    familyId={familyId}
-                    year={year}
-                    month={month}
-                />
-            </Suspense>
-        </main>
-    )
+      <Suspense fallback={<FamilyDetailsSkeleton />}>
+        <FamilyContent familyId={familyId} year={year} month={month} />
+      </Suspense>
+    </main>
+  )
 }

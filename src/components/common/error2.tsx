@@ -9,7 +9,12 @@ interface FinancialSummaryErrorProps {
   onRetry?: () => void
 }
 
-export function Error2({ message, title, buttonText, onRetry }: FinancialSummaryErrorProps) {
+export function Error2({
+  message,
+  title,
+  buttonText,
+  onRetry,
+}: FinancialSummaryErrorProps) {
   return (
     <section className="bg-background px-4 py-10 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">

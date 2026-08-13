@@ -46,11 +46,11 @@ export function ContactCTA() {
               </span>
             </div>
 
-            <h2 className="mt-6 max-w-3xl text-balance text-2xl font-bold leading-tight text-primary-foreground sm:mt-8 sm:text-3xl md:text-5xl">
+            <h2 className="mt-6 max-w-3xl text-2xl leading-tight font-bold text-balance text-primary-foreground sm:mt-8 sm:text-3xl md:text-5xl">
               কোনো প্রশ্ন বা <span className="text-chart-3">পরামর্শ আছে?</span>
             </h2>
 
-            <p className="mt-4 max-w-2xl text-balance text-sm leading-relaxed text-primary-foreground/85 sm:mt-6 sm:text-base sm:leading-8 md:text-lg">
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-balance text-primary-foreground/85 sm:mt-6 sm:text-base sm:leading-8 md:text-lg">
               যেকোনো তথ্য, মতামত কিংবা সহযোগিতার জন্য আমাদের সাথে যোগাযোগ করুন।
               মসজিদ পরিচালনা কমিটি সর্বদা আপনাদের সেবায় নিয়োজিত।
             </p>

@@ -178,7 +178,7 @@ export function useCommitteeEdit({ id }: UseCommitteeEditProps) {
     })
   }
 
-  // reset: form + avatar 
+  // reset: form + avatar
   function handleReset() {
     if (avatar?.url.startsWith("blob:")) {
       URL.revokeObjectURL(avatar.url)

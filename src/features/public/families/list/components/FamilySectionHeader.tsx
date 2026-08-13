@@ -2,9 +2,7 @@ interface FamilySectionHeaderProps {
   total: number
 }
 
-export const FamilySectionHeader = ({
-  total,
-}: FamilySectionHeaderProps) => {
+export const FamilySectionHeader = ({ total }: FamilySectionHeaderProps) => {
   return (
     <div className="mt-5 mb-4 flex items-center justify-between px-1">
       <div className="flex items-center gap-2.5">

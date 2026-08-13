@@ -77,7 +77,7 @@ export async function CommitteePreview() {
 function CommitteeErrorSection() {
   return (
     <section className="bg-muted py-14 md:py-20">
-      <div className="mx-auto container px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <Error2
           title="কমিটি সদস্যদের তথ্য লোড করা যায়নি"
           message="কিছু একটা সমস্যা হয়েছে। অনুগ্রহ করে কিছুক্ষণ পর আবার চেষ্টা করুন।"

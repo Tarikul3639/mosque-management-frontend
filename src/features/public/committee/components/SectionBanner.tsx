@@ -38,7 +38,7 @@ export function SectionBanner({
   image = "/images/mosque-hero.jpg",
 }: SectionBannerProps) {
   return (
-    <section className="relative flex justify-center items-center h-72 md:h-96 overflow-hidden bg-primary">
+    <section className="relative flex h-72 items-center justify-center overflow-hidden bg-primary md:h-96">
       {/* Background mosque image (duotone effect) */}
       <Image
         src={image}

@@ -11,7 +11,7 @@ export function NavbarActions() {
     <div className="items-center gap-3 lg:flex">
       <Button asChild size="lg">
         <Link href={ROUTES.PUBLIC.DONATIONS.INDEX}>
-          <HeartHandshake className="hidden sm:block mr-2 size-4" />
+          <HeartHandshake className="mr-2 hidden size-4 sm:block" />
           অনুদান করুন
         </Link>
       </Button>

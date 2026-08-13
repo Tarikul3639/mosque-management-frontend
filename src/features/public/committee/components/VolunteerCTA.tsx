@@ -72,7 +72,7 @@ export function VolunteerCTA() {
             </span>
 
             {/* Heading */}
-            <h2 className="mt-4 max-w-2xl text-2xl font-bold leading-tight text-primary-foreground drop-shadow-lg sm:text-3xl md:text-4xl">
+            <h2 className="mt-4 max-w-2xl text-2xl leading-tight font-bold text-primary-foreground drop-shadow-lg sm:text-3xl md:text-4xl">
               শুধু অর্থ নয়,{" "}
               <span className="text-[#e8b64c]">আপনার সময়ও সদকা</span>
             </h2>

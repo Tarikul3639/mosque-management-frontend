@@ -1,115 +1,93 @@
 import { format } from "date-fns"
-import {
-    AlertCircle,
-    CalendarDays,
-    CreditCard,
-    Wallet,
-} from "lucide-react"
+import { AlertCircle, CalendarDays, CreditCard, Wallet } from "lucide-react"
 
-import {
-    Card,
-    CardContent,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 import type {
-    CurrentFee,
-    PaymentSummary,
+  CurrentFee,
+  PaymentSummary,
 } from "@/services/api/families.service"
 
 interface FamilyPaymentSummaryProps {
-    currentFee: CurrentFee | null
-    summary: PaymentSummary
+  currentFee: CurrentFee | null
+  summary: PaymentSummary
 }
 
 export function FamilyPaymentSummary({
-    currentFee,
-    summary,
+  currentFee,
+  summary,
 }: FamilyPaymentSummaryProps) {
-    return (
-        <Card>
-            <CardHeader>
-                <CardTitle>পেমেন্ট সারাংশ</CardTitle>
-            </CardHeader>
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>পেমেন্ট সারাংশ</CardTitle>
+      </CardHeader>
 
-            <CardContent className="space-y-3">
-                <SummaryItem
-                    icon={<CreditCard className="size-4" />}
-                    label="বর্তমান মাসিক চাঁদা"
-                    value={`৳ ${currentFee?.monthlyFee ?? 0}`}
-                />
+      <CardContent className="space-y-3">
+        <SummaryItem
+          icon={<CreditCard className="size-4" />}
+          label="বর্তমান মাসিক চাঁদা"
+          value={`৳ ${currentFee?.monthlyFee ?? 0}`}
+        />
 
-                <SummaryItem
-                    icon={<Wallet className="size-4" />}
-                    label="মোট চাঁদা"
-                    value={`৳ ${summary.totalCharge}`}
-                />
+        <SummaryItem
+          icon={<Wallet className="size-4" />}
+          label="মোট চাঁদা"
+          value={`৳ ${summary.totalCharge}`}
+        />
 
-                <SummaryItem
-                    icon={<Wallet className="size-4" />}
-                    label="মোট পরিশোধ"
-                    value={`৳ ${summary.totalPaid}`}
-                />
+        <SummaryItem
+          icon={<Wallet className="size-4" />}
+          label="মোট পরিশোধ"
+          value={`৳ ${summary.totalPaid}`}
+        />
 
-                <SummaryItem
-                    icon={<AlertCircle className="size-4" />}
-                    label="মোট বকেয়া"
-                    value={`৳ ${summary.totalDue}`}
-                    danger={summary.totalDue > 0}
-                />
+        <SummaryItem
+          icon={<AlertCircle className="size-4" />}
+          label="মোট বকেয়া"
+          value={`৳ ${summary.totalDue}`}
+          danger={summary.totalDue > 0}
+        />
 
-                <SummaryItem
-                    icon={<CalendarDays className="size-4" />}
-                    label="সর্বশেষ পরিশোধ"
-                    value={
-                        summary.lastPaymentAt
-                            ? format(
-                                new Date(summary.lastPaymentAt),
-                                "dd MMM yyyy",
-                            )
-                            : "কোনো তথ্য নেই"
-                    }
-                />
-            </CardContent>
-        </Card>
-    )
+        <SummaryItem
+          icon={<CalendarDays className="size-4" />}
+          label="সর্বশেষ পরিশোধ"
+          value={
+            summary.lastPaymentAt
+              ? format(new Date(summary.lastPaymentAt), "dd MMM yyyy")
+              : "কোনো তথ্য নেই"
+          }
+        />
+      </CardContent>
+    </Card>
+  )
 }
 
 interface SummaryItemProps {
-    icon: React.ReactNode
-    label: string
-    value: string
-    danger?: boolean
+  icon: React.ReactNode
+  label: string
+  value: string
+  danger?: boolean
 }
 
-function SummaryItem({
-    icon,
-    label,
-    value,
-    danger = false,
-}: SummaryItemProps) {
-    return (
-        <div className="flex items-center justify-between rounded-lg border border-border px-4 py-3">
-            <div className="flex items-center gap-3">
-                <div className="text-muted-foreground">
-                    {icon}
-                </div>
+function SummaryItem({ icon, label, value, danger = false }: SummaryItemProps) {
+  return (
+    <div className="flex items-center justify-between rounded-lg border border-border px-4 py-3">
+      <div className="flex items-center gap-3">
+        <div className="text-muted-foreground">{icon}</div>
 
-                <span className="text-sm text-muted-foreground">
-                    {label}
-                </span>
-            </div>
+        <span className="text-sm text-muted-foreground">{label}</span>
+      </div>
 
-            <span
-                className={
-                    danger
-                        ? "font-semibold text-destructive"
-                        : "font-semibold text-foreground"
-                }
-            >
-                {value}
-            </span>
-        </div>
-    )
+      <span
+        className={
+          danger
+            ? "font-semibold text-destructive"
+            : "font-semibold text-foreground"
+        }
+      >
+        {value}
+      </span>
+    </div>
+  )
 }

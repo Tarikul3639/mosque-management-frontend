@@ -146,10 +146,11 @@ export function Sidebar({
           <TooltipTrigger asChild>
             <Link
               href={profileRoute}
-              className={`flex w-full items-center rounded-lg p-2 transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground ${isYourProfilePage
-                ? "bg-primary font-medium text-primary-foreground"
-                : "text-sidebar-foreground"
-                }`}
+              className={`flex w-full items-center rounded-lg p-2 transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground ${
+                isYourProfilePage
+                  ? "bg-primary font-medium text-primary-foreground"
+                  : "text-sidebar-foreground"
+              }`}
             >
               <Avatar className="h-9 w-9 shrink-0 border border-sidebar-border">
                 <AvatarImage src={userAvatarUrl} alt={userName} />

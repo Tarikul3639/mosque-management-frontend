@@ -11,7 +11,13 @@ export function StarPattern(props: React.SVGProps<SVGSVGElement>) {
           <g stroke="currentColor" strokeWidth="1.2" fill="none">
             {/* ✨ Main 8-pointed star (Khatam / Rub el Hizb ۞) */}
             <rect x="24" y="24" width="32" height="32" />
-            <rect x="24" y="24" width="32" height="32" transform="rotate(45 40 40)" />
+            <rect
+              x="24"
+              y="24"
+              width="32"
+              height="32"
+              transform="rotate(45 40 40)"
+            />
 
             {/* Inner rosette circle + center dot */}
             <circle cx="40" cy="40" r="9" />
@@ -23,19 +29,43 @@ export function StarPattern(props: React.SVGProps<SVGSVGElement>) {
             {/* Corner stars (tile join e full star toiri hoy) */}
             <g>
               <rect x="-7" y="-7" width="14" height="14" />
-              <rect x="-7" y="-7" width="14" height="14" transform="rotate(45)" />
+              <rect
+                x="-7"
+                y="-7"
+                width="14"
+                height="14"
+                transform="rotate(45)"
+              />
             </g>
             <g transform="translate(80 0)">
               <rect x="-7" y="-7" width="14" height="14" />
-              <rect x="-7" y="-7" width="14" height="14" transform="rotate(45)" />
+              <rect
+                x="-7"
+                y="-7"
+                width="14"
+                height="14"
+                transform="rotate(45)"
+              />
             </g>
             <g transform="translate(0 80)">
               <rect x="-7" y="-7" width="14" height="14" />
-              <rect x="-7" y="-7" width="14" height="14" transform="rotate(45)" />
+              <rect
+                x="-7"
+                y="-7"
+                width="14"
+                height="14"
+                transform="rotate(45)"
+              />
             </g>
             <g transform="translate(80 80)">
               <rect x="-7" y="-7" width="14" height="14" />
-              <rect x="-7" y="-7" width="14" height="14" transform="rotate(45)" />
+              <rect
+                x="-7"
+                y="-7"
+                width="14"
+                height="14"
+                transform="rotate(45)"
+              />
             </g>
 
             {/* Edge diamonds (interlocking feel) */}

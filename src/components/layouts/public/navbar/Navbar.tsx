@@ -7,9 +7,8 @@ import { NavbarMobile } from "./NavbarMobile"
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur-xl px-3 sm:px-4 md:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 border-b bg-background/80 px-3 backdrop-blur-xl sm:px-4 md:px-6 lg:px-8">
       <div className="container mx-auto flex h-20 items-center justify-between">
-
         {/* Left */}
         <NavbarBrand />
 
@@ -21,7 +20,6 @@ export function Navbar() {
           <NavbarActions />
           <NavbarMobile />
         </div>
-
       </div>
     </header>
   )

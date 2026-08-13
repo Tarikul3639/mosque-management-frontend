@@ -8,7 +8,7 @@ import { ROUTES } from "@/config/routes"
 
 export function Hero() {
   return (
-    <section className="relative min-h-90 md:min-h-105 lg:min-h-150 overflow-hidden bg-muted">
+    <section className="relative min-h-90 overflow-hidden bg-muted md:min-h-105 lg:min-h-150">
       <Image
         src="/images/mosque-hero.jpg"
         alt="মসজিদ"

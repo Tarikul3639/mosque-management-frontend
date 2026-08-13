@@ -23,7 +23,7 @@ export function PrayerTimes({
   ]
 
   return (
-    <section className="bg-muted py-12 sm:py-16 md:py-20 px-3 sm:px-6 lg:px-8">
+    <section className="bg-muted px-3 py-12 sm:px-6 sm:py-16 md:py-20 lg:px-8">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">

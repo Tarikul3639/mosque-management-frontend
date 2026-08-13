@@ -1,6 +1,5 @@
 import type { ComponentType } from "react"
 
-
 export interface PrayerCardItem {
   key: string
   name: string

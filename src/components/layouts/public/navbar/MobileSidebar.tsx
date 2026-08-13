@@ -22,10 +22,7 @@ interface MobileSidebarProps {
   onOpenChange: (open: boolean) => void
 }
 
-export function MobileSidebar({
-  open,
-  onOpenChange,
-}: MobileSidebarProps) {
+export function MobileSidebar({ open, onOpenChange }: MobileSidebarProps) {
   const pathname = usePathname()
 
   return (
@@ -37,12 +34,12 @@ export function MobileSidebar({
             <Link
               href="/"
               onClick={() => onOpenChange(false)}
-              className="flex items-center gap-3 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="flex items-center gap-3 rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
             >
               <Logo className="size-10 shrink-0" color="var(--primary)" />
 
               <div className="min-w-0">
-                <h2 className="truncate font-bold leading-tight text-foreground">
+                <h2 className="truncate leading-tight font-bold text-foreground">
                   নামা রাথুরা বাইতুল আমান
                 </h2>
 
@@ -62,7 +59,8 @@ export function MobileSidebar({
               const isActive =
                 item.href === "/"
                   ? pathname === "/"
-                  : pathname === item.href || pathname.startsWith(`${item.href}/`)
+                  : pathname === item.href ||
+                    pathname.startsWith(`${item.href}/`)
 
               return (
                 <li key={item.href}>
@@ -70,9 +68,9 @@ export function MobileSidebar({
                     href={item.href}
                     onClick={() => onOpenChange(false)}
                     className={cn(
-                      "flex h-11 items-center rounded-lg px-3.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                      "flex h-11 items-center rounded-lg px-3.5 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none",
                       isActive
-                        ? "bg-primary text-primary-foreground font-semibold shadow-sm"
+                        ? "bg-primary font-semibold text-primary-foreground shadow-sm"
                         : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
                     )}
                   >

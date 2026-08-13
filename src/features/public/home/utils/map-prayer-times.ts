@@ -1,12 +1,9 @@
-import type {
-  PrayerTimesMap,
-  PrayerTimesResponse,
-} from "../types"
+import type { PrayerTimesMap, PrayerTimesResponse } from "../types"
 
 import { formatTo12Hour } from "@/utils/format-time"
 
 export function prayerTimesMapper(
-  prayerTimes: PrayerTimesResponse | null,
+  prayerTimes: PrayerTimesResponse | null
 ): PrayerTimesMap | null {
   if (!prayerTimes) {
     return null

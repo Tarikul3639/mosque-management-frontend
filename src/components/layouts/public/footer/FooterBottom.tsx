@@ -13,7 +13,7 @@ export function FooterBottom() {
             href="https://tarikul-islam.me"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-semibold text-primary transition-colors hover:text-primary/80 hover:underline underline-offset-4"
+            className="font-semibold text-primary underline-offset-4 transition-colors hover:text-primary/80 hover:underline"
           >
             তরিকুল ইসলাম
           </a>

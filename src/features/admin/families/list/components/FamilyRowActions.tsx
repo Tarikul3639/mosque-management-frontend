@@ -109,7 +109,10 @@ export function FamilyRowActions({ family }: FamilyRowActionsProps) {
           <DropdownMenuSeparator />
 
           <DropdownMenuItem asChild>
-            <Link href={ROUTES.ADMIN.FAMILIES.DETAIL(family.id)} className="cursor-pointer">
+            <Link
+              href={ROUTES.ADMIN.FAMILIES.DETAIL(family.id)}
+              className="cursor-pointer"
+            >
               <Eye className="mr-2 size-4" />
               View
             </Link>
