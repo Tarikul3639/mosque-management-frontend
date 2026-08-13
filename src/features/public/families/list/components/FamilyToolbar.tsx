@@ -82,7 +82,7 @@ export const FamilyToolbar = ({
     }
 
     return (
-        <div className="relative z-10 mx-auto -mt-8 max-w-6xl px-4">
+        <div className="relative z-10 mx-auto -mt-8 max-w-7xl px-4">
             <div className="rounded-xl border border-border bg-card p-4 shadow-sm">
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
                     {/* Search */}

@@ -92,7 +92,7 @@ export const FamilyCard = ({ family }: FamilyCardProps) => {
 
             {/* Action */}
             <Link
-                href={`/families/${family.familyNo}`}
+                href={`/families/${family.id}`}
                 className="mt-4 flex h-9 items-center justify-center gap-1.5 rounded-md bg-primary px-3 text-xs font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none"
             >
                 View Details

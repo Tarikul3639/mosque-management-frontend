@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { SITE_CONFIG } from "@/config/metadata"
-import { FamilyPage } from "@/features/public/families/FamilyPage"
+import { FamilyPage } from "@/features/public/families/list/FamilyPage"
 
 export const metadata: Metadata = {
     title: "পরিবারসমূহ",

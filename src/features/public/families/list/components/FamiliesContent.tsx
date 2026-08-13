@@ -1,6 +1,7 @@
 import { SearchX } from "lucide-react"
 
 import { EmptyState } from "@/components/common/empty-state"
+import { Error2 } from "@/components/common/error2"
 import { Pagination } from "@/components/common/pagination"
 import { getFamilies } from "@/services/api/families.service"
 
@@ -18,27 +19,37 @@ export async function FamilyContent({
     limit,
     search,
 }: FamilyContentProps) {
-    const families = await getFamilies({
-        page,
-        limit,
-        search: search || undefined,
-    })
+    let families
+
+    try {
+        families = await getFamilies({
+            page,
+            limit,
+            search: search || undefined,
+        })
+    } catch {
+        return (
+            <section className="mx-auto max-w-6xl px-4 pb-16">
+                <Error2
+                    title="পরিবারের তথ্য লোড করা যায়নি"
+                    message="কিছুক্ষণ পরে আবার চেষ্টা করুন।"
+                />
+            </section>
+        )
+    }
 
     const hasFamilies = families.data.length > 0
     const hasSearch = Boolean(search)
 
     return (
-        <section className="mx-auto max-w-6xl px-4 pb-16">
+        <section className="mx-auto container px-4 pb-16">
             <FamilySectionHeader total={families.total} />
 
             {hasFamilies ? (
                 <>
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                         {families.data.map((family) => (
-                            <FamilyCard
-                                key={family.id}
-                                family={family}
-                            />
+                            <FamilyCard key={family.id} family={family} />
                         ))}
                     </div>
 

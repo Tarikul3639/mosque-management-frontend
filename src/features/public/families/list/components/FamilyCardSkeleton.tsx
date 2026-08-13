@@ -35,7 +35,7 @@ export const FamilyCardSkeletonGrid = ({
     count = 6,
 }: FamilyCardSkeletonGridProps) => {
     return (
-        <section className="mx-auto max-w-6xl px-4 pb-16">
+        <section className="mx-auto container px-4 pb-16">
             {/* Section header skeleton */}
             <div className="mb-4 flex items-center justify-between border-b border-border/60 py-3">
                 <div className="flex items-center gap-2">
