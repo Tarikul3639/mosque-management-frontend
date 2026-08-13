@@ -1,4 +1,10 @@
-import { CreditCard, Wallet, AlertCircle } from "lucide-react"
+import { format } from "date-fns"
+import {
+    AlertCircle,
+    CalendarDays,
+    CreditCard,
+    Wallet,
+} from "lucide-react"
 
 import {
     Card,
@@ -27,11 +33,17 @@ export function FamilyPaymentSummary({
                 <CardTitle>পেমেন্ট সারাংশ</CardTitle>
             </CardHeader>
 
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-3">
                 <SummaryItem
                     icon={<CreditCard className="size-4" />}
                     label="বর্তমান মাসিক চাঁদা"
                     value={`৳ ${currentFee?.monthlyFee ?? 0}`}
+                />
+
+                <SummaryItem
+                    icon={<Wallet className="size-4" />}
+                    label="মোট চাঁদা"
+                    value={`৳ ${summary.totalCharge}`}
                 />
 
                 <SummaryItem
@@ -45,6 +57,19 @@ export function FamilyPaymentSummary({
                     label="মোট বকেয়া"
                     value={`৳ ${summary.totalDue}`}
                     danger={summary.totalDue > 0}
+                />
+
+                <SummaryItem
+                    icon={<CalendarDays className="size-4" />}
+                    label="সর্বশেষ পরিশোধ"
+                    value={
+                        summary.lastPaymentAt
+                            ? format(
+                                new Date(summary.lastPaymentAt),
+                                "dd MMM yyyy",
+                            )
+                            : "কোনো তথ্য নেই"
+                    }
                 />
             </CardContent>
         </Card>
@@ -65,13 +90,13 @@ function SummaryItem({
     danger = false,
 }: SummaryItemProps) {
     return (
-        <div className="flex items-center justify-between rounded-lg border p-3">
+        <div className="flex items-center justify-between rounded-lg border border-border px-4 py-3">
             <div className="flex items-center gap-3">
                 <div className="text-muted-foreground">
                     {icon}
                 </div>
 
-                <span className="text-sm">
+                <span className="text-sm text-muted-foreground">
                     {label}
                 </span>
             </div>
@@ -80,7 +105,7 @@ function SummaryItem({
                 className={
                     danger
                         ? "font-semibold text-destructive"
-                        : "font-semibold"
+                        : "font-semibold text-foreground"
                 }
             >
                 {value}

@@ -1,5 +1,3 @@
-"use client"
-
 import { BadgeCheck, MapPin, Phone } from "lucide-react"
 
 import { Card, CardContent } from "@/components/ui/card"
@@ -15,18 +13,18 @@ interface FamilyProfileCardProps {
 export function FamilyProfileCard({ family }: FamilyProfileCardProps) {
     return (
         <Card>
-            <CardContent className="flex flex-col gap-6 p-6 md:flex-row md:items-center">
-                <Avatar className="size-24 border border-border">
+            <CardContent className="flex flex-col items-center gap-6 p-6 md:flex-row md:items-center">
+                <Avatar className="size-24 border border-border shrink-0">
                     <AvatarImage src={family.avatar?.url} alt={family.headName} />
 
-                    <AvatarFallback className={getAvatarClass(family.headName)}>
+                    <AvatarFallback className={`${getAvatarClass(family.headName)} text-3xl`}>
                         {getAvatarInitials(family.headName)}
                     </AvatarFallback>
                 </Avatar>
 
-                <div className="flex-1">
-                    <div className="flex flex-wrap items-center gap-3">
-                        <h1 className="text-2xl font-bold tracking-tight">
+                <div className="flex flex-col items-center justify-center md:flex-1 md:items-start text-center md:text-left">
+                    <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
+                        <h1 className="text-xl sm:text-2xl font-bold tracking-tight">
                             {family.headName}
                         </h1>
 
@@ -47,12 +45,12 @@ export function FamilyProfileCard({ family }: FamilyProfileCardProps) {
 
                     <div className="mt-5 flex flex-col gap-3 text-sm text-muted-foreground md:flex-row md:flex-wrap md:gap-6">
                         <div className="flex items-center gap-2">
-                            <Phone className="size-4" />
+                            <Phone className="size-4 shrink-0 text-muted-foreground/80" />
                             <span>{family.phone ?? "প্রযোজ্য নয়"}</span>
                         </div>
 
                         <div className="flex items-center gap-2">
-                            <MapPin className="size-4 shrink-0" />
+                            <MapPin className="size-4 shrink-0 text-muted-foreground/80" />
                             <span>{family.address}</span>
                         </div>
                     </div>

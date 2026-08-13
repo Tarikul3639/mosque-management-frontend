@@ -55,6 +55,7 @@ export interface CurrentFee {
 }
 
 export interface PaymentSummary {
+    totalCharge: number
     totalPaid: number
     totalDue: number
     lastPaymentAt: string | null

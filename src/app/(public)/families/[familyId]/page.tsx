@@ -7,6 +7,10 @@ interface FamilyDetailsPageProps {
     params: Promise<{
         familyId: string
     }>
+    searchParams: Promise<{
+        year?: string
+        month?: string
+    }>
 }
 
 export const metadata: Metadata = {
@@ -31,12 +35,16 @@ export const metadata: Metadata = {
 
 export default async function Page({
     params,
+    searchParams,
 }: FamilyDetailsPageProps) {
     const { familyId } = await params
+    const query = await searchParams
 
     return (
         <FamilyDetailsPage
             familyId={familyId}
+            year={query.year ? Number(query.year) : undefined}
+            month={query.month ? Number(query.month) : undefined}
         />
     )
 }

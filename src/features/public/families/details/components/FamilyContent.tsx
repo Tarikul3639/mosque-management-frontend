@@ -9,37 +9,45 @@ import { FamilyProfileCard } from "./FamilyProfileCard"
 
 interface FamilyContentProps {
     familyId: string
+    year?: number
+    month?: number
 }
 
 export async function FamilyContent({
     familyId,
+    year,
+    month,
 }: FamilyContentProps) {
     try {
         const family = await getFamilyDetails(familyId)
 
         return (
-            <section className="mx-auto container space-y-6 px-4 pb-16">
+            <section className="container mx-auto space-y-6 px-4 pb-16">
                 <FamilyProfileCard family={family} />
 
                 <div className="grid gap-6 lg:grid-cols-3">
-                    <div className="space-y-6 lg:col-span-1">
+                    <aside className="space-y-6 lg:col-span-1">
                         <FamilyInfoCard family={family} />
 
                         <FamilyPaymentSummary
-                            summary={family.paymentSummary}
                             currentFee={family.currentFee}
+                            summary={family.paymentSummary}
                         />
-                    </div>
+                    </aside>
 
                     <div className="lg:col-span-2">
-                        <FamilyLedger familyId={family.id} />
+                        <FamilyLedger
+                            familyId={family.id}
+                            year={year}
+                            month={month}
+                        />
                     </div>
                 </div>
             </section>
         )
     } catch {
         return (
-            <section className="mx-auto max-w-6xl px-4 pb-16">
+            <section className="container mx-auto px-4 pb-16">
                 <Error2
                     title="পরিবারের তথ্য লোড করা যায়নি"
                     message="কিছুক্ষণ পরে আবার চেষ্টা করুন।"
