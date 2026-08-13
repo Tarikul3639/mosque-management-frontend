@@ -3,7 +3,7 @@ import { FolderKanban } from "lucide-react"
 
 export function ProjectBanner() {
   return (
-    <section className="relative flex min-h-72 items-center overflow-hidden bg-primary md:min-h-80">
+    <section className="relative flex h-72 items-center overflow-hidden bg-primary md:h-96 md:min-h-80">
       {/* Background image */}
       <Image
         src="/images/project-banner.png"
@@ -15,7 +15,7 @@ export function ProjectBanner() {
       />
 
       {/* Image overlay */}
-      <div className="absolute inset-0 bg-linear-to-r from-primary to-primary/75" />
+      <div className="absolute inset-0 bg-linear-to-r from-primary to-transparent" />
 
       {/* Content */}
       <div className="relative z-10 w-full">

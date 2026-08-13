@@ -4,32 +4,45 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
 import { Button } from "@/components/ui/button"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 interface PaginationProps {
   currentPage: number
   totalPages: number
   maxVisiblePages?: number
   className?: string
+
+  showLimitSelector?: boolean
+  limit?: number
+  limitOptions?: number[]
 }
 
-export const Pagination = ({
+export function Pagination({
   currentPage,
   totalPages,
   maxVisiblePages = 5,
   className,
-}: PaginationProps) => {
+  showLimitSelector = false,
+  limit = 10,
+  limitOptions = [6, 9, 12, 24, 48],
+}: PaginationProps) {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
-  if (totalPages <= 1) {
-    return null
-  }
+  // if (totalPages <= 1) {
+  //   return null
+  // }
 
   const half = Math.floor(maxVisiblePages / 2)
 
   let startPage = Math.max(1, currentPage - half)
-
   let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1)
 
   if (endPage - startPage + 1 < maxVisiblePages) {
@@ -37,7 +50,9 @@ export const Pagination = ({
   }
 
   const pages = Array.from(
-    { length: endPage - startPage + 1 },
+    {
+      length: endPage - startPage + 1,
+    },
     (_, index) => startPage + index
   )
 
@@ -53,110 +68,131 @@ export const Pagination = ({
     router.push(`${pathname}?${params.toString()}`, {
       scroll: false,
     })
+  }
 
-    // window.scrollTo({
-    //     top: 0,
-    //     behavior: "smooth",
-    // })
+  const handleLimitChange = (value: string) => {
+    const params = new URLSearchParams(searchParams.toString())
+
+    params.set("limit", value)
+    params.set("page", "1")
+
+    router.push(`${pathname}?${params.toString()}`, {
+      scroll: false,
+    })
   }
 
   return (
-    <nav
-      aria-label="Pagination"
-      className={`mt-10 flex items-center justify-center gap-1.5 ${
+    <div
+      className={`mt-10 flex flex-col gap-4 md:flex-row md:items-center md:justify-between ${
         className ?? ""
       }`}
     >
-      {/* Previous */}
-      <Button
-        type="button"
-        variant="outline"
-        size="sm"
-        disabled={currentPage === 1}
-        onClick={() => handlePageChange(currentPage - 1)}
-        className="gap-1.5"
-      >
-        <ChevronLeft className="size-4" />
+      {/* Limit */}
+      {showLimitSelector && (
+        <div className="flex items-center gap-3">
+          <span className="text-sm whitespace-nowrap text-muted-foreground">
+            প্রতি পৃষ্ঠা
+          </span>
 
-        <span className="hidden sm:inline">Previous</span>
-      </Button>
+          <Select value={String(limit)} onValueChange={handleLimitChange}>
+            <SelectTrigger className="w-24">
+              <SelectValue />
+            </SelectTrigger>
 
-      {/* First page */}
-      {startPage > 1 && (
-        <>
-          <Button
-            type="button"
-            variant="outline"
-            size="icon"
-            onClick={() => handlePageChange(1)}
-            aria-label="Go to page 1"
-          >
-            1
-          </Button>
-
-          {startPage > 2 && (
-            <span
-              className="px-1.5 text-sm text-muted-foreground"
-              aria-hidden="true"
-            >
-              ...
-            </span>
-          )}
-        </>
+            <SelectContent>
+              {limitOptions.map((item) => (
+                <SelectItem key={item} value={String(item)}>
+                  {item}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
       )}
 
-      {/* Pages */}
-      {pages.map((page) => (
+      {/* Pagination */}
+      <nav
+        aria-label="Pagination"
+        className="flex flex-wrap items-center justify-center gap-1.5 md:justify-end"
+      >
+        {/* Previous */}
         <Button
-          key={page}
           type="button"
-          variant={page === currentPage ? "default" : "outline"}
-          size="icon"
-          onClick={() => handlePageChange(page)}
-          aria-current={page === currentPage ? "page" : undefined}
-          aria-label={`Go to page ${page}`}
+          variant="outline"
+          size="sm"
+          disabled={currentPage === 1}
+          onClick={() => handlePageChange(currentPage - 1)}
+          className="gap-1.5"
         >
-          {page}
+          <ChevronLeft className="size-4" />
+
+          <span className="hidden sm:inline">Previous</span>
         </Button>
-      ))}
 
-      {/* Last page */}
-      {endPage < totalPages && (
-        <>
-          {endPage < totalPages - 1 && (
-            <span
-              className="px-1.5 text-sm text-muted-foreground"
-              aria-hidden="true"
+        {/* First */}
+        {startPage > 1 && (
+          <>
+            <Button
+              type="button"
+              variant="outline"
+              size="icon"
+              onClick={() => handlePageChange(1)}
             >
-              ...
-            </span>
-          )}
+              1
+            </Button>
 
+            {startPage > 2 && (
+              <span className="px-1.5 text-sm text-muted-foreground">...</span>
+            )}
+          </>
+        )}
+
+        {/* Pages */}
+        {pages.map((page) => (
           <Button
+            key={page}
             type="button"
-            variant="outline"
+            variant={page === currentPage ? "default" : "outline"}
             size="icon"
-            onClick={() => handlePageChange(totalPages)}
-            aria-label={`Go to page ${totalPages}`}
+            onClick={() => handlePageChange(page)}
+            aria-current={page === currentPage ? "page" : undefined}
           >
-            {totalPages}
+            {page}
           </Button>
-        </>
-      )}
+        ))}
 
-      {/* Next */}
-      <Button
-        type="button"
-        variant="outline"
-        size="sm"
-        disabled={currentPage === totalPages}
-        onClick={() => handlePageChange(currentPage + 1)}
-        className="gap-1.5"
-      >
-        <span className="hidden sm:inline">Next</span>
+        {/* Last */}
+        {endPage < totalPages && (
+          <>
+            {endPage < totalPages - 1 && (
+              <span className="px-1.5 text-sm text-muted-foreground">...</span>
+            )}
 
-        <ChevronRight className="size-4" />
-      </Button>
-    </nav>
+            <Button
+              type="button"
+              variant="outline"
+              size="icon"
+              onClick={() => handlePageChange(totalPages)}
+            >
+              {totalPages}
+            </Button>
+          </>
+        )}
+
+        {/* Next */}
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          disabled={currentPage === totalPages}
+          onClick={() => handlePageChange(currentPage + 1)}
+          className="gap-1.5"
+        >
+          <span className="hidden sm:inline">Next</span>
+
+          <ChevronRight className="size-4" />
+        </Button>
+      </nav>
+    </div>
   )
 }

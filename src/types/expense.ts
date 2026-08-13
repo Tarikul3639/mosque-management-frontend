@@ -1,5 +1,7 @@
 // src/types/expense.ts
 
+import { PaginationMeta } from "./common"
+
 export enum ExpenseCategory {
   IMAM_SALARY = "IMAM_SALARY",
   MUAZZIN_SALARY = "MUAZZIN_SALARY",
@@ -31,6 +33,11 @@ export interface Expense {
   updatedBy: ExpenseUser | null
   createdAt: string
   updatedAt: string
+}
+
+export interface ExpenseListResponse {
+  data: Expense[]
+  meta: PaginationMeta
 }
 
 export interface ExpenseSummary {

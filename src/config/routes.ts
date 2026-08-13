@@ -28,6 +28,11 @@ export const ROUTES = {
       DETAIL: (slug: string) => `/projects/${slug}`,
     },
 
+    EXPENSES: {
+      INDEX: "/expenses",
+      DETAIL: (slug: string) => `/expenses/${slug}`,
+    },
+
     GALLERY: {
       INDEX: "/gallery",
       ALBUM: (slug: string) => `/gallery/${slug}`,

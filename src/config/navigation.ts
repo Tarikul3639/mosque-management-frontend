@@ -137,9 +137,9 @@ export const PUBLIC_NAVIGATION: NavigationItem[] = [
   },
 
   {
-    title: "দানসমূহ",
-    href: ROUTES.PUBLIC.DONATIONS.INDEX,
-    icon: HandCoins,
+    title: "ব্যয়সমূহ",
+    href: ROUTES.PUBLIC.EXPENSES.INDEX,
+    icon: Receipt,
   },
 
   {
