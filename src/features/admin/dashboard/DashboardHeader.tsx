@@ -1,6 +1,6 @@
 "use client"
 
-import { Bell, Download } from "lucide-react"
+import { Printer, X } from "lucide-react"
 import { DateRange } from "react-day-picker"
 
 import { Button } from "@/components/ui/button"
@@ -10,20 +10,20 @@ interface DashboardHeaderProps {
   userName?: string
   subtitle?: string
   dateRange?: DateRange
+  isFiltered?: boolean
   onDateRangeChange: (value: DateRange | undefined) => void
-  onExportReport?: () => void
-  onNotificationsClick?: () => void
-  notificationCount?: number
+  onClear?: () => void
+  onPrint?: () => void
 }
 
 export function DashboardHeader({
   userName = "Tarikul Islam",
   subtitle = "Here's what's happening in your mosque today.",
   dateRange,
+  isFiltered,
   onDateRangeChange,
-  onExportReport,
-  onNotificationsClick,
-  notificationCount = 5,
+  onClear,
+  onPrint = () => window.print(),
 }: DashboardHeaderProps) {
   return (
     <div className="flex flex-col gap-5 px-2 py-5 lg:flex-row lg:items-center lg:justify-between">
@@ -48,29 +48,18 @@ export function DashboardHeader({
 
         <Button
           type="button"
-          variant="outline"
+          variant="destructive"
           size="lg"
-          onClick={onNotificationsClick}
-          aria-label="Notifications"
-          className="relative"
+          disabled={!isFiltered}
+          onClick={onClear}
         >
-          <Bell className="size-4" />
-
-          {notificationCount > 0 && (
-            <span className="absolute -top-1.5 -right-1.5 flex min-h-5 min-w-5 items-center justify-center rounded-full bg-destructive px-1 text-[11px] font-semibold text-destructive-foreground">
-              {notificationCount > 9 ? "9+" : notificationCount}
-            </span>
-          )}
+          <X className="size-4" />
+          Clear
         </Button>
 
-        <Button
-          type="button"
-          onClick={onExportReport}
-          className="gap-2"
-          size="lg"
-        >
-          <Download className="size-4" />
-          Export Report
+        <Button type="button" size="lg" onClick={onPrint} className="gap-2">
+          <Printer className="size-4" />
+          Print
         </Button>
       </div>
     </div>

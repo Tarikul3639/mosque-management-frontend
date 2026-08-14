@@ -55,6 +55,10 @@ export function DashboardPage() {
   const { data: recentExpenses, isLoading: isRecentExpensesLoading } =
     useGetRecentExpensesQuery()
 
+  const handleClear = () => {
+    setDateRange(undefined)
+  }
+
   return (
     <div className="flex flex-col gap-6 bg-background px-2 py-2 sm:px-4">
       <DashboardHeader
@@ -62,7 +66,8 @@ export function DashboardPage() {
         subtitle="Here's what's happening in your mosque today."
         dateRange={dateRange}
         onDateRangeChange={setDateRange}
-        notificationCount={5}
+        isFiltered={!!dateRange}
+        onClear={handleClear}
       />
 
       <DashboardStatsSection data={overview} isLoading={isLoading} />
