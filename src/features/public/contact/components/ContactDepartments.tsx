@@ -42,7 +42,7 @@ export function ContactDepartments() {
         </span>
 
         <div className="mt-3 flex items-center gap-4">
-          <h2 className="shrink-0 text-2xl font-bold sm:text-3xl">
+          <h2 className="text-2xl font-bold sm:text-3xl line-clamp-2">
             কোন বিষয়ে কার সাথে যোগাযোগ করবেন?
           </h2>
 

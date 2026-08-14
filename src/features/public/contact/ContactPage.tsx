@@ -11,7 +11,7 @@ import { EmergencyContact } from "./components/EmergencyContact"
 
 export function ContactPage() {
   return (
-    <>
+    <div className="flex flex-col gap-10 overflow-hidden">
       <ContactBanner />
 
       <section className="container mx-auto px-4 py-10 md:px-6">
@@ -41,6 +41,6 @@ export function ContactPage() {
       <section className="container mx-auto px-4 pt-10 pb-16 md:px-6">
         <ContactCTA />
       </section>
-    </>
+    </div>
   )
 }

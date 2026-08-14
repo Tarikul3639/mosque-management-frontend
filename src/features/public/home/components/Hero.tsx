@@ -3,8 +3,8 @@ import Image from "next/image"
 import { HERO_TITLE, HERO_DESCRIPTION } from "../constants"
 import { Button } from "@/components/ui/button"
 import { HeartHandshake } from "lucide-react"
-import Link from "next/link"
 import { ROUTES } from "@/config/routes"
+import Link from "next/link"
 
 export function Hero() {
   return (

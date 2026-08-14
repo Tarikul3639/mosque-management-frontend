@@ -1,8 +1,5 @@
-import {
-  getCommitteeMembers,
-  type CommitteeMember,
-  type CommitteeSummary,
-} from "@/services/api/committee.service"
+import { getCommitteeMembers } from "@/services/api/committee.service"
+import type { CommitteeMember, CommitteeSummary } from "@/types/committee"
 
 import { formatBengaliNumber as formatNum } from "@/utils/format-bengali-number"
 
@@ -16,6 +13,8 @@ export async function CommitteePreview() {
 
   try {
     const res = await getCommitteeMembers({ isActive: true, limit: 50 })
+
+    // console.log("Committee fetch result:", res)
 
     if (!res || !res.data) {
       return <CommitteeErrorSection />

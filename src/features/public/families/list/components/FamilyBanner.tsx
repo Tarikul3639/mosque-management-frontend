@@ -2,7 +2,7 @@ import Image from "next/image"
 
 export const FamilyBanner = () => {
   return (
-    <section className="relative h-72 overflow-hidden md:h-96">
+    <section className="relative h-96 md:h-105 overflow-hidden">
       {/* Generated banner image */}
       <Image
         src="/images/family-banner.jpg"
@@ -15,7 +15,7 @@ export const FamilyBanner = () => {
       <div className="absolute inset-0 bg-linear-to-r from-emerald-950/85 via-emerald-900/50 to-transparent" />
 
       {/* Banner text */}
-      <div className="relative mx-auto flex h-full max-w-6xl flex-col justify-center px-4">
+      <div className="relative mx-auto flex items-center h-full max-w-6xl flex-col justify-center px-4">
         <span className="w-fit rounded-full border border-emerald-300/30 bg-emerald-500/20 px-3 py-1 text-xs font-semibold tracking-wider text-emerald-100 uppercase">
           পরিবারসমূহ
         </span>

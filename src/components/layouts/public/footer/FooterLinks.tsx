@@ -10,10 +10,10 @@ export function FooterLinks() {
           <h3 className="mb-5 font-semibold">{group.title}</h3>
 
           <ul className="space-y-3">
-            {group.links.map((link) => (
-              <li key={link.href}>
+            {group.links.map((link, index) => (
+              <li key={`${link.href}-${link.label}-${index}`}>
                 <Link
-                  key={`${link.href}-${link.label}`}
+                  key={`${link.href}-${link.label}-${index}`}
                   href={link.href}
                   className="text-muted-foreground underline-offset-4 transition hover:text-primary hover:underline"
                 >
