@@ -20,10 +20,9 @@ export function ContactCTA() {
           </h2>
 
           <p className="mt-4 text-sm leading-7 text-primary-foreground/90 md:text-base">
-            মসজিদের কার্যক্রম, মাসিক চাঁদা, দান, পরিবার নিবন্ধন
-            অথবা যেকোনো বিষয়ে জানতে আমাদের সাথে যোগাযোগ করুন।
-            আমরা সর্বোচ্চ দ্রুত আপনার প্রশ্নের উত্তর দেওয়ার
-            চেষ্টা করব।
+            মসজিদের কার্যক্রম, মাসিক চাঁদা, দান, পরিবার নিবন্ধন অথবা যেকোনো
+            বিষয়ে জানতে আমাদের সাথে যোগাযোগ করুন। আমরা সর্বোচ্চ দ্রুত আপনার
+            প্রশ্নের উত্তর দেওয়ার চেষ্টা করব।
           </p>
         </div>
 
@@ -46,10 +45,7 @@ export function ContactCTA() {
             variant="outline"
             className="w-full border-white/30 bg-transparent text-white hover:bg-white hover:text-primary sm:w-auto"
           >
-            <Link
-              href="https://maps.google.com"
-              target="_blank"
-            >
+            <Link href="https://maps.google.com" target="_blank">
               মসজিদে আসুন
               <ArrowRight className="size-5" />
             </Link>

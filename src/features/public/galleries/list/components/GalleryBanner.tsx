@@ -6,7 +6,7 @@ import { Camera, Images } from "lucide-react"
 
 export function GalleryBanner() {
   return (
-    <section className="relative isolate overflow-hidden h-96 md:h-105">
+    <section className="relative isolate h-96 overflow-hidden md:h-105">
       {/* Background */}
       <Image
         src="/images/gallery-banner.jpg"
@@ -38,9 +38,8 @@ export function GalleryBanner() {
 
         {/* Description */}
         <p className="mt-2 max-w-2xl text-xs leading-5 text-white/85 md:mt-3 md:text-base md:leading-7">
-          মসজিদের বিভিন্ন ধর্মীয় অনুষ্ঠান, উন্নয়ন কার্যক্রম,
-          সামাজিক উদ্যোগ এবং স্মরণীয় মুহূর্তের ছবিগুলো একত্রে
-          সংরক্ষণ করা হয়েছে।
+          মসজিদের বিভিন্ন ধর্মীয় অনুষ্ঠান, উন্নয়ন কার্যক্রম, সামাজিক উদ্যোগ
+          এবং স্মরণীয় মুহূর্তের ছবিগুলো একত্রে সংরক্ষণ করা হয়েছে।
         </p>
 
         {/* Tags */}

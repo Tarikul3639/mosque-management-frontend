@@ -3,7 +3,7 @@ import { ReceiptText } from "lucide-react"
 
 export function ExpenseBanner() {
   return (
-    <section className="relative isolate overflow-hidden border-b h-96 md:h-105">
+    <section className="relative isolate h-96 overflow-hidden border-b md:h-105">
       {/* Background Image */}
       <Image
         src="/images/expense-banner.jpg"
@@ -18,7 +18,7 @@ export function ExpenseBanner() {
       <div className="absolute inset-0 -z-10 bg-linear-to-r from-primary/95 to-transparent" />
 
       {/* Content */}
-      <div className="container h-full flex items-center mx-auto px-4 py-14 md:px-6 md:py-20">
+      <div className="container mx-auto flex h-full items-center px-4 py-14 md:px-6 md:py-20">
         <div className="max-w-3xl">
           <div className="mb-5 flex size-14 items-center justify-center rounded-2xl border border-primary-foreground/20 bg-primary-foreground/10 text-primary-foreground backdrop-blur">
             <ReceiptText className="size-7" />

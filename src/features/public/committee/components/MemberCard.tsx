@@ -71,17 +71,19 @@ export function MemberCard({ member }: { member: CommitteeMember }) {
 
   return (
     <article
-      className={`group/card relative self-start overflow-visible rounded-xl border border-border bg-card transition-shadow duration-300 hover:shadow-md ${open ? "z-20" : "z-0"
-        }`}
+      className={`group/card relative self-start overflow-visible rounded-xl border border-border bg-card transition-shadow duration-300 hover:shadow-md ${
+        open ? "z-20" : "z-0"
+      }`}
     >
       {/* ---------------- Header ---------------- */}
       <div className="relative overflow-hidden rounded-t-xl border-b border-border bg-muted/30 px-6 pt-7 pb-6">
         <Badge
           variant="outline"
-          className={`absolute top-4 right-4 rounded-full border px-2.5 py-1 text-xs font-medium ${member.isActive
+          className={`absolute top-4 right-4 rounded-full border px-2.5 py-1 text-xs font-medium ${
+            member.isActive
               ? "border-emerald-200 bg-emerald-50 text-emerald-700"
               : "border-border bg-background text-muted-foreground"
-            }`}
+          }`}
         >
           {member.isActive ? "সক্রিয়" : "নিষ্ক্রিয়"}
         </Badge>
@@ -126,8 +128,9 @@ export function MemberCard({ member }: { member: CommitteeMember }) {
           >
             <span className="flex items-center gap-2">
               <ChevronDown
-                className={`size-4 transition-transform ${open ? "rotate-180" : ""
-                  }`}
+                className={`size-4 transition-transform ${
+                  open ? "rotate-180" : ""
+                }`}
               />
               আরো তথ্য
             </span>

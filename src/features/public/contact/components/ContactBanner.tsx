@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 
 export function ContactBanner() {
   return (
-    <section className="relative isolate overflow-hidden h-96 md:h-105">
+    <section className="relative isolate h-96 overflow-hidden md:h-105">
       {/* Background */}
       <Image
         src="/images/contact-banner.jpg"
@@ -24,7 +24,7 @@ export function ContactBanner() {
       {/* Decorative Blur */}
       <div className="absolute top-0 right-0 h-52 w-52 rounded-full bg-primary/25 blur-3xl md:h-80 md:w-80" />
 
-      <div className="container flex items-center h-full mx-auto px-4 py-16 sm:py-20 md:px-6 md:py-24">
+      <div className="container mx-auto flex h-full items-center px-4 py-16 sm:py-20 md:px-6 md:py-24">
         <div className="max-w-3xl">
           <span className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white backdrop-blur sm:px-4 sm:py-1.5 sm:text-sm">
             যোগাযোগ

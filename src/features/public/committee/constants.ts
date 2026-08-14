@@ -1,4 +1,4 @@
-import type { CommitteeDesignation } from "@/services/api/committee.service"
+import type { Designation as CommitteeDesignation } from "@/constants/designation"
 
 export interface CommitteeDesignationInfo {
   label: string
