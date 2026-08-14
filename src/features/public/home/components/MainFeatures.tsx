@@ -1,5 +1,6 @@
 import { HeartHandshake, Landmark, Users, Wallet } from "lucide-react"
 import Link from "next/link"
+import { ROUTES } from "@/config/routes"
 
 /* ------------------------------ Features Data ------------------------------ */
 const FEATURES = [
@@ -7,25 +8,25 @@ const FEATURES = [
     icon: Users,
     title: "সদস্য ব্যবস্থাপনা",
     description: "মসজিদের সদস্য ও পরিবারের সকল তথ্য সহজেই পরিচালনা করুন।",
-    href: "/members",
+    href: ROUTES.PUBLIC.COMMITTEE.INDEX,
   },
   {
     icon: HeartHandshake,
     title: "দান ও যাকাত",
     description: "দান, যাকাত ও অনুদান স্বচ্ছতার সাথে সংগ্রহ ও পরিচালনা করুন।",
-    href: "/donations",
+    href: ROUTES.PUBLIC.CONTACT,
   },
   {
     icon: Wallet,
     title: "ব্যয় ব্যবস্থাপনা",
     description: "মসজিদের সকল ব্যয়ের হিসাব রাখুন বিস্তারিত রিপোর্টসহ।",
-    href: "/finance",
+    href: ROUTES.PUBLIC.EXPENSES.INDEX,
   },
   {
     icon: Landmark,
     title: "প্রকল্প ব্যবস্থাপনা",
     description: "শুরু থেকে সমাপ্তি পর্যন্ত মসজিদের প্রকল্পগুলো পরিচালনা করুন।",
-    href: "/projects",
+    href: ROUTES.PUBLIC.PROJECTS.INDEX,
   },
 ]
 

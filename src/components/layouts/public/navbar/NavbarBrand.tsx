@@ -15,12 +15,11 @@ export function NavbarBrand() {
 
       <div className="min-w-0 flex-1">
         <h1 className="truncate text-base font-bold text-foreground sm:text-lg">
-          নামা রাথুরা বাইতুল আমান{" "}
-          <span className="hidden sm:inline">জামে মসজিদ</span>
+          বাইতুল আমান <span className="hidden sm:inline">জামে মসজিদ</span>
         </h1>
 
         <p className="hidden truncate text-xs text-muted-foreground sm:block sm:text-sm">
-          পরিচালনায়: মসজিদ পরিচালনা কমিটি
+          মসজিদ পরিচালনা কমিটি
         </p>
 
         <p className="truncate text-xs text-muted-foreground sm:hidden sm:text-sm">

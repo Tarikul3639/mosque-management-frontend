@@ -144,7 +144,7 @@ export const PUBLIC_NAVIGATION: NavigationItem[] = [
 
   {
     title: "গ্যালারি",
-    href: ROUTES.PUBLIC.GALLERY.INDEX,
+    href: ROUTES.PUBLIC.GALLERIES.INDEX,
     icon: Image,
   },
 

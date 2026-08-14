@@ -13,6 +13,7 @@ export function FooterLinks() {
             {group.links.map((link) => (
               <li key={link.href}>
                 <Link
+                  key={`${link.href}-${link.label}`}
                   href={link.href}
                   className="text-muted-foreground underline-offset-4 transition hover:text-primary hover:underline"
                 >

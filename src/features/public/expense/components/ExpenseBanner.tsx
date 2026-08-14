@@ -11,7 +11,7 @@ export function ExpenseBanner() {
         fill
         priority
         sizes="100vw"
-        className="-z-20 object-cover object-bottom"
+        className="-z-20 object-cover object-top"
       />
 
       {/* Overlay */}

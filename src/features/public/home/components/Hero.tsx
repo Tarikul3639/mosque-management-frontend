@@ -41,7 +41,7 @@ export function Hero() {
                 size="lg"
                 className="h-10 rounded-full bg-primary px-5 text-sm text-white hover:bg-primary/90 sm:h-12 sm:px-7 sm:text-base"
               >
-                <Link href={ROUTES.PUBLIC.DONATIONS.INDEX}>
+                <Link href={ROUTES.PUBLIC.CONTACT}>
                   <HeartHandshake className="mr-2 size-4 sm:size-5" />
                   অনুদান করুন
                 </Link>

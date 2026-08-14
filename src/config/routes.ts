@@ -33,9 +33,9 @@ export const ROUTES = {
       DETAIL: (slug: string) => `/expenses/${slug}`,
     },
 
-    GALLERY: {
-      INDEX: "/gallery",
-      ALBUM: (slug: string) => `/gallery/${slug}`,
+    GALLERIES: {
+      INDEX: "/galleries",
+      ALBUM: (slug: string) => `/galleries/${slug}`,
     },
 
     NOTICES: {
@@ -43,7 +43,9 @@ export const ROUTES = {
       DETAIL: (slug: string) => `/notices/${slug}`,
     },
 
-    PRAYER_TIMES: "/prayer-times",
+    DONATE: "/contact",
+
+    PRAYER_TIMES: "/",
 
     PRIVACY_POLICY: "/privacy-policy",
     TERMS: "/terms",

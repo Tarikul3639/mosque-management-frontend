@@ -40,7 +40,7 @@ export function MobileSidebar({ open, onOpenChange }: MobileSidebarProps) {
 
               <div className="min-w-0">
                 <h2 className="truncate leading-tight font-bold text-foreground">
-                  নামা রাথুরা বাইতুল আমান
+                  বাইতুল আমান
                 </h2>
 
                 <p className="text-xs font-normal text-muted-foreground">

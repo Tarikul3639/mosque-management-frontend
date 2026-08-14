@@ -3,6 +3,7 @@ import Image from "next/image"
 import { ArrowRight, Heart } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
+import { ROUTES } from "@/config/routes"
 
 export function DonationCTA() {
   return (
@@ -52,11 +53,7 @@ export function DonationCTA() {
               size="lg"
               className="mt-6 h-12 rounded-xl bg-[#e8b64c] px-8 text-[#06382c] shadow-lg shadow-[#e8b64c]/20 transition-all hover:scale-105 hover:bg-[#d4a93f] active:scale-95 sm:mt-8"
             >
-              <Link
-                href="https://www.bkash.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <Link href={ROUTES.PUBLIC.CONTACT}>
                 <Heart className="mr-2 size-5" />
                 অনুদান দিন
                 <ArrowRight className="ml-2 size-4" />

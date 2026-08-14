@@ -74,7 +74,7 @@ export function DonationCTA() {
               size="lg"
               className="mt-6 h-12 rounded-xl bg-[#e8b64c] px-8 text-[#06382c] shadow-lg shadow-[#e8b64c]/30 transition-all hover:scale-105 hover:bg-[#d4a93f] hover:shadow-[#e8b64c]/50 sm:mt-8"
             >
-              <Link href={ROUTES.PUBLIC.DONATIONS.INDEX}>
+              <Link href={ROUTES.PUBLIC.CONTACT}>
                 <HeartHandshake className="mr-2 size-5" />
                 এখনই অনুদান করুন
                 <ArrowRight className="ml-2 size-4" />
